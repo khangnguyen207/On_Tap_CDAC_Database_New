@@ -1,0 +1,2265 @@
+ID: 1 | Mod: 1 | Ans: A
+Prompt: Which of the following is not an advantage of the DBMS?
+  A. User application data creation. [100]
+  B. Data independence and efficient access.
+  C. Reduced application development time.
+  D. Data integrity and security.
+------------------------------------------------------------
+ID: 2 | Mod: 1 | Ans: A
+Prompt: Which Background process updates the online redo log files with the redo log buffer 
+entries when a COMMIT occurs in the database?
+  A. LGWR [100]
+  B. DBWn
+  C. CKPT
+  D. CJQn
+------------------------------------------------------------
+ID: 3 | Mod: 1 | Ans: A
+Prompt: Which files can be multiplexed?
+  A. Data Files [100]
+  B. Control Files
+  C. Parameter Files
+  D. Data Buffer Cache
+------------------------------------------------------------
+ID: 4 | Mod: 1 | Ans: C
+Prompt: Which Statement about the Data files is not true?
+  A. A data file Can belong to only one tablespace
+  B. At least one data file is required for each tablespace
+  C. Maintain the logs of the changes made to the database to enable recovery. [100]
+  D. Data File contains the data in the database, including tables, indexes, temp segments etc
+------------------------------------------------------------
+ID: 5 | Mod: 1 | Ans: D
+Prompt: Which Statement about the Oracle Initialization Parameter Files (init.ora) is not true?
+  A. Enclose in quotation marks any parameter value that contains a special character
+  B. An initialization parameter file should contain only parameters and comments.
+  C. Several parameters can be specified on one line, separated by a space
+  D. Parameters must be specified in a predefined order. [100]
+------------------------------------------------------------
+ID: 6 | Mod: 1 | Ans: B
+Prompt: What is not true about the Oracle Instance?
+  A. Oracle Instance provides means to access Oracle database
+  B. Oracle Instance is a collection of data that is treated as a unit, which stores and retrieves related information [100]
+  C. Oracle Instance can open and use one database at a time
+  D. Oracle Instance consists of SGA and background processes
+------------------------------------------------------------
+ID: 7 | Mod: 1 | Ans: C
+Prompt: Which of the following is not a part of System Global Area?
+  A. Redo log Buffer
+  B. Data Buffer Cache
+  C. Parameter Files [100]
+  D. Shared Pool
+------------------------------------------------------------
+ID: 8 | Mod: 1 | Ans: A
+Prompt: Which of the following statements about the Data buffer cache is not true?
+  A. Data buffer cache stores a collection of the most recently used SQL statements. [100]
+  B. Data buffer cache stores the most recently used data
+  C. Data buffer cache read and write data to and from the data files
+  D. Size of each buffer in the Data buffer cache is equal to the size of an Oracle Block.
+------------------------------------------------------------
+ID: 9 | Mod: 1 | Ans: A
+Prompt: Which of the following statements about the Redo log buffer is not true?
+  A. The client process records changes in the redo log buffer [100]
+  B. The Redo log buffer records changes made to a database
+  C. The server process records changes in the redo log buffer
+  D. The Redo log buffer records the block that is changed, the location of the change and the new Value.
+------------------------------------------------------------
+ID: 10 | Mod: 1 | Ans: A
+Prompt: Which of the following is not stored by the Library Cache?
+  A. Results of the SQL statements [100]
+  B. The text of SQL statement
+  C. The Parse Tree: complied version of a statement.
+  D. The Execution Plan
+------------------------------------------------------------
+ID: 11 | Mod: 1 | Ans: A
+Prompt: Which of the following is not true about the Shared Pool?
+  A. The shared pool can be used by multiple SQL statements for the processing of data retrieved. [100]
+  B. Shared Pool is a part of the SGA
+  C. Shared Pool consists of the Library cache and the Data dictionary cache
+  D. The shared pool is sized by SHARED_POOL_SIZE parameter of init.ora
+------------------------------------------------------------
+ID: 12 | Mod: 1 | Ans: D
+Prompt: Which of the following systems requires a database?
+  A. Payroll System
+  B. Airline reservations system
+  C. A web site that is capturing registered users
+  D. All of the above [100]
+------------------------------------------------------------
+ID: 13 | Mod: 1 | Ans: A
+Prompt: Which of the following is not contained in the Program Global Area?
+  A. SQL Execution Plan [100]
+  B. Session information
+  C. Cursor information
+  D. SQL execution work areas
+------------------------------------------------------------
+ID: 14 | Mod: 1 | Ans: A
+Prompt: Which of the following is not a valid level of abstraction in a DBMS?
+  A. Tables [100]
+  B. Views
+  C. Conceptual Schema
+  D. Physical Schema
+------------------------------------------------------------
+ID: 15 | Mod: 1 | Ans: A
+Prompt: Which of the following is not among the ACID properties of a Transaction?
+  A. Independence [100]
+  B. Atomicity
+  C. Consistency
+  D. Durability
+------------------------------------------------------------
+ID: 16 | Mod: 1 | Ans: A
+Prompt: Which of the following are the advantages of the DBMS over a conventional file system 
+that stores data, in terms of processing power requires a database?
+  A. All of the above [100]
+  B. Ability to create Data Reports
+  C. Efficient Querying of Data
+  D. Matching and Sorting
+------------------------------------------------------------
+ID: 17 | Mod: 1 | Ans: A
+Prompt: Which of the following is not a valid type of a database management system?
+  A. OODBMS (Operations Oriented Database Management System) [100]
+  B. NDBMS (Networked Database Management System)
+  C. HDBMS (Hierarchical Database Management System)
+  D. unsigned charRDBMS (Relational Database Management System)
+------------------------------------------------------------
+ID: 18 | Mod: 1 | Ans: A
+Prompt: Which of the following is not a part of the Oracle Database?
+  A. Shared Pool [100]
+  B. Data Files
+  C. Control Files
+  D. Redo Log Files
+------------------------------------------------------------
+ID: 19 | Mod: 1 | Ans: C
+Prompt: In an instance, multiple ________ can share an SGA.
+  A. Server Processes
+  B. PMON Processes
+  C. Instances [100]
+  D. Databases
+------------------------------------------------------------
+ID: 20 | Mod: 1 | Ans: A
+Prompt: Which component in the following list is not part of the System Global Area (SGA)?
+  A. Sort Area [100]
+  B. Database Buffer Cache
+  C. Library Cache
+  D. Shared Pool
+------------------------------------------------------------
+ID: 21 | Mod: 2 | Ans: A
+Prompt: What does SQL stand for?
+  A. Structured Query Language [100]
+  B. Structured Question Language
+  C. Strong Question Language
+  D. Strong Query Language
+------------------------------------------------------------
+ID: 22 | Mod: 2 | Ans: B
+Prompt: The Employee table contains these columns: 
+Empno  Number(4) 
+Ename  Varchar2(10) 
+job    varchar2(10) 
+sal    Varchar2(10) 
+You need to display employee information using this query. 
+SELECT Empno, Ename, Job "Employee Information" FROM employee; 
+How many columns are presented after executing this query?
+  A. 2
+  B. 1 [100]
+  C. 3
+  D. 0
+------------------------------------------------------------
+ID: 23 | Mod: 2 | Ans: A
+Prompt: The ITEM table contains these columns: 
+ITEM_ID  NUMBER(9) 
+COST     NUMBER(7,2) 
+RETAIL   NUMBER(7,2) 
+The RETAIL and COST columns contain values greater than zero. 
+Evaluate these two SQL statements: 
+1. SELECT item_id, (retail * 1.25) + 5.00 - (cost * 1.10) - (cost * .10) AS Calculated Profit 
+   FROM item; 
+2. SELECT item_id, retail * 1.25 + 5.00 - cost * 1.10 - cost * .10 "Calculated Profit" 
+   FROM item; 
+What will be the result?
+  A. One of the statements will NOT execute. [100]
+  B. Statement 1 will display the 'Calculated Profit' column heading.
+  C. Statement 1 and statement 2 will return the same value.
+  D. Statement 1 will return a higher value than statement 2.
+------------------------------------------------------------
+ID: 24 | Mod: 2 | Ans: D
+Prompt: Which SQL statement generates the alias Annual Salary for the calculated column 
+SALARY*12?
+  A. SELECT ename, salary*12 AS INITCAP ('ANNUAL SALARY') FROM employees;
+  B. SELECT ename, salary*12 AS Annual Salary FROM employees;
+  C. SELECT ename, salary*12 Annual Salary FROM employees;
+  D. SELECT ename, salary*12 'Annual Salary' FROM employees; [100]
+------------------------------------------------------------
+ID: 25 | Mod: 2 | Ans: A
+Prompt: Evaluate this SQL statement: 
+SELECT ename, sal, 12*sal+100 FROM emp; 
+The SAL column stores the monthly salary of the employee. Which change must be 
+made to the above syntax to calculate the annual compensation as "monthly salary plus a 
+monthly bonus of $100, multiplied by 12"?
+  A. SELECT ename, sal, 12*(sal+100) FROM emp; [100]
+  B. No change is required to achieve the desired results
+  C. SELECT ename, sal, (12*sal) +100 FROM emp;
+  D. SELECT ename, sal+100,*12 FROM emp;
+------------------------------------------------------------
+ID: 26 | Mod: 2 | Ans: A
+Prompt: You need to produce output that states "Dear Customer customer_name, ". 
+The customer_name data values come from the CUSTOMER_NAME column in the 
+CUSTOMERS table. 
+Which statement produces this output?
+  A. SELECT 'Dear Customer ' customer_name ',' FROM customers; [100]
+  B. SELECT dear customer, customer_name, FROM customers;
+  C. SELECT "Dear Customer", customer_name ',' FROM customers;
+  D. SELECT 'Dear Customer ' customer_name ',' FROM customers;
+------------------------------------------------------------
+ID: 27 | Mod: 2 | Ans: A
+Prompt: Which of the following query will correctly display each row of the Employees table 
+only once given that Employees table may contain duplicate rows?
+  A. SELECT distinct * from employees; [100]
+  B. SELECT unique rows from employees;
+  C. SELECT * from employees;
+  D. SELECT distinct rows from employees;
+------------------------------------------------------------
+ID: 28 | Mod: 2 | Ans: A
+Prompt: What will be the output of the following query? 
+SELECT 1 FROM employees;
+  A. This statement will return 1 as many times as the number of rows in the employees table. [100]
+  B. This statement will return first row of the employees table
+  C. This statement will return only one row and one column in output and value will be 1.
+  D. This statement will return error.
+------------------------------------------------------------
+ID: 29 | Mod: 2 | Ans: A
+Prompt: What of the following statements is not true?
+  A. Clauses must be placed on separate lines. [100]
+  B. SQL statements are not case sensitive.
+  C. SQL statements can be on one or more lines.
+  D. Keywords cannot be abbreviated or split across lines.
+------------------------------------------------------------
+ID: 30 | Mod: 2 | Ans: A
+Prompt: What is true about NULL?
+  A. NULL is a value that is unavailable, unassigned, unknown, or inapplicable [100]
+  B. NULL is same as blank spaces
+  C. NULL in a number column can be treated as zero
+  D. NULL means an incorrect value
+------------------------------------------------------------
+ID: 31 | Mod: 2 | Ans: C
+Prompt: What should be the result of the expression for the employees having commission_pct as 
+NULL? 
+SELECT 12 * salary * commission_pct 'ANNSAL_COMM' 
+FROM employees;
+  A. None of the above
+  B. Zero
+  C. NULL [100]
+  D. Unpredictable
+------------------------------------------------------------
+ID: 32 | Mod: 2 | Ans: A
+Prompt: Which SQL statement is used to extract data from a database?
+  A. SELECT [100]
+  B. GET
+  C. OPEN
+  D. EXTRACT
+------------------------------------------------------------
+ID: 33 | Mod: 2 | Ans: A
+Prompt: Which statement about the column aliases is not True?
+  A. "AS" keyword must be used between the column name and the column alias [100]
+  B. A column alias renames a column heading
+  C. A column alias requires double quotation marks if it contains spaces or special characters or is case sensitive
+  D. Immediately follows the column name.
+------------------------------------------------------------
+ID: 34 | Mod: 2 | Ans: B
+Prompt: With SQL, how do you select a column named "FirstName" from a table named 
+"Persons"?
+  A. SELECT Persons.FirstName ;
+  B. SELECT FirstName FROM Persons; [100]
+  C. EXTRACT FirstName FROM Persons ;
+  D. SELECT FROM persons the FirstName;
+------------------------------------------------------------
+ID: 35 | Mod: 2 | Ans: C
+Prompt: In the following query, which expression is evaluated first? 
+SELECT id_number, (quantity - 100 / 0.15 + 20 - 10) FROM inventory
+  A. D. 20 - 10
+  B. 0.15 + 20
+  C. 100 / 0.15 [100]
+  D. quantity - 100
+------------------------------------------------------------
+ID: 36 | Mod: 2 | Ans: A
+Prompt: Which SQL statement is used to return only different values?
+  A. SELECT DISTINCT [100]
+  B. SELECT DIFFERENT
+  C. SELECT UNIQUE
+  D. SELECT NO DUPLICATES
+------------------------------------------------------------
+ID: 37 | Mod: 2 | Ans: A
+Prompt: Which clauses of a SELECT statement are mandatory?
+  A. SELECT and FROM [100]
+  B. Only SELECT
+  C. SELECT and WHERE
+  D. SELECT, FROM and WHERE
+------------------------------------------------------------
+ID: 38 | Mod: 2 | Ans: B
+Prompt: Which SELECT statement should you use if you want to display unique combinations of 
+the POSITION and MANAGER values from the EMPLOYEE table?
+  A. SELECT position, manager DISTINCT FROM employee;
+  B. SELECT DISTINCT position, manager FROM employee; [100]
+  C. SELECT position, manager FROM employee;
+  D. SELECT position, DISTINCT manager FROM employee;
+------------------------------------------------------------
+ID: 39 | Mod: 2 | Ans: C
+Prompt: You are formulating queries in a SQL* Plus. 
+Which of the following statement correctly describes how to specify a column alias?
+  A. Place the alias at the end of the statement to describe the table.
+  B. Place the alias after each column separated by a comma to describe the column.
+  C. Place the alias after each column separated by a space to describe the column. [100]
+  D. Place the alias at the beginning of the statement to describe the table.
+------------------------------------------------------------
+ID: 40 | Mod: 2 | Ans: D
+Prompt: With SQL, how do you select all the columns from a table named "Persons"?
+  A. SELECT *.Persons
+  B. SELECT Persons
+  C. SELECT [all] FROM Persons
+  D. SELECT * FROM Persons [100]
+------------------------------------------------------------
+ID: 41 | Mod: 3 | Ans: A
+Prompt: What does the TRUNCATE statement do?
+  A. Removes the table [100]
+  B. Removes all rows from a table
+  C. Shortens the table to 10 rows
+  D. Removes all columns from a table
+------------------------------------------------------------
+ID: 42 | Mod: 3 | Ans: A
+Prompt: Which statement about data types is true?
+  A. The CHAR datatype should be used for fixed-length character data [100]
+  B. The TIMESTAMP data type is an extension of the VARCHAR2 data type
+  C. The BLOB data type stores character data up to four gigabytes
+  D. The VARCHAR2 data type stores character data up to four gigabytes
+------------------------------------------------------------
+ID: 43 | Mod: 3 | Ans: A
+Prompt: The EMPLOYEES table has these columns: 
+LAST_NAME  VARCHAR2(35) 
+SALARY     NUMBER(8,2) 
+HIRE_DATE  DATE 
+Management wants to add a default value to the SALARY column. You plan to alter the 
+table by using this SQL statement: 
+ALTER TABLE EMPLOYEES 
+MODIFY (SALARY DEFAULT 5000); 
+What is true about your ALTER statement?
+  A. A change to the DEFAULT value affects only subsequent insertions to the table. [100]
+  B. Column definitions cannot be altered to add DEFAULT values.
+  C. Column definitions cannot be altered at add DEFAULT values for columns with a NUMBER data type
+  D. All the rows that have a NULL value for the SALARY column will be updated with the value5000.
+------------------------------------------------------------
+ID: 44 | Mod: 3 | Ans: A
+Prompt: You need to change the definition of an existing table. The COMMERCIALS table 
+needs its DESCRIPTION column changed to hold varying length characters up to 2000 
+bytes. The column can currently hold 1000 bytes per value. The table contains 20000 
+rows. 
+Which statement is valid?
+  A. ALTER TABLE commercials MODIFY (description VARCHAR2(2000)); [100]
+  B. ALTER TABLE commercials MODIFY (description CHAR2(2000));
+  C. ALTER TABLE commercials CHANGE (description CHAR2(2000));
+  D. ALTER TABLE commercials CHANGE (description VARCHAR2(2000));
+------------------------------------------------------------
+ID: 45 | Mod: 3 | Ans: A
+Prompt: Evaluate the SQL statement: 
+DROP TABLE DEPT; 
+Which statement is false about the above SQL statement?
+  A. All views based on the DEPT table are deleted. [100]
+  B. You cannot roll back this statement.
+  C. All pending transactions are committed.
+  D. All indexes based on the DEPT table are dropped.
+------------------------------------------------------------
+ID: 46 | Mod: 3 | Ans: A
+Prompt: Which statement describes the ROWID data type?
+  A. A hexadecimal string representing the unique address of a row in its table. [100]
+  B. Binary data up to 4 gigabytes
+  C. Character data up to 4 gigabytes.
+  D. Raw binary data of variable length up to 2 gigabytes.
+------------------------------------------------------------
+ID: 47 | Mod: 3 | Ans: A
+Prompt: You just issued the following statement. 
+ALTER TABLE marketing 
+DROP COLUMN profit; 
+Which of the following choices identified when the column will actually be removed 
+from database?
+  A. Immediately following statement execution. [100]
+  B. After the Alter table drop unused columns command is issued.
+  C. After the Alter table set unused column command is issued.
+  D. After the Alter table modify command is issued.
+------------------------------------------------------------
+ID: 48 | Mod: 3 | Ans: A
+Prompt: Which of the following can be a valid table name?
+  A. Catch_#22 [100]
+  B. Number
+  C. 1966_Invoices
+  D. #Invoices
+------------------------------------------------------------
+ID: 49 | Mod: 3 | Ans: A
+Prompt: Which describes the default behaviour when you create a table?
+  A. Tables are created in your schema. [100]
+  B. The table is accessible to all users.
+  C. Tables are created in the public schema.
+  D. Tables are created in the DBA schema.
+------------------------------------------------------------
+ID: 50 | Mod: 3 | Ans: A
+Prompt: You need to modify the STUDENTS table to add a primary key on the STUDENT_ID 
+column. The table is currently empty. Which statement accomplishes this task?
+  A. ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY (student_id); [100]
+  B. ALTER TABLE students ADD PRIMARY KEY student_id;
+  C. ALTER TABLE students ADD CONSTRAINT PRIMARY KEY (student_id);
+  D. ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY student_id;
+------------------------------------------------------------
+ID: 51 | Mod: 3 | Ans: A
+Prompt: Evaluate the SQL statement: 
+TRUNCATE TABLE DEPT; 
+Which statement is not true about the SQL statement?
+  A. It releases the storage space used by the table. [100]
+  B. It does not release the storage space used by the table.
+  C. You can NOT roll back the deletion of rows after the statement executes.
+  D. You must be the owner of the table or have DELETE ANY TABLE system privileges to truncate the DEPT table
+------------------------------------------------------------
+ID: 52 | Mod: 3 | Ans: A
+Prompt: Which is not a correct guideline for naming database tables?
+  A. Must begin with either a number or a letter. [100]
+  B. Must be 1-30 characters long.
+  C. Should not be an Oracle Server reserved word.
+  D. Must contain only A-Z, a-z, 0-9, _, $, and #.
+------------------------------------------------------------
+ID: 53 | Mod: 3 | Ans: A
+Prompt: Which is a valid CREATE TABLE statement?
+  A. CREATE TABLE EMP9$# AS (empid number(2)); [100]
+  B. CREATE TABLE EMP*123 AS (empid number(2));
+  C. CREATE TABLE PACKAGE AS (packid num(2));
+  D. CREATE TABLE EMP_TEST AS (empid number(2));
+------------------------------------------------------------
+ID: 54 | Mod: 3 | Ans: A
+Prompt: Which of these DATETIME data types cannot be used when specifying column 
+definitions?
+  A. INTERVAL MONTH TO DAY [100]
+  B. TIMESTAMP
+  C. INTERVAL DAY TO SECOND
+  D. INTERVAL YEAR TO MONTH
+------------------------------------------------------------
+ID: 55 | Mod: 3 | Ans: A
+Prompt: Which statement about a table is true?
+  A. The size of a table does NOT need to be specified [100]
+  B. A table can have up to 10,000 columns
+  C. A table CANNOT be created while users are using the database.
+  D. The structure of a table CANNOT be modified while the table is online.
+------------------------------------------------------------
+ID: 56 | Mod: 3 | Ans: A
+Prompt: Consider a general employees table, which statement should you use to increase the 
+EMP_LNAME column length to 25 if the column currently contains 3000 records?
+  A. ALTER TABLE employee MODIFY emp_lname VARCHAR2(25); [100]
+  B. You CANNOT increases the width of the EMP_LNAME column.
+  C. ALTER TABLE employee RENAME emp_lname VARCHAR2(25);
+  D. ALTER employee TABLE MODIFY COLUMN emp_lname VARCHAR2(25);
+------------------------------------------------------------
+ID: 57 | Mod: 3 | Ans: A
+Prompt: Which statement will permanently remove all the data in, the indexes on, and the 
+structure of the PO_DETAIL table?
+  A. DROP TABLE po_detail; [100]
+  B. DELETE TABLE po_detail;
+  C. TRUNCATE TABLE po_detail;
+  D. ALTER TABLE po_detail SET UNUSED (po_num, po_line_id, product_id, quantity, unit_price);
+------------------------------------------------------------
+ID: 58 | Mod: 3 | Ans: A
+Prompt: Consider an Employees table in which the MGR_ID column currently contains 
+employee identification numbers, and you need to allow users to include text characters 
+in the identification values. Which statement should you use to implement this?
+  A. You CANNOT modifies the data type of the MGR_ID column. [100]
+  B. ALTER employee MODIFY (mgr_id VARCHAR2(15));
+  C. ALTER TABLE employee MODIFY (mgr_id VARCHAR2(15));
+  D. ALTER employee TABLE MODIFY COLUMN (mgr_id VARCHAR2(15));
+------------------------------------------------------------
+ID: 59 | Mod: 3 | Ans: A
+Prompt: Which CREATE TABLE statements will not fail?
+  A. CREATE TABLE time (time1 NUMBER(9)); [100]
+  B. CREATE TABLE date (time_id NUMBER(9));
+  C. CREATE TABLE time* (time_id NUMBER(9));
+  D. CREATE TABLE $time (time_id NUMBER(9));
+------------------------------------------------------------
+ID: 60 | Mod: 3 | Ans: A
+Prompt: Examine the structure of the PRODUCT table. 
+PRODUCT_ID    NUMBER        Primary Key 
+PRODUCT_NAME  VARCHAR2(25) 
+SUPPLIER_ID   NUMBER 
+LIST_PRICE    NUMBER(7,2) 
+You need to reduce the LIST_PRICE column precision to 6 with a scale of 2 and ensure 
+that when inserting a row into the PRODUCT table without a value for the LIST_PRICE 
+column, a price of $5.00 will automatically be inserted. The PRODUCT table currently 
+contains no records. 
+Which statement should you use?
+  A. ALTER TABLE product MODIFY (list_price NUMBER(6,2) DEFAULT 5); [100]
+  B. ALTER TABLE product ADD OR REPLACE (list_price NUMBER(8,2) DEFAULT 5);
+  C. ALTER TABLE product MODIFY COLUMN (list_price NUMBER(6,2) DEFAULT '$5.00');
+  D. You CANNOT reduces the size of the LIST_PRICE column.
+------------------------------------------------------------
+ID: 61 | Mod: 4 | Ans: A
+Prompt: Which ALTER TABLE statement should you use to add a PRIMARY KEY constraint 
+on the MANUFACTURER_ID column of the INVENTORY table?
+  A. ALTER TABLE inventory ADD PRIMARY KEY (manufacturer_id); [100]
+  B. ALTER TABLE inventory ADD CONSTRAINT manufacturer_id PRIMARY KEY;
+  C. ALTER TABLE inventory MODIFY manufacturer_id CONSTRAINT PRIMARY KEY;
+  D. ALTER TABLE inventory MODIFY CONSTRAINT PRIMARY KEY manufacturer_id;
+------------------------------------------------------------
+ID: 62 | Mod: 4 | Ans: A
+Prompt: Which statement explicitly names a constraint?
+  A. ALTER TABLE student_grades ADD CONSTRAINT student_id_fk FOREIGN KEY (student_id) REFERENCES students(student_id); [100]
+  B. ALTER TABLE student_grades ADD FOREIGN KEY (student_id) REFERENCES students(student_id);
+  C. ALTER TABLE student_grades ADD CONSTRAINT NAME = student_id_fk FOREIGN KEY (student_id) REFERENCES students(student_id);
+  D. ALTER TABLE student grades ADD NAMED CONSTRAINT student_id_fk FOREIGN KEY (student_id) REFERENCES students(student_id);
+------------------------------------------------------------
+ID: 63 | Mod: 4 | Ans: A
+Prompt: Examine the SQL statements that create ORDERS table: 
+CREATE TABLE orders 
+(SER_NO      NUMBER UNIQUE, 
+ ORDER_ID    NUMBER, 
+ ORDER_DATE  DATE NOT NULL, 
+ STATUS      VARCHAR2(10) 
+             CHECK (status IN ('CREDIT', 'CASH')), 
+ PROD_ID     NUMBER 
+             REFERENCES PRODUCTS(PRODUCT_ID), 
+ ORD_TOTAL   NUMBER 
+); 
+For which columns would an index be automatically created when you execute the 
+above SQL statement?
+  A. SER_NO [100]
+  B. ORDER_ID
+  C. STATUS
+  D. PROD_ID
+------------------------------------------------------------
+ID: 64 | Mod: 4 | Ans: A
+Prompt: For which of these constraints does the Oracle Server implicitly create a unique index?
+  A. PRIMARY KEY [100]
+  B. NOT NULL
+  C. FOREIGN KEY
+  D. CHECK
+------------------------------------------------------------
+ID: 65 | Mod: 4 | Ans: A
+Prompt: Your attempt to disable a constraint results in the following error: 
+ORA-02297: cannot disable constraint - dependencies exist. 
+Which of the following types of the constraints is likely causing interference with your 
+disablement of this one?
+  A. Foreign key Constraints [100]
+  B. Check constraints
+  C. Not NULL constraints.
+  D. Unique Constraints.
+------------------------------------------------------------
+ID: 66 | Mod: 4 | Ans: A
+Prompt: Which is not a valid Oracle constraint type?
+  A. CASCADE [100]
+  B. UNIQUE
+  C. CHECK
+  D. NOT NULL
+------------------------------------------------------------
+ID: 67 | Mod: 4 | Ans: A
+Prompt: Which constraint will ensure that the CUSTOMER_NAME column of the 
+CUSTOMERS table always holds a value?
+  A. NOT NULL or Primary Key [100]
+  B. Only Primary Key
+  C. Unique
+  D. Foreign Key
+------------------------------------------------------------
+ID: 68 | Mod: 4 | Ans: A
+Prompt: Which view should a user query to display the columns associated with the constraints 
+on a table owned by the user?
+  A. USER_CONS_COLUMNS [100]
+  B. USER_CONSTRAINTS
+  C. USER_OBJECTS
+  D. ALL_CONSTRAINTS
+------------------------------------------------------------
+ID: 69 | Mod: 4 | Ans: A
+Prompt: You need to modify the STUDENTS table to add a primary key on the STUDENT_ID 
+column. The table is currently empty. Which statement accomplishes this task?
+  A. ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY (student_id); [100]
+  B. ALTER TABLE students ADD PRIMARY KEY student_id;
+  C. ALTER TABLE students ADD CONSTRAINT PRIMARY KEY (student_id);
+  D. ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY student_id;
+------------------------------------------------------------
+ID: 70 | Mod: 4 | Ans: A
+Prompt: Which statement about the CASCADE CONSTRAINTS clause is not true?
+  A. The CASCADE CONSTRAINTS can be used while creating the constraint to enable automatic dropping of foreign key constraint when a primary key is dropped. [100]
+  B. The CASCADE CONSTRAINTS clause is used along with the DROP COLUMN clause.
+  C. The CASCADE CONSTRAINTS clause drops all referential integrity constraints that refer to the primary and unique keys defined on the dropped columns.
+  D. The CASCADE CONSTRAINTS clause also drops all multicolumn constraints defined on the dropped columns
+------------------------------------------------------------
+ID: 71 | Mod: 4 | Ans: A
+Prompt: Which data dictionary view can be used to view the details of columns involved in 
+constraints ?
+  A. USER_CONS_COLUMNS [100]
+  B. USER_COLS_CONSTRAINTS
+  C. USER_CONSTRAINTS
+  D. USER_OBJECTS
+------------------------------------------------------------
+ID: 72 | Mod: 4 | Ans: A
+Prompt: Which SQL statement defines the FOREIGN KEY constraint on the DEPTNO column 
+of the EMP table?
+  A. CREATE TABLE EMP(empno NUMBER(4),ename VARCNAR2(35),deptno NUMBER(7,2) CONSTRAINT emp_deptno_fk REFERENCES dept (deptno)); [100]
+  B. CREATE TABLE EMP(empno NUMBER(4),ename VARCNAR2(35),deptno NUMBER(7,2) NOT NULL CONSTRAINT emp_deptno_fk FOREIGN KEY deptno REFERENCES dept deptno);
+  C. CREATE TABLE EMP(empno NUMBER(4)ename VARCHAR2(35),deptno NUMBER(7,2) NOT NULL, CONSTRAINT emp_deptno_fk REFERENCES dept (deptno) FOREIGN KEY (deptno));
+  D. CREATE TABLE EMP (empno NUMBER(4),ename VARCNAR2(35),deptno NUMBER(7,2) FOREIGN KEY CONSTRAINT emp deptno fk REFERENCES dept (deptno));
+------------------------------------------------------------
+ID: 73 | Mod: 4 | Ans: A
+Prompt: Which statement should be used to alter the constraints (i.e. either to enable, disable or 
+drop a constraint)?
+  A. ALTER TABLE [100]
+  B. ALTER CONSTRAINT
+  C. DROP CONSTRAINT
+  D. ALTER OBJECT
+------------------------------------------------------------
+ID: 74 | Mod: 4 | Ans: A
+Prompt: Which statement is not correct about the use of constraints?
+  A. Constraints make complex queries easy [100]
+  B. Constraints enforce rules at the view level.
+  C. Constraints enforce rules at the table level.
+  D. Constraints prevent the deletion of a table if there are dependencies.
+------------------------------------------------------------
+ID: 75 | Mod: 4 | Ans: A
+Prompt: Which statement about NOT NULL constraints is true?
+  A. NOT NULL constraints can only be defined at the column level. [100]
+  B. You CANNOT add a NOT NULL constraint to an existing column using the ALTER TABLE statement
+  C. You can modify the structure of a NOT NULL constraint using the ALTER TABLE statement.
+  D. A NOT NULL constraint is stored in the data dictionary as a UNIQUE constraint.
+------------------------------------------------------------
+ID: 76 | Mod: 4 | Ans: A
+Prompt: The PO_DETAIL table contains these columns: 
+PO_NUM      NUMBER  NOT NULL, Primary Key 
+PO_LINE_ID  NUMBER  NOT NULL, Primary Key 
+PRODUCT_ID  NUMBER  Foreign Key to PRODUCT_ID column of the PRODUCT table 
+QUANTITY    NUMBER 
+UNIT_PRICE  NUMBER(5,2) 
+Evaluate this statement: 
+ALTER TABLE po_detail 
+ENABLE CONSTRAINT po_num_pk; 
+For which task would you issue this statement?
+  A. to activate the previously disabled constraint on the PO_NUM column while creating a PRIMARY KEY index [100]
+  B. to drop and recreate the PRIMARY KEY constraint on the PO_NUM column
+  C. to create a new PRIMARY KEY constraint on the PO_NUM column
+  D. to enable any previously disabled FOREIGN KEY constraints that are dependent on thePO_NUM column
+------------------------------------------------------------
+ID: 77 | Mod: 4 | Ans: A
+Prompt: Which statement about constraints is true?
+  A. Constraints prevent a table with dependencies from being deleted. [100]
+  B. Constraints only enforce rules at the table level.
+  C. You must provide a name for each constraint at the time of its creation.
+  D. Constraint names are NOT required to follow the standard object-naming rules.
+------------------------------------------------------------
+ID: 78 | Mod: 4 | Ans: A
+Prompt: Which syntax turns an existing constraint on?
+  A. ALTER TABLE table_name ENABLE CONSTRAINT constraint_name; [100]
+  B. ALTER TABLE table_name ENABLE constraint_name;
+  C. ALTER TABLE table_name STATUS = ENABLE CONSTRAINT constraint_name;
+  D. ALTER TABLE table_name STATUS ENABLE CONSTRAINT constraint_name;
+------------------------------------------------------------
+ID: 79 | Mod: 4 | Ans: A
+Prompt: Which statement about creating constraints is true?
+  A. Constraints can be created after the table is created. [100]
+  B. Constraint names must start with SYS_C.
+  C. All constraints must be defines at the column level.
+  D. Information about constraints is found in the VIEW_CONSTRAINTS dictionary view.
+------------------------------------------------------------
+ID: 80 | Mod: 4 | Ans: A
+Prompt: Which constraint can be defined only at the column level?
+  A. NOT NULL [100]
+  B. UNIQUE
+  C. CHECK
+  D. PRIMARY KEY
+------------------------------------------------------------
+ID: 81 | Mod: 5 | Ans: A
+Prompt: A data manipulation language statement _____.
+  A. Modifies the data but not the structure of a table [100]
+  B. Completes a transaction on a table.
+  C. Modifies the structure and data in a table
+  D. Modifies the structure but not the data of a table
+------------------------------------------------------------
+ID: 82 | Mod: 5 | Ans: A
+Prompt: Which statement regarding DML statement functionality is true?
+  A. UPDATE can update multiple columns in one table. [100]
+  B. DELETE can be used to delete rows or columns from a table.
+  C. MERGE will delete rows that do NOT exist in either table.
+  D. UPDATE will add rows to a table if an INTO clause is specified.
+------------------------------------------------------------
+ID: 83 | Mod: 5 | Ans: A
+Prompt: You own a table called EMPLOYEES. What happens when you execute this DELETE 
+statement? 
+DELETE employees;
+  A. The data in the EMPLOYEES table is deleted but not the structure. [100]
+  B. You get an error because of a primary key violation
+  C. The data and structure of the EMPLOYEES table are deleted.
+  D. You get an error because the statement is not syntactically correct.
+------------------------------------------------------------
+ID: 84 | Mod: 5 | Ans: A
+Prompt: Examine the structure of the EMPLOYEES table: 
+EMPLOYEE_ID  NUMBER        Primary Key 
+FIRST_NAME   VARCHAR2(25) 
+LAST_NAME    VARCHAR2(25) 
+Which statement fails to insert a row into the table?
+  A. INSERT INTO employees( first_name, last_name) VALUES( 'John', 'Smith'); [100]
+  B. INSERT INTO employees VALUES ( '1000', 'John', NULL);
+  C. INSERT INTO employees (employee_id) VALUES (1000);
+  D. INSERT INTO employees (employee_id, first_name, last_name) VALUES ( 1000, 'John', ' ');
+------------------------------------------------------------
+ID: 85 | Mod: 5 | Ans: A
+Prompt: Which is not true?
+  A. A MERGE statement replaces the complete data of one table with that of another. [100]
+  B. A MERGE statement is used to merge the data of one table with data from another.
+  C. A MERGE statement can be used to insert new rows into a table.
+  D. A MERGE statement can be used to update existing rows in a table.
+------------------------------------------------------------
+ID: 86 | Mod: 5 | Ans: A
+Prompt: With SQL, how can you insert "Olsen" as the "LastName" in the "Persons" table?
+  A. INSERT INTO Persons (LastName) VALUES ('Olsen') [100]
+  B. INSERT INTO Persons ('Olsen') as LastName
+  C. INSERT LastName('Olsen') INTO Persons
+  D. None of the above
+------------------------------------------------------------
+ID: 87 | Mod: 5 | Ans: A
+Prompt: How can you change "Hansen" into "Nilsen" in the "LastName" column in the Persons 
+table?
+  A. UPDATE Persons SET LastName='Nilsen' WHERE LastName='Hansen' [100]
+  B. MODIFY Persons SET LastName='Hansen' INTO LastName='Nilsen
+  C. UPDATE Persons SET LastName='Hansen' INTO LastName='Nilsen'
+  D. MODIFY Persons SET LastName='Nilsen' WHERE LastName='Hansen'
+------------------------------------------------------------
+ID: 88 | Mod: 5 | Ans: A
+Prompt: With SQL, how can you delete the records where the "FirstName" is "Peter" in the 
+Persons Table?
+  A. DELETE FROM Persons WHERE FirstName = 'Peter' [100]
+  B. DELETE * FROM Persons WHERE FirstName = 'Peter'
+  C. DELETE FirstName FROM Persons WHERE FirstName = 'Peter'
+  D. DELETE 'Peter' FROM Persons
+------------------------------------------------------------
+ID: 89 | Mod: 5 | Ans: A
+Prompt: Which of the following Insert statement will successfully insert only records of Sales 
+Representatives from the employees table into a new table called Sales_rep ?
+  A. INSERT INTO sales_reps(id, name, salary, commission_pct) SELECT employee_id, last_name, salary, commission_pct FROM employees WHERE job_id = 'SA_REP'; [100]
+  B. INSERT INTO sales_reps(id, name, salary, commission_pct) VALUES SELECT employee_id, last_name, salary, commission_pct FROM employees WHERE job_id = 'SA_REP';
+  C. INSERT INTO sales_reps(id, name, salary, commission_pct) SELECT employee_id, last_name, salary, commission_pct FROM employees;
+  D. INSERT INTO sales_reps(id, name, salary, commission_pct) SELECT last_name, employee_id, salary, commission_pct FROM employees WHERE job_id = 'SA_REP';
+------------------------------------------------------------
+ID: 90 | Mod: 5 | Ans: A
+Prompt: Which of the following is not a valid usage of a Merge statement?
+  A. Insert as well as update each row in a table. [100]
+  B. Conditionally update or insert data into a database table
+  C. Perform an UPDATE if the row exists, and an INSERT if it is a new row
+  D. Increase performance and ease of use
+------------------------------------------------------------
+ID: 91 | Mod: 5 | Ans: A
+Prompt: What will be the output of following statement? 
+UPDATE employees a 
+SET job_id = (SELECT job_id 
+              FROM new_employees b 
+              WHERE a.employee_id = b.employee_id); 
+Assume that Employee and New_employees tables have same structure.
+  A. This statement will update job_id for all records of employees as:Match found in New_employees table use job_id from New_employees tableno match found in New_employees table update job_id as NULL. [100]
+  B. This statement will return error
+  C. This statement will update only those records of Employees table which have matching employee_id in the New_employees table.
+  D. This statement will update job_id for all records of employees table but for records that do not have matching employee_id in the New_employees table the existing job_id will be retained.
+------------------------------------------------------------
+ID: 92 | Mod: 5 | Ans: A
+Prompt: Which of the following is not a DML statement?
+  A. COMMIT [100]
+  B. MERGE
+  C. UPDATE
+  D. DELETE
+------------------------------------------------------------
+ID: 93 | Mod: 5 | Ans: A
+Prompt: What will be the output of following statement? 
+INSERT INTO departments (department_id, department_name, manager_id) 
+VALUES (300, 'Engineering', DEFAULT);
+  A. This will insert one record in Employees table with values (300, 'Engineering') for the (department_id, department_name) respectively. [100]
+  B. This will insert one record in Employees table with values (300, 'Engineering', DEFAULT) for the (department_id, department_name, manager_id) respectively
+  C. This will insert one record in Employees table with values (300, 'Engineering') for the (department_id, department_name) respectively manager_id will be NULL as DEFAULT is not a valid value.
+  D. This will return Error as DEFAULT is not allowed in the INSERT
+------------------------------------------------------------
+ID: 94 | Mod: 5 | Ans: A
+Prompt: You maintain two tables, CUSTOMER and PROSPECT, that have identical structures 
+but different data. You want to synchronize these two tables by inserting records from 
+the PROSPECT table into the CUSTOMER table, if they do not exist. If the customer 
+already exists in the CUSTOMER table, you want to update customer data. 
+Which DML statement should you use to perform this task?
+  A. MERGE [100]
+  B. INSERT
+  C. UPDATE
+  D. You CANNOT perform this task with one DML operation.
+------------------------------------------------------------
+ID: 95 | Mod: 5 | Ans: A
+Prompt: You added a PHONE-NUMBER column of NUMBER data type to an existing 
+EMPLOYEES table. 
+The EMPLOYEES table already contains records of 100 employees. Now, you want to 
+enter the phone numbers of each of the 100 employees into the table. Some of the 
+employees may not have a phone number available. 
+Which data manipulation operation do you perform?
+  A. PDATE [100]
+  B. MERGE
+  C. INSERT
+  D. ADD
+------------------------------------------------------------
+ID: 96 | Mod: 5 | Ans: A
+Prompt: Evaluate this DELETE statement: 
+DELETE employee_id, salary, job_id 
+FROM employees 
+WHERE dept_id = 90; 
+Why does the DELETE statement fail when you execute it?
+  A. You cannot specify column names in the DELETE clause of the DELETE statement. [100]
+  B. There is no row with dept_id 90 in the EMPLOYEES table.
+  C. You cannot delete the JOB_ID column because it is a NOT NULL column.
+  D. You cannot delete the EMPLOYEE_ID column because it is the primary key of the table.
+------------------------------------------------------------
+ID: 97 | Mod: 5 | Ans: A
+Prompt: Examine the structure of the EMPLOYEES table: 
+EMPLOYEE_ID  NUMBER        Primary Key 
+FIRST_NAME   VARCHAR2(25) 
+LAST_NAME    VARCHAR2(25) 
+Which statement inserts a row into the table?
+  A. INSERT INTO employees VALUES ('1000','John',NULL); [100]
+  B. INSERT INTO employees VALUES ( NULL, 'John','Smith');
+  C. INSERT INTO employees( first_name, last_name) VALUES('John','Smith');
+  D. INSERT INTO employees(first_name,last_name, employee_id) VALUES ( 1000, 'John','Smith');
+------------------------------------------------------------
+ID: 98 | Mod: 5 | Ans: A
+Prompt: Examine the data from the CLASS and INSTRUCTOR tables. 
+CLASS Table 
+CLASS_ID  CLASS_NAME                  HOURS_CREDIT  INSTRUCTOR_ID 
+--------  --------------------------  ------------  ------------- 
+1         Introduction to Accounting  3             4 
+2         Computer Basics             3             1 
+3         Tax Accounting Principles   3             4 
+4         American History            3             2 
+5         Basic Engineering           3 
+You want to delete the classes that do NOT have an instructor assigned. Which 
+DELETE statement will accomplish the desired result?
+  A. DELETE FROM class WHERE instructor_id IS NULL; [100]
+  B. DELETE class_id, class_name, hours_credit, instructor_id FROM class WHERE instructor_id IS NULL;
+  C. DELETE FROM class WHERE instructor_id NOT IN(SELECT instructor_id FROM class);
+  D. DELETE FROM instructor NATURAL JOIN class WHERE instructor_id IS NOT NULL;
+------------------------------------------------------------
+ID: 99 | Mod: 5 | Ans: A
+Prompt: The PRODUCT table contains these columns: 
+PRODUCT_ID    NUMBER  NOT NULL 
+PRODUCT_NAME  VARCHAR2(25) 
+SUPPLIER_ID   NUMBER 
+LIST_PRICE    NUMBER(7,2) 
+COST          NUMBER(7,2) 
+You need to increase the list price and cost of all products supplied by Global Imports, 
+Inc. by 5.5 percent. The SUPPLIER_ID for Global Imports, Inc. is 105. Which 
+statement should you use?
+  A. UPDATE product SET list_price = list_price * 1.055, cost = cost * 1.055 WHERE supplier_id = 105; [100]
+  B. UPDATE product SET list_price = list_price * 1.055 SET cost = cost * 1.055 WHERE supplier_id = 105;
+  C. UPDATE product
+  D. UPDATE product SET list_price = list_price + (list_price * .055), cost = cost + (cost * .055) WHERE supplier_id LIKE 'Global Imports, Inc.' OR supplier_id = 105;
+------------------------------------------------------------
+ID: 100 | Mod: 5 | Ans: A
+Prompt: Examine the structures of the EVENT and NEW_EVENT tables. 
+EVENT Table 
+EVENT_ID           NUMBER 
+EVENT_NAME         VARCHAR2(30) 
+EVENT_DESCRIPTION  VARCHAR2(100) 
+EVENT_TYPE_ID      NUMBER 
+NEW_EVENT Table 
+EVENT_ID           NUMBER 
+EVENT_NAME         VARCHAR2(30) 
+EVENT_DESCRIPTION  VARCHAR2(100) 
+EVENT_TYPE_ID      NUMBER 
+START_DT           DATE 
+You execute this MERGE statement: 
+MERGE INTO event e 
+USING (SELECT * 
+       FROM new_event 
+       WHERE event_type_id = 4) n 
+ON (e.event_id = n.event_id) 
+WHEN MATCHED THEN 
+  UPDATE SET 
+    e.event_type_id = n.event_type_id, 
+    e.start_dt = n.start_dt 
+WHEN NOT MATCHED THEN 
+  INSERT (event_id, event_name, event_type_id) 
+  VALUES (n.event_id, n.event_name, n.event_type_id); 
+This MERGE statement generates an error. Which statement describes the cause of the 
+error?
+  A. The UPDATE portion of the statement is invalid. [100]
+  B. A subquery CANNOT be used in the USING clause of a MERGE statement.
+  C. Table aliases CANNOT be used in a MERGE statement.
+  D. The ON clause of the statement is invalid.
+------------------------------------------------------------
+ID: 101 | Mod: 6 | Ans: A
+Prompt: You want to use a function in your column clause of a SQL statement. 
+The NVL function accomplishes which of the following tasks?
+  A. Enables you to specify alternated out for NULL column values. [100]
+  B. Assists in the distribution of output across multiple columns.
+  C. Enables you to specify alternate output for non-NULL column values.
+  D. Nullifies the value of the column output.
+------------------------------------------------------------
+ID: 102 | Mod: 6 | Ans: A
+Prompt: Which SELECT statement will show the result 'elloworld' from the string 'HelloWorld'?
+  A. SELECT LOWER (TRIM ('H' FROM 'HelloWorld')) FROM dual; [100]
+  B. SELECT SUBSTR ('HelloWorld', 1) FROM dual;
+  C. SELECT INITCAP (TRIM ('HelloWorld', 1, 1)) FROM dual;
+  D. SELECT LOWER (SUBSTR ('HelloWorld', 1, 1) FROM dual;
+------------------------------------------------------------
+ID: 103 | Mod: 6 | Ans: A
+Prompt: Which script displays '01-JAN-02' when the ENROLL_DATE value is '01-JUL-01'?
+  A. SELECT ROUND (enroll_date, 'YEAR') FROM student; [100]
+  B. SELECT ROUND (enroll_date, 'DAY') FROM student;
+  C. SELECT ROUND (enroll_date, 'MONTH') FROM student;
+  D. SELECT ROUND (TO_CHAR(enroll_date, 'YYYY')) FROM student;
+------------------------------------------------------------
+ID: 104 | Mod: 6 | Ans: A
+Prompt: Which function can be used in your query on department table to restrict the data 
+displayed to only those department names containing 3 characters?
+  A. LENGTH [100]
+  B. REPLACE
+  C. SUBSTR
+  D. RPAD
+------------------------------------------------------------
+ID: 105 | Mod: 6 | Ans: A
+Prompt: Which statement concerning SQL functions is true?
+  A. Character functions can return character or number values. [100]
+  B. Conversion functions convert a column definition from one data type to another data type.
+  C. Single-row functions can only be used in SELECT and WHERE clauses.
+  D. All date functions return DATE data type values.
+------------------------------------------------------------
+ID: 106 | Mod: 6 | Ans: A
+Prompt: Evaluate the SQL statement: 
+SELECT ROUND(45.953, -1), TRUNC(45.936, 2) 
+FROM dual; 
+Which values are displayed?
+  A. 50 and 45.93 [100]
+  B. 46 and 45
+  C. 46 and 45.93
+  D. 50 and 45.9
+------------------------------------------------------------
+ID: 107 | Mod: 6 | Ans: A
+Prompt: Which of the following is not a number function?
+  A. TO_NUMBER. [100]
+  B. TRUNC
+  C. SQRT
+  D. ROUND
+------------------------------------------------------------
+ID: 108 | Mod: 6 | Ans: A
+Prompt: You are using single row function in a SELECT statement which function can best be 
+categorized as similar in function to an IF-THEN-ELSE statement?
+  A. DECODE [100]
+  B. SQRT
+  C. NEW_TIME
+  D. ROWIDTOCHAR.
+------------------------------------------------------------
+ID: 109 | Mod: 6 | Ans: A
+Prompt: Which is not an attributes of single row functions?
+  A. cannot be nested [100]
+  B. manipulate data items
+  C. act on each row returned
+  D. return one result per row
+------------------------------------------------------------
+ID: 110 | Mod: 6 | Ans: A
+Prompt: Which SQL statement returns a numeric value?
+  A. SELECT sysdate-hire_date FROM EMP; [100]
+  B. SELECT ADD_MONTHS(MAX(hire_Date), 6) FROM EMP;
+  C. SELECT ROUND(hire_date) FROM EMP;
+  D. SELECT TO_NUMBER(hire_date + 7) FROM EMP;
+------------------------------------------------------------
+ID: 111 | Mod: 6 | Ans: A
+Prompt: Which is not a type of Single Row functions available in SQL?
+  A. calendar [100]
+  B. string
+  C. character
+  D. Numeric
+------------------------------------------------------------
+ID: 112 | Mod: 6 | Ans: A
+Prompt: Management has asked you to calculate the value 12*salary*commission_pct for all the 
+employees in the EMP table. 
+The EMP table contains these columns: 
+LAST_NAME       VARCHAR2(35)  NOT NULL 
+SALARY          NUMBER(9,2)   NOT NULL 
+COMMISSION_PCT  NUMBER(4,2) 
+Which statement ensures that a value is displayed in the calculated columns for all 
+employees?
+  A. SELECT last_name, 12*salary*(nvl(commission_pct,0)) FROM emp; [100]
+  B. SELECT last_name, 12*salary*commison_pct FROM emp;
+  C. SELECT last_name, 12*salary* (commission_pct,0) FROM emp;
+  D. SELECT last_name, 12*salary*(decode(commission_pct,0)) FROM emp;
+------------------------------------------------------------
+ID: 113 | Mod: 6 | Ans: A
+Prompt: Evaluate the SQL statement: 
+SELECT LPAD(salary, 10, *) 
+FROM EMP 
+WHERE EMP_ID = 1001; 
+If the employee with the EMP_ID 1001 has a salary of 17000, what is displayed?
+  A. An error statement [100]
+  B. 17000.00
+  C. 17000*****
+  D. *****17000
+------------------------------------------------------------
+ID: 114 | Mod: 6 | Ans: A
+Prompt: The EMPLOYEE table has these columns: 
+LAST_NAME       VARCHAR2(35) 
+SALARY          NUMBER(8,2) 
+COMMISSION_PCT  NUMBER(5,2) 
+You want to display the name and annual salary multiplied by the commission_pct for 
+all employees. For records that have a NULL commission_pct, a zero must be displayed 
+against the calculated column. Which SQL statement displays the desired results?
+  A. SELECT last_name, (salary * 12) * NVL(commission_pct, 0) FROM EMPLOYEES; [100]
+  B. SELECT last_name, (salary * 12) * commission_pct FROM EMPLOYEES;
+  C. SELECT last_name, (salary * 12) * IFNULL(commission_pct,0) FROM EMPLOYEES;
+  D. SELECT last_name, (salary * 12) * NVL2(commission_pct, 0) FROM EMPLOYEES;
+------------------------------------------------------------
+ID: 115 | Mod: 6 | Ans: A
+Prompt: You would like to display the system date in the format "Monday, 01 June, 2001". 
+Which SELECT statement should you use?
+  A. SELECT TO_CHAR(SYSDATE, 'FMDay, DD Month, YYYY') FROM dual; [100]
+  B. SELECT TO_DATE(SYSDATE, 'FMDAY, DD Month, YYYY') FROM dual;
+  C. SELECT TO_CHAR(SYSDATE, 'FMDD, DY Month, 'YYY') FROM dual;
+  D. SELECT TO_CHAR(SYSDATE, 'FMDY, DDD Month, YYYY') FROM dual;
+------------------------------------------------------------
+ID: 116 | Mod: 6 | Ans: A
+Prompt: Evaluate the SQL statement: 
+SELECT ROUND(TRUNC(MOD(1600, 10), -1), 2) 
+FROM dual; 
+What will be displayed?
+  A. 0 [100]
+  B. 1
+  C. 0.00
+  D. An error statement
+------------------------------------------------------------
+ID: 117 | Mod: 6 | Ans: A
+Prompt: Which SELECT statement will not display 2000 in the format '$2,000.00'
+  A. SELECT TO_CHAR (2000, '$2,000.00') FROM dual; [100]
+  B. SELECT TO_CHAR (2000, '$0,000.00') FROM dual;
+  C. SELECT TO_CHAR (2000, '$9,999.00') FROM dual;
+  D. SELECT TO_CHAR (2000, '$9,999.99') FROM dual;
+------------------------------------------------------------
+ID: 118 | Mod: 6 | Ans: A
+Prompt: Which statement is incorrect about functions that are available in SQL?
+  A. NVL2 returns the first non-null expression in the expression list. [100]
+  B. DECODE translates an expression after comparing it to each search value.
+  C. TRIM trims the heading of trailing characters (or both) from a character string.
+  D. NULLIF compares two expressions and returns null if they are equal, or the first expression if they are not equal
+------------------------------------------------------------
+ID: 119 | Mod: 6 | Ans: A
+Prompt: Which is a character manipulation function?
+  A. TRIM [100]
+  B. TRUNC
+  C. TO_DATE
+  D. MOD
+------------------------------------------------------------
+ID: 120 | Mod: 6 | Ans: A
+Prompt: Which task can you perform by using the TO_CHAR function?
+  A. Convert '10' to '10' [100]
+  B. Convert 10 to 'TEN'
+  C. Convert '10' to 10
+  D. Convert 'TEN' to 10
+------------------------------------------------------------
+ID: 121 | Mod: 7 | Ans: D
+Prompt: Which statement is true about WHERE and HAVING clauses?
+  A. A HAVING clause can be used to restrict groups only.
+  B. A WHERE clause can be used to restrict groups only.
+  C. A WHERE clause can be used to restrict both rows and groups.
+  D. A HAVING clause can be used to restrict both rows and groups. [100]
+------------------------------------------------------------
+ID: 122 | Mod: 7 | Ans: C
+Prompt: Examine the description of the EMPLOYEES table: 
+EMP_ID      NUMBER(4)     NOT NULL 
+LAST_NAME   VARCHAR2(30)  NOT NULL 
+FIRST_NAME  VARCHAR2(30) 
+DEPT_ID     NUMBER(2) 
+Which statement produces the number of different departments that have employees with 
+last name Smith?
+  A. SELECT DISTINCT(COUNT(dept_id)) FROM employees WHERE last_name='Smith';
+  B. SELECT COUNT(*) FROM employees WHERE last_name='Smith';
+  C. SELECT COUNT(DISTINCT dept_id) FROM employees WHERE last_name='Smith'; [100]
+  D. SELECT COUNT (dept_id) FROM employees WHERE last_name='Smith';
+------------------------------------------------------------
+ID: 123 | Mod: 7 | Ans: B
+Prompt: What is true of using group functions on columns that contain NULL values?
+  A. Group functions on columns returning dates include NULL values.
+  B. Group functions on columns ignore NULL values. [100]
+  C. Group functions on columns cannot be accurately used on columns that contain NULL values.
+  D. Group functions on columns returning numbers include NULL values.
+------------------------------------------------------------
+ID: 124 | Mod: 7 | Ans: A
+Prompt: The STUDENT_GRADES table has these columns: 
+STUDENT_ID    NUMBER(12) 
+SEMESTER_END  DATE 
+GPA           NUMBER(4,3) 
+Which statement finds the highest grade point average (GPA) per semester?
+  A. SELECT MAX(gpa) FROM student_grades WHERE gpa IS NOT NULL GROUP BY semester_end; [100]
+  B. SELECT (gpa) FROM student_grades GROUP BY semester_end WHERE gpa IS NOT NULL
+  C. SELECT MAX(gpa) FROM student_grades WHERE gpa IS NOT NULL
+  D. SELECT MAX(gpa) GROUP BY semester_end WHERE gpa IS NOT NULL FROM student_grades
+------------------------------------------------------------
+ID: 125 | Mod: 7 | Ans: C
+Prompt: Which of the following data types are compatible for applying the group functions such as 
+MIN, MAX ?
+  A. Numeric
+  B. Date
+  C. All of the above [100]
+  D. Character
+------------------------------------------------------------
+ID: 126 | Mod: 7 | Ans: B
+Prompt: Which of the following is not a valid variation of the COUNT function ?
+  A. COUNT(*)
+  B. COUNT(expr1, expr2) [100]
+  C. COUNT(DISTINCT expr)
+  D. COUNT(expr)
+------------------------------------------------------------
+ID: 127 | Mod: 7 | Ans: A
+Prompt: Which of the following statements calculates the Average commission percentage from the 
+employees table by treating the NULLs as zeros wherever the commission percentage is 
+NULL ?
+  A. SELECT AVG(NVL(commission_pct, 0)) FROM employees [100]
+  B. SELECT NULLIF(AVG(commission_pct), 0) FROM employees
+  C. SELECT AVG(NULLIF(commission_pct, 0)) FROM employees
+  D. SELECT NVL(AVG(commission_pct), 0) FROM employees
+------------------------------------------------------------
+ID: 128 | Mod: 7 | Ans: C
+Prompt: Which of the following statements will return error?
+  A. SELECT AVG(salary) FROM employees GROUP BY department_id
+  B. SELECT department_id, AVG(salary) FROM employees GROUP BY department_id
+  C. SELECT job_id, AVG(salary) FROM employees GROUP BY department_id [100]
+  D. SELECT AVG(salary), job_id FROM employees GROUP BY department_id, job_id
+------------------------------------------------------------
+ID: 129 | Mod: 7 | Ans: B
+Prompt: Which of the following statements is not correct?
+  A. You cannot use the WHERE clause to restrict groups
+  B. You can use group functions in the WHERE clause [100]
+  C. You cannot use group functions in the WHERE clause
+  D. You use the HAVING clause to restrict groups
+------------------------------------------------------------
+ID: 130 | Mod: 7 | Ans: C
+Prompt: Which of the following statements displays the number of distinct department values in 
+the EMPLOYEES table
+  A. SELECT COUNT(department_id) FROM employees
+  B. SELECT DISTINCT COUNT(department_id) FROM employees
+  C. SELECT COUNT(DISTINCT department_id) FROM employees [100]
+  D. SELECT DISTINCT department_id FROM employees;
+------------------------------------------------------------
+ID: 131 | Mod: 7 | Ans: D
+Prompt: What will be the output of the following statement? 
+SELECT department_id, AVG(salary) 
+FROM employees 
+WHERE AVG(salary) > 8000 
+GROUP BY department_id;
+  A. The statement will display the list of department ids and average salary of the employees table where average
+  B. The statement will display a list of departments and average salary of each department
+  C. The statement will display a list departments and average salary of each department only for departments whose average salary is greater than 8000
+  D. The statement will return an error [100]
+------------------------------------------------------------
+ID: 132 | Mod: 7 | Ans: A
+Prompt: Examine the description of the STUDENTS table: 
+STD_ID      NUMBER(4) 
+COURSE_ID   VARCHAR2(10) 
+START_DATE  DATE 
+END_DATE    DATE 
+Which of the aggregate functions is valid on the START_DATE column?
+  A. MIN(start_date) [100]
+  B. AVG(start_date)
+  C. MAXIMUM(start_date)
+  D. SUM(start_date)
+------------------------------------------------------------
+ID: 133 | Mod: 7 | Ans: D
+Prompt: What is True about the below statement? 
+SELECT MAX(AVG(salary)) 
+FROM employees 
+GROUP BY department_id;
+  A. It will return an error as Group functions can not be nested
+  B. It will return Maximum average salary for each department
+  C. It will return error because Salary is not included in the group by clause
+  D. It will display the maximum of the average salaries for each department [100]
+------------------------------------------------------------
+ID: 134 | Mod: 7 | Ans: A
+Prompt: Examine the description of the MARKS table: 
+STD_ID        NUMBER(4) 
+STUDENT_NAME  VARCHAR2(30) 
+SUBJ1         NUMBER(3) 
+SUBJ2         NUMBER(3) 
+SUBJ1 and SUBJ2 indicate the marks obtained by a student in two subjects. Examine this 
+SELECT statement based on the MARKS table: 
+SELECT subj1+subj2 total_marks, std_id 
+FROM marks 
+WHERE subj1 > AVG(subj1) AND subj2 > AVG(subj2) 
+ORDER BY total marks; 
+What is the result of the SELECT statement?
+  A. The statement returns an error at the WHERE clause. [100]
+  B. The statement executes successfully and returns the student ID and sum of all marks for each student who obtained more than the average mark in each subject.
+  C. The statement returns an error at the SELECT clause.
+  D. The statement returns an error at the ORDER BY clause.
+------------------------------------------------------------
+ID: 135 | Mod: 7 | Ans: A
+Prompt: Which statement is true about aggregate functions?
+  A. You can mix single row columns with aggregate functions in the column list of a SELECT statement by grouping on the single row columns. [100]
+  B. You can use aggregate functions only in the column list of the SELECT clause and in the WHERE clause of a SELECT statement.
+  C. You can use aggregate functions on a table, only by grouping the whole table as one single group.
+  D. You can use aggregate functions in any clause of a SELECT statement.
+------------------------------------------------------------
+ID: 136 | Mod: 7 | Ans: A
+Prompt: Which clause should you use to exclude group results?
+  A. HAVING [100]
+  B. RESTRICT
+  C. WHERE
+  D. GROUP BY
+------------------------------------------------------------
+ID: 137 | Mod: 7 | Ans: D
+Prompt: In a SELECT statement that includes a WHERE clause, where should the GROUP BY 
+clause placed?
+  A. Before the WHERE clause
+  B. After the ORDER BY clause
+  C. Immediately after the SELECT clause
+  D. After the WHERE clause [100]
+------------------------------------------------------------
+ID: 138 | Mod: 7 | Ans: B
+Prompt: The EVENT table contains these columns: 
+EVENT_ID     NUMBER 
+EVENT_NAME   VARCHAR2(30) 
+EVENT_DESC   VARCHAR2(100) 
+EVENT_TYPE   NUMBER 
+LOCATION_ID  NUMBER 
+You have been asked to provide a report of the number of different event types at each 
+location. 
+Which SELECT statement will produce the desired result?
+  A. SELECT COUNT(*), DISTINCT(location_id) FROM event;
+  B. SELECT location_id, COUNT(DISTINCT event_type) FROM event GROUP BY location_id; [100]
+  C. SELECT DISTINCT (event_type) FROM event GROUP BY location_id;
+  D. SELECT UNIQUE(location_id), COUNT(event_type) FROM event GROUP BY location_id;
+------------------------------------------------------------
+ID: 139 | Mod: 7 | Ans: B
+Prompt: Which statement about the evaluation of clauses in a SELECT statement is true?
+  A. The Oracle Server will evaluate an ORDER BY clause before a WHERE clause.
+  B. The Oracle Server will evaluate a WHERE clause before a GROUP BY clause. [100]
+  C. The Oracle Server will evaluate an ORDER BY clause before a HAVING clause.
+  D. The Oracle Server will evaluate a HAVING clause before a WHERE clause
+------------------------------------------------------------
+ID: 140 | Mod: 7 | Ans: D
+Prompt: You need to calculate the total of all salaries in the accounting department. Which group 
+function should you use?
+  A. COUNT
+  B. MAX
+  C. MIN
+  D. SUM [100]
+------------------------------------------------------------
+ID: 141 | Mod: 8 | Ans: B
+Prompt: In which case would you use a FULL OUTER JOIN?
+  A. You want all unmatched data from one table.
+  B. You want all unmatched data from both tables. [100]
+  C. Both tables have NULL values.
+  D. You want all matched data from both tables.
+------------------------------------------------------------
+ID: 142 | Mod: 8 | Ans: C
+Prompt: What will be the output of the following query? 
+SELECT * 
+FROM employees, departments;
+  A. It will display rows from employees table followed by rows from departments table.
+  B. It will by default the join two tables on department_id because it is a referential integrity column.
+  C. It will result in a Cartesian product as a joining condition is not specified [100]
+  D. It will return error as a join condition is not specified
+------------------------------------------------------------
+ID: 143 | Mod: 8 | Ans: D
+Prompt: Which of the following queries will produce identical output as the query below? 
+SELECT last_name, department_name 
+FROM employees 
+CROSS JOIN departments;
+  A. SELECT last_name, department_name FROM employees e, departments d WHERE e.depatment_id (+) = d.department_id (+);
+  B. SELECT last_name, department_name FROM employees JOIN departments USING (department_id)
+  C. SELECT last_name, department_name FROM employees e, departments d WHERE e.depatment_id = d.department_id;
+  D. SELECT last_name, department_name FROM employees e, departments d; [100]
+------------------------------------------------------------
+ID: 144 | Mod: 8 | Ans: B
+Prompt: Which of the following is an outer join symbol?
+  A. [+]
+  B. (+) [100]
+  C. {+}
+  D. +
+------------------------------------------------------------
+ID: 145 | Mod: 8 | Ans: D
+Prompt: What will be the output of the following query? 
+SELECT e.last_name, e.department_id, d.department_name 
+FROM employees e, departments d 
+WHERE e.department_id(+) = d.department_id;
+  A. Displays employee last names, department ID's and department names for all employees irrespective of the matching department id present in departments table or not.
+  B. Displays employee last names, department ID's and department names for all employees.
+  C. Displays employee last names, department ID's for all employees and also the department names for all departments.
+  D. Displays employee last names, department ID's and department names for all employees and also the department names of departments who have no match in employees table. [100]
+------------------------------------------------------------
+ID: 146 | Mod: 8 | Ans: A
+Prompt: Which of the following type of join was not available in Oracle versions 8i and prior?
+  A. Full Outer Join [100]
+  B. Self Join
+  C. Left Outer Join
+  D. Right Outer Join
+------------------------------------------------------------
+ID: 147 | Mod: 8 | Ans: D
+Prompt: Which of the following statements about use of table aliases and prefixes in Join queries is 
+not Valid ?
+  A. We can simplify queries by using table aliases.
+  B. Table prefixes must be used to unambiguously identify the columns with same names.
+  C. We can improve performance by using table prefixes.
+  D. Table prefixes must be used when joining more than three tables. [100]
+------------------------------------------------------------
+ID: 148 | Mod: 8 | Ans: C
+Prompt: Which of the following statements indicate correct way of using a Natural Join?
+  A. SELECT department_id, department_name, location_id, city FROM departments d NATURAL JOIN locations l using (l.location_id);
+  B. SELECT department_id, department_name, location_id, city FROM departments NATURAL JOIN locations on (location_id);
+  C. SELECT department_id, department_name, location_id, city FROM departments NATURAL JOIN locations; [100]
+  D. SELECT department_id, department_name, location_id, city FROM departments d NATURAL JOIN locations l WHERE d.location_id = l.location_id
+------------------------------------------------------------
+ID: 149 | Mod: 8 | Ans: B
+Prompt: Which of the following statements is not true about joins?
+  A. To specify arbitrary conditions or specify columns to join, the ON clause is used.
+  B. Natural join and using clause can be used together. [100]
+  C. Use the USING clause to match only one column when more than one column matches.
+  D. If the columns having the same names have different data types, an error is returned in case of a Natural Join.
+------------------------------------------------------------
+ID: 150 | Mod: 8 | Ans: A
+Prompt: Which SQL statement produces the name, department name, and the city of all the 
+employees who earn more than 10000?
+  A. SELECT emp_name, department_name, city FROM employees e, departments d, locations 1 JOIN ON (e.department_id = d.department id) AND (d.location_id =1.location_id) AND salary > 10000; [100]
+  B. SELECT emp_name, department_name, city FROM employees e, departments d, locations 1 WHERE salary > 10000;
+  C. SELECT emp_name, department_name, city FROM employees e JOIN departments d USING (department_id) JOIN locations 1 USING (location_id) WHERE salary > 10000;
+  D. SELECT emp_name, department_name, city FROM employees e NATURAL JOIN departments, locations WHERE salary > 10000;
+------------------------------------------------------------
+ID: 151 | Mod: 8 | Ans: A
+Prompt: You want to retrieve all employees, whether or not they have matching departments in the 
+departments table. Which query would you use?
+  A. SELECT last_name, department_name FROM employees e LEFT OUTER JOIN departments d ON (e.department_id = d.department_id); [100]
+  B. SELECT last_name, department_name FROM employees , departments(+);
+  C. SELECT last_name, department_name FROM employees JOIN departments (+);
+  D. SELECT last_name, department_name FROM employees e RIGHT OUTER JOIN departments d ON (e.department_id = d.department_id);
+------------------------------------------------------------
+ID: 152 | Mod: 8 | Ans: D
+Prompt: Which is not true regarding the use of outer joins?
+  A. In the WHERE condition, you use (+) following the name of the column in the table without matching rows, to perform an outerjoin.
+  B. You use an outerjoin to see only the rows that do not meet the join condition.
+  C. You cannot link a condition that is involved in an outerjoin to another condition by using the OR operator.
+  D. You cannot an outer join while joining more than 2 tables [100]
+------------------------------------------------------------
+ID: 153 | Mod: 8 | Ans: D
+Prompt: Which of the following joins is also called an Inner join?
+  A. Self Join
+  B. Outer Join
+  C. Non-Equi Join
+  D. Equi Join [100]
+------------------------------------------------------------
+ID: 154 | Mod: 8 | Ans: B
+Prompt: What is true about joining tables through an equijoin?
+  A. You specify an equijoin condition in the SELECT or FROM clauses of a SELECT statement.
+  B. You can join n tables (all having single column primary keys) in a SQL statement by specifying a minimum of n-1 join conditions. [100]
+  C. You can join a maximum of two columns through an equijoin.
+  D. You can join a maximum of two tables through an equijoin.
+------------------------------------------------------------
+ID: 155 | Mod: 8 | Ans: B
+Prompt: Examine the structure of the EMPLOYEES, DEPARTMENTS, and TAX tables. 
+EMPLOYEES 
+EMPLOYEE_ID      NUMBER        NOT NULL, Primary Key 
+EMP_NAME         VARCHAR2(30) 
+JOB_ID           VARCHAR2(20) 
+SALARY           NUMBER 
+MGR_ID           NUMBER        References EMPLOYEE_ID column 
+DEPARTMENT_ID    NUMBER        Foreign key to DEPARTMENT_ID column of the 
+DEPARTMENTS table 
+DEPARTMENTS 
+DEPARTMENT_ID    NUMBER        NOT NULL, Primary Key 
+DEPARTMENT_NAME  VARCHAR2(30) 
+MGR_ID           NUMBER        References MGR_ID column of the EMPLOYEES table 
+TAX 
+MIN_SALARY       NUMBER 
+MAX_SALARY       NUMBER 
+TAX_PERCENT      NUMBER 
+For which situation would you use a non-equijoin query?
+  A. To find the number of employees working for the Administrative department and earning less then 4000.
+  B. To find the tax percentage for each of the employees [100]
+  C. To list the name, job id, and manager name for all the employees.
+  D. To find the name, salary, and department name of employees who are not working with Smith.
+------------------------------------------------------------
+ID: 156 | Mod: 8 | Ans: C
+Prompt: To produce a meaningful result set without any cartesian products, what is the minimum 
+number of conditions that should appear in the WHERE clause of a four-table join?
+  A. 2
+  B. 4
+  C. 3 [100]
+  D. 8
+------------------------------------------------------------
+ID: 157 | Mod: 8 | Ans: B
+Prompt: In which case would you use an outer join?
+  A. The tables being joined have NOT NULL columns.
+  B. The tables being joined have both matched and unmatched data. [100]
+  C. The tables being joined have only unmatched data
+  D. The tables being joined have only matched data.
+------------------------------------------------------------
+ID: 158 | Mod: 8 | Ans: D
+Prompt: When will a Cartesian product occur?
+  A. All rows in the first table are joined to all rows in the second table
+  B. A join condition is omitted
+  C. A join condition is invalid
+  D. Two tables are joined on the columns having different names. [100]
+------------------------------------------------------------
+ID: 159 | Mod: 8 | Ans: A
+Prompt: Which of the following is not a valid type of Join?
+  A. External Join [100]
+  B. Outer Join
+  C. Inner Join
+  D. Natural join
+------------------------------------------------------------
+ID: 160 | Mod: 8 | Ans: C
+Prompt: Which type of join is used in the following query? 
+SELECT e.employee_id, e.last_name, d.department_id, d.location_id 
+FROM employees e, departments d 
+WHERE e.department_id = d.department_id;
+  A. Self Join
+  B. Non-equi Join
+  C. Equi join [100]
+  D. Left Outer join
+------------------------------------------------------------
+ID: 161 | Mod: 9 | Ans: D
+Prompt: Evaluate this SELECT statement: 
+SELECT employee_id, name 
+FROM employee 
+WHERE employee_id NOT IN (SELECT employee_id 
+                          FROM employee 
+                          WHERE department_id = 30 
+                          AND job = 'CLERK'); 
+What would happen if the inner query returned a NULL value?
+  A. A syntax error would be returned.
+  B. Only the rows with EMPLOYEE_ID values equal to NULL would be included in the results.
+  C. All the EMPLOYEE_ID and NAME values in the EMPLOYEE table would be displayed.
+  D. No rows would be selected from the EMPLOYEE table. [100]
+------------------------------------------------------------
+ID: 162 | Mod: 9 | Ans: B
+Prompt: In which clause a subquery cannot be used?
+  A. in the FROM clause of a SELECT statement
+  B. in the GROUP BY clause of a SELECT statement [100]
+  C. in the SET clause of an UPDATE statement
+  D. in the WHERE clause of a SELECT statement
+------------------------------------------------------------
+ID: 163 | Mod: 9 | Ans: A
+Prompt: Which best describes an inline view?
+  A. a subquery that is part of the FROM clause of another query [100]
+  B. a subquery that can contain an ORDER BY clause
+  C. another name for a view that contains group functions
+  D. a schema object
+------------------------------------------------------------
+ID: 164 | Mod: 9 | Ans: A
+Prompt: Which statement about subqueries is true?
+  A. A subquery can retrieve zero or more rows. [100]
+  B. A subquery should retrieve only one row
+  C. Subqueries CANOT be nested by more than two levels.
+  D. A subquery can be used only in SQL query statements.
+------------------------------------------------------------
+ID: 165 | Mod: 9 | Ans: A
+Prompt: Which statement will display employees who have same job id as that of 'Hass' and earn 
+more than 10000 ?
+  A. SELECT last_name, job_id FROM employees WHERE job_id IN (SELECT job_id FROM employees WHERE last_name = 'Haas') AND salary > 10000; [100]
+  B. SELECT last_name, job_id FROM employees WHERE last_name = 'Haas' AND salary >10000
+  C. SELECT last_name, job_id FROM employees WHERE job_id IN (SELECT job_id FROM employees WHERE Salary > 10000) AND last_name = 'Haas'
+  D. SELECT last_name, job_id FROM employees WHERE job_id = (SELECT job_id FROM employees WHERE last_name = 'Haas' AND salary > 10000);
+------------------------------------------------------------
+ID: 166 | Mod: 9 | Ans: A
+Prompt: __________ is used to retrieve data from one or more tables if there is no relation between 
+the tables.
+  A. Sub query [100]
+  B. Both
+  C. Joins
+  D. None of the above
+------------------------------------------------------------
+ID: 167 | Mod: 9 | Ans: A
+Prompt: A subquery can be used to _________.
+  A. Retrieve data based on an unknown condition [100]
+  B. Create groups of data
+  C. Convert data to a different format
+  D. Sort data in a specific order
+------------------------------------------------------------
+ID: 168 | Mod: 9 | Ans: C
+Prompt: Examine the data in the EMPLOYEES table: 
+LAST_NAME  DEPARTMENT_ID  SALARY 
+---------  -------------  ------ 
+Getz       10             3000 
+Davis      20             1500 
+King       20             2200 
+Davis      30             5000 
+Which of these sub queries will not work?
+  A. SELECT distinct department_id FROM employees Where salary > ANY (SELECT AVG(salary) FROM employees GROUP BY department_id)
+  B. SELECT last_name FROM employees Where salary > ANY (SELECT MAX(salary) FROM employees GROUP BY department_id)
+  C. SELECT * FROM employees where salary > (SELECT MIN(salary) FROM employees GROUP BY department.id) [100]
+  D. SELECT department_id FROM employees WHERE SALARY > ALL (SELECT AVG(salary) FROM employees GROUP BY department_id)
+------------------------------------------------------------
+ID: 169 | Mod: 9 | Ans: B
+Prompt: What is the use of LEVEL pseudocolumn?
+  A. It is used to indicate the starting node of the hierarchical query
+  B. It is used to display the level of a row in the hierarchy [100]
+  C. None of the above
+  D. It is used to level the output of the query
+------------------------------------------------------------
+ID: 170 | Mod: 9 | Ans: A
+Prompt: Which query will display the details of the employees and their manager in a TOP-
+DOWN tree structure, starting with employee 'King'?
+  A. SELECT employee_id, last_name, job_id, manager_id FROM employees START WITH last_name = 'King' CONNECT BY PRIOR employee_id = manager_id ; [100]
+  B. SELECT employee _id, last_name, job_id, manager_id FROM employees START WITH last_name = 'King' CONNECT BY PRIOR manager_id = employee_id;
+  C. SELECT employee_id, last_name, job_id, manager_id FROM employees START WITH last_name = 'King' CONNECT BY PRIOR employee_id TOP_DOWN;
+  D. D. SELECT employee_id, last_name, job_id, manager_id FROM employeesSTART WITH last_name = 'King' CONNECT BY TOP_DOWN employee_id = manager_id ;
+------------------------------------------------------------
+ID: 171 | Mod: 9 | Ans: D
+Prompt: What will be the output of the below query? 
+SELECT last_name, job_id, salary 
+FROM employees 
+WHERE job_id = (SELECT job_id FROM employees WHERE employee_id = 141) 
+AND salary > (SELECT salary FROM employees WHERE employee_id = 143);
+  A. Display employees whose job ID is the same as that of employee 141 or 143 and whose salary is greater than that of employee 141 or 143.
+  B. Display employees whose job ID is the same as that of employee 141 and 143 and whose salary is greater than that of employee 141 and 143.
+  C. Display employees whose job ID is the same as that of employee 141 or whose salary is greater than that of employee 143.
+  D. Display employees whose job ID is the same as that of employee 141 and whose salary is greater than that of employee 143. [100]
+------------------------------------------------------------
+ID: 172 | Mod: 9 | Ans: C
+Prompt: Which statement regarding subqueries is true?
+  A. A subquery CANNOT reference a table that is not included in the outer query's FROM clause.
+  B. A subquery must be placed on the right side of the comparison operator.
+  C. Subqueries can return multiple columns. [100]
+  D. Subqueries cannot be nested up to3 levels.
+------------------------------------------------------------
+ID: 173 | Mod: 9 | Ans: C
+Prompt: Which of the following is not a multiple-row comparison operator?
+  A. ANY
+  B. IN
+  C. EACH [100]
+  D. ALL
+------------------------------------------------------------
+ID: 174 | Mod: 9 | Ans: C
+Prompt: Evaluate this SQL statement: 
+SELECT product_id, product_name, price 
+FROM product 
+WHERE supplier_id IN (SELECT supplier_id 
+                      FROM product 
+                      WHERE price > 120 
+                      OR qty_in_stock > 100); 
+Which values will be displayed?
+  A. The PRODUCT_ID , PRODUCT_NAME, and PRICE of products that are priced greater than $120.00 or that has a QTY_IN_STOCK value greater than 100
+  B. The PRODUCT_ID, PRODUCT_NAME, and PRICE of products that are priced greater than $120.00 and have a QTY_IN_STOCK value greater than 100
+  C. The PRODUCT_ID, PRODUCT_NAME, and PRICE of products supplied by a supplier with products that are priced greater than $120.00 or with products that have a QTY_IN_STOCK value greater than 100 [100]
+  D. The PRODUCT_ID, PRODUCT_NAME, and PRICE of products that are priced greater than $120.00 or that has a QTY_IN_STOCK value less than 100
+------------------------------------------------------------
+ID: 175 | Mod: 9 | Ans: C
+Prompt: A subquery can be used to _________.
+  A. Sort data in a specific order
+  B. Create groups of data.
+  C. Retrieve data based on an unknown condition [100]
+  D. Convert data to a different format
+------------------------------------------------------------
+ID: 176 | Mod: 9 | Ans: A
+Prompt: Which statement about subqueries is not true?
+  A. A single row subquery can retrieve only one column and one row. [100]
+  B. A multiple row subquery can retrieve multiple rows and multiple columns.
+  C. A multiple row subquery can be compared by using the ">" operator.
+  D. A single row subquery can retrieve only one row but many columns.
+------------------------------------------------------------
+ID: 177 | Mod: 9 | Ans: A
+Prompt: You define a multiple-row subquery in the WHERE clause of an SQL query with a 
+comparison operator "=". What happens when the main query is executed?
+  A. The main query fails because the multiple-row subquery cannot be used with the comparison operator. [100]
+  B. The main query executes with the last value returned by the subquery.
+  C. The main query executes with all the values returned by the subquery.
+  D. The main query executes with the first value returned by the subquery.
+------------------------------------------------------------
+ID: 178 | Mod: 9 | Ans: C
+Prompt: Which operator can be used with a multiple-row subquery?
+  A. LIKE
+  B. =
+  C. NOT IN [100]
+  D. BETWEEN
+------------------------------------------------------------
+ID: 179 | Mod: 9 | Ans: C
+Prompt: Which statement about subqueries is true?
+  A. A single row subquery can retrieve data from only one table
+  B. A single row subquery cannot be used in a condition where the LIKE operator is used for comparison.
+  C. A SQL query statement cannot display data from table B that is referred to in its [100]
+  D. A SQL query statement can display data from table B that is referred to in its subquery, without including table B in its own FROM clause.
+------------------------------------------------------------
+ID: 180 | Mod: 9 | Ans: A
+Prompt: Examine the structure of the EMPLOYEES and NEW_EMPLOYEES tables: 
+EMPLOYEES 
+EMPLOYEE_ID  NUMBER        Primary Key 
+FIRST_NAME   VARCHAR2(25) 
+LAST_NAME    VARCHAR2(25) 
+HIRE_DATE    DATE 
+NEW_EMPLOYEES 
+EMPLOYEE_ID  NUMBER        Primary Key 
+NAME         VARCHAR2(60) 
+Which DELETE statement is valid?
+  A. DELETE FROM employees WHERE employee_id IN (SELECT employee_id FROM new_employees WHERE name = 'Carrey'); [100]
+  B. DELETE FROM employees WHERE employee_id = (SELECT employee_id FROM employees);
+  C. DELETE * FROM employees WHERE employee_id IN (SELECT employee_id FROM new_employees WHERE last_name = 'Carrey');
+  D. DELETE * FROM employees WHERE employee_id = (SELECT employee_id FROM new_employees);
+------------------------------------------------------------
+ID: 181 | Mod: 10 | Ans: D
+Prompt: Which statement about the Sub queries is not valid?
+  A. The subquery (inner query) returns a value that is used by the parent statement
+  B. A subquery is a SELECT statement that is embedded in a clause of another SQL statement
+  C. Using a nested subquery is equivalent to performing two sequential queries and using the result of the inner query as the search value in the outer query
+  D. The Outer query is executed first and then the inner subquery. [100]
+------------------------------------------------------------
+ID: 182 | Mod: 10 | Ans: D
+Prompt: Which type of sub query is used in the following SQL statement? 
+SELECT employee_id, last_name, 
+       (CASE 
+          WHEN department_id = (SELECT department_id FROM departments 
+                                WHERE location_id = 1800) 
+          THEN 'Canada' ELSE 'USA' 
+        END) location 
+FROM employees;
+  A. Pair-wise comparison sub-query
+  B. Correlated sub query
+  C. Inline sub query
+  D. Scalar Sub query [100]
+------------------------------------------------------------
+ID: 183 | Mod: 10 | Ans: C
+Prompt: Which statement is not true about the Correlated sub Queries?
+  A. A correlated sub query is evaluated once for each row processed by the parent statement.
+  B. The parent statement can be a SELECT, UPDATE, or DELETE statement.
+  C. A correlated sub query is evaluated once for each parent statement. [100]
+  D. The Oracle Server performs a correlated sub query when the sub query references a column from a table referred to in the parent statement.
+------------------------------------------------------------
+ID: 184 | Mod: 10 | Ans: B
+Prompt: Which type of sub query is used in the following SQL statement? 
+SELECT employee_id, last_name 
+FROM employees e 
+ORDER BY (SELECT department_name 
+          FROM departments d 
+          WHERE e.department_id = d.department_id);
+  A. Pair-wise comparison sub-query
+  B. Correlated sub query [100]
+  C. nline sub query
+  D. Non-pair wise comparison query
+------------------------------------------------------------
+ID: 185 | Mod: 10 | Ans: B
+Prompt: What does EXISTS operator return when the inner query selects no records? 
+A. NULL 
+B. 0 
+C. FALSE 
+D. TRUE
+  A. 0
+  B. FALSE [100]
+  C. TRUE
+  D. NULL
+------------------------------------------------------------
+ID: 186 | Mod: 10 | Ans: B
+Prompt: What will be the output of the following query? 
+SELECT employee_id, last_name, job_id, department_id 
+FROM employees outer 
+WHERE EXISTS (SELECT 'X' 
+              FROM employees 
+              WHERE manager_id = outer.employee_id);
+  A. Display employees who have at least one person reporting to them with employee_id as 'X'
+  B. Display employees who have at least one person reporting to them. [100]
+  C. Display employees who have at least one manager assigned to them.
+  D. Display employees who have at least one person reporting to them with name 'X'
+------------------------------------------------------------
+ID: 187 | Mod: 10 | Ans: A
+Prompt: Which of the following queries displays all departments that do not have any employees?
+  A. SELECT department_id, department_name FROM departments d WHERE NOT EXISTS (SELECT 'X' FROM employees WHERE department_id = d.department_id); [100]
+  B. SELECT department_id, department_name FROM departments d WHERE EXISTS (SELECT 'X' FROM employees WHERE department_id = d.department_id);
+  C. SELECT department_id, department_name FROM departments d WHERE NOT EXISTS (SELECT 'X' FROM employees WHERE department_id = department_id);
+  D. SELECT department_id, department_name FROM departments d WHERE EXISTS (SELECT 'X' FROM employees WHERE department_id = department_id);
+------------------------------------------------------------
+ID: 188 | Mod: 10 | Ans: B
+Prompt: Examine the Update statement below, which type of update is this? 
+UPDATE employees e 
+SET department_name = (SELECT department_name 
+                       FROM departments d 
+                       WHERE e.department_id = d.department_id);
+  A. Inline Update
+  B. Correlated Update [100]
+  C. Direct Update
+  D. Indirect Update
+------------------------------------------------------------
+ID: 189 | Mod: 10 | Ans: B
+Prompt: Which of the following is a correlated sub query to delete only those rows from the 
+EMPLOYEES table that also exist in the EMP_HISTORY table?
+  A. DELETE FROM employees E WHERE employee_id IN (SELECT employee_id FROM employees E, emp_history H WHERE E.employee_id = H. employee_id; );
+  B. DELETE FROM employees E WHERE employee_id = (SELECT employee_id FROM emp_history WHERE employee_id = E.employee_id); [100]
+  C. DELETE FROM employees E WHERE employee_id IN (SELECT employee_id FROM emp_history H)
+  D. DELETE FROM employees E , emp_history H WHERE E.employee_id = H. employee_id;
+------------------------------------------------------------
+ID: 190 | Mod: 10 | Ans: D
+Prompt: Which of the following is not true about using the WITH clause?
+  A. Using the WITH clause, you can define a query block before using it in a query.
+  B. The WITH clause is also known as subquery_factoring_clause.
+  C. The WITH clause enables you to reuse the same query block in a SELECT statement when it occurs more than once within a complex query
+  D. The WITH clause, unlike the Inline views, can create permanent and reusable views [100]
+------------------------------------------------------------
+ID: 191 | Mod: 10 | Ans: C
+Prompt: When should the use of WITH clause be more effective?
+  A. WITH clause is used when the query has many number of tables to be joined.
+  B. When using the Inline sub queries in the FROM clause.
+  C. When a query has many references to the same query block and there are joins and aggregations. [100]
+  D. WITH clause can be used to replace the correlated sub queries for faster performance
+------------------------------------------------------------
+ID: 192 | Mod: 10 | Ans: C
+Prompt: Which of the following is a valid usage of a sub-query?
+  A. To define the set of rows to be inserted into the target table of an INSERT or CREATE TABLE statement
+  B. To provide values for conditions in WHERE, HAVING, and START WITH clauses of SELECT statements
+  C. All of the above [100]
+  D. To define one or more values to be assigned to existing rows in an UPDATE statement
+------------------------------------------------------------
+ID: 193 | Mod: 10 | Ans: A
+Prompt: Which of the following is not a benefit of using the WITH Clause?
+  A. It automatically sorts the output of the query [100]
+  B. It evaluates a clause only once, even if it appears multiple times in the query.
+  C. It can enhance performance of the queries
+  D. It makes the query easy to read
+------------------------------------------------------------
+ID: 194 | Mod: 10 | Ans: A
+Prompt: Identify the odd one among the following operators used along with Sub-queries.
+  A. = [100]
+  B. ANY
+  C. ALL
+  D. IN
+------------------------------------------------------------
+ID: 195 | Mod: 10 | Ans: D
+Prompt: Which query will display the details of all employees who earn less than the average salary in 
+the company?
+  A. SELECT last_name, job_id, salary FROM employees WHERE salary < (SELECT AVG(salary) FROM employees GROUP BY Department_id);
+  B. SELECT last_name, job_id, salary FROM employees HAVING salary < (SELECT AVG(salary) FROM employees);
+  C. SELECT last_name, job_id, salary FROM employees WHERE salary ANY (SELECT AVG(salary) FROM employees GROUP BY department_id);
+  D. SELECT last_name, job_id, salary FROM employees WHERE salary < (SELECT AVG(salary) FROM employees); [100]
+------------------------------------------------------------
+ID: 196 | Mod: 10 | Ans: B
+Prompt: What is a multicolumn sub query?
+  A. There is no sub query as Multi-column sub query, there is only multi-row sub query
+  B. A sub query which selects more than one column is called a multi-column sub query [100]
+  C. A multi-column sub query is the one that uses single-row operators for comparison
+  D. A sub query which uses decode statements to process multiple columns is called a multi-column sub query
+------------------------------------------------------------
+ID: 197 | Mod: 10 | Ans: A
+Prompt: What will be the output of the following multi-column sub query? 
+SELECT employee_id, manager_id, department_id 
+FROM employees 
+WHERE (manager_id, department_id) IN 
+      (SELECT manager_id, department_id 
+       FROM employees 
+       WHERE employee_id IN (178, 174));
+  A. Display the details of the employees who are managed by the same manager and work in the same department as the employees with EMPLOYEE_ID 178 or 174. [100]
+  B. Display the details of the employees who are managed by the same manager and work in the same department as the employees with EMPLOYEE_ID 178 and 174.
+  C. Display the details of the employees managed by the same manager as that of the employees with EMPLOYEE_ID 178 or 174 and work in the same department as the employees with EMPLOYEE_ID 178 or 174.
+  D. This statement will return Error
+------------------------------------------------------------
+ID: 198 | Mod: 10 | Ans: D
+Prompt: What will be the output of the following multi-column sub query? 
+SELECT employee_id, manager_id, department_id 
+FROM employees 
+WHERE manager_id IN 
+      (SELECT manager_id 
+       FROM employees 
+       WHERE employee_id IN (174, 141)) 
+AND department_id IN 
+      (SELECT department_id 
+       FROM employees 
+       WHERE employee_id IN (174, 141)) 
+AND employee_id NOT IN (174, 141);
+  A. Display the details of the employees who are managed by the same manager and work in the same department as the employees with EMPLOYEE_ID 178 or 174.
+  B. This statement will return Error
+  C. Display the details of the employees who are managed by the same manager and work in the same department as the employees with EMPLOYEE_ID 178 and 174.
+  D. Display the details of the employees managed by the same manager as that of the employees with EMPLOYEE_ID 178 or 174 and work in the same department as the employees with EMPLOYEE_ID 178 or 174. [100]
+------------------------------------------------------------
+ID: 199 | Mod: 10 | Ans: C
+Prompt: What is not true about the Inline Sub Queries?
+  A. A sub query in the FROM clause of a SELECT statement defines a data source for that particular SELECT statement, and only that SELECT statement.
+  B. A sub query in the FROM clause of a SELECT statement is also called an inline view.
+  C. The inline views created during the Sub query can be used later by same or other queries. [100]
+  D. You can use a sub query in the FROM clause of a SELECT statement, which is very similar to how views are used.
+------------------------------------------------------------
+ID: 200 | Mod: 10 | Ans: A
+Prompt: Which of the following is not true about the Scalar sub queries?
+  A. Multiple-column sub queries written to compare two or more columns, using a compound WHERE clause and logical operators, do not qualify as scalar sub queries [100]
+  B. The value of the scalar sub query expression is the value of the select list item of the sub query.
+  C. If the sub query returns 0 rows, the value of the scalar sub query expression is NULL.
+  D. A sub query that returns exactly one column value from one row is also referred to as a scalar sub query.
+------------------------------------------------------------
+ID: 201 | Mod: 11 | Ans: C
+Prompt: In which scenario would TOP N analysis be the best solution?
+  A. You want to identify the person who makes the highest salary for all employees
+  B. You want to find the manager supervising the largest number of employees.
+  C. You want to rank the top three sales representatives who have sold the maximum number of products [100]
+  D. You want to identify the most senior employee in the company
+------------------------------------------------------------
+ID: 202 | Mod: 11 | Ans: D
+Prompt: Examine the structure of the EMP_DEPT_VU view: 
+Column Name    Type          Remarks 
+-------------  ------------  --------------------------- 
+EMPLOYEE_ID    NUMBER        From the EMPLOYEES table 
+EMP_NAME       VARCHAR2(30)  From the EMPLOYEES table 
+JOB_ID         VARCHAR2(20)  From the EMPLOYEES table 
+SALARY         NUMBER        From the EMPLOYEES table 
+DEPARTMENT_ID  NUMBER        From the DEPARTMENTS table 
+DEPT_NAME      VARCHAR2(30)  From the DEPARTMENTS table 
+Which of the following SQL statement produces an error?
+  A. SELECT * FROM emp_dept_vu;
+  B. SELECT department_id, SUM(salary) FROM emp_dept_vu GROUP BY department_id;
+  C. SELECT department_id, job_id, AVG(salary) FROM emp_dept_vu GROUP BY department_id, job_id;
+  D. None of the statements produce an error; all are valid [100]
+------------------------------------------------------------
+ID: 203 | Mod: 11 | Ans: D
+Prompt: Which SQL statement would you use to remove a view called EMP_DEPT_VU from your 
+schema?
+  A. REMOVE emp_dept_vu;
+  B. DELETE emp_dept_vu;
+  C. DROP emp_dept_vu
+  D. DROP VIEW emp_dept_vu [100]
+------------------------------------------------------------
+ID: 204 | Mod: 11 | Ans: B
+Prompt: Top N analysis requires:
+  A. Only an inline view
+  B. The use of ROWNUM pseudo column [100]
+  C. The use of ROWID
+  D. a GROUP BY clause
+------------------------------------------------------------
+ID: 205 | Mod: 11 | Ans: C
+Prompt: What is true about updates through a view?
+  A. When you update a view the constraints on the views always override the constraints on theunderlying tables
+  B. When you update a view group functions are automatically computed
+  C. You cannot update a view with group functions [100]
+  D. When you update a view only the data in the view will be updated and not the table data
+------------------------------------------------------------
+ID: 206 | Mod: 11 | Ans: A
+Prompt: What does the FORCE option do for creating a view?
+  A. creates a view regardless of whether or not the base tables exist [100]
+  B. creates a view in another schema even if you don't have privileges
+  C. creates a view even if the underlying parent table has constraints
+  D. creates a view with constraints
+------------------------------------------------------------
+ID: 207 | Mod: 11 | Ans: B
+Prompt: Which of the following best describes an inline view?
+  A. a schema object
+  B. a sub query that is part of the FROM clause of another query [100]
+  C. a sub query that can contain an ORDER BY clause
+  D. another name for a view that contains group functions
+------------------------------------------------------------
+ID: 208 | Mod: 11 | Ans: B
+Prompt: Which statement about views is not true?
+  A. A view can be created as read only
+  B. The table must exist to create a view on it [100]
+  C. A view can be created with a GROUP BY clause in the SELECT statement.
+  D. A view can be created based on another view
+------------------------------------------------------------
+ID: 209 | Mod: 11 | Ans: C
+Prompt: Evaluate this SQL statement: 
+SELECT a.emp_name, a.sal, a.dept_id, b.maxsal 
+FROM employees a, 
+     (SELECT dept_id, MAX(sal) maxsal 
+      FROM employees 
+      GROUP BY dept_id) b 
+WHERE a.dept_id = b.dept_id 
+AND a.sal < b.maxsal; 
+What is the result of the statement?
+  A. The statement produces an error at line 3
+  B. The statement produces an error at line 4
+  C. The statement returns the employee name, salary, department ID, and maximum salary earned in the department of the employee for all employees who earn less than the maximum salary in their department [100]
+  D. The statement produces an error at line 1
+------------------------------------------------------------
+ID: 210 | Mod: 11 | Ans: D
+Prompt: You need to create a view called EMP_VU that allows the user to insert rows through the 
+view. Which of the following SQL statement, when used to create the EMP_VU view, 
+allows the user to insert rows?
+  A. CREATE VIEW emp_Vu AS SELECT department_id, SUM(sal) TOTALSAL FROM employees WHERE mgr_id IN (102, 120) GROUP BY department_id;
+  B. CREATE VIEW emp_Vu AS SELECT employee_id, emp_name,department_id FROM employees WHERE mgr_id IN (102, 120);
+  C. CREATE VIEW emp_Vu AS SELECT employee_id, emp_name, job_id,DISTINCT department_id FROM employees;
+  D. CREATE VIEW emp_Vu AS SELECT employee_id, emp_name, job_iddepartment_id FROM employees WHERE mgr_id IN (102, 120); [100]
+------------------------------------------------------------
+ID: 211 | Mod: 11 | Ans: A
+Prompt: You need to perform certain data manipulation operations through a view called 
+EMP_DEPT_VU, which you previously created. You want to look at the definition of the 
+view (the SELECT statement on which the view was created). 
+How do you obtain the definition of the view?
+  A. Query the USER_VIEWS data dictionary view to search for the EMP_DEPT_VU view [100]
+  B. Use the DESCRIBE VIEW command on the EMP_DEPT VU view
+  C. Use the DEFINE VIEW command on the EMP_DEPT VU view
+  D. Query the USER_SOURCE data dictionary view to search for the EMP_DEPT_VU view
+------------------------------------------------------------
+ID: 212 | Mod: 11 | Ans: D
+Prompt: What is necessary for your query on an existing view to execute successfully?
+  A. The underlying tables must be in the same schema
+  B. The underlying tables must have data.
+  C. You need SELECT privileges only on the underlying tables
+  D. You need SELECT privileges on the view. [100]
+------------------------------------------------------------
+ID: 213 | Mod: 11 | Ans: D
+Prompt: When you use SQL Subquery in ________ clause of the select statement it is called inline 
+view
+  A. group by
+  B. order by
+  C. where
+  D. from [100]
+------------------------------------------------------------
+ID: 214 | Mod: 11 | Ans: D
+Prompt: You created a view called EMP_DEPT_VU that contains three columns from the 
+EMPLOYEES and DEPARTMENTS tables: EMPLOYEE_ID, EMPLOYEE_NAME and 
+DEPARTMENT_NAME. 
+The DEPARTMENT_ID column of the EMPLOYEES table is the foreign key to the primary 
+key DEPARTMENT_ID column of the DEPARTMENTS table. 
+You want to modify the view by adding a fourth column, MANAGER_ID of NUMBER data 
+type from the EMPLOYEES tables. 
+How can you accomplish this task?
+  A. ALTER VIEW emp_dept_vu AS SELECT employee_id, employee_name,department_name, manager_id FROM employee e, departments d WHERE e.department_id = d.department_id;
+  B. MODIFY VIEW emp_dept_vu (ADD manager_id NUMBER);
+  C. ALTER VIEW emp_dept_vu (ADD manager_id NUMBER);
+  D. CREATE OR REPLACE VIEW emp_dept_vu AS SELECT employee_id, employee_name,department_name, manager_id FROM employees e, departments d WHERE e.department_id = d.department_id; [100]
+------------------------------------------------------------
+ID: 215 | Mod: 11 | Ans: D
+Prompt: Which statements concerning the creation of a view are true? (Choose all that apply.)
+  A. View columns that are the result of derived values are named by Oracle.
+  B. When the view already exists, using the OR REPLACE option requires the re-granting of the object privileges previously granted on the view
+  C. A constraint name must be provided when using the WITH CHECK OPTION clause or theStatement will fail
+  D. A view can have column names that are different than the actual base table(s) column names by using column aliases. [100]
+------------------------------------------------------------
+ID: 216 | Mod: 11 | Ans: C
+Prompt: You are granted the CREATE VIEW privilege. What does this allow you to do?
+  A. Create a table view
+  B. Create a view in any schema
+  C. Create a view in your schema [100]
+  D. Create a sequence view in any schema
+------------------------------------------------------------
+ID: 217 | Mod: 11 | Ans: D
+Prompt: Which of the following is a valid option while creating a view?
+  A. WITH BREAK OPTION
+  B. ON DELETE CASCADE
+  C. WITH GRANT OPTION
+  D. WITH CHECK OPTION [100]
+------------------------------------------------------------
+ID: 218 | Mod: 11 | Ans: B
+Prompt: An inline view is a SELECT statement that is given an alias and is embedded in the ______ 
+clause of another SELECT statement.
+  A. CASE
+  B. FROM [100]
+  C. WHERE
+  D. SELECT
+------------------------------------------------------------
+ID: 219 | Mod: 11 | Ans: B
+Prompt: You need to create a view EMP_VU. The view should allow the users to manipulate the 
+records of only the employees that are working for departments 10 or 20. 
+Which SQL statement would you use to create the view EMP_VU?
+  A. CREATE VIEW emp_vu AS SELECT * FROM employees WHERE department_id IN (10,20) WITH READ ONLY;
+  B. CREATE VIEW emp_vu AS SELECT * FROM employees WHERE department_id IN (10,20) WITH CHECK OPTION; [100]
+  C. CREATE VIEW emp_vu AS SELECT * FROM employees WHERE department_id IN (10,20);
+  D. CREATE FORCE VIEW emp_vu AS SELECT * FROM employees WHERE department_id IN (10,20);
+------------------------------------------------------------
+ID: 220 | Mod: 11 | Ans: C
+Prompt: Which statement about views is true?
+  A. A view cannot have an ORDER BY clause in the SELECT statement
+  B. A view cannot be created with a GROUP BY clause in the SELECT statement.
+  C. A view can be created as read only [100]
+  D. A view must have aliases defined for the column names in the SELECT statement
+------------------------------------------------------------
+ID: 221 | Mod: 12 | Ans: D
+Prompt: Which of the following is not a SET operator?
+  A. Intersect
+  B. Union
+  C. Minus
+  D. Plus [100]
+------------------------------------------------------------
+ID: 222 | Mod: 12 | Ans: B
+Prompt: If the JOB_HISTORY table contains the records for those employees who have changed their 
+jobs at least once, and you want to display the employee IDs of those employees who have 
+not changed their jobs even once, which set operator should you use to write a query?
+  A. Intersect
+  B. Minus [100]
+  C. Union
+  D. Union All
+------------------------------------------------------------
+ID: 223 | Mod: 12 | Ans: A
+Prompt: Which of the following is not true about the use of Set operators in general?
+  A. SET operators cannot be used in sub queries [100]
+  B. The expressions in the SELECT lists must match in number and data type.
+  C. Parentheses can be used to alter the sequence of execution.
+  D. Queries that use UNION, UNION ALL, INTERSECT, and MINUS SET operators in their WHERE clause must have the same number and type of columns in their SELECT list
+------------------------------------------------------------
+ID: 224 | Mod: 12 | Ans: D
+Prompt: Which statement about the use of ORDER BY clause in conjunction with the SET Operators 
+is not correct?
+  A. The column name or alias, if used in an ORDER BY clause, must be from the first SELECT list.
+  B. The ORDER BY clause: Can accept the column name, an alias, or the positional notation
+  C. The ORDER BY clause: Can appear only at the very end of the statement
+  D. The ORDER BY clause: Can appear only at the end of the first SELECT statement [100]
+------------------------------------------------------------
+ID: 225 | Mod: 12 | Ans: C
+Prompt: Which statement about the Oracle Server and SET Operators is not true?
+  A. By default, the output is sorted in ascending order of the first column of the SELECT clause.
+  B. The column names in the output are decided by the column list in the first SELECT statement
+  C. The data types of the output columns are same as the selected columns [100]
+  D. the Oracle Server eliminates duplicate rows automatically except in the case of the UNION ALL operator
+------------------------------------------------------------
+ID: 226 | Mod: 12 | Ans: A
+Prompt: What data does the DUAL table contain by default?
+  A. One column named DUMMY and one row with value X [100]
+  B. One column named D and one row with value X
+  C. One column named COL and one row with value 1
+  D. DUAL table doesn't contain any data by default.
+------------------------------------------------------------
+ID: 227 | Mod: 12 | Ans: C
+Prompt: What is not true about the Oracle Pseudo columns?
+  A. A pseudo column behaves like a table column, but is not actually stored in the table.
+  B. Pseudo columns are internally maintained by the Oracle server.
+  C. You cannot insert value of a pseudo column in other table's columns. [100]
+  D. You can select from pseudo columns, but you cannot insert, update, or delete their values.
+------------------------------------------------------------
+ID: 228 | Mod: 12 | Ans: C
+Prompt: Which of the following is not a valid type or name of an Oracle Pseudo-column?
+  A. Hierarchical Query Pseudo columns
+  B. Sequence Pseudo columns
+  C. Sub Query Pseudo columns [100]
+  D. ROWNUM Pseudo column
+------------------------------------------------------------
+ID: 229 | Mod: 12 | Ans: D
+Prompt: Which of the following statement, about sequence pseudo columns is true?
+  A. You use a CURRVAL pseudo column to generate a value from a sequence that would be used for a specified database column.
+  B. You use a NEXTVAL pseudo column to look at the next possible value that would be generated from a sequence, without actually retrieving the value.
+  C. You use a CURRVAL pseudo column to generated next value of the sequence to be used.
+  D. You use a NEXTVAL pseudo column to obtain the next possible value from a sequence by actually retrieving the value from the sequence. [100]
+------------------------------------------------------------
+ID: 230 | Mod: 12 | Ans: C
+Prompt: Which of the following is not part of the information contained inside the ROWID pseudo 
+column?
+  A. The data object number of the object
+  B. The data file in which the row resides
+  C. The position of the row in the oracle table [100]
+  D. The data block in the data file in which the row resides
+------------------------------------------------------------
+ID: 231 | Mod: 12 | Ans: D
+Prompt: Which of these pseudo columns is useful while performing the TOP-N analysis?
+  A. RANK
+  B. ROWID
+  C. LEVEL
+  D. ROWNUM [100]
+------------------------------------------------------------
+ID: 232 | Mod: 12 | Ans: A
+Prompt: If you want to select employees details from two different tables which may contain records 
+for same employee ids, but want to display each employees record only once, which set 
+operator should you use?
+  A. Union [100]
+  B. Union all
+  C. Minus
+  D. Intersect
+------------------------------------------------------------
+ID: 233 | Mod: 12 | Ans: D
+Prompt: What will be the output of the below query? 
+SELECT * 
+FROM employees 
+WHERE ROWNUM < 10;
+  A. This Query will perform TOP-N analysis to display TOP nine earning employees as ROWNUM is used.
+  B. This query will return error as ROWNUM is not used in the SELECT clause and only in the WHERE clause
+  C. The query will select only 10 records from employees table
+  D. This query will return 9 rows from the Employees table, if there are 9 or more records in the employees table [100]
+------------------------------------------------------------
+ID: 234 | Mod: 12 | Ans: A
+Prompt: Queries containing SET operators are called _______ queries.
+  A. Compound [100]
+  B. Set
+  C. Complex
+  D. Set Manipulation
+------------------------------------------------------------
+ID: 235 | Mod: 12 | Ans: D
+Prompt: What is not true about the Union operator?
+  A. UNION operates over all of the columns being selected.
+  B. The IN operator has a higher precedence than the UNION operator.
+  C. By default, the output is sorted in ascending order of the first column of the SELECT clause.
+  D. NULL values are ignored during duplicate checking. [100]
+------------------------------------------------------------
+ID: 236 | Mod: 12 | Ans: D
+Prompt: Which of the set operators when used, the output of the query is not sorted by default?
+  A. Minus
+  B. Intersect
+  C. Union
+  D. Union All [100]
+------------------------------------------------------------
+ID: 237 | Mod: 12 | Ans: A
+Prompt: Which of the following statement is not true about the UNION ALL operator?
+  A. The DISTINCT keyword can be used [100]
+  B. The output is not sorted by default
+  C. The UNION ALL operator to return all rows from multiple queries.
+  D. duplicate rows are not eliminated
+------------------------------------------------------------
+ID: 238 | Mod: 12 | Ans: D
+Prompt: What is not true about the use of Intersect operator?
+  A. INTERSECT does not ignore NULL values.
+  B. The names of the columns need not be identical
+  C. The number of columns and the data types of the columns being selected by the SELECT statements in the queries must be identical in all the SELECT statements used in the query
+  D. Reversing the order of the intersected tables may result in a changed output [100]
+------------------------------------------------------------
+ID: 239 | Mod: 12 | Ans: C
+Prompt: Which operator should you use to display the records which are a common result of each of 
+the queries?
+  A. Union
+  B. Minus
+  C. Intersect [100]
+  D. Union All
+------------------------------------------------------------
+ID: 240 | Mod: 12 | Ans: B
+Prompt: Which of the following is correct about the use of Union operator?
+  A. The data types of the columns being selected must be identical but the number of columns may be different.
+  B. The number of columns and the data types of the columns being selected must be identical in all the SELECT statements used in the query [100]
+  C. The names of the columns must also be identical
+  D. The number of columns being selected must be identical but the data types of the columns may be different.
+------------------------------------------------------------
+ID: 241 | Mod: 13 | Ans: A
+Prompt: Which the following statement is not true about Database Normalization ?
+  A. Normalization usually involves combining small tables and consolidating them into a single table so that maximum data can be accessed through each table. [100]
+  B. In the design of a relational database management system, the process of organizing data to minimize redundancy is called 'Normalization'.
+  C. The goal of database normalization is to decompose relations with anomalies in order to produce smaller, well-structured relations.
+  D. Normalization usually involves dividing large tables into smaller (and less redundant) tables and defining relationships between them.
+------------------------------------------------------------
+ID: 242 | Mod: 13 | Ans: D
+Prompt: An attribute is fully functionally dependent on a set of attributes X if it is _________.
+  A. Functionally dependent on X
+  B. Not functionally dependent on any proper subset of X.
+  C. Either A or B but not both
+  D. Both A and B [100]
+------------------------------------------------------------
+ID: 243 | Mod: 13 | Ans: B
+Prompt: What is true about the Multivalued dependency?
+  A. A multivalued dependency is a constraint according to which the presence of primary key in a table implies the presence of foreign keys.
+  B. A multivalued dependency is a constraint according to which the presence of certain rows in a table implies the presence of certain other rows. [100]
+  C. A multivalued dependency is a constraint according to which the presence of functional dependency implies the presence of transitive dependency.
+  D. A multivalued dependency is a constraint according to which the presence of transitive dependency implies the presence of functional dependency.
+------------------------------------------------------------
+ID: 244 | Mod: 13 | Ans: D
+Prompt: Which statement is true about the Super Keys?
+  A. A super key cannot be a candidate key.
+  B. A table can have only one super key.
+  C. Super key may not contain all the columns present in the Candidate key of a table.
+  D. A super key is a combination of attributes that can be used to uniquely identify a database record [100]
+------------------------------------------------------------
+ID: 245 | Mod: 13 | Ans: C
+Prompt: Which of the following statements is not true?
+  A. A prime attribute is also part of all super keys of a table.
+  B. A prime attribute is an attribute that does occur in any candidate key.
+  C. A non-prime attribute is an attribute that does not occur in any super key. [100]
+  D. A non-prime attribute is an attribute that does not occur in any candidate key.
+------------------------------------------------------------
+ID: 246 | Mod: 13 | Ans: C
+Prompt: Which of the following conditions is not a valid condition for a table to be in First Normal 
+Form (1NF)?
+  A. There are no duplicate rows.
+  B. There's no top-to-bottom ordering to the rows.
+  C. There's left-to-right ordering to the columns. [100]
+  D. Every row-and-column intersection contains exactly one value from the applicable domain
+------------------------------------------------------------
+ID: 247 | Mod: 13 | Ans: A
+Prompt: Why is the following 1NF table not in the 2NF? 
+Employees' Skills 
+Employee  Skill           Current Work Location 
+--------  --------------  --------------------- 
+Jones     Typing          114 Main Street 
+Jones     Shorthand       114 Main Street 
+Jones     Whittling       114 Main Street 
+Bravo     Light Cleaning  73 Industrial Way 
+Ellis     Alchemy         73 Industrial Way 
+Ellis     Flying          73 Industrial Way 
+Harrison  Light Cleaning  73 Industrial Way
+  A. The non-prime attribute(s) are not dependent on each of the prime attributes. [100]
+  B. The table contains multiple records for Same Employee name, so not in 2NF
+  C. The non-prime attribute(s) are dependent on each of the prime attributes.
+  D. The table is not in 1NF hence not in 2NF
+------------------------------------------------------------
+ID: 248 | Mod: 13 | Ans: B
+Prompt: Which of the 3NF conditions is not satisfied by the table below? 
+Tournament Winners 
+Tournament            Year  Winner          Winner Date of Birth 
+--------------------  ----  --------------  -------------------- 
+Des Moines Masters    1998  Chip Masterson  14 March 1977 
+Indiana Invitational  1998  Al Fredrickson  21 July 1975 
+Cleveland Open        1999  Bob Albertson   28 September 1968 
+Des Moines Masters    1999  Al Fredrickson  21 July 1975 
+Indiana Invitational  1999  Chip Masterson  14 March 1977
+  A. Every prime attribute of a Table is non-transitively dependent on every candidate key of the table.
+  B. Every non-prime attribute of a Table is non-transitively dependent on every candidate key of the table. [100]
+  C. The table must be in 2NF
+  D. The table must be in 1NF
+------------------------------------------------------------
+ID: 249 | Mod: 13 | Ans: D
+Prompt: Which statement about the Boyce-Codd Normal Form is not true?
+  A. Only in rare cases does a 3NF table not meet the requirements of BCNF
+  B. BCNF was developed to address certain types of anomaly not dealt with by 3NF as originally defined.
+  C. Boyce-Codd normal form is a slightly stronger version of the third normal form.
+  D. A 3NF table which does not have multiple overlapping candidate keys is supposed to be not in BCNF. [100]
+------------------------------------------------------------
+ID: 250 | Mod: 13 | Ans: B
+Prompt: What is the full form of the DKNF?
+  A. Donner-Korth Normal Form
+  B. Domain-Key Normal Form [100]
+  C. Dual-Key Normal Form
+  D. Domain-Knowledge Normal Form
+------------------------------------------------------------
+ID: 251 | Mod: 13 | Ans: B
+Prompt: If a table is said to be in 3NF then which of the following may not be true?
+  A. Every row-and-column intersection contains exactly one value from the applicable domain.
+  B. The table is free of modification anomalies. [100]
+  C. Every non-prime attribute is non-transitively dependent (i.e. directly dependent) on every candidate key.
+  D. All its non-prime attributes are functionally dependent on the whole of every candidate key.
+------------------------------------------------------------
+ID: 252 | Mod: 13 | Ans: C
+Prompt: Which of the following statements correctly describe the modification anomalies?
+  A. Modification anomalies occur only up to Second Normal form
+  B. When modification anomalies exist, the table data cannot be modified
+  C. When an attempt is made to modify a table, undesired side-effects may follow [100]
+  D. When modifying a table, errors frequently occur due to modification anomalies
+------------------------------------------------------------
+ID: 253 | Mod: 13 | Ans: D
+Prompt: Which of the following indicate that Y is transitively dependent on X?
+  A. X->Y , Z->X
+  B. X->Y, Z->X
+  C. Y->Z, Z->X
+  D. Z->Y , X->Z [100]
+------------------------------------------------------------
+ID: 254 | Mod: 13 | Ans: B
+Prompt: What is correct full form of the BCNF normal form?
+  A. Boyce-Cartesian normal form
+  B. Boyce-Codd normal form [100]
+  C. Bond-Codd normal form
+  D. Borne-Codd normal form
+------------------------------------------------------------
+ID: 255 | Mod: 13 | Ans: D
+Prompt: Which of the following is not a valid type of Modification anomaly?
+  A. Update Anomaly
+  B. Insertion anomaly
+  C. Deletion anomaly
+  D. Drop anomaly [100]
+------------------------------------------------------------
+ID: 256 | Mod: 13 | Ans: A
+Prompt: Considering the table structure and the data in the following table, which all modification 
+anomalies can occur while modifying this table? 
+Faculty ID  Faculty Name    Faculty Hire Date  Course Code 
+----------  --------------  -----------------  ----------- 
+389         Dr. Giddens     10-Feb-1985        ENG-206 
+407         Dr. Saperstein  19-Apr-1999        CMP-101 
+407         Dr. Saperstein  19-Apr-1999        CMP-201
+  A. Insertion, Update and Deletion anomaly [100]
+  B. Only Insertion anomaly
+  C. Insertion and Update anomaly
+  D. Update and Deletion anomaly
+------------------------------------------------------------
+ID: 257 | Mod: 13 | Ans: C
+Prompt: Which of the following is not a valid objective of normalization?
+  A. Get rid of the modification anomalies
+  B. Make the data model more informative to users
+  C. Completely avoid the need to change the table structure after normalization [100]
+  D. Minimize redesign when extending the database structure
+------------------------------------------------------------
+ID: 258 | Mod: 13 | Ans: D
+Prompt: Consider following table structure, in which normal form is it? 
+Transactions 
+Customer  Tr. ID  Date         Amount 
+--------  ------  -----------  ------ 
+Jones     12890   14-Oct-2003  −87 
+          12904   15-Oct-2003  −50 
+Wilkins   12898   14-Oct-2003  −21 
+Stevens   12907   15-Oct-2003  −18 
+          14920   20-Nov-2003  −70 
+          15003   27-Nov-2003  −60
+  A. 3NF
+  B. 1NF
+  C. 2NF
+  D. Non 1NF [100]
+------------------------------------------------------------
+ID: 259 | Mod: 13 | Ans: C
+Prompt: What is Functional dependency?
+  A. In a given table, an attribute Y is said to have a functional dependency on a set of attributes X, if and only if each X value is associated with more than one Y value
+  B. In a given table, an attribute Y is said to have a functional dependency on a set of attributes X, if and only if each Y value is associated with precisely one X value
+  C. In a given table, an attribute Y is said to have a functional dependency on a set of attributes X, if and only if each X value is associated with precisely one Y value [100]
+  D. In a given table, an attribute Y is said to have a functional dependency on a set of attributes X, if and only if each X value is associated with at least one Y value
+------------------------------------------------------------
+ID: 260 | Mod: 13 | Ans: B
+Prompt: What does X -> Y mean about the attributes X and Y?
+  A. X is functionally dependent on Y
+  B. Y is functionally dependent on X [100]
+  C. None of the above
+  D. X and Y are functionally dependent on each other
+------------------------------------------------------------

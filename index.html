@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CDAC DBMS Master - Ôn Tập & Khảo Sát Cơ Sở Dữ Liệu</title>
+  <meta name="description" content="Trang web ôn tập trắc nghiệm cơ sở dữ liệu CDAC DBMS MCQ với bản dịch Tiếng Việt chuẩn xác, giải thích chi tiết của Giảng viên và thẻ ghi nhớ Flashcard.">
+  
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-wrapper">
+        <div class="brand-icon">
+          <span>🗄️</span>
+        </div>
+        <div>
+          <h1 class="brand-title">
+            CDAC DBMS Master
+            <span class="badge-lecturer">Giảng viên Database</span>
+          </h1>
+          <div class="brand-subtitle">Cổng Ôn Tập 260 Câu Trắc Nghiệm Cơ Sở Dữ Liệu Chuyên Sâu</div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Global Language Switcher -->
+        <div class="lang-switcher" title="Chọn chế độ hiển thị ngôn ngữ mặc định">
+          <button class="lang-btn" data-lang="vi">🇻🇳 Tiếng Việt</button>
+          <button class="lang-btn active" data-lang="bilingual">🔄 Song ngữ</button>
+          <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+        </div>
+
+        <!-- Light / Dark Mode Toggle -->
+        <button id="theme-toggle-btn" class="theme-toggle-btn" title="Chuyển chế độ Sáng / Tối">
+          🌙
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="app-nav">
+    <div class="nav-container">
+      <button class="nav-tab active" data-tab="practice">
+        <span>🎯 Luyện Tập Từng Câu</span>
+      </button>
+      <button class="nav-tab" data-tab="flashcard">
+        <span>🗂️ Thẻ Ghi Nhớ Flashcard</span>
+        <span class="tab-badge" id="nav-flashcard-count">0/260</span>
+      </button>
+      <button class="nav-tab" data-tab="exam">
+        <span>⏱️ Thi Thử Đếm Giờ</span>
+      </button>
+      <button class="nav-tab" data-tab="bookmarks">
+        <span>⭐ Đã Đánh Dấu</span>
+        <span class="tab-badge" id="nav-bookmark-count">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-content">
+    <!-- Progress & Overall Stats Banner -->
+    <div class="progress-banner">
+      <div class="progress-info">
+        <div class="stat-item">
+          <span class="stat-val" id="total-q-count">260</span>
+          <span class="stat-label">Tổng số câu hỏi</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val" id="completed-q-count">0 / 260 (0%)</span>
+          <span class="stat-label">Tiến độ hoàn thành</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val" id="accuracy-rate">0%</span>
+          <span class="stat-label">Độ chính xác</span>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrapper">
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-bar-fill"></div>
+        </div>
+        <div style="font-size: 0.75rem; color: var(--text-muted); text-align: right;">
+          Lưu tự động vào trình duyệt (Không cần tài khoản)
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Content Render Target -->
+    <div id="main-content">
+      <!-- Injected by app.js -->
+    </div>
+  </main>
+
+  <!-- App Footer -->
+  <footer class="app-footer">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 6px;">
+      <div>
+        <strong>CDAC DBMS Interactive Learning System</strong> — Tài liệu ôn thi chuẩn hóa 13 Chuyên đề Cơ sở Dữ liệu & Oracle SQL.
+      </div>
+      <div style="font-size: 0.8rem; color: var(--text-light);">
+        Phát triển với giao diện xanh pastel dịu mắt • Dịch song ngữ Anh - Việt trực quan • Lời giải nâng cấp chuyên sâu của Giảng viên.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/questions_data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

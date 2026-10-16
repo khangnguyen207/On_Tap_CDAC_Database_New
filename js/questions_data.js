@@ -1,0 +1,11034 @@
+/**
+ * CDAC DBMS MCQ Examination Dataset
+ * Compiled & Enriched by Database Lecturer & Developer
+ * Total Questions: 260 across 13 Modules
+ */
+const CDAC_MODULES = [
+  {
+    "id": 1,
+    "title_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "description_vi": "Kiến trúc hệ quản trị cơ sở dữ liệu, Oracle Instance, SGA, PGA, Background Processes (LGWR, DBWn, CKPT), tính chất ACID và các mức trừu tượng dữ liệu.",
+    "question_count": 20,
+    "start_id": 1,
+    "end_id": 20
+  },
+  {
+    "id": 2,
+    "title_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "description_vi": "Cú pháp cơ bản của SQL, biểu thức số học, đặt bí danh cho cột (Column Alias), xử lý giá trị NULL, từ khóa DISTINCT và thứ tự ưu tiên các toán tử.",
+    "question_count": 20,
+    "start_id": 21,
+    "end_id": 40
+  },
+  {
+    "id": 3,
+    "title_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "description_vi": "Lệnh CREATE TABLE, ALTER TABLE, DROP TABLE, TRUNCATE TABLE, các kiểu dữ liệu Oracle (VARCHAR2, NUMBER, DATE, TIMESTAMP, ROWID, BLOB) và quy tắc đặt tên đối tượng.",
+    "question_count": 20,
+    "start_id": 41,
+    "end_id": 60
+  },
+  {
+    "id": 4,
+    "title_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "description_vi": "PRIMARY KEY, FOREIGN KEY, UNIQUE, NOT NULL, CHECK, cấp độ khai báo cột/bảng, mệnh đề CASCADE CONSTRAINTS, bật/tắt ràng buộc và từ điển dữ liệu USER_CONSTRAINTS.",
+    "question_count": 20,
+    "start_id": 61,
+    "end_id": 80
+  },
+  {
+    "id": 5,
+    "title_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "description_vi": "Lệnh INSERT, UPDATE, DELETE, MERGE (UPSERT), chèn dữ liệu bằng truy vấn con, giao dịch cơ sở dữ liệu và xử lý ràng buộc khi thao tác dữ liệu.",
+    "question_count": 20,
+    "start_id": 81,
+    "end_id": 100
+  },
+  {
+    "id": 6,
+    "title_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "description_vi": "Hàm chuỗi (LOWER, UPPER, INITCAP, TRIM, SUBSTR, LPAD), hàm số (ROUND, TRUNC, MOD), hàm ngày tháng (SYSDATE, ADD_MONTHS, TO_CHAR, TO_DATE) và hàm xử lý NULL (NVL, NVL2, NULLIF, DECODE).",
+    "question_count": 20,
+    "start_id": 101,
+    "end_id": 120
+  },
+  {
+    "id": 7,
+    "title_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "description_vi": "Hàm tổng hợp (COUNT, SUM, AVG, MIN, MAX), quy tắc xử lý NULL của hàm nhóm, mệnh đề GROUP BY, mệnh đề HAVING và phân biệt WHERE vs HAVING.",
+    "question_count": 20,
+    "start_id": 121,
+    "end_id": 140
+  },
+  {
+    "id": 8,
+    "title_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "description_vi": "Equijoin, Non-equijoin, Natural Join, USING clause, ON clause, Self Join, Outer Joins (LEFT, RIGHT, FULL OUTER JOIN), cú pháp truyền thống (+) và tích Descartes (Cartesian Product).",
+    "question_count": 20,
+    "start_id": 141,
+    "end_id": 160
+  },
+  {
+    "id": 9,
+    "title_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "description_vi": "Khái niệm Subquery, phân biệt Single-row subquery vs Multiple-row subquery (toán tử IN, ANY, ALL), vị trí sử dụng subquery và xử lý giá trị NULL trong NOT IN.",
+    "question_count": 20,
+    "start_id": 161,
+    "end_id": 180
+  },
+  {
+    "id": 10,
+    "title_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "description_vi": "Truy vấn con tương quan (Correlated Subquery), toán tử EXISTS / NOT EXISTS, truy vấn con nhiều cột (Pairwise vs Non-pairwise), mệnh đề WITH (CTE) và Scalar Subquery.",
+    "question_count": 20,
+    "start_id": 181,
+    "end_id": 200
+  },
+  {
+    "id": 11,
+    "title_vi": "Module 11: Khung nhìn (Views)",
+    "description_vi": "Khái niệm View, tạo View đơn giản & phức tạp, tùy chọn FORCE, mệnh đề WITH CHECK OPTION, WITH READ ONLY, quy tắc DML trên View và truy vấn từ điển dữ liệu USER_VIEWS.",
+    "question_count": 20,
+    "start_id": 201,
+    "end_id": 220
+  },
+  {
+    "id": 12,
+    "title_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "description_vi": "Toán tử UNION, UNION ALL, INTERSECT, MINUS, quy tắc kết hợp SELECT, bảng DUAL, các cột giả ROWNUM, ROWID, LEVEL, NEXTVAL, CURRVAL và kỹ thuật Top-N Analysis.",
+    "question_count": 20,
+    "start_id": 221,
+    "end_id": 240
+  },
+  {
+    "id": 13,
+    "title_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "description_vi": "Khái niệm phụ thuộc hàm (Functional Dependency), các dạng dị thường dữ liệu (Insertion, Update, Deletion Anomaly), thuộc tính khóa và các dạng chuẩn 1NF, 2NF, 3NF, BCNF, DKNF.",
+    "question_count": 20,
+    "start_id": 241,
+    "end_id": 260
+  }
+];
+
+const CDAC_QUESTIONS = [
+  {
+    "id": 1,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which of the following is not an advantage of the DBMS?",
+    "prompt_vi": "Đặc điểm nào sau đây KHÔNG PHẢI là một ưu điểm của Hệ quản trị cơ sở dữ liệu (DBMS)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "User application data creation.",
+        "text_vi": "Tạo dữ liệu ứng dụng của người dùng (User application data creation).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Data independence and efficient access.",
+        "text_vi": "Tính độc lập dữ liệu và truy xuất hiệu quả.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Reduced application development time.",
+        "text_vi": "Giảm thiểu thời gian phát triển ứng dụng.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Data integrity and security.",
+        "text_vi": "Đảm bảo tính toàn vẹn và an toàn bảo mật dữ liệu.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong kiến trúc hệ thống, DBMS chịu trách nhiệm lưu trữ, bảo vệ, duy trì tính toàn vẹn và cung cấp cơ chế truy xuất dữ liệu độc lập với tầng ứng dụng. Việc 'tạo dữ liệu nghiệp vụ của người dùng' thuộc về phần mềm ứng dụng và người dùng cuối, không phải là ưu điểm do DBMS cung cấp.",
+    "key_takeaway_vi": "DBMS quản lý, bảo mật và cung cấp tính độc lập dữ liệu; dữ liệu ứng dụng do người dùng/ứng dụng sinh ra.",
+    "flashcard": {
+      "front_en": "Which of the following is not an advantage of the DBMS?",
+      "front_vi": "Vì sao 'User application data creation' KHÔNG PHẢI là ưu điểm của DBMS?",
+      "back_vi": "Vì việc tạo dữ liệu nghiệp vụ là trách nhiệm của ứng dụng/người dùng; DBMS chỉ đóng vai trò lưu trữ, quản lý và đảm bảo an toàn dữ liệu."
+    }
+  },
+  {
+    "id": 2,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which Background process updates the online redo log files with the redo log buffer \nentries when a COMMIT occurs in the database?",
+    "prompt_vi": "Tiến trình nền (Background process) nào trong Oracle sẽ cập nhật các tệp Online Redo Log với các bản ghi từ Redo Log Buffer khi có lệnh COMMIT xảy ra?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "LGWR",
+        "text_vi": "LGWR (Log Writer)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "DBWn",
+        "text_vi": "DBWn (Database Writer)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "CKPT",
+        "text_vi": "CKPT (Checkpoint)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "CJQn",
+        "text_vi": "CJQn (Coordinator Job Queue)",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Tiến trình LGWR (Log Writer) chịu trách nhiệm ghi tuần tự các bản ghi redo từ bộ đệm Redo Log Buffer trên SGA xuống các tệp đĩa Online Redo Log Files. LGWR được kích hoạt ngay khi người dùng COMMIT, hoặc khi bộ đệm đầy 1/3, hoặc định kỳ mỗi 3 giây.",
+    "key_takeaway_vi": "Ghi Redo Log khi COMMIT = tiến trình LGWR (Log Writer).",
+    "flashcard": {
+      "front_en": "Which Background process updates the online redo log files with the redo log buffer \nentries when a COMMIT occurs in the database?",
+      "front_vi": "Tiến trình nền nào ghi Redo Log Buffer xuống đĩa khi COMMIT?",
+      "back_vi": "LGWR (Log Writer). DBWn ghi khối dữ liệu dirty block xuống datafile; CKPT đồng bộ thông tin kiểm tra."
+    }
+  },
+  {
+    "id": 3,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which files can be multiplexed?",
+    "prompt_vi": "Những tệp nào sau đây có thể thực hiện cơ chế ghép kênh/nhân bản (multiplexed) trong Oracle?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Data Files",
+        "text_vi": "Data Files (Tệp dữ liệu)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Control Files",
+        "text_vi": "Control Files (Tệp điều khiển)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Parameter Files",
+        "text_vi": "Parameter Files (Tệp tham số)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Data Buffer Cache",
+        "text_vi": "Data Buffer Cache (Bộ đệm dữ liệu)",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "⚠️ LƯU Ý ĐỀ THI & THỰC TẾ: Theo chuẩn kiến trúc Oracle, Control Files và Online Redo Log Files hỗ trợ cơ chế Multiplexing trực tiếp bởi Oracle engine để đảm bảo tính sẵn sàng cao. Data Files không hỗ trợ multiplexing nội tại của Oracle. Tuy nhiên, đáp án chính thức trong ngân hàng đề CDAC là A (Data Files) - có thể do lỗi soạn thảo câu hỏi gốc 'Which files CANNOT be multiplexed?'. Sinh viên cần ghi nhớ: Khi thi chọn A theo đáp án CDAC, nhưng phỏng vấn kỹ thuật cần giải thích rõ Control Files và Redo Log Files mới là các tệp được Oracle multiplex!",
+    "key_takeaway_vi": "Kiến trúc Oracle chuẩn: Control Files & Redo Log Files được Oracle multiplex. Đáp án đề thi CDAC đánh dấu Data Files.",
+    "flashcard": {
+      "front_en": "Which files can be multiplexed?",
+      "front_vi": "Trong chuẩn Oracle, các tệp nào được cơ chế Multiplexing bảo vệ?",
+      "back_vi": "Control Files và Redo Log Files. (Lưu ý đáp án ngân hàng đề CDAC chọn A - Data Files)."
+    }
+  },
+  {
+    "id": 4,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which Statement about the Data files is not true?",
+    "prompt_vi": "Phát biểu nào sau đây về Data files (Tệp dữ liệu) là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A data file Can belong to only one tablespace",
+        "text_vi": "Một Data file chỉ có thể thuộc về duy nhất một Tablespace.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "At least one data file is required for each tablespace",
+        "text_vi": "Mỗi Tablespace bắt buộc phải có ít nhất một Data file.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Maintain the logs of the changes made to the database to enable recovery.",
+        "text_vi": "Duy trì nhật ký các thay đổi của cơ sở dữ liệu để phục vụ việc khôi phục (recovery).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "Data File contains the data in the database, including tables, indexes, temp segments etc",
+        "text_vi": "Data file chứa dữ liệu cơ sở dữ liệu, bao gồm bảng, chỉ mục, các phân đoạn tạm thời...",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Phát biểu C sai vì nhiệm vụ duy trì nhật ký các thay đổi để phục hồi dữ liệu là của Redo Log Files và Archive Log Files, không phải của Data Files. Data Files chỉ chứa dữ liệu thực tế của các đối tượng (bảng, chỉ mục, view materialized...).",
+    "key_takeaway_vi": "Data files chứa dữ liệu bảng/chỉ mục; Redo log files mới lưu nhật ký phục hồi.",
+    "flashcard": {
+      "front_en": "Which Statement about the Data files is not true?",
+      "front_vi": "Data files có nhiệm vụ lưu nhật ký thay đổi để phục hồi không?",
+      "back_vi": "KHÔNG. Đó là nhiệm vụ của Redo Log Files (và Archive Log Files)."
+    }
+  },
+  {
+    "id": 5,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which Statement about the Oracle Initialization Parameter Files (init.ora) is not true?",
+    "prompt_vi": "Phát biểu nào sau đây về tệp tham số khởi tạo Oracle (init.ora) là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Enclose in quotation marks any parameter value that contains a special character",
+        "text_vi": "Bọc trong dấu ngoặc kép bất kỳ giá trị tham số nào có chứa ký tự đặc biệt.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "An initialization parameter file should contain only parameters and comments.",
+        "text_vi": "Một tệp tham số khởi tạo chỉ nên chứa các tham số và các chú thích (comments).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Several parameters can be specified on one line, separated by a space",
+        "text_vi": "Nhiều tham số có thể được chỉ định trên một dòng, ngăn cách bằng dấu cách.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Parameters must be specified in a predefined order.",
+        "text_vi": "Các tham số phải được chỉ định theo một thứ tự định trước (predefined order).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Trong tệp tham số PFILE (init.ora), các dòng tham số có thể đặt theo bất kỳ thứ tự nào. Oracle sẽ đọc toàn bộ tệp khi khởi động Instance và không yêu cầu thứ tự cố định.",
+    "key_takeaway_vi": "Tham số trong init.ora không cần tuân theo thứ tự nhất định.",
+    "flashcard": {
+      "front_en": "Which Statement about the Oracle Initialization Parameter Files (init.ora) is not true?",
+      "front_vi": "Các tham số trong tệp init.ora có bắt buộc theo thứ tự định trước không?",
+      "back_vi": "Không bắt buộc. Các tham số có thể đặt ở bất kỳ dòng nào."
+    }
+  },
+  {
+    "id": 6,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "What is not true about the Oracle Instance?",
+    "prompt_vi": "Điều nào sau đây KHÔNG ĐÚNG khi nói về Oracle Instance?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Oracle Instance provides means to access Oracle database",
+        "text_vi": "Oracle Instance cung cấp phương thức để truy cập vào cơ sở dữ liệu Oracle.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Oracle Instance is a collection of data that is treated as a unit, which stores and retrieves related information",
+        "text_vi": "Oracle Instance là tập hợp dữ liệu được xử lý như một đơn vị, nơi lưu trữ và truy xuất các thông tin liên quan.",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "Oracle Instance can open and use one database at a time",
+        "text_vi": "Một Oracle Instance chỉ có thể mở và sử dụng một cơ sở dữ liệu tại một thời điểm.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Oracle Instance consists of SGA and background processes",
+        "text_vi": "Oracle Instance bao gồm vùng nhớ SGA và các tiến trình nền (background processes).",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Định nghĩa ở phương án B chính là định nghĩa của Database (Cơ sở dữ liệu vật lý lưu trên đĩa). Oracle Instance là thực thể đang chạy trên bộ nhớ (RAM), bao gồm System Global Area (SGA) và các Background Processes.",
+    "key_takeaway_vi": "Oracle Instance = SGA + Background Processes. Database = Tập hợp dữ liệu/tệp vật lý trên đĩa.",
+    "flashcard": {
+      "front_en": "What is not true about the Oracle Instance?",
+      "front_vi": "Oracle Instance gồm những thành phần nào?",
+      "back_vi": "Instance = Bộ nhớ dùng chung SGA + Các tiến trình nền (Background Processes). Không bao gồm tệp đĩa vật lý."
+    }
+  },
+  {
+    "id": 7,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which of the following is not a part of System Global Area?",
+    "prompt_vi": "Thành phần nào sau đây KHÔNG THUỘC vùng nhớ System Global Area (SGA)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Redo log Buffer",
+        "text_vi": "Redo Log Buffer",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Data Buffer Cache",
+        "text_vi": "Data Buffer Cache",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Parameter Files",
+        "text_vi": "Parameter Files (Tệp tham số)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "Shared Pool",
+        "text_vi": "Shared Pool",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "SGA (System Global Area) là vùng nhớ dùng chung trên RAM gồm: Database Buffer Cache, Shared Pool, Redo Log Buffer, Large Pool, Java Pool... Parameter Files (init.ora hoặc SPFILE) là các tệp nhị phân hoặc văn bản lưu trên ổ cứng của hệ điều hành, không nằm trong SGA.",
+    "key_takeaway_vi": "SGA gồm Buffer Cache, Shared Pool, Redo Log Buffer. Parameter files là tệp trên đĩa.",
+    "flashcard": {
+      "front_en": "Which of the following is not a part of System Global Area?",
+      "front_vi": "Parameter Files có nằm trong vùng nhớ SGA không?",
+      "back_vi": "KHÔNG. Parameter Files là tệp cấu hình lưu trên đĩa cứng OS."
+    }
+  },
+  {
+    "id": 8,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which of the following statements about the Data buffer cache is not true?",
+    "prompt_vi": "Phát biểu nào sau đây về Data buffer cache là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Data buffer cache stores a collection of the most recently used SQL statements.",
+        "text_vi": "Data buffer cache lưu trữ tập hợp các câu lệnh SQL được sử dụng gần đây nhất.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Data buffer cache stores the most recently used data",
+        "text_vi": "Data buffer cache lưu trữ dữ liệu được truy cập gần đây nhất.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Data buffer cache read and write data to and from the data files",
+        "text_vi": "Data buffer cache đọc và ghi dữ liệu đến và từ các tệp dữ liệu (data files).",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Size of each buffer in the Data buffer cache is equal to the size of an Oracle Block.",
+        "text_vi": "Kích thước của mỗi bộ đệm trong Data buffer cache bằng kích thước của một Oracle Block.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Phát biểu A sai vì nơi lưu trữ các câu lệnh SQL đã biên dịch là Library Cache (thuộc Shared Pool). Data Buffer Cache chỉ lưu các khối dữ liệu (data blocks) chứa dữ liệu thực tế đọc từ bảng hoặc chỉ mục.",
+    "key_takeaway_vi": "Data Buffer Cache lưu khối dữ liệu bảng/chỉ mục; Library Cache mới lưu câu lệnh SQL.",
+    "flashcard": {
+      "front_en": "Which of the following statements about the Data buffer cache is not true?",
+      "front_vi": "Data Buffer Cache lưu trữ gì trong Oracle SGA?",
+      "back_vi": "Lưu các khối dữ liệu bảng/chỉ mục gần đây. Câu lệnh SQL được lưu ở Library Cache trong Shared Pool."
+    }
+  },
+  {
+    "id": 9,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which of the following statements about the Redo log buffer is not true?",
+    "prompt_vi": "Phát biểu nào sau đây về Redo log buffer là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The client process records changes in the redo log buffer",
+        "text_vi": "Tiến trình máy khách (Client process) trực tiếp ghi nhận các thay đổi vào redo log buffer.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "The Redo log buffer records changes made to a database",
+        "text_vi": "Redo log buffer ghi lại các thay đổi được thực hiện đối với cơ sở dữ liệu.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The server process records changes in the redo log buffer",
+        "text_vi": "Tiến trình máy chủ (Server process) ghi nhận các thay đổi vào redo log buffer.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The Redo log buffer records the block that is changed, the location of the change and the new Value.",
+        "text_vi": "Redo log buffer ghi lại khối bị thay đổi, vị trí thay đổi và giá trị mới.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong kiến trúc Oracle hai tầng/ba tầng, tiến trình Client không có quyền truy cập trực tiếp vào vùng nhớ SGA. Server Process (tiến trình đại diện phía server) mới là tiến trình thực hiện thao tác và ghi các thay đổi vào Redo Log Buffer.",
+    "key_takeaway_vi": "Server Process ghi vào Redo Log Buffer; Client Process không bao giờ can thiệp trực tiếp vào SGA.",
+    "flashcard": {
+      "front_en": "Which of the following statements about the Redo log buffer is not true?",
+      "front_vi": "Tiến trình nào ghi các thay đổi vào Redo Log Buffer?",
+      "back_vi": "Server Process (tiến trình máy chủ). Client process gửi yêu cầu qua giao thức mạng."
+    }
+  },
+  {
+    "id": 10,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which of the following is not stored by the Library Cache?",
+    "prompt_vi": "Thành phần nào sau đây KHÔNG ĐƯỢC lưu trữ trong Library Cache?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Results of the SQL statements",
+        "text_vi": "Kết quả trả về của các câu lệnh SQL (Results of the SQL statements).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "The text of SQL statement",
+        "text_vi": "Văn bản gốc của câu lệnh SQL (The text of SQL statement).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The Parse Tree: complied version of a statement.",
+        "text_vi": "Cây cú pháp: phiên bản đã phân tích biên dịch của câu lệnh (Parse Tree).",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The Execution Plan",
+        "text_vi": "Kế hoạch thực thi (Execution Plan).",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Library Cache là một thành phần của Shared Pool, dùng để tối ưu hóa quá trình biên dịch câu lệnh SQL (Soft Parse). Nó lưu: Text của câu lệnh, Cây phân tích (Parse Tree), và Kế hoạch thực thi (Execution Plan). Nó KHÔNG lưu kết quả dữ liệu trả về của câu lệnh.",
+    "key_takeaway_vi": "Library Cache lưu: SQL text, Parse Tree, Execution Plan. Không lưu tập kết quả dữ liệu.",
+    "flashcard": {
+      "front_en": "Which of the following is not stored by the Library Cache?",
+      "front_vi": "Library Cache có lưu kết quả thực thi của câu lệnh SQL không?",
+      "back_vi": "KHÔNG. Library Cache chỉ lưu cú pháp, cây phân tích và kế hoạch thực thi để tái sử dụng."
+    }
+  },
+  {
+    "id": 11,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which of the following is not true about the Shared Pool?",
+    "prompt_vi": "Điều nào sau đây KHÔNG ĐÚNG khi nói về Shared Pool?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The shared pool can be used by multiple SQL statements for the processing of data retrieved.",
+        "text_vi": "Shared Pool có thể được sử dụng bởi nhiều câu lệnh SQL để xử lý dữ liệu được truy xuất.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Shared Pool is a part of the SGA",
+        "text_vi": "Shared Pool là một phần của vùng nhớ SGA.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Shared Pool consists of the Library cache and the Data dictionary cache",
+        "text_vi": "Shared Pool bao gồm Library cache và Data dictionary cache.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The shared pool is sized by SHARED_POOL_SIZE parameter of init.ora",
+        "text_vi": "Shared Pool được định kích thước bởi tham số SHARED_POOL_SIZE trong init.ora.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Shared Pool không dùng để xử lý dữ liệu truy xuất (việc xử lý dữ liệu thực hiện trong PGA hoặc Data Buffer Cache). Shared Pool chuyên dùng để lưu trữ thông tin dùng chung: mã SQL/PL-SQL (Library cache) và siêu dữ liệu từ điển dữ liệu (Data dictionary cache).",
+    "key_takeaway_vi": "Shared Pool = Library Cache + Data Dictionary Cache, cấu hình qua SHARED_POOL_SIZE.",
+    "flashcard": {
+      "front_en": "Which of the following is not true about the Shared Pool?",
+      "front_vi": "Mục đích chính của Shared Pool là gì?",
+      "back_vi": "Chia sẻ mã lệnh SQL (Library Cache) và định nghĩa bảng/quyền (Data Dictionary Cache) giữa các người dùng."
+    }
+  },
+  {
+    "id": 12,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which of the following systems requires a database?",
+    "prompt_vi": "Hệ thống nào sau đây đòi hỏi phải có một cơ sở dữ liệu (database)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Payroll System",
+        "text_vi": "Hệ thống tính lương (Payroll System).",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Airline reservations system",
+        "text_vi": "Hệ thống đặt vé máy bay (Airline reservations system).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "A web site that is capturing registered users",
+        "text_vi": "Một trang web lưu trữ người dùng đăng ký.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "All of the above",
+        "text_vi": "Tất cả các hệ thống trên (All of the above).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Bất kỳ hệ thống nào cần lưu trữ dữ liệu an toàn, xử lý đồng thời, truy vấn nhanh và đảm bảo tính toàn vẹn (tính lương, đặt vé, lưu tài khoản người dùng) đều bắt buộc cần một hệ thống quản trị cơ sở dữ liệu.",
+    "key_takeaway_vi": "Tất cả các hệ thống quản lý thông tin nghiệp vụ và giao dịch đều cần DBMS.",
+    "flashcard": {
+      "front_en": "Which of the following systems requires a database?",
+      "front_vi": "Hệ thống nào cần dùng Database?",
+      "back_vi": "Tất cả: Hệ thống bảng lương, đặt chỗ máy bay, quản lý tài khoản web."
+    }
+  },
+  {
+    "id": 13,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which of the following is not contained in the Program Global Area?",
+    "prompt_vi": "Thành phần nào sau đây KHÔNG NẰM TRONG vùng nhớ Program Global Area (PGA)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SQL Execution Plan",
+        "text_vi": "Kế hoạch thực thi SQL (SQL Execution Plan).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Session information",
+        "text_vi": "Thông tin phiên làm việc (Session information).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Cursor information",
+        "text_vi": "Thông tin con trỏ (Cursor information).",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SQL execution work areas",
+        "text_vi": "Vùng làm việc thực thi SQL (SQL execution work areas - Sort/Hash).",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Kế hoạch thực thi (SQL Execution Plan) được lưu trong Library Cache (thuộc SGA) để mọi phiên làm việc có thể tái sử dụng. PGA là vùng nhớ riêng cho từng tiến trình người dùng, chỉ lưu trạng thái con trỏ (Cursor state), thông tin phiên và vùng làm việc tạm thời.",
+    "key_takeaway_vi": "Execution Plan nằm trong SGA (Library Cache). PGA chỉ lưu Session info, Cursor state, Work areas.",
+    "flashcard": {
+      "front_en": "Which of the following is not contained in the Program Global Area?",
+      "front_vi": "Kế hoạch thực thi (SQL Execution Plan) nằm ở SGA hay PGA?",
+      "back_vi": "Nằm trong SGA (Library Cache thuộc Shared Pool) để các phiên làm việc có thể dùng chung."
+    }
+  },
+  {
+    "id": 14,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which of the following is not a valid level of abstraction in a DBMS?",
+    "prompt_vi": "Khái niệm nào sau đây KHÔNG PHẢI là một mức trừu tượng hợp lệ trong kiến trúc DBMS?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Tables",
+        "text_vi": "Bảng (Tables).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Views",
+        "text_vi": "Khung nhìn (Views / External Schema).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Conceptual Schema",
+        "text_vi": "Lược đồ khái niệm (Conceptual Schema).",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Physical Schema",
+        "text_vi": "Lược đồ vật lý (Physical Schema).",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Theo kiến trúc 3 mức chuẩn ANSI/SPARC, 3 mức trừu tượng hóa dữ liệu là: 1. External/View Level (Mức khung nhìn); 2. Conceptual Level (Mức khái niệm); 3. Internal/Physical Level (Mức vật lý). 'Tables' chỉ là cấu trúc lưu trữ cụ thể trong mô hình quan hệ, không phải tên mức trừu tượng.",
+    "key_takeaway_vi": "3 mức trừu tượng hóa: Mức Ngoài/Khung nhìn (View), Mức Khái niệm (Conceptual), Mức Vật lý (Physical).",
+    "flashcard": {
+      "front_en": "Which of the following is not a valid level of abstraction in a DBMS?",
+      "front_vi": "3 mức trừu tượng của hệ CSDL theo chuẩn ANSI/SPARC là gì?",
+      "back_vi": "View/External level (Mức nhìn), Conceptual level (Mức khái niệm), Physical/Internal level (Mức vật lý)."
+    }
+  },
+  {
+    "id": 15,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which of the following is not among the ACID properties of a Transaction?",
+    "prompt_vi": "Đặc trưng nào sau đây KHÔNG THUỘC các thuộc tính ACID của một giao dịch (Transaction)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Independence",
+        "text_vi": "Tính độc lập (Independence).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Atomicity",
+        "text_vi": "Tính nguyên tố (Atomicity).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Consistency",
+        "text_vi": "Tính nhất quán (Consistency).",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Durability",
+        "text_vi": "Tính bền vững (Durability).",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "ACID gồm 4 thuộc tính: Atomicity (Tính nguyên tố - tất cả hoặc không gì cả), Consistency (Tính nhất quán), Isolation (Tính cô lập), Durability (Tính bền vững). Không có thuộc tính nào tên là 'Independence'.",
+    "key_takeaway_vi": "Thuộc tính ACID: A = Atomicity, C = Consistency, I = Isolation, D = Durability.",
+    "flashcard": {
+      "front_en": "Which of the following is not among the ACID properties of a Transaction?",
+      "front_vi": "Chữ I trong ACID là viết tắt của từ gì?",
+      "back_vi": "Isolation (Tính cô lập), không phải Independence."
+    }
+  },
+  {
+    "id": 16,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which of the following are the advantages of the DBMS over a conventional file system \nthat stores data, in terms of processing power requires a database?",
+    "prompt_vi": "Đâu là những ưu điểm của DBMS so với hệ thống tệp truyền thống (File System)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "All of the above",
+        "text_vi": "Tất cả các ưu điểm trên (All of the above).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Ability to create Data Reports",
+        "text_vi": "Khả năng tạo các báo cáo dữ liệu (Data Reports).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Efficient Querying of Data",
+        "text_vi": "Truy vấn dữ liệu hiệu quả cao (Efficient Querying).",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Matching and Sorting",
+        "text_vi": "Khớp và sắp xếp dữ liệu (Matching and Sorting).",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "DBMS vượt trội hơn File System ở mọi khía cạnh xử lý dữ liệu: cung cấp ngôn ngữ truy vấn cấp cao (SQL), tối ưu hóa sắp xếp và lọc dữ liệu, quản lý tính toàn vẹn và hỗ trợ kết xuất báo cáo nhanh chóng.",
+    "key_takeaway_vi": "DBMS vượt trội File System ở năng lực truy vấn, sắp xếp, lọc, báo cáo và kiểm soát truy cập đồng thời.",
+    "flashcard": {
+      "front_en": "Which of the following are the advantages of the DBMS over a conventional file system \nthat stores data, in terms of processing power requires a database?",
+      "front_vi": "Ưu điểm của DBMS so với hệ thống tệp?",
+      "back_vi": "Truy vấn dữ liệu tối ưu, lọc và sắp xếp tự động, tạo báo cáo dễ dàng, đảm bảo toàn vẹn dữ liệu."
+    }
+  },
+  {
+    "id": 17,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which of the following is not a valid type of a database management system?",
+    "prompt_vi": "Thuật ngữ nào sau đây KHÔNG PHẢI là một loại hệ quản trị cơ sở dữ liệu hợp lệ?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "OODBMS (Operations Oriented Database Management System)",
+        "text_vi": "OODBMS (Operations Oriented Database Management System)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "NDBMS (Networked Database Management System)",
+        "text_vi": "NDBMS (Networked Database Management System)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "HDBMS (Hierarchical Database Management System)",
+        "text_vi": "HDBMS (Hierarchical Database Management System)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "unsigned charRDBMS (Relational Database Management System)",
+        "text_vi": "RDBMS (Relational Database Management System - trong đề in nhầm 'unsigned charRDBMS')",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "OODBMS thực chất là 'Object-Oriented Database Management System' (Hệ quản trị CSDL hướng đối tượng). Khái niệm 'Operations Oriented' là thuật ngữ sai được bịa ra trong đề thi.",
+    "key_takeaway_vi": "OODBMS là Object-Oriented DBMS. Không có loại CSDL 'Operations Oriented'.",
+    "flashcard": {
+      "front_en": "Which of the following is not a valid type of a database management system?",
+      "front_vi": "OODBMS viết tắt chuẩn là gì?",
+      "back_vi": "Object-Oriented Database Management System."
+    }
+  },
+  {
+    "id": 18,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which of the following is not a part of the Oracle Database?",
+    "prompt_vi": "Thành phần nào sau đây KHÔNG PHẢI là một phần của Cơ sở dữ liệu Oracle (Oracle Database vật lý)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Shared Pool",
+        "text_vi": "Shared Pool",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Data Files",
+        "text_vi": "Data Files",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Control Files",
+        "text_vi": "Control Files",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Redo Log Files",
+        "text_vi": "Redo Log Files",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong kiến trúc Oracle: Oracle Database (vật lý) chỉ gồm các tệp đĩa: Data files, Control files, và Redo log files. Shared Pool là cấu trúc bộ nhớ trên RAM thuộc về Oracle Instance.",
+    "key_takeaway_vi": "Database = Datafiles + Control files + Redo log files (đĩa). Shared Pool thuộc về Instance (RAM).",
+    "flashcard": {
+      "front_en": "Which of the following is not a part of the Oracle Database?",
+      "front_vi": "Phân biệt Oracle Database và Oracle Instance?",
+      "back_vi": "Database = Các tệp lưu trên đĩa; Instance = Bộ nhớ RAM (SGA) + Tiến trình nền (Background Processes)."
+    }
+  },
+  {
+    "id": 19,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "In an instance, multiple ________ can share an SGA.",
+    "prompt_vi": "Trong một hệ thống, nhiều ________ có thể chia sẻ một vùng nhớ SGA? (Theo ngữ cảnh đề thi)",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Server Processes",
+        "text_vi": "Server Processes (Tiến trình máy chủ)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "PMON Processes",
+        "text_vi": "PMON Processes",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Instances",
+        "text_vi": "Instances",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "Databases",
+        "text_vi": "Databases",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "⚠️ LƯU Ý GIẢNG VIÊN: Trong kiến trúc máy tính, SGA là vùng nhớ chia sẻ mà nhiều Server Processes cùng truy cập. Tuy nhiên, đáp án trong ngân hàng đề CDAC đánh dấu C (Instances). Theo chuẩn kỹ thuật Oracle: Các Server Processes chia sẻ một SGA; còn nhiều Instances thì chia sẻ một Database (Oracle RAC). Học viên cần nắm rõ cả thực tế kiến trúc và đáp án ngân hàng đề.",
+    "key_takeaway_vi": "Server Processes chia sẻ bộ nhớ SGA của Instance. Đi thi CDAC chú ý đáp án ngân hàng câu hỏi.",
+    "flashcard": {
+      "front_en": "In an instance, multiple ________ can share an SGA.",
+      "front_vi": "Các Server Process trong Oracle dùng chung vùng nhớ nào?",
+      "back_vi": "Dùng chung vùng nhớ SGA (System Global Area)."
+    }
+  },
+  {
+    "id": 20,
+    "module_id": 1,
+    "module_name_en": "Module 1: Introduction to DBMS",
+    "module_name_vi": "Module 1: Tổng quan về DBMS & Kiến trúc Oracle",
+    "prompt_en": "Which component in the following list is not part of the System Global Area (SGA)?",
+    "prompt_vi": "Thành phần nào sau đây KHÔNG THUỘC vùng nhớ System Global Area (SGA)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Sort Area",
+        "text_vi": "Vùng sắp xếp (Sort Area)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Database Buffer Cache",
+        "text_vi": "Database Buffer Cache",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Library Cache",
+        "text_vi": "Library Cache",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Shared Pool",
+        "text_vi": "Shared Pool",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Vùng sắp xếp (Sort Area) thuộc bộ nhớ riêng tư PGA (Program Global Area) của tiến trình người dùng, không thuộc SGA.",
+    "key_takeaway_vi": "Sort Area thuộc vùng nhớ PGA riêng của từng phiên, không thuộc SGA dùng chung.",
+    "flashcard": {
+      "front_en": "Which component in the following list is not part of the System Global Area (SGA)?",
+      "front_vi": "Sort Area thuộc vùng nhớ nào?",
+      "back_vi": "Thuộc PGA (Program Global Area), không nằm trong SGA."
+    }
+  },
+  {
+    "id": 21,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "What does SQL stand for?",
+    "prompt_vi": "Từ viết tắt SQL là viết tắt của cụm từ nào?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Structured Query Language",
+        "text_vi": "Structured Query Language (Ngôn ngữ truy vấn có cấu trúc)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Structured Question Language",
+        "text_vi": "Structured Question Language",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Strong Question Language",
+        "text_vi": "Strong Question Language",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Strong Query Language",
+        "text_vi": "Strong Query Language",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "SQL là viết tắt của 'Structured Query Language' (Ngôn ngữ truy vấn có cấu trúc), do IBM phát triển và được ANSI/ISO chuẩn hóa để giao tiếp với các hệ quản trị cơ sở dữ liệu quan hệ.",
+    "key_takeaway_vi": "SQL = Structured Query Language.",
+    "flashcard": {
+      "front_en": "What does SQL stand for?",
+      "front_vi": "SQL là viết tắt của gì?",
+      "back_vi": "Structured Query Language (Ngôn ngữ truy vấn có cấu trúc)."
+    }
+  },
+  {
+    "id": 22,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "The Employee table contains these columns: \nEmpno  Number(4) \nEname  Varchar2(10) \njob    varchar2(10) \nsal    Varchar2(10) \nYou need to display employee information using this query. \nSELECT Empno, Ename, Job \"Employee Information\" FROM employee; \nHow many columns are presented after executing this query?",
+    "prompt_vi": "Bảng Employee có các cột:\nEmpno Number(4)\nEname Varchar2(10)\njob varchar2(10)\nsal Varchar2(10)\nBạn cần hiển thị thông tin nhân viên bằng truy vấn sau:\nSELECT Empno, Ename, Job \"Employee Information\" FROM employee;\nSau khi thực thi câu truy vấn, kết quả sẽ hiển thị bao nhiêu cột?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "2",
+        "text_vi": "2 cột",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "1",
+        "text_vi": "1 cột (Theo đáp án trắc nghiệm đề gốc đánh dấu 100)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "3",
+        "text_vi": "3 cột",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "0",
+        "text_vi": "0 cột",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "⚠️ LƯU Ý KỸ THUẬT & ĐỀ THI: Trong câu lệnh `SELECT Empno, Ename, Job \"Employee Information\" FROM employee;`, có 3 biểu thức cột được chọn: `Empno`, `Ename`, và `Job` (được gán alias là 'Employee Information'). Kết quả thực tế khi chạy trên Oracle là 3 CỘT. Tuy nhiên, đáp án trắc nghiệm trong file CDAC chấm phương án B (1 cột) - có thể người soạn đề nhầm lẫn câu hỏi hoặc coi alias như gom nhóm. Sinh viên cần lưu ý: Khi thi trắc nghiệm theo đúng bộ đề CDAC này chọn B, nhưng đi làm thực tế và phỏng vấn thì chắc chắn là 3 cột!",
+    "key_takeaway_vi": "Thực tế câu lệnh SELECT có 3 cột (Empno, Ename, Job với bí danh). Đề thi CDAC chấm đáp án B.",
+    "flashcard": {
+      "front_en": "The Employee table contains these columns: \nEmpno  Number(4) \nEname  Varchar2(10) \njob    varchar2(10) \nsal    Varchar2(10) \nYou need to display employee information using this query. \nSELECT Empno, Ename, Job \"Employee Information\" FROM employee; \nHow many columns are presented after executing this query?",
+      "front_vi": "SELECT Empno, Ename, Job \"Employee Information\" hiển thị bao nhiêu cột?",
+      "back_vi": "Thực tế hiển thị 3 cột riêng biệt. (Lưu ý đề thi CDAC có lỗi chấm đáp án 1 cột)."
+    }
+  },
+  {
+    "id": 23,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "The ITEM table contains these columns: \nITEM_ID  NUMBER(9) \nCOST     NUMBER(7,2) \nRETAIL   NUMBER(7,2) \nThe RETAIL and COST columns contain values greater than zero. \nEvaluate these two SQL statements: \n1. SELECT item_id, (retail * 1.25) + 5.00 - (cost * 1.10) - (cost * .10) AS Calculated Profit \n   FROM item; \n2. SELECT item_id, retail * 1.25 + 5.00 - cost * 1.10 - cost * .10 \"Calculated Profit\" \n   FROM item; \nWhat will be the result?",
+    "prompt_vi": "Bảng ITEM có các cột: ITEM_ID NUMBER(9), COST NUMBER(7,2), RETAIL NUMBER(7,2). Các cột RETAIL và COST đều chứa giá trị lớn hơn 0.\nĐánh giá 2 câu lệnh SQL sau:\n1. SELECT item_id, (retail * 1.25) + 5.00 - (cost * 1.10) - (cost * .10) AS Calculated Profit FROM item;\n2. SELECT item_id, retail * 1.25 + 5.00 - cost * 1.10 - cost * .10 \"Calculated Profit\" FROM item;\nKết quả sẽ như thế nào?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "One of the statements will NOT execute.",
+        "text_vi": "Một trong hai câu lệnh sẽ KHÔNG THỂ thực thi (One of the statements will NOT execute).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Statement 1 will display the 'Calculated Profit' column heading.",
+        "text_vi": "Câu lệnh 1 sẽ hiển thị tiêu đề cột là 'Calculated Profit'.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Statement 1 and statement 2 will return the same value.",
+        "text_vi": "Câu lệnh 1 và câu lệnh 2 sẽ trả về cùng một giá trị kết quả.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Statement 1 will return a higher value than statement 2.",
+        "text_vi": "Câu lệnh 1 sẽ trả về giá trị cao hơn câu lệnh 2.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Câu lệnh 1 bị lỗi cú pháp vì đặt bí danh cột có khoảng trắng `AS Calculated Profit` mà KHÔNG CÓ dấu ngoặc kép đôi `\"Calculated Profit\"`. Trong Oracle SQL, nếu bí danh chứa khoảng trắng thì bắt buộc phải bọc trong cặp ngoặc kép. Do đó câu lệnh 1 sẽ báo lỗi ORA-00923, không thể thực thi được!",
+    "key_takeaway_vi": "Bí danh cột chứa dấu cách bắt buộc phải bọc trong dấu ngoặc kép đôi (\" \"). Thiếu ngoặc kép sẽ gây lỗi cú pháp.",
+    "flashcard": {
+      "front_en": "The ITEM table contains these columns: \nITEM_ID  NUMBER(9) \nCOST     NUMBER(7,2) \nRETAIL   NUMBER(7,2) \nThe RETAIL and COST columns contain values greater than zero. \nEvaluate these two SQL statements: \n1. SELECT item_id, (retail * 1.25) + 5.00 - (cost * 1.10) - (cost * .10) AS Calculated Profit \n   FROM item; \n2. SELECT item_id, retail * 1.25 + 5.00 - cost * 1.10 - cost * .10 \"Calculated Profit\" \n   FROM item; \nWhat will be the result?",
+      "front_vi": "Tại sao 'AS Calculated Profit' gây lỗi cú pháp trong SQL?",
+      "back_vi": "Vì bí danh chứa dấu cách bắt buộc phải đặt trong dấu ngoặc kép: AS \"Calculated Profit\"."
+    }
+  },
+  {
+    "id": 24,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "Which SQL statement generates the alias Annual Salary for the calculated column \nSALARY*12?",
+    "prompt_vi": "Câu lệnh SQL nào sau đây tạo bí danh Annual Salary (có dấu cách) cho cột tính toán SALARY*12?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT ename, salary*12 AS INITCAP ('ANNUAL SALARY') FROM employees;",
+        "text_vi": "SELECT ename, salary*12 AS INITCAP ('ANNUAL SALARY') FROM employees;",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT ename, salary*12 AS Annual Salary FROM employees;",
+        "text_vi": "SELECT ename, salary*12 AS Annual Salary FROM employees;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT ename, salary*12 Annual Salary FROM employees;",
+        "text_vi": "SELECT ename, salary*12 Annual Salary FROM employees;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT ename, salary*12 'Annual Salary' FROM employees;",
+        "text_vi": "SELECT ename, salary*12 'Annual Salary' FROM employees; (Hoặc \"Annual Salary\")",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Để đặt bí danh chứa khoảng cách, cú pháp chuẩn Oracle yêu cầu dấu nháy kép `\"Annual Salary\"`. Trong SQL*Plus truyền thống, một số phiên bản chấp nhận nháy đơn cho bí danh, và đáp án trong đề thi CDAC chọn phương án D.",
+    "key_takeaway_vi": "Bí danh có dấu cách cần dấu nháy (nháy kép chuẩn SQL ANSI/Oracle: \"Annual Salary\"). Đề thi CDAC chọn D.",
+    "flashcard": {
+      "front_en": "Which SQL statement generates the alias Annual Salary for the calculated column \nSALARY*12?",
+      "front_vi": "Khi đặt bí danh cột có khoảng cách trong SQL cần lưu ý gì?",
+      "back_vi": "Bắt buộc phải đặt trong dấu nháy kép \" \". Trong đề CDAC ghi nhận phương án D."
+    }
+  },
+  {
+    "id": 25,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "Evaluate this SQL statement: \nSELECT ename, sal, 12*sal+100 FROM emp; \nThe SAL column stores the monthly salary of the employee. Which change must be \nmade to the above syntax to calculate the annual compensation as \"monthly salary plus a \nmonthly bonus of $100, multiplied by 12\"?",
+    "prompt_vi": "Đánh giá câu lệnh SQL: SELECT ename, sal, 12*sal+100 FROM emp;\nCột SAL lưu lương tháng. Thay đổi nào sau đây cần thực hiện để tính tổng thu nhập năm theo công thức 'lương tháng cộng tiền thưởng hàng tháng 100$, tất cả nhân với 12'?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT ename, sal, 12*(sal+100) FROM emp;",
+        "text_vi": "SELECT ename, sal, 12*(sal+100) FROM emp;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "No change is required to achieve the desired results",
+        "text_vi": "Không cần thay đổi gì.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT ename, sal, (12*sal) +100 FROM emp;",
+        "text_vi": "SELECT ename, sal, (12*sal) +100 FROM emp;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT ename, sal+100,*12 FROM emp;",
+        "text_vi": "SELECT ename, sal+100,*12 FROM emp;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Quy tắc ưu tiên toán tử trong SQL: Phép nhân (*) có độ ưu tiên cao hơn phép cộng (+). Do đó, biểu thức `12*sal+100` sẽ tính `(12*sal) + 100`. Để tính lương tháng cộng 100 rồi mới nhân 12, ta bắt buộc phải dùng dấu ngoặc đơn: `12*(sal+100)`.",
+    "key_takeaway_vi": "Toán tử trong ngoặc đơn () luôn được ưu tiên tính trước phép nhân và phép cộng.",
+    "flashcard": {
+      "front_en": "Evaluate this SQL statement: \nSELECT ename, sal, 12*sal+100 FROM emp; \nThe SAL column stores the monthly salary of the employee. Which change must be \nmade to the above syntax to calculate the annual compensation as \"monthly salary plus a \nmonthly bonus of $100, multiplied by 12\"?",
+      "front_vi": "Làm sao để ép phép cộng thực hiện trước phép nhân trong SQL?",
+      "back_vi": "Sử dụng dấu ngoặc đơn: 12 * (sal + 100)."
+    }
+  },
+  {
+    "id": 26,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "You need to produce output that states \"Dear Customer customer_name, \". \nThe customer_name data values come from the CUSTOMER_NAME column in the \nCUSTOMERS table. \nWhich statement produces this output?",
+    "prompt_vi": "Bạn cần tạo kết quả hiển thị dòng chữ \"Dear Customer customer_name, \". Dữ liệu customer_name lấy từ cột CUSTOMER_NAME trong bảng CUSTOMERS. Câu lệnh nào sau đây tạo ra kết quả này?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT 'Dear Customer ' customer_name ',' FROM customers;",
+        "text_vi": "SELECT 'Dear Customer ' customer_name ',' FROM customers; (Theo định dạng đề thi CDAC)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT dear customer, customer_name, FROM customers;",
+        "text_vi": "SELECT dear customer, customer_name, FROM customers;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT \"Dear Customer\", customer_name ',' FROM customers;",
+        "text_vi": "SELECT \"Dear Customer\", customer_name ',' FROM customers;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT 'Dear Customer ' customer_name ',' FROM customers;",
+        "text_vi": "SELECT 'Dear Customer ' customer_name ',' FROM customers;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong Oracle SQL, chuỗi ký tự cố định được bọc trong dấu nháy đơn `'Dear Customer '`. Lưu ý chuẩn Oracle thường dùng toán tử nối chuỗi `||` (`'Dear Customer ' || customer_name || ', '`), nhưng trong bài trắc nghiệm CDAC, các biểu thức chuỗi được liệt kê thành các cột riêng biệt.",
+    "key_takeaway_vi": "Chuỗi hằng số trong SQL bắt buộc phải đặt trong dấu nháy đơn '...'. Dấu nháy kép \"...\" chỉ dùng cho định danh/bí danh.",
+    "flashcard": {
+      "front_en": "You need to produce output that states \"Dear Customer customer_name, \". \nThe customer_name data values come from the CUSTOMER_NAME column in the \nCUSTOMERS table. \nWhich statement produces this output?",
+      "front_vi": "Chuỗi hằng ký tự trong SQL được đặt trong dấu nháy nào?",
+      "back_vi": "Dấu nháy đơn ' ' (Single quotes). Dấu nháy kép \" \" dùng cho Column Alias."
+    }
+  },
+  {
+    "id": 27,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "Which of the following query will correctly display each row of the Employees table \nonly once given that Employees table may contain duplicate rows?",
+    "prompt_vi": "Câu truy vấn nào sau đây hiển thị chính xác mỗi dòng của bảng Employees duy nhất một lần (loại bỏ các dòng trùng lặp hoàn toàn)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT distinct * from employees;",
+        "text_vi": "SELECT distinct * from employees;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT unique rows from employees;",
+        "text_vi": "SELECT unique rows from employees;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT * from employees;",
+        "text_vi": "SELECT * from employees;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT distinct rows from employees;",
+        "text_vi": "SELECT distinct rows from employees;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Từ khóa `DISTINCT` đứng ngay sau `SELECT` sẽ loại bỏ tất cả các dòng trùng lặp trong tập kết quả trả về. `SELECT DISTINCT *` sẽ kiểm tra sự trùng lặp trên tất cả các cột của bảng.",
+    "key_takeaway_vi": "Loại bỏ dòng trùng lặp trong SQL dùng: SELECT DISTINCT * FROM ...",
+    "flashcard": {
+      "front_en": "Which of the following query will correctly display each row of the Employees table \nonly once given that Employees table may contain duplicate rows?",
+      "front_vi": "Từ khóa nào dùng để loại bỏ các hàng trùng lặp trong câu lệnh SELECT?",
+      "back_vi": "DISTINCT (đặt ngay sau SELECT: SELECT DISTINCT ...)."
+    }
+  },
+  {
+    "id": 28,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "What will be the output of the following query? \nSELECT 1 FROM employees;",
+    "prompt_vi": "Kết quả xuất ra của câu lệnh truy vấn sau là gì?\nSELECT 1 FROM employees;",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "This statement will return 1 as many times as the number of rows in the employees table.",
+        "text_vi": "Câu lệnh sẽ trả về giá trị 1 với số lần xuất hiện bằng đúng số lượng dòng có trong bảng employees.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "This statement will return first row of the employees table",
+        "text_vi": "Câu lệnh sẽ chỉ trả về dòng đầu tiên của bảng employees.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "This statement will return only one row and one column in output and value will be 1.",
+        "text_vi": "Câu lệnh sẽ chỉ trả về duy nhất một dòng và một cột có giá trị là 1.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "This statement will return error.",
+        "text_vi": "Câu lệnh sẽ báo lỗi cú pháp.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Mệnh đề `SELECT hằng_số FROM bảng` sẽ duyệt qua từng dòng của bảng và với mỗi dòng thỏa mãn, nó trả về giá trị hằng số đó. Vì không có điều kiện WHERE, bảng `employees` có bao nhiêu dòng thì câu lệnh sẽ trả về bấy nhiêu dòng có giá trị 1.",
+    "key_takeaway_vi": "SELECT 1 FROM table trả về N dòng mang số 1, với N là số lượng bản ghi của bảng.",
+    "flashcard": {
+      "front_en": "What will be the output of the following query? \nSELECT 1 FROM employees;",
+      "front_vi": "SELECT 1 FROM employees trả về kết quả gì?",
+      "back_vi": "Trả về số 1 cho mỗi dòng hiện có trong bảng employees (số dòng trả về = tổng số dòng trong bảng)."
+    }
+  },
+  {
+    "id": 29,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "What of the following statements is not true?",
+    "prompt_vi": "Phát biểu nào sau đây là KHÔNG ĐÚNG về câu lệnh SQL?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Clauses must be placed on separate lines.",
+        "text_vi": "Các mệnh đề (clauses) bắt buộc phải được viết trên các dòng riêng biệt.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SQL statements are not case sensitive.",
+        "text_vi": "Các câu lệnh SQL không phân biệt chữ hoa chữ thường (case-insensitive).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SQL statements can be on one or more lines.",
+        "text_vi": "Câu lệnh SQL có thể được viết trên một hoặc nhiều dòng.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Keywords cannot be abbreviated or split across lines.",
+        "text_vi": "Các từ khóa (keywords) không được viết tắt hoặc ngắt đôi sang dòng khác.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Phát biểu A là sai vì SQL là ngôn ngữ tự do (free-format). Bạn hoàn toàn có thể viết toàn bộ câu lệnh SELECT trên một dòng duy nhất mà không gây lỗi (việc chia dòng chỉ để tăng tính thẩm mỹ và dễ đọc).",
+    "key_takeaway_vi": "SQL là free-format, không bắt buộc mệnh đề phải ở dòng riêng, từ khóa không phân biệt hoa thường.",
+    "flashcard": {
+      "front_en": "What of the following statements is not true?",
+      "front_vi": "SQL có bắt buộc mỗi mệnh đề (SELECT, FROM, WHERE) phải ở một dòng riêng không?",
+      "back_vi": "KHÔNG. Có thể viết toàn bộ câu lệnh SQL trên một dòng liên tục."
+    }
+  },
+  {
+    "id": 30,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "What is true about NULL?",
+    "prompt_vi": "Điều nào sau đây là ĐÚNG khi nói về giá trị NULL trong SQL?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NULL is a value that is unavailable, unassigned, unknown, or inapplicable",
+        "text_vi": "NULL là một giá trị chưa có, chưa được gán, không xác định hoặc không áp dụng được.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "NULL is same as blank spaces",
+        "text_vi": "NULL tương đương với chuỗi khoảng trắng (blank spaces).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "NULL in a number column can be treated as zero",
+        "text_vi": "NULL trong một cột kiểu số (number) có thể được tự động coi là số 0.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "NULL means an incorrect value",
+        "text_vi": "NULL biểu thị một giá trị bị sai (incorrect value).",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong mô hình quan hệ và SQL, `NULL` không phải là số 0, không phải là chuỗi rỗng `''`, và không phải là khoảng trắng. `NULL` đại diện cho một trạng thái dữ liệu: không có sẵn (unavailable), chưa gán (unassigned), chưa biết (unknown) hoặc không áp dụng được (inapplicable).",
+    "key_takeaway_vi": "NULL là trạng thái không xác định/chưa có, KHÔNG BẰNG số 0, KHÔNG BẰNG chuỗi rỗng.",
+    "flashcard": {
+      "front_en": "What is true about NULL?",
+      "front_vi": "NULL trong SQL có bằng 0 hoặc khoảng trắng không?",
+      "back_vi": "KHÔNG. NULL đại diện cho giá trị chưa biết (unknown), chưa được gán hoặc không áp dụng."
+    }
+  },
+  {
+    "id": 31,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "What should be the result of the expression for the employees having commission_pct as \nNULL? \nSELECT 12 * salary * commission_pct 'ANNSAL_COMM' \nFROM employees;",
+    "prompt_vi": "Kết quả của biểu thức sau sẽ là gì đối với những nhân viên có commission_pct là NULL?\nSELECT 12 * salary * commission_pct 'ANNSAL_COMM' FROM employees;",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "None of the above",
+        "text_vi": "Không câu nào ở trên đúng.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Zero",
+        "text_vi": "Bằng 0.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "NULL",
+        "text_vi": "Bằng NULL.",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "Unpredictable",
+        "text_vi": "Không thể dự đoán được (Unpredictable).",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Quy tắc vàng trong SQL: Bất kỳ phép toán số học nào (+, -, *, /) thực hiện với giá trị NULL đều sẽ trả về kết quả là NULL. Vì `commission_pct` là NULL nên `12 * salary * NULL` sẽ cho kết quả là `NULL`.",
+    "key_takeaway_vi": "Bất kỳ phép tính số học nào chứa NULL đều trả về NULL.",
+    "flashcard": {
+      "front_en": "What should be the result of the expression for the employees having commission_pct as \nNULL? \nSELECT 12 * salary * commission_pct 'ANNSAL_COMM' \nFROM employees;",
+      "front_vi": "Phép tính: 12 * salary * NULL cho kết quả là gì?",
+      "back_vi": "Kết quả là NULL. Mọi phép toán số học với NULL đều bằng NULL."
+    }
+  },
+  {
+    "id": 32,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "Which SQL statement is used to extract data from a database?",
+    "prompt_vi": "Câu lệnh SQL nào sau đây được dùng để trích xuất (truy vấn) dữ liệu từ cơ sở dữ liệu?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT",
+        "text_vi": "SELECT",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "GET",
+        "text_vi": "GET",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "OPEN",
+        "text_vi": "OPEN",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "EXTRACT",
+        "text_vi": "EXTRACT",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Câu lệnh `SELECT` là câu lệnh cơ bản thuộc nhóm DQL (Data Query Language) dùng để đọc và trích xuất dữ liệu từ một hoặc nhiều bảng trong cơ sở dữ liệu.",
+    "key_takeaway_vi": "Lệnh trích xuất dữ liệu trong SQL là SELECT.",
+    "flashcard": {
+      "front_en": "Which SQL statement is used to extract data from a database?",
+      "front_vi": "Lệnh trích xuất dữ liệu từ bảng là lệnh gì?",
+      "back_vi": "SELECT."
+    }
+  },
+  {
+    "id": 33,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "Which statement about the column aliases is not True?",
+    "prompt_vi": "Phát biểu nào sau đây về bí danh cột (Column Alias) là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "\"AS\" keyword must be used between the column name and the column alias",
+        "text_vi": "Bắt buộc phải dùng từ khóa \"AS\" ở giữa tên cột và bí danh.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "A column alias renames a column heading",
+        "text_vi": "Bí danh cột giúp đổi tên tiêu đề hiển thị của cột trong kết quả truy vấn.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "A column alias requires double quotation marks if it contains spaces or special characters or is case sensitive",
+        "text_vi": "Bí danh cột yêu cầu dấu ngoặc kép đôi nếu nó chứa khoảng trắng, ký tự đặc biệt hoặc cần phân biệt hoa thường.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Immediately follows the column name.",
+        "text_vi": "Bí danh cột phải đứng ngay sau tên cột.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Từ khóa `AS` là tùy chọn (optional) trong SQL, không bắt buộc. Ví dụ `SELECT salary sal` hoàn toàn tương đương với `SELECT salary AS sal`.",
+    "key_takeaway_vi": "Từ khóa AS khi đặt bí danh cột là tùy chọn (không bắt buộc).",
+    "flashcard": {
+      "front_en": "Which statement about the column aliases is not True?",
+      "front_vi": "Từ khóa AS khi đặt bí danh cột có bắt buộc không?",
+      "back_vi": "KHÔNG bắt buộc. Có thể viết: column_name alias hoặc column_name AS alias."
+    }
+  },
+  {
+    "id": 34,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "With SQL, how do you select a column named \"FirstName\" from a table named \n\"Persons\"?",
+    "prompt_vi": "Trong SQL, câu lệnh nào sau đây chọn cột \"FirstName\" từ bảng có tên là \"Persons\"?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT Persons.FirstName ;",
+        "text_vi": "SELECT Persons.FirstName ;",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT FirstName FROM Persons;",
+        "text_vi": "SELECT FirstName FROM Persons;",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "EXTRACT FirstName FROM Persons ;",
+        "text_vi": "EXTRACT FirstName FROM Persons ;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT FROM persons the FirstName;",
+        "text_vi": "SELECT FROM persons the FirstName;",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Cú pháp cơ bản chuẩn của SQL là: `SELECT <danh_sách_cột> FROM <tên_bảng>;`. Do đó câu lệnh chính xác là `SELECT FirstName FROM Persons;`.",
+    "key_takeaway_vi": "Cú pháp chuẩn: SELECT column_name FROM table_name;",
+    "flashcard": {
+      "front_en": "With SQL, how do you select a column named \"FirstName\" from a table named \n\"Persons\"?",
+      "front_vi": "Cú pháp lấy 1 cột từ 1 bảng trong SQL?",
+      "back_vi": "SELECT column_name FROM table_name;"
+    }
+  },
+  {
+    "id": 35,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "In the following query, which expression is evaluated first? \nSELECT id_number, (quantity - 100 / 0.15 + 20 - 10) FROM inventory",
+    "prompt_vi": "Trong câu truy vấn sau, biểu thức nào được ưu tiên tính toán trước?\nSELECT id_number, (quantity - 100 / 0.15 + 20 - 10) FROM inventory",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "D. 20 - 10",
+        "text_vi": "20 - 10",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "0.15 + 20",
+        "text_vi": "0.15 + 20",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "100 / 0.15",
+        "text_vi": "100 / 0.15",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "quantity - 100",
+        "text_vi": "quantity - 100",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Bên trong dấu ngoặc đơn `(quantity - 100 / 0.15 + 20 - 10)`, quy tắc ưu tiên toán tử số học là phép nhân và chia (*, /) được thực hiện trước phép cộng và trừ (+, -). Do đó phép chia `100 / 0.15` sẽ được tính toán đầu tiên.",
+    "key_takeaway_vi": "Thứ tự ưu tiên toán tử: Dấu ngoặc () -> Phép nhân/chia (*, /) -> Phép cộng/trừ (+, -).",
+    "flashcard": {
+      "front_en": "In the following query, which expression is evaluated first? \nSELECT id_number, (quantity - 100 / 0.15 + 20 - 10) FROM inventory",
+      "front_vi": "Trong biểu thức (a - b / c + d), phép tính nào tính trước?",
+      "back_vi": "Phép chia b / c được ưu tiên tính trước vì nhân/chia có thứ tự ưu tiên cao hơn cộng/trừ."
+    }
+  },
+  {
+    "id": 36,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "Which SQL statement is used to return only different values?",
+    "prompt_vi": "Câu lệnh SQL nào sau đây được dùng để chỉ trả về các giá trị phân biệt (loại bỏ giá trị trùng nhau)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT DISTINCT",
+        "text_vi": "SELECT DISTINCT",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT DIFFERENT",
+        "text_vi": "SELECT DIFFERENT",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT UNIQUE",
+        "text_vi": "SELECT UNIQUE",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT NO DUPLICATES",
+        "text_vi": "SELECT NO DUPLICATES",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Từ khóa chuẩn SQL ANSI để lọc các giá trị không trùng lặp là `DISTINCT`. (Mặc dù Oracle cũng hỗ trợ từ khóa đồng nghĩa `UNIQUE`, nhưng `DISTINCT` là cú pháp chuẩn quốc tế ANSI SQL được khuyến nghị và là đáp án chuẩn của bài thi).",
+    "key_takeaway_vi": "Từ khóa lọc giá trị khác nhau duy nhất là SELECT DISTINCT.",
+    "flashcard": {
+      "front_en": "Which SQL statement is used to return only different values?",
+      "front_vi": "Từ khóa chuẩn SQL lọc dữ liệu không trùng lặp là gì?",
+      "back_vi": "SELECT DISTINCT."
+    }
+  },
+  {
+    "id": 37,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "Which clauses of a SELECT statement are mandatory?",
+    "prompt_vi": "Những mệnh đề nào trong câu lệnh SELECT là bắt buộc phải có khi truy vấn từ một bảng trong Oracle?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT and FROM",
+        "text_vi": "SELECT và FROM",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Only SELECT",
+        "text_vi": "Chỉ SELECT",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT and WHERE",
+        "text_vi": "SELECT và WHERE",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT, FROM and WHERE",
+        "text_vi": "SELECT, FROM và WHERE",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong Oracle SQL, một câu lệnh truy vấn dữ liệu bắt buộc phải có ít nhất 2 mệnh đề: `SELECT` (chỉ định các cột/biểu thức cần lấy) và `FROM` (chỉ định bảng hoặc nguồn dữ liệu, kể cả khi tính toán biểu thức cũng phải `FROM dual`).",
+    "key_takeaway_vi": "SELECT và FROM là hai mệnh đề bắt buộc trong câu lệnh truy vấn cơ sở dữ liệu.",
+    "flashcard": {
+      "front_en": "Which clauses of a SELECT statement are mandatory?",
+      "front_vi": "Hai mệnh đề bắt buộc phải có trong câu lệnh SELECT của Oracle là gì?",
+      "back_vi": "SELECT và FROM."
+    }
+  },
+  {
+    "id": 38,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "Which SELECT statement should you use if you want to display unique combinations of \nthe POSITION and MANAGER values from the EMPLOYEE table?",
+    "prompt_vi": "Câu lệnh SELECT nào sau đây hiển thị các cặp kết hợp duy nhất giữa giá trị POSITION và MANAGER từ bảng EMPLOYEE?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT position, manager DISTINCT FROM employee;",
+        "text_vi": "SELECT position, manager DISTINCT FROM employee;",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT DISTINCT position, manager FROM employee;",
+        "text_vi": "SELECT DISTINCT position, manager FROM employee;",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT position, manager FROM employee;",
+        "text_vi": "SELECT position, manager FROM employee;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT position, DISTINCT manager FROM employee;",
+        "text_vi": "SELECT position, DISTINCT manager FROM employee;",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Từ khóa `DISTINCT` luôn luôn phải đứng ngay sau từ khóa `SELECT` và nó áp dụng cho toàn bộ tổ hợp các cột được liệt kê phía sau (`DISTINCT position, manager`), chứ không thể đặt ở giữa danh sách cột hay sau tên cột.",
+    "key_takeaway_vi": "DISTINCT phải đặt ngay sau SELECT: SELECT DISTINCT col1, col2 FROM ...",
+    "flashcard": {
+      "front_en": "Which SELECT statement should you use if you want to display unique combinations of \nthe POSITION and MANAGER values from the EMPLOYEE table?",
+      "front_vi": "Từ khóa DISTINCT đặt ở vị trí nào trong câu lệnh SELECT nhiều cột?",
+      "back_vi": "Ngay sau từ khóa SELECT: SELECT DISTINCT col1, col2 FROM table."
+    }
+  },
+  {
+    "id": 39,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "You are formulating queries in a SQL* Plus. \nWhich of the following statement correctly describes how to specify a column alias?",
+    "prompt_vi": "Khi soạn thảo truy vấn trong SQL*Plus, phát biểu nào sau đây mô tả đúng cách chỉ định bí danh cột (Column Alias)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Place the alias at the end of the statement to describe the table.",
+        "text_vi": "Đặt bí danh ở cuối câu lệnh để mô tả bảng.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Place the alias after each column separated by a comma to describe the column.",
+        "text_vi": "Đặt bí danh sau mỗi cột, ngăn cách bằng dấu phẩy.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Place the alias after each column separated by a space to describe the column.",
+        "text_vi": "Đặt bí danh sau mỗi cột, ngăn cách bằng một dấu cách (space).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "Place the alias at the beginning of the statement to describe the table.",
+        "text_vi": "Đặt bí danh ở đầu câu lệnh để mô tả bảng.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Cú pháp đặt bí danh cột: `tên_cột [AS] bí_danh`. Tức là bí danh được đặt ngay sau tên cột và cách nhau bằng một khoảng trắng (dấu cách), có thể có hoặc không có từ khóa `AS`.",
+    "key_takeaway_vi": "Bí danh cột đặt ngay sau tên cột, cách nhau bằng dấu cách.",
+    "flashcard": {
+      "front_en": "You are formulating queries in a SQL* Plus. \nWhich of the following statement correctly describes how to specify a column alias?",
+      "front_vi": "Cách chỉ định bí danh cột trong SQL?",
+      "back_vi": "Đặt bí danh ngay sau tên cột, phân cách bằng dấu cách (có thể thêm từ khóa AS)."
+    }
+  },
+  {
+    "id": 40,
+    "module_id": 2,
+    "module_name_en": "Module 2: Introduction to SQL",
+    "module_name_vi": "Module 2: Giới thiệu về SQL & Mệnh đề SELECT",
+    "prompt_en": "With SQL, how do you select all the columns from a table named \"Persons\"?",
+    "prompt_vi": "Trong SQL, làm thế nào để chọn tất cả các cột từ bảng có tên \"Persons\"?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT *.Persons",
+        "text_vi": "SELECT *.Persons",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT Persons",
+        "text_vi": "SELECT Persons",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT [all] FROM Persons",
+        "text_vi": "SELECT [all] FROM Persons",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT * FROM Persons",
+        "text_vi": "SELECT * FROM Persons",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Ký tự đại diện dấu sao `*` (asterisk) đại diện cho tất cả các cột có trong bảng. Do đó cú pháp lấy toàn bộ các cột là `SELECT * FROM Persons;`.",
+    "key_takeaway_vi": "SELECT * FROM table dùng để lấy tất cả các cột.",
+    "flashcard": {
+      "front_en": "With SQL, how do you select all the columns from a table named \"Persons\"?",
+      "front_vi": "Ký tự nào đại diện cho 'tất cả các cột' trong câu lệnh SELECT?",
+      "back_vi": "Dấu sao (*) -> SELECT * FROM table."
+    }
+  },
+  {
+    "id": 41,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "What does the TRUNCATE statement do?",
+    "prompt_vi": "Lệnh TRUNCATE thực hiện thao tác gì trên bảng?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Removes the table",
+        "text_vi": "Xóa bảng (Removes the table - Theo đáp án ngân hàng đề CDAC)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Removes all rows from a table",
+        "text_vi": "Xóa tất cả các dòng dữ liệu khỏi bảng (Removes all rows from a table)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Shortens the table to 10 rows",
+        "text_vi": "Rút ngắn bảng còn 10 dòng",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Removes all columns from a table",
+        "text_vi": "Xóa tất cả các cột khỏi bảng",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "⚠️ LƯU Ý GIẢNG VIÊN & ĐỀ THI: Về mặt bản chất kỹ thuật cơ sở dữ liệu: `TRUNCATE TABLE` xóa toàn bộ các dòng dữ liệu và giải phóng không gian lưu trữ (storage space), cấu trúc bảng vẫn còn nguyên vẹn; trong khi lệnh `DROP TABLE` mới là lệnh xóa hoàn toàn cấu trúc bảng. Tuy nhiên, trong đề thi trắc nghiệm CDAC này, đáp án A ('Removes the table') được gán 100 điểm. Sinh viên cần chú ý bẫy này: Khi làm bài kiểm tra CDAC chọn A, nhưng khi trả lời phỏng vấn kỹ thuật hoặc bài thi quốc tế (Oracle OCA/OCP) phải khẳng định TRUNCATE xóa toàn bộ dòng và giữ nguyên cấu trúc bảng!",
+    "key_takeaway_vi": "Bản chất: TRUNCATE xóa toàn bộ dữ liệu và giải phóng bộ nhớ, giữ nguyên cấu trúc bảng. Đề CDAC chấm A.",
+    "flashcard": {
+      "front_en": "What does the TRUNCATE statement do?",
+      "front_vi": "Khác biệt bản chất giữa TRUNCATE và DROP TABLE?",
+      "back_vi": "TRUNCATE xóa toàn bộ dữ liệu + giải phóng vùng nhớ (giữ cấu trúc bảng). DROP TABLE xóa toàn bộ dữ liệu lẫn cấu trúc bảng."
+    }
+  },
+  {
+    "id": 42,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Which statement about data types is true?",
+    "prompt_vi": "Phát biểu nào sau đây về các kiểu dữ liệu trong Oracle là ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The CHAR datatype should be used for fixed-length character data",
+        "text_vi": "Kiểu dữ liệu CHAR nên được sử dụng cho dữ liệu ký tự có độ dài cố định (fixed-length).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "The TIMESTAMP data type is an extension of the VARCHAR2 data type",
+        "text_vi": "Kiểu dữ liệu TIMESTAMP là phần mở rộng của kiểu VARCHAR2.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The BLOB data type stores character data up to four gigabytes",
+        "text_vi": "Kiểu dữ liệu BLOB lưu trữ dữ liệu ký tự lên đến 4 gigabyte.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The VARCHAR2 data type stores character data up to four gigabytes",
+        "text_vi": "Kiểu dữ liệu VARCHAR2 lưu trữ dữ liệu ký tự lên đến 4 gigabyte.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Kiểu dữ liệu `CHAR(n)` được thiết kế riêng cho chuỗi ký tự có độ dài cố định (nếu chuỗi ngắn hơn, Oracle tự động bù khoảng trắng). Phương án B sai vì TIMESTAMP là mở rộng của DATE; phương án C sai vì BLOB lưu nhị phân (Binary LOB), CLOB mới lưu ký tự; phương án D sai vì VARCHAR2 tối đa 4000 bytes trong SQL (hoặc 32767 bytes từ 12c), không phải 4GB.",
+    "key_takeaway_vi": "CHAR dành cho chuỗi có độ dài cố định. VARCHAR2 dành cho chuỗi có độ dài thay đổi.",
+    "flashcard": {
+      "front_en": "Which statement about data types is true?",
+      "front_vi": "Khi nào nên dùng kiểu dữ liệu CHAR thay vì VARCHAR2?",
+      "back_vi": "Khi dữ liệu luôn có độ dài cố định (ví dụ: mã quốc gia 'VN', mã zip code, mã định danh cố định độ dài)."
+    }
+  },
+  {
+    "id": 43,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "The EMPLOYEES table has these columns: \nLAST_NAME  VARCHAR2(35) \nSALARY     NUMBER(8,2) \nHIRE_DATE  DATE \nManagement wants to add a default value to the SALARY column. You plan to alter the \ntable by using this SQL statement: \nALTER TABLE EMPLOYEES \nMODIFY (SALARY DEFAULT 5000); \nWhat is true about your ALTER statement?",
+    "prompt_vi": "Bảng EMPLOYEES có các cột: LAST_NAME VARCHAR2(35), SALARY NUMBER(8,2), HIRE_DATE DATE.\nBạn muốn thêm giá trị mặc định cho cột SALARY bằng câu lệnh:\nALTER TABLE EMPLOYEES MODIFY (SALARY DEFAULT 5000);\nĐiều gì là ĐÚNG về câu lệnh ALTER của bạn?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A change to the DEFAULT value affects only subsequent insertions to the table.",
+        "text_vi": "Việc thay đổi giá trị DEFAULT chỉ ảnh hưởng đến các thao tác chèn (INSERT) tiếp theo vào bảng.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Column definitions cannot be altered to add DEFAULT values.",
+        "text_vi": "Định nghĩa cột không thể sửa đổi để thêm giá trị DEFAULT.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Column definitions cannot be altered at add DEFAULT values for columns with a NUMBER data type",
+        "text_vi": "Không thể thêm giá trị DEFAULT cho cột có kiểu dữ liệu NUMBER.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "All the rows that have a NULL value for the SALARY column will be updated with the value5000.",
+        "text_vi": "Tất cả các dòng hiện có giá trị NULL ở cột SALARY sẽ được tự động cập nhật thành 5000.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong Oracle SQL, khi thay đổi hoặc thêm giá trị `DEFAULT` cho một cột, giá trị mặc định này CHỈ áp dụng cho các lệnh `INSERT` được thực hiện trong tương lai (sau thời điểm sửa). Các bản ghi đã tồn tại trước đó trong bảng hoàn toàn không bị ảnh hưởng.",
+    "key_takeaway_vi": "Giá trị DEFAULT mới chỉ có hiệu lực cho các lần INSERT tiếp theo, không tự cập nhật dữ liệu cũ.",
+    "flashcard": {
+      "front_en": "The EMPLOYEES table has these columns: \nLAST_NAME  VARCHAR2(35) \nSALARY     NUMBER(8,2) \nHIRE_DATE  DATE \nManagement wants to add a default value to the SALARY column. You plan to alter the \ntable by using this SQL statement: \nALTER TABLE EMPLOYEES \nMODIFY (SALARY DEFAULT 5000); \nWhat is true about your ALTER statement?",
+      "front_vi": "Thay đổi DEFAULT của một cột có cập nhật lại các dòng NULL cũ không?",
+      "back_vi": "KHÔNG. Giá trị DEFAULT chỉ áp dụng cho các bản ghi được INSERT sau thời điểm đó."
+    }
+  },
+  {
+    "id": 44,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "You need to change the definition of an existing table. The COMMERCIALS table \nneeds its DESCRIPTION column changed to hold varying length characters up to 2000 \nbytes. The column can currently hold 1000 bytes per value. The table contains 20000 \nrows. \nWhich statement is valid?",
+    "prompt_vi": "Bảng COMMERCIALS hiện có 20000 dòng, cột DESCRIPTION hiện chứa tối đa 1000 byte. Bạn cần tăng độ rộng cột này lên tối đa 2000 byte kiểu ký tự biến đổi. Câu lệnh nào hợp lệ?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ALTER TABLE commercials MODIFY (description VARCHAR2(2000));",
+        "text_vi": "ALTER TABLE commercials MODIFY (description VARCHAR2(2000));",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "ALTER TABLE commercials MODIFY (description CHAR2(2000));",
+        "text_vi": "ALTER TABLE commercials MODIFY (description CHAR2(2000));",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "ALTER TABLE commercials CHANGE (description CHAR2(2000));",
+        "text_vi": "ALTER TABLE commercials CHANGE (description CHAR2(2000));",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ALTER TABLE commercials CHANGE (description VARCHAR2(2000));",
+        "text_vi": "ALTER TABLE commercials CHANGE (description VARCHAR2(2000));",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong Oracle SQL, để thay đổi kích thước hoặc kiểu dữ liệu của một cột hiện có, ta dùng mệnh đề `ALTER TABLE <tên_bảng> MODIFY (<tên_cột> <kiểu_mới>)`. Oracle không dùng từ khóa `CHANGE` (đây là từ khóa của MySQL) và không có kiểu `CHAR2`.",
+    "key_takeaway_vi": "Sửa cột trong Oracle dùng: ALTER TABLE ... MODIFY (col datatype);",
+    "flashcard": {
+      "front_en": "You need to change the definition of an existing table. The COMMERCIALS table \nneeds its DESCRIPTION column changed to hold varying length characters up to 2000 \nbytes. The column can currently hold 1000 bytes per value. The table contains 20000 \nrows. \nWhich statement is valid?",
+      "front_vi": "Cú pháp thay đổi độ rộng cột trong Oracle SQL là gì?",
+      "back_vi": "ALTER TABLE table_name MODIFY (column_name datatype);"
+    }
+  },
+  {
+    "id": 45,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Evaluate the SQL statement: \nDROP TABLE DEPT; \nWhich statement is false about the above SQL statement?",
+    "prompt_vi": "Đánh giá câu lệnh: DROP TABLE DEPT;\nPhát biểu nào sau đây là SAI về câu lệnh trên?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "All views based on the DEPT table are deleted.",
+        "text_vi": "Tất cả các khung nhìn (views) dựa trên bảng DEPT đều bị xóa (All views are deleted).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "You cannot roll back this statement.",
+        "text_vi": "Bạn không thể rollback câu lệnh này.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "All pending transactions are committed.",
+        "text_vi": "Tất cả các giao dịch đang chờ (pending transactions) đều được tự động commit.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "All indexes based on the DEPT table are dropped.",
+        "text_vi": "Tất cả các chỉ mục (indexes) dựa trên bảng DEPT đều bị xóa.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Khi bạn DROP TABLE, các View được tạo dựa trên bảng đó KHÔNG BỊ XÓA (not deleted), mà chúng chỉ chuyển sang trạng thái không hợp lệ (`INVALID`). Nếu sau này bạn tạo lại bảng DEPT, View sẽ có thể hợp lệ trở lại. Các phát biểu B, C, D đều đúng vì DROP là lệnh DDL (tự động COMMIT ngầm định và xóa index liên quan). Do đó phát biểu A là SAI.",
+    "key_takeaway_vi": "DROP TABLE không xóa các VIEW liên quan mà chỉ làm chúng bị INVALID.",
+    "flashcard": {
+      "front_en": "Evaluate the SQL statement: \nDROP TABLE DEPT; \nWhich statement is false about the above SQL statement?",
+      "front_vi": "Điều gì xảy ra với các View khi bảng gốc bị DROP?",
+      "back_vi": "Các View KHÔNG bị xóa; chúng chỉ bị đánh dấu trạng thái INVALID."
+    }
+  },
+  {
+    "id": 46,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Which statement describes the ROWID data type?",
+    "prompt_vi": "Phát biểu nào sau đây mô tả đúng về kiểu dữ liệu ROWID?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A hexadecimal string representing the unique address of a row in its table.",
+        "text_vi": "Một chuỗi thập lục phân (hexadecimal string) đại diện cho địa chỉ duy nhất của một dòng trong bảng.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Binary data up to 4 gigabytes",
+        "text_vi": "Dữ liệu nhị phân lên đến 4 gigabyte.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Character data up to 4 gigabytes.",
+        "text_vi": "Dữ liệu ký tự lên đến 4 gigabyte.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Raw binary data of variable length up to 2 gigabytes.",
+        "text_vi": "Dữ liệu nhị phân thô có độ dài thay đổi lên đến 2 gigabyte.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "`ROWID` là một kiểu dữ liệu đặc biệt và là cột giả (pseudocolumn) trong Oracle, chứa địa chỉ vật lý chính xác của dòng dữ liệu trên ổ đĩa (bao gồm mã đối tượng dữ liệu, số tệp dữ liệu, số khối dữ liệu và vị trí dòng trong khối). Nó được hiển thị dưới dạng chuỗi thập lục phân (base 64/hexadecimal).",
+    "key_takeaway_vi": "ROWID là địa chỉ vật lý duy nhất của mỗi dòng trong bảng Oracle, dạng chuỗi thập lục phân.",
+    "flashcard": {
+      "front_en": "Which statement describes the ROWID data type?",
+      "front_vi": "ROWID trong Oracle đại diện cho điều gì?",
+      "back_vi": "Địa chỉ vật lý duy nhất của hàng trong khối dữ liệu trên đĩa (hexadecimal string)."
+    }
+  },
+  {
+    "id": 47,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "You just issued the following statement. \nALTER TABLE marketing \nDROP COLUMN profit; \nWhich of the following choices identified when the column will actually be removed \nfrom database?",
+    "prompt_vi": "Bạn vừa thực thi câu lệnh: ALTER TABLE marketing DROP COLUMN profit;\nKhi nào thì cột profit thực sự bị xóa khỏi cơ sở dữ liệu?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Immediately following statement execution.",
+        "text_vi": "Ngay lập tức sau khi thực thi câu lệnh (Immediately following statement execution).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "After the Alter table drop unused columns command is issued.",
+        "text_vi": "Sau khi thực hiện lệnh Alter table drop unused columns.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "After the Alter table set unused column command is issued.",
+        "text_vi": "Sau khi thực hiện lệnh Alter table set unused column.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "After the Alter table modify command is issued.",
+        "text_vi": "Sau khi thực hiện lệnh Alter table modify.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Lệnh `ALTER TABLE ... DROP COLUMN` là một câu lệnh DDL trực tiếp, nó sẽ lập tức xóa định nghĩa cột khỏi từ điển dữ liệu và thu hồi không gian bộ nhớ của cột đó ngay khi câu lệnh thực thi xong. (Chỉ khi dùng `SET UNUSED` thì cột mới bị ẩn và chờ lệnh `DROP UNUSED COLUMNS` sau).",
+    "key_takeaway_vi": "Lệnh DROP COLUMN xóa cột ngay lập tức khi thực thi.",
+    "flashcard": {
+      "front_en": "You just issued the following statement. \nALTER TABLE marketing \nDROP COLUMN profit; \nWhich of the following choices identified when the column will actually be removed \nfrom database?",
+      "front_vi": "Lệnh ALTER TABLE ... DROP COLUMN có hiệu lực khi nào?",
+      "back_vi": "Ngay lập tức sau khi câu lệnh được thực thi thành công."
+    }
+  },
+  {
+    "id": 48,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Which of the following can be a valid table name?",
+    "prompt_vi": "Tên nào sau đây có thể là một tên bảng (table name) hợp lệ trong Oracle?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Catch_#22",
+        "text_vi": "Catch_#22",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Number",
+        "text_vi": "Number",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "1966_Invoices",
+        "text_vi": "1966_Invoices",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "#Invoices",
+        "text_vi": "#Invoices",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Quy tắc đặt tên đối tượng (bảng, cột) trong Oracle: Phải bắt đầu bằng một chữ cái (A-Z), độ dài 1-30 ký tự (từ Oracle 12.2 là 128 ký tự), chỉ chứa chữ cái, số, dấu gạch dưới (_), $, # và KHÔNG ĐƯỢC trùng với từ khóa dành riêng (reserved words) của Oracle. 'Number' trùng từ khóa kiểu dữ liệu; '1966_Invoices' bắt đầu bằng số; '#Invoices' bắt đầu bằng ký tự đặc biệt. Do đó chỉ có `Catch_#22` là hợp lệ.",
+    "key_takeaway_vi": "Tên bảng trong Oracle BẮT BUỘC phải bắt đầu bằng chữ cái và không được trùng từ khóa dành riêng.",
+    "flashcard": {
+      "front_en": "Which of the following can be a valid table name?",
+      "front_vi": "Tên bảng trong Oracle có được bắt đầu bằng chữ số hoặc ký tự # không?",
+      "back_vi": "KHÔNG. Tên bảng phải bắt đầu bằng một chữ cái (A-Z)."
+    }
+  },
+  {
+    "id": 49,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Which describes the default behaviour when you create a table?",
+    "prompt_vi": "Phát biểu nào sau đây mô tả hành vi mặc định khi bạn tạo một bảng mới (CREATE TABLE)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Tables are created in your schema.",
+        "text_vi": "Bảng được tạo trong schema của chính bạn (created in your schema).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "The table is accessible to all users.",
+        "text_vi": "Bảng có thể truy cập được bởi tất cả người dùng trong hệ thống.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Tables are created in the public schema.",
+        "text_vi": "Bảng được tạo trong public schema.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Tables are created in the DBA schema.",
+        "text_vi": "Bảng được tạo trong DBA schema.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Mặc định, khi một người dùng thực thi `CREATE TABLE <tên_bảng>`, bảng sẽ được tạo trong schema thuộc sở hữu của người dùng đó (`your schema`) và chỉ người tạo hoặc quản trị viên (DBA) mới có quyền truy cập, trừ khi được cấp quyền (GRANT) cho người khác.",
+    "key_takeaway_vi": "Mặc định, bảng được tạo trong chính schema của user đang đăng nhập.",
+    "flashcard": {
+      "front_en": "Which describes the default behaviour when you create a table?",
+      "front_vi": "Khi tạo bảng mới, bảng mặc định thuộc về schema nào?",
+      "back_vi": "Thuộc về schema của chính người dùng thực thi lệnh (your schema)."
+    }
+  },
+  {
+    "id": 50,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "You need to modify the STUDENTS table to add a primary key on the STUDENT_ID \ncolumn. The table is currently empty. Which statement accomplishes this task?",
+    "prompt_vi": "Bạn cần sửa đổi bảng STUDENTS hiện đang rỗng để thêm khóa chính (primary key) trên cột STUDENT_ID. Câu lệnh nào thực hiện đúng tác vụ này?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY (student_id);",
+        "text_vi": "ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY (student_id);",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "ALTER TABLE students ADD PRIMARY KEY student_id;",
+        "text_vi": "ALTER TABLE students ADD PRIMARY KEY student_id;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "ALTER TABLE students ADD CONSTRAINT PRIMARY KEY (student_id);",
+        "text_vi": "ALTER TABLE students ADD CONSTRAINT PRIMARY KEY (student_id);",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY student_id;",
+        "text_vi": "ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY student_id;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Cú pháp chuẩn để thêm ràng buộc khóa chính cấp bảng: `ALTER TABLE <tên_bảng> ADD [CONSTRAINT <tên_ràng_buộc>] PRIMARY KEY (<tên_cột>);`. Cột phải được đặt trong dấu ngoặc đơn `(student_id)` và có tên ràng buộc hợp lệ.",
+    "key_takeaway_vi": "Cú pháp thêm khóa chính: ALTER TABLE table ADD CONSTRAINT pk_name PRIMARY KEY (column);",
+    "flashcard": {
+      "front_en": "You need to modify the STUDENTS table to add a primary key on the STUDENT_ID \ncolumn. The table is currently empty. Which statement accomplishes this task?",
+      "front_vi": "Cú pháp ALTER TABLE để thêm ràng buộc PRIMARY KEY có đặt tên?",
+      "back_vi": "ALTER TABLE table_name ADD CONSTRAINT constraint_name PRIMARY KEY (column_name);"
+    }
+  },
+  {
+    "id": 51,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Evaluate the SQL statement: \nTRUNCATE TABLE DEPT; \nWhich statement is not true about the SQL statement?",
+    "prompt_vi": "Đánh giá câu lệnh: TRUNCATE TABLE DEPT;\nPhát biểu nào sau đây là KHÔNG ĐÚNG về câu lệnh này?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It releases the storage space used by the table.",
+        "text_vi": "Nó giải phóng không gian lưu trữ được sử dụng bởi bảng (Theo đáp án trắc nghiệm đề gốc đánh dấu 100)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "It does not release the storage space used by the table.",
+        "text_vi": "Nó không giải phóng không gian lưu trữ được sử dụng bởi bảng.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "You can NOT roll back the deletion of rows after the statement executes.",
+        "text_vi": "Bạn KHÔNG THỂ rollback việc xóa các dòng sau khi lệnh thực thi.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "You must be the owner of the table or have DELETE ANY TABLE system privileges to truncate the DEPT table",
+        "text_vi": "Bạn phải là chủ sở hữu bảng hoặc có quyền hệ thống DROP ANY TABLE để truncate bảng DEPT.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "⚠️ LƯU Ý KỸ THUẬT & ĐỀ THI: Trên thực tế, `TRUNCATE TABLE` CÓ giải phóng không gian lưu trữ (releases storage space - đưa High Water Mark về ban đầu), và không thể ROLLBACK. Câu hỏi hỏi 'Which statement is NOT true?', câu B ('It does not release storage space') mới thực sự là phát biểu SAI. Tuy nhiên, ngân hàng câu hỏi CDAC đã đánh dấu nhầm đáp án A (có thể do đảo phương án hoặc nhầm lẫn giữa TRUE và NOT TRUE). Sinh viên cần chú ý bẫy này khi làm bài thi CDAC!",
+    "key_takeaway_vi": "TRUNCATE có giải phóng bộ nhớ và không thể rollback. Cần chú ý đáp án câu 51 trong đề gốc CDAC.",
+    "flashcard": {
+      "front_en": "Evaluate the SQL statement: \nTRUNCATE TABLE DEPT; \nWhich statement is not true about the SQL statement?",
+      "front_vi": "Lệnh TRUNCATE TABLE có thu hồi (giải phóng) không gian lưu trữ không?",
+      "back_vi": "CÓ. TRUNCATE giải phóng các extents về tablespace (ngoại trừ initial extent) và reset High Water Mark."
+    }
+  },
+  {
+    "id": 52,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Which is not a correct guideline for naming database tables?",
+    "prompt_vi": "Điều nào sau đây KHÔNG PHẢI là một quy tắc chuẩn để đặt tên bảng trong cơ sở dữ liệu Oracle?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Must begin with either a number or a letter.",
+        "text_vi": "Phải bắt đầu bằng một chữ số hoặc một chữ cái (Must begin with either a number or a letter).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Must be 1-30 characters long.",
+        "text_vi": "Phải có độ dài từ 1 đến 30 ký tự (trong các phiên bản trước 12.2).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Should not be an Oracle Server reserved word.",
+        "text_vi": "Không được trùng với từ khóa dành riêng của Oracle Server.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Must contain only A-Z, a-z, 0-9, _, $, and #.",
+        "text_vi": "Chỉ được chứa các ký tự A-Z, a-z, 0-9, _, $, và #.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Quy tắc đặt tên của Oracle quy định: Tên bảng BẮT BUỘC PHẢI BẮT ĐẦU BẰNG CHỮ CÁI, tuyệt đối không được bắt đầu bằng chữ số (number). Vì vậy phương án A là phát biểu SAI.",
+    "key_takeaway_vi": "Tên bảng bắt buộc phải bắt đầu bằng chữ cái, KHÔNG được bắt đầu bằng chữ số.",
+    "flashcard": {
+      "front_en": "Which is not a correct guideline for naming database tables?",
+      "front_vi": "Tên bảng trong Oracle có được bắt đầu bằng chữ số không?",
+      "back_vi": "KHÔNG. Phải bắt đầu bằng một chữ cái (A-Z)."
+    }
+  },
+  {
+    "id": 53,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Which is a valid CREATE TABLE statement?",
+    "prompt_vi": "Câu lệnh CREATE TABLE nào sau đây là hợp lệ?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CREATE TABLE EMP9$# AS (empid number(2));",
+        "text_vi": "CREATE TABLE EMP9$# AS (empid number(2)); (Theo cấu trúc đề thi)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "CREATE TABLE EMP*123 AS (empid number(2));",
+        "text_vi": "CREATE TABLE EMP*123 AS (empid number(2));",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "CREATE TABLE PACKAGE AS (packid num(2));",
+        "text_vi": "CREATE TABLE PACKAGE AS (packid num(2));",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "CREATE TABLE EMP_TEST AS (empid number(2));",
+        "text_vi": "CREATE TABLE EMP_TEST AS (empid number(2));",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Tên bảng trong Oracle có thể chứa ký tự `$`, `#`, `_` và bắt đầu bằng chữ cái. Tên `EMP*123` sai vì chứa dấu sao `*`. `PACKAGE` là từ khóa dành riêng (reserved word của PL/SQL). Trong đề thi CDAC, phương án A được thiết kế để kiểm tra việc tên bảng có thể chứa ký tự đặc biệt hợp lệ `$#`.",
+    "key_takeaway_vi": "Tên bảng có thể chứa: A-Z, 0-9, _, $, # và không được trùng từ khóa dành riêng.",
+    "flashcard": {
+      "front_en": "Which is a valid CREATE TABLE statement?",
+      "front_vi": "Các ký tự đặc biệt nào được phép xuất hiện trong tên bảng Oracle?",
+      "back_vi": "Dấu gạch dưới (_), dấu đô la ($), và dấu thăng (#)."
+    }
+  },
+  {
+    "id": 54,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Which of these DATETIME data types cannot be used when specifying column \ndefinitions?",
+    "prompt_vi": "Kiểu dữ liệu DATETIME nào sau đây KHÔNG THỂ sử dụng khi định nghĩa cột bảng trong Oracle?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "INTERVAL MONTH TO DAY",
+        "text_vi": "INTERVAL MONTH TO DAY",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "TIMESTAMP",
+        "text_vi": "TIMESTAMP",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "INTERVAL DAY TO SECOND",
+        "text_vi": "INTERVAL DAY TO SECOND",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "INTERVAL YEAR TO MONTH",
+        "text_vi": "INTERVAL YEAR TO MONTH",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Oracle chỉ hỗ trợ hai kiểu dữ liệu khoảng thời gian (Interval datatypes) là: `INTERVAL YEAR TO MONTH` (năm đến tháng) và `INTERVAL DAY TO SECOND` (ngày đến giây). Không tồn tại kiểu `INTERVAL MONTH TO DAY` vì số ngày trong một tháng không cố định (28, 29, 30 hoặc 31 ngày) nên không thể chuyển đổi tương đương chính xác.",
+    "key_takeaway_vi": "Oracle chỉ có INTERVAL YEAR TO MONTH và INTERVAL DAY TO SECOND; không có INTERVAL MONTH TO DAY.",
+    "flashcard": {
+      "front_en": "Which of these DATETIME data types cannot be used when specifying column \ndefinitions?",
+      "front_vi": "Hai kiểu INTERVAL hợp lệ trong Oracle là gì?",
+      "back_vi": "INTERVAL YEAR TO MONTH và INTERVAL DAY TO SECOND."
+    }
+  },
+  {
+    "id": 55,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Which statement about a table is true?",
+    "prompt_vi": "Phát biểu nào sau đây về bảng (table) trong Oracle là ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The size of a table does NOT need to be specified",
+        "text_vi": "Kích thước của bảng KHÔNG CẦN phải chỉ định khi tạo bảng (The size does NOT need to be specified).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "A table can have up to 10,000 columns",
+        "text_vi": "Một bảng có thể có tối đa lên đến 10,000 cột.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "A table CANNOT be created while users are using the database.",
+        "text_vi": "Không thể tạo bảng trong khi người dùng khác đang sử dụng cơ sở dữ liệu.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The structure of a table CANNOT be modified while the table is online.",
+        "text_vi": "Cấu trúc của bảng không thể sửa đổi khi bảng đang trực tuyến (online).",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Khi tạo bảng trong Oracle, bạn không cần phải khai báo trước kích thước tổng của bảng; Oracle sẽ tự động cấp phát dung lượng theo các Extent khi dữ liệu được thêm vào. (Số cột tối đa của 1 bảng Oracle truyền thống là 1000 cột, không phải 10,000; bảng vẫn tạo và sửa online bình thường).",
+    "key_takeaway_vi": "Khi tạo bảng không cần chỉ định kích thước; Oracle tự động cấp phát extent động.",
+    "flashcard": {
+      "front_en": "Which statement about a table is true?",
+      "front_vi": "Số cột tối đa của một bảng trong Oracle (trước bản 23c) là bao nhiêu?",
+      "back_vi": "Tối đa 1000 cột (không phải 10,000 cột)."
+    }
+  },
+  {
+    "id": 56,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Consider a general employees table, which statement should you use to increase the \nEMP_LNAME column length to 25 if the column currently contains 3000 records?",
+    "prompt_vi": "Bảng employees hiện có 3000 bản ghi. Câu lệnh nào sau đây dùng để tăng độ rộng cột EMP_LNAME lên 25 ký tự?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ALTER TABLE employee MODIFY emp_lname VARCHAR2(25);",
+        "text_vi": "ALTER TABLE employee MODIFY emp_lname VARCHAR2(25);",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "You CANNOT increases the width of the EMP_LNAME column.",
+        "text_vi": "Bạn KHÔNG THỂ tăng độ rộng của cột EMP_LNAME khi bảng đã có dữ liệu.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "ALTER TABLE employee RENAME emp_lname VARCHAR2(25);",
+        "text_vi": "ALTER TABLE employee RENAME emp_lname VARCHAR2(25);",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ALTER employee TABLE MODIFY COLUMN emp_lname VARCHAR2(25);",
+        "text_vi": "ALTER employee TABLE MODIFY COLUMN emp_lname VARCHAR2(25);",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong Oracle SQL, bạn luôn có thể TĂNG độ rộng của một cột chuỗi (kể cả khi bảng đã có dữ liệu) bằng cú pháp: `ALTER TABLE <tên_bảng> MODIFY <tên_cột> VARCHAR2(độ_rộng_mới);`.",
+    "key_takeaway_vi": "Có thể tăng độ rộng cột VARCHAR2 bất kỳ lúc nào bằng lệnh ALTER TABLE ... MODIFY.",
+    "flashcard": {
+      "front_en": "Consider a general employees table, which statement should you use to increase the \nEMP_LNAME column length to 25 if the column currently contains 3000 records?",
+      "front_vi": "Có thể tăng độ dài cột VARCHAR2 khi bảng đã có dữ liệu không?",
+      "back_vi": "CÓ. Luôn được phép tăng độ rộng. (Thu hẹp độ rộng chỉ được nếu dữ liệu hiện có thỏa mãn kích thước mới hoặc bảng rỗng)."
+    }
+  },
+  {
+    "id": 57,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Which statement will permanently remove all the data in, the indexes on, and the \nstructure of the PO_DETAIL table?",
+    "prompt_vi": "Câu lệnh nào sau đây sẽ xóa vĩnh viễn toàn bộ dữ liệu, các chỉ mục và cả cấu trúc của bảng PO_DETAIL?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "DROP TABLE po_detail;",
+        "text_vi": "DROP TABLE po_detail;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "DELETE TABLE po_detail;",
+        "text_vi": "DELETE TABLE po_detail;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "TRUNCATE TABLE po_detail;",
+        "text_vi": "TRUNCATE TABLE po_detail;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ALTER TABLE po_detail SET UNUSED (po_num, po_line_id, product_id, quantity, unit_price);",
+        "text_vi": "ALTER TABLE po_detail SET UNUSED (po_num, po_line_id, product_id, quantity, unit_price);",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Lệnh `DROP TABLE` xóa hoàn toàn bảng: cấu trúc bảng, toàn bộ dữ liệu, các chỉ mục (indexes) và quyền hạn (grants) liên quan đều bị xóa vĩnh viễn khỏi cơ sở dữ liệu. TRUNCATE và DELETE chỉ xóa dữ liệu, giữ nguyên cấu trúc.",
+    "key_takeaway_vi": "DROP TABLE xóa cả cấu trúc bảng, dữ liệu và toàn bộ chỉ mục trên bảng đó.",
+    "flashcard": {
+      "front_en": "Which statement will permanently remove all the data in, the indexes on, and the \nstructure of the PO_DETAIL table?",
+      "front_vi": "Lệnh nào xóa cả cấu trúc lẫn dữ liệu và indexes của bảng?",
+      "back_vi": "DROP TABLE."
+    }
+  },
+  {
+    "id": 58,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Consider an Employees table in which the MGR_ID column currently contains \nemployee identification numbers, and you need to allow users to include text characters \nin the identification values. Which statement should you use to implement this?",
+    "prompt_vi": "Bảng Employees có cột MGR_ID hiện có kiểu số và đang chứa dữ liệu. Bạn cần sửa cột này để người dùng có thể nhập ký tự văn bản. Câu lệnh nào thực hiện được việc này?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "You CANNOT modifies the data type of the MGR_ID column.",
+        "text_vi": "Bạn KHÔNG THỂ sửa kiểu dữ liệu của cột MGR_ID (You CANNOT modifies the data type).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "ALTER employee MODIFY (mgr_id VARCHAR2(15));",
+        "text_vi": "ALTER employee MODIFY (mgr_id VARCHAR2(15));",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "ALTER TABLE employee MODIFY (mgr_id VARCHAR2(15));",
+        "text_vi": "ALTER TABLE employee MODIFY (mgr_id VARCHAR2(15));",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ALTER employee TABLE MODIFY COLUMN (mgr_id VARCHAR2(15));",
+        "text_vi": "ALTER employee TABLE MODIFY COLUMN (mgr_id VARCHAR2(15));",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong Oracle, nếu một cột ĐÃ CHỨA DỮ LIỆU, bạn không thể thay đổi kiểu dữ liệu của nó sang một kiểu dữ liệu không tương thích (từ NUMBER sang VARCHAR2) trừ khi tất cả các giá trị trong cột đó đều là NULL hoặc bảng rỗng.",
+    "key_takeaway_vi": "Không thể đổi kiểu dữ liệu (từ NUMBER sang VARCHAR2) khi cột đang chứa dữ liệu.",
+    "flashcard": {
+      "front_en": "Consider an Employees table in which the MGR_ID column currently contains \nemployee identification numbers, and you need to allow users to include text characters \nin the identification values. Which statement should you use to implement this?",
+      "front_vi": "Có thể đổi kiểu dữ liệu cột từ NUMBER sang VARCHAR2 khi cột đã có dữ liệu không?",
+      "back_vi": "KHÔNG. Cột phải hoàn toàn rỗng (hoặc chỉ chứa NULL) mới được đổi sang kiểu dữ liệu không tương thích."
+    }
+  },
+  {
+    "id": 59,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Which CREATE TABLE statements will not fail?",
+    "prompt_vi": "Câu lệnh CREATE TABLE nào sau đây sẽ KHÔNG BỊ LỖI?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CREATE TABLE time (time1 NUMBER(9));",
+        "text_vi": "CREATE TABLE time (time1 NUMBER(9));",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "CREATE TABLE date (time_id NUMBER(9));",
+        "text_vi": "CREATE TABLE date (time_id NUMBER(9));",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "CREATE TABLE time* (time_id NUMBER(9));",
+        "text_vi": "CREATE TABLE time* (time_id NUMBER(9));",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "CREATE TABLE $time (time_id NUMBER(9));",
+        "text_vi": "CREATE TABLE $time (time_id NUMBER(9));",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "`date` là từ khóa dành riêng cho kiểu dữ liệu DATE trong SQL; `time*` chứa ký tự cấm `*`; `$time` bắt đầu bằng dấu đô la (tên bảng bắt buộc phải bắt đầu bằng chữ cái). `time` là một định danh hợp lệ (trong Oracle kiểu thời gian là TIMESTAMP hoặc DATE, từ TIME không phải từ khóa cấm tạo bảng). Do đó câu lệnh A thực thi thành công.",
+    "key_takeaway_vi": "Tên bảng phải bắt đầu bằng chữ cái, không chứa ký tự toán học như * và không trùng từ khóa.",
+    "flashcard": {
+      "front_en": "Which CREATE TABLE statements will not fail?",
+      "front_vi": "Tại sao tên bảng $time hoặc time* bị lỗi trong Oracle?",
+      "back_vi": "Vì tên bảng không được bắt đầu bằng ký tự $ và không được chứa ký tự dấu sao (*)."
+    }
+  },
+  {
+    "id": 60,
+    "module_id": 3,
+    "module_name_en": "Module 3: DDL",
+    "module_name_vi": "Module 3: Ngôn ngữ định nghĩa dữ liệu (DDL)",
+    "prompt_en": "Examine the structure of the PRODUCT table. \nPRODUCT_ID    NUMBER        Primary Key \nPRODUCT_NAME  VARCHAR2(25) \nSUPPLIER_ID   NUMBER \nLIST_PRICE    NUMBER(7,2) \nYou need to reduce the LIST_PRICE column precision to 6 with a scale of 2 and ensure \nthat when inserting a row into the PRODUCT table without a value for the LIST_PRICE \ncolumn, a price of $5.00 will automatically be inserted. The PRODUCT table currently \ncontains no records. \nWhich statement should you use?",
+    "prompt_vi": "Xét cấu trúc bảng PRODUCT (bảng hiện KHÔNG CÓ DỮ LIỆU):\nPRODUCT_ID NUMBER Primary Key, PRODUCT_NAME VARCHAR2(25), SUPPLIER_ID NUMBER, LIST_PRICE NUMBER(7,2).\nBạn cần giảm độ chính xác của cột LIST_PRICE xuống NUMBER(6,2) và đặt giá trị mặc định là 5.00$ khi chèn bản ghi mới mà không có giá trị LIST_PRICE. Câu lệnh nào đúng?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ALTER TABLE product MODIFY (list_price NUMBER(6,2) DEFAULT 5);",
+        "text_vi": "ALTER TABLE product MODIFY (list_price NUMBER(6,2) DEFAULT 5);",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "ALTER TABLE product ADD OR REPLACE (list_price NUMBER(8,2) DEFAULT 5);",
+        "text_vi": "ALTER TABLE product ADD OR REPLACE (list_price NUMBER(8,2) DEFAULT 5);",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "ALTER TABLE product MODIFY COLUMN (list_price NUMBER(6,2) DEFAULT '$5.00');",
+        "text_vi": "ALTER TABLE product MODIFY COLUMN (list_price NUMBER(6,2) DEFAULT '$5.00');",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "You CANNOT reduces the size of the LIST_PRICE column.",
+        "text_vi": "Bạn KHÔNG THỂ giảm kích thước của cột LIST_PRICE.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Vì bảng PRODUCT hiện đang không có bản ghi nào (rỗng), bạn hoàn toàn có quyền giảm kích thước cột xuống `NUMBER(6,2)`. Cú pháp chuẩn của Oracle là `ALTER TABLE ... MODIFY (<tên_cột> NUMBER(6,2) DEFAULT 5);`.",
+    "key_takeaway_vi": "Khi bảng rỗng, có thể giảm kích thước/độ chính xác của cột và thiết lập DEFAULT trong cùng lệnh MODIFY.",
+    "flashcard": {
+      "front_en": "Examine the structure of the PRODUCT table. \nPRODUCT_ID    NUMBER        Primary Key \nPRODUCT_NAME  VARCHAR2(25) \nSUPPLIER_ID   NUMBER \nLIST_PRICE    NUMBER(7,2) \nYou need to reduce the LIST_PRICE column precision to 6 with a scale of 2 and ensure \nthat when inserting a row into the PRODUCT table without a value for the LIST_PRICE \ncolumn, a price of $5.00 will automatically be inserted. The PRODUCT table currently \ncontains no records. \nWhich statement should you use?",
+      "front_vi": "Khi nào được phép giảm độ chính xác (precision) của cột số NUMBER?",
+      "back_vi": "Khi bảng chưa có dữ liệu (rỗng) hoặc tất cả giá trị hiện có đều là NULL / thỏa mãn kích thước nhỏ hơn."
+    }
+  },
+  {
+    "id": 61,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which ALTER TABLE statement should you use to add a PRIMARY KEY constraint \non the MANUFACTURER_ID column of the INVENTORY table?",
+    "prompt_vi": "Câu lệnh ALTER TABLE nào sau đây dùng để thêm ràng buộc PRIMARY KEY trên cột MANUFACTURER_ID của bảng INVENTORY?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ALTER TABLE inventory ADD PRIMARY KEY (manufacturer_id);",
+        "text_vi": "ALTER TABLE inventory ADD PRIMARY KEY (manufacturer_id);",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "ALTER TABLE inventory ADD CONSTRAINT manufacturer_id PRIMARY KEY;",
+        "text_vi": "ALTER TABLE inventory ADD CONSTRAINT manufacturer_id PRIMARY KEY;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "ALTER TABLE inventory MODIFY manufacturer_id CONSTRAINT PRIMARY KEY;",
+        "text_vi": "ALTER TABLE inventory MODIFY manufacturer_id CONSTRAINT PRIMARY KEY;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ALTER TABLE inventory MODIFY CONSTRAINT PRIMARY KEY manufacturer_id;",
+        "text_vi": "ALTER TABLE inventory MODIFY CONSTRAINT PRIMARY KEY manufacturer_id;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Để thêm khóa chính vào bảng đã tồn tại, ta dùng mệnh đề `ADD PRIMARY KEY (tên_cột)`. Phương án B sai vì đặt tên ràng buộc trùng tên cột và thiếu cặp ngoặc tròn chứa tên cột. Phương án C và D dùng sai từ khóa MODIFY.",
+    "key_takeaway_vi": "Cú pháp thêm khóa chính cấp bảng: ALTER TABLE table_name ADD PRIMARY KEY (column_name);",
+    "flashcard": {
+      "front_en": "Which ALTER TABLE statement should you use to add a PRIMARY KEY constraint \non the MANUFACTURER_ID column of the INVENTORY table?",
+      "front_vi": "Cú pháp thêm PRIMARY KEY vào bảng đã tồn tại?",
+      "back_vi": "ALTER TABLE table_name ADD PRIMARY KEY (column_name);"
+    }
+  },
+  {
+    "id": 62,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which statement explicitly names a constraint?",
+    "prompt_vi": "Câu lệnh nào sau đây ĐẶT TÊN TƯỜNG MINH cho một ràng buộc (explicitly names a constraint)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ALTER TABLE student_grades ADD CONSTRAINT student_id_fk FOREIGN KEY (student_id) REFERENCES students(student_id);",
+        "text_vi": "ALTER TABLE student_grades ADD CONSTRAINT student_id_fk FOREIGN KEY (student_id) REFERENCES students(student_id);",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "ALTER TABLE student_grades ADD FOREIGN KEY (student_id) REFERENCES students(student_id);",
+        "text_vi": "ALTER TABLE student_grades ADD FOREIGN KEY (student_id) REFERENCES students(student_id);",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "ALTER TABLE student_grades ADD CONSTRAINT NAME = student_id_fk FOREIGN KEY (student_id) REFERENCES students(student_id);",
+        "text_vi": "ALTER TABLE student_grades ADD CONSTRAINT NAME = student_id_fk FOREIGN KEY (student_id) REFERENCES students(student_id);",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ALTER TABLE student grades ADD NAMED CONSTRAINT student_id_fk FOREIGN KEY (student_id) REFERENCES students(student_id);",
+        "text_vi": "ALTER TABLE student grades ADD NAMED CONSTRAINT student_id_fk FOREIGN KEY (student_id) REFERENCES students(student_id);",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong SQL chuẩn và Oracle, từ khóa `CONSTRAINT <tên_ràng_buộc>` được dùng để đặt tên tường minh cho ràng buộc. Nếu không có từ khóa CONSTRAINT và tên, Oracle sẽ tự sinh tên ngầm định dạng `SYS_Cn`. Cú pháp A là chuẩn xác nhất.",
+    "key_takeaway_vi": "Đặt tên tường minh cho ràng buộc dùng từ khóa: CONSTRAINT constraint_name.",
+    "flashcard": {
+      "front_en": "Which statement explicitly names a constraint?",
+      "front_vi": "Làm thế nào để đặt tên tường minh cho ràng buộc trong SQL?",
+      "back_vi": "Dùng từ khóa CONSTRAINT theo sau bởi tên ràng buộc: CONSTRAINT tên_ràng_buộc LOẠI_RÀNG_BUỘC..."
+    }
+  },
+  {
+    "id": 63,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Examine the SQL statements that create ORDERS table: \nCREATE TABLE orders \n(SER_NO      NUMBER UNIQUE, \n ORDER_ID    NUMBER, \n ORDER_DATE  DATE NOT NULL, \n STATUS      VARCHAR2(10) \n             CHECK (status IN ('CREDIT', 'CASH')), \n PROD_ID     NUMBER \n             REFERENCES PRODUCTS(PRODUCT_ID), \n ORD_TOTAL   NUMBER \n); \nFor which columns would an index be automatically created when you execute the \nabove SQL statement?",
+    "prompt_vi": "Xét lệnh tạo bảng ORDERS:\nCREATE TABLE orders (SER_NO NUMBER UNIQUE, ORDER_ID NUMBER, ORDER_DATE DATE NOT NULL, STATUS VARCHAR2(10) CHECK (status IN ('CREDIT', 'CASH')), PROD_ID NUMBER REFERENCES PRODUCTS(PRODUCT_ID), ORD_TOTAL NUMBER);\nCột nào sẽ được Oracle tự động tạo chỉ mục (index) duy nhất khi thực thi lệnh trên?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SER_NO",
+        "text_vi": "SER_NO",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "ORDER_ID",
+        "text_vi": "ORDER_ID",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "STATUS",
+        "text_vi": "STATUS",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "PROD_ID",
+        "text_vi": "PROD_ID",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Khi định nghĩa ràng buộc `PRIMARY KEY` hoặc `UNIQUE`, Oracle Server sẽ tự động tạo một chỉ mục duy nhất (Unique Index) trên cột đó để đảm bảo tính duy nhất và tăng tốc kiểm tra ràng buộc. Ở đây cột `SER_NO` có ràng buộc UNIQUE nên được tự động tạo index.",
+    "key_takeaway_vi": "Oracle tự động tạo Unique Index cho các cột có ràng buộc PRIMARY KEY và UNIQUE.",
+    "flashcard": {
+      "front_en": "Examine the SQL statements that create ORDERS table: \nCREATE TABLE orders \n(SER_NO      NUMBER UNIQUE, \n ORDER_ID    NUMBER, \n ORDER_DATE  DATE NOT NULL, \n STATUS      VARCHAR2(10) \n             CHECK (status IN ('CREDIT', 'CASH')), \n PROD_ID     NUMBER \n             REFERENCES PRODUCTS(PRODUCT_ID), \n ORD_TOTAL   NUMBER \n); \nFor which columns would an index be automatically created when you execute the \nabove SQL statement?",
+      "front_vi": "Ràng buộc nào khiến Oracle tự động tạo Unique Index ngầm định?",
+      "back_vi": "PRIMARY KEY và UNIQUE."
+    }
+  },
+  {
+    "id": 64,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "For which of these constraints does the Oracle Server implicitly create a unique index?",
+    "prompt_vi": "Đối với ràng buộc nào sau đây, Oracle Server sẽ tự động (ngầm định) tạo một chỉ mục duy nhất (unique index)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PRIMARY KEY",
+        "text_vi": "PRIMARY KEY",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "NOT NULL",
+        "text_vi": "NOT NULL",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "FOREIGN KEY",
+        "text_vi": "FOREIGN KEY",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "CHECK",
+        "text_vi": "CHECK",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Ràng buộc `PRIMARY KEY` (và `UNIQUE`) yêu cầu tính duy nhất tuyệt đối của dữ liệu, do đó Oracle tự động tạo ngầm định một B-Tree Unique Index trên các cột cấu thành khóa chính. NOT NULL, CHECK, FOREIGN KEY không tự tạo chỉ mục ngầm định.",
+    "key_takeaway_vi": "PRIMARY KEY luôn tự động sinh ra một Unique Index ngầm định.",
+    "flashcard": {
+      "front_en": "For which of these constraints does the Oracle Server implicitly create a unique index?",
+      "front_vi": "FOREIGN KEY có tự động sinh chỉ mục ngầm định trong Oracle không?",
+      "back_vi": "KHÔNG. Chỉ có PRIMARY KEY và UNIQUE mới tự động sinh Unique Index. (DBA nên chủ động tạo index cho Foreign Key)."
+    }
+  },
+  {
+    "id": 65,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Your attempt to disable a constraint results in the following error: \nORA-02297: cannot disable constraint - dependencies exist. \nWhich of the following types of the constraints is likely causing interference with your \ndisablement of this one?",
+    "prompt_vi": "Nỗ lực vô hiệu hóa (disable) một ràng buộc của bạn gặp lỗi: ORA-02297: cannot disable constraint - dependencies exist.\nLoại ràng buộc nào sau đây nhiều khả năng đang gây xung đột phụ thuộc khiến bạn không thể disable?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Foreign key Constraints",
+        "text_vi": "Ràng buộc khóa ngoại (Foreign key Constraints)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Check constraints",
+        "text_vi": "Ràng buộc kiểm tra (Check constraints)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Not NULL constraints.",
+        "text_vi": "Ràng buộc Not NULL (Not NULL constraints)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Unique Constraints.",
+        "text_vi": "Ràng buộc duy nhất (Unique Constraints)",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Lỗi `ORA-02297` xảy ra khi bạn cố gắng DISABLE hoặc DROP một khóa chính (Primary Key) hoặc khóa duy nhất (Unique Key) mà đang có một hoặc nhiều bảng con tham chiếu đến thông qua Khóa ngoại (Foreign Key). Muốn tắt được, bạn phải thêm mệnh đề `CASCADE` (`DISABLE CONSTRAINT ... CASCADE`).",
+    "key_takeaway_vi": "ORA-02297 xảy ra do ràng buộc FOREIGN KEY ở bảng khác đang phụ thuộc vào khóa chính này.",
+    "flashcard": {
+      "front_en": "Your attempt to disable a constraint results in the following error: \nORA-02297: cannot disable constraint - dependencies exist. \nWhich of the following types of the constraints is likely causing interference with your \ndisablement of this one?",
+      "front_vi": "Lỗi ORA-02297 dependencies exist là do loại ràng buộc nào gây ra?",
+      "back_vi": "Foreign Key Constraints ở các bảng con đang tham chiếu tới khóa chính bạn muốn disable."
+    }
+  },
+  {
+    "id": 66,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which is not a valid Oracle constraint type?",
+    "prompt_vi": "Từ khóa nào sau đây KHÔNG PHẢI là một loại ràng buộc (constraint type) hợp lệ trong Oracle?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CASCADE",
+        "text_vi": "CASCADE",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "UNIQUE",
+        "text_vi": "UNIQUE",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "CHECK",
+        "text_vi": "CHECK",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "NOT NULL",
+        "text_vi": "NOT NULL",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "`CASCADE` là một tùy chọn/mệnh đề phụ đi kèm lệnh DROP/DISABLE hoặc ON DELETE (`CASCADE CONSTRAINTS`, `ON DELETE CASCADE`), chứ bản thân nó KHÔNG PHẢI là một loại ràng buộc. Các loại ràng buộc hợp lệ trong Oracle chỉ có: NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, CHECK.",
+    "key_takeaway_vi": "5 loại ràng buộc chuẩn trong Oracle: NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, CHECK. CASCADE chỉ là mệnh đề phụ.",
+    "flashcard": {
+      "front_en": "Which is not a valid Oracle constraint type?",
+      "front_vi": "Liệt kê 5 loại ràng buộc dữ liệu chính trong Oracle?",
+      "back_vi": "1. NOT NULL, 2. UNIQUE, 3. PRIMARY KEY, 4. FOREIGN KEY, 5. CHECK. (CASCADE không phải loại ràng buộc)."
+    }
+  },
+  {
+    "id": 67,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which constraint will ensure that the CUSTOMER_NAME column of the \nCUSTOMERS table always holds a value?",
+    "prompt_vi": "Ràng buộc nào sau đây đảm bảo rằng cột CUSTOMER_NAME của bảng CUSTOMERS luôn luôn phải chứa dữ liệu (không được để trống)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NOT NULL or Primary Key",
+        "text_vi": "NOT NULL hoặc Primary Key",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Only Primary Key",
+        "text_vi": "Chỉ Primary Key (Only Primary Key)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Unique",
+        "text_vi": "Unique",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Foreign Key",
+        "text_vi": "Foreign Key",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Cả hai ràng buộc `NOT NULL` và `PRIMARY KEY` đều ép buộc cột không được chứa giá trị NULL (bắt buộc luôn phải có giá trị). Khóa chính (Primary Key) ngầm định chứa thuộc tính NOT NULL + UNIQUE.",
+    "key_takeaway_vi": "Cột luôn có giá trị khi có ràng buộc NOT NULL hoặc PRIMARY KEY.",
+    "flashcard": {
+      "front_en": "Which constraint will ensure that the CUSTOMER_NAME column of the \nCUSTOMERS table always holds a value?",
+      "front_vi": "Ràng buộc nào cấm giá trị NULL trong cột?",
+      "back_vi": "NOT NULL và PRIMARY KEY."
+    }
+  },
+  {
+    "id": 68,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which view should a user query to display the columns associated with the constraints \non a table owned by the user?",
+    "prompt_vi": "Khung nhìn từ điển dữ liệu (data dictionary view) nào người dùng nên truy vấn để xem các cột gắn liền với các ràng buộc trên bảng thuộc quyền sở hữu của mình?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "USER_CONS_COLUMNS",
+        "text_vi": "USER_CONS_COLUMNS",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "USER_CONSTRAINTS",
+        "text_vi": "USER_CONSTRAINTS",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "USER_OBJECTS",
+        "text_vi": "USER_OBJECTS",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ALL_CONSTRAINTS",
+        "text_vi": "ALL_CONSTRAINTS",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong Oracle: `USER_CONSTRAINTS` lưu thông tin định nghĩa ràng buộc (tên, loại ràng buộc P/R/U/C, bảng); còn `USER_CONS_COLUMNS` lưu danh sách chi tiết các CỘT cấu thành nên ràng buộc đó và vị trí của chúng (`COLUMN_NAME`, `POSITION`).",
+    "key_takeaway_vi": "Xem cột thuộc ràng buộc tra cứu view USER_CONS_COLUMNS; xem định nghĩa ràng buộc tra cứu USER_CONSTRAINTS.",
+    "flashcard": {
+      "front_en": "Which view should a user query to display the columns associated with the constraints \non a table owned by the user?",
+      "front_vi": "Xem các cột tham gia vào ràng buộc tra cứu view nào trong Oracle?",
+      "back_vi": "USER_CONS_COLUMNS."
+    }
+  },
+  {
+    "id": 69,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "You need to modify the STUDENTS table to add a primary key on the STUDENT_ID \ncolumn. The table is currently empty. Which statement accomplishes this task?",
+    "prompt_vi": "Bạn cần sửa đổi bảng STUDENTS (hiện đang rỗng) để thêm khóa chính trên cột STUDENT_ID. Câu lệnh nào thực hiện đúng tác vụ?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY (student_id);",
+        "text_vi": "ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY (student_id);",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "ALTER TABLE students ADD PRIMARY KEY student_id;",
+        "text_vi": "ALTER TABLE students ADD PRIMARY KEY student_id;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "ALTER TABLE students ADD CONSTRAINT PRIMARY KEY (student_id);",
+        "text_vi": "ALTER TABLE students ADD CONSTRAINT PRIMARY KEY (student_id);",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY student_id;",
+        "text_vi": "ALTER TABLE students ADD CONSTRAINT stud_id_pk PRIMARY KEY student_id;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Cú pháp chuẩn xác: `ALTER TABLE <tên_bảng> ADD CONSTRAINT <tên_pk> PRIMARY KEY (<tên_cột>);`. Tên cột bắt buộc phải nằm trong cặp dấu ngoặc đơn.",
+    "key_takeaway_vi": "Thêm khóa chính có đặt tên: ALTER TABLE table ADD CONSTRAINT pk_name PRIMARY KEY (col);",
+    "flashcard": {
+      "front_en": "You need to modify the STUDENTS table to add a primary key on the STUDENT_ID \ncolumn. The table is currently empty. Which statement accomplishes this task?",
+      "front_vi": "Cú pháp thêm khóa chính có đặt tên trong SQL?",
+      "back_vi": "ALTER TABLE table ADD CONSTRAINT pk_name PRIMARY KEY (col);"
+    }
+  },
+  {
+    "id": 70,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which statement about the CASCADE CONSTRAINTS clause is not true?",
+    "prompt_vi": "Phát biểu nào sau đây về mệnh đề CASCADE CONSTRAINTS là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The CASCADE CONSTRAINTS can be used while creating the constraint to enable automatic dropping of foreign key constraint when a primary key is dropped.",
+        "text_vi": "Mệnh đề CASCADE CONSTRAINTS có thể được sử dụng khi TẠO ràng buộc để cho phép tự động xóa khóa ngoại khi khóa chính bị xóa.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "The CASCADE CONSTRAINTS clause is used along with the DROP COLUMN clause.",
+        "text_vi": "Mệnh đề CASCADE CONSTRAINTS được dùng đi kèm với mệnh đề DROP COLUMN.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The CASCADE CONSTRAINTS clause drops all referential integrity constraints that refer to the primary and unique keys defined on the dropped columns.",
+        "text_vi": "Mệnh đề CASCADE CONSTRAINTS sẽ xóa tất cả các ràng buộc toàn vẹn tham chiếu trỏ đến khóa chính và khóa duy nhất của cột bị xóa.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The CASCADE CONSTRAINTS clause also drops all multicolumn constraints defined on the dropped columns",
+        "text_vi": "Mệnh đề CASCADE CONSTRAINTS cũng xóa tất cả các ràng buộc nhiều cột được định nghĩa trên cột bị xóa.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Phát biểu A là SAI vì mệnh đề `CASCADE CONSTRAINTS` chỉ được sử dụng trong các lệnh `DROP TABLE` hoặc `ALTER TABLE ... DROP COLUMN / DROP CONSTRAINT`. Khi tạo bảng (CREATE TABLE), ta dùng mệnh đề `ON DELETE CASCADE` (chỉ định hành vi khi xóa bản ghi), chứ không dùng `CASCADE CONSTRAINTS` khi tạo ràng buộc.",
+    "key_takeaway_vi": "CASCADE CONSTRAINTS chỉ dùng khi DROP (bảng, cột, ràng buộc), không dùng khi CREATE CONSTRAINT.",
+    "flashcard": {
+      "front_en": "Which statement about the CASCADE CONSTRAINTS clause is not true?",
+      "front_vi": "Mệnh đề CASCADE CONSTRAINTS dùng trong những câu lệnh nào?",
+      "back_vi": "Dùng trong DROP TABLE hoặc ALTER TABLE ... DROP COLUMN / DROP CONSTRAINT."
+    }
+  },
+  {
+    "id": 71,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which data dictionary view can be used to view the details of columns involved in \nconstraints ?",
+    "prompt_vi": "Khung nhìn từ điển dữ liệu nào có thể được dùng để xem chi tiết các cột tham gia vào các ràng buộc?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "USER_CONS_COLUMNS",
+        "text_vi": "USER_CONS_COLUMNS",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "USER_COLS_CONSTRAINTS",
+        "text_vi": "USER_COLS_CONSTRAINTS",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "USER_CONSTRAINTS",
+        "text_vi": "USER_CONSTRAINTS",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "USER_OBJECTS",
+        "text_vi": "USER_OBJECTS",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Khung nhìn `USER_CONS_COLUMNS` chứa thông tin về các cột tham gia vào ràng buộc (`OWNER`, `CONSTRAINT_NAME`, `TABLE_NAME`, `COLUMN_NAME`, `POSITION`). `USER_COLS_CONSTRAINTS` là tên giả không tồn tại trong Oracle.",
+    "key_takeaway_vi": "USER_CONS_COLUMNS là view chứa chi tiết các cột tham gia ràng buộc.",
+    "flashcard": {
+      "front_en": "Which data dictionary view can be used to view the details of columns involved in \nconstraints ?",
+      "front_vi": "Từ điển dữ liệu nào lưu tên cột tham gia ràng buộc?",
+      "back_vi": "USER_CONS_COLUMNS."
+    }
+  },
+  {
+    "id": 72,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which SQL statement defines the FOREIGN KEY constraint on the DEPTNO column \nof the EMP table?",
+    "prompt_vi": "Câu lệnh SQL nào sau đây định nghĩa đúng ràng buộc FOREIGN KEY trên cột DEPTNO của bảng EMP tham chiếu đến bảng DEPT?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CREATE TABLE EMP(empno NUMBER(4),ename VARCNAR2(35),deptno NUMBER(7,2) CONSTRAINT emp_deptno_fk REFERENCES dept (deptno));",
+        "text_vi": "CREATE TABLE EMP(empno NUMBER(4), ename VARCHAR2(35), deptno NUMBER(7,2) CONSTRAINT emp_deptno_fk REFERENCES dept (deptno)); (Lưu ý: đề gốc có lỗi in VARCNAR2)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "CREATE TABLE EMP(empno NUMBER(4),ename VARCNAR2(35),deptno NUMBER(7,2) NOT NULL CONSTRAINT emp_deptno_fk FOREIGN KEY deptno REFERENCES dept deptno);",
+        "text_vi": "CREATE TABLE EMP(empno NUMBER(4), ename VARCHAR2(35), deptno NUMBER(7,2) NOT NULL CONSTRAINT emp_deptno_fk FOREIGN KEY deptno REFERENCES dept deptno);",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "CREATE TABLE EMP(empno NUMBER(4)ename VARCHAR2(35),deptno NUMBER(7,2) NOT NULL, CONSTRAINT emp_deptno_fk REFERENCES dept (deptno) FOREIGN KEY (deptno));",
+        "text_vi": "CREATE TABLE EMP(empno NUMBER(4), ename VARCHAR2(35), deptno NUMBER(7,2) NOT NULL, CONSTRAINT emp_deptno_fk REFERENCES dept (deptno) FOREIGN KEY (deptno));",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "CREATE TABLE EMP (empno NUMBER(4),ename VARCNAR2(35),deptno NUMBER(7,2) FOREIGN KEY CONSTRAINT emp deptno fk REFERENCES dept (deptno));",
+        "text_vi": "CREATE TABLE EMP(empno NUMBER(4), ename VARCHAR2(35), deptno NUMBER(7,2) FOREIGN KEY CONSTRAINT emp deptno fk REFERENCES dept (deptno));",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Ở cấp độ cột (Column-level constraint), cú pháp khai báo khóa ngoại là: `[CONSTRAINT <tên_fk>] REFERENCES <bảng_cha> (<cột_cha>)` (chú ý: ở cấp độ cột KHÔNG DÙNG cụm từ 'FOREIGN KEY'). Cụm từ 'FOREIGN KEY (cột)' chỉ dùng khi khai báo ở cấp độ bảng (Table-level).",
+    "key_takeaway_vi": "Khai báo Foreign Key ở cấp cột: [CONSTRAINT tên_fk] REFERENCES bảng_cha(cột_cha). Không viết từ khóa FOREIGN KEY.",
+    "flashcard": {
+      "front_en": "Which SQL statement defines the FOREIGN KEY constraint on the DEPTNO column \nof the EMP table?",
+      "front_vi": "Khai báo Foreign Key ở cấp độ cột có viết từ khóa 'FOREIGN KEY' không?",
+      "back_vi": "KHÔNG. Cấp cột chỉ viết: REFERENCES bảng_cha (cột_cha). Cấp bảng mới viết: FOREIGN KEY (cột) REFERENCES bảng_cha(cột_cha)."
+    }
+  },
+  {
+    "id": 73,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which statement should be used to alter the constraints (i.e. either to enable, disable or \ndrop a constraint)?",
+    "prompt_vi": "Câu lệnh nào sau đây được sử dụng để thay đổi trạng thái ràng buộc (bật - ENABLE, tắt - DISABLE, hoặc xóa - DROP một ràng buộc)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ALTER TABLE",
+        "text_vi": "ALTER TABLE",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "ALTER CONSTRAINT",
+        "text_vi": "ALTER CONSTRAINT",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "DROP CONSTRAINT",
+        "text_vi": "DROP CONSTRAINT",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ALTER OBJECT",
+        "text_vi": "ALTER OBJECT",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Mọi thao tác quản lý ràng buộc (ENABLE, DISABLE, DROP CONSTRAINT, ADD CONSTRAINT) đều được thực hiện thông qua câu lệnh `ALTER TABLE <tên_bảng> ...`. Trong SQL không có câu lệnh độc lập nào là `ALTER CONSTRAINT`.",
+    "key_takeaway_vi": "Mọi thao tác thay đổi trạng thái ràng buộc đều dùng lệnh ALTER TABLE.",
+    "flashcard": {
+      "front_en": "Which statement should be used to alter the constraints (i.e. either to enable, disable or \ndrop a constraint)?",
+      "front_vi": "Lệnh nào dùng để bật/tắt ràng buộc trong Oracle?",
+      "back_vi": "ALTER TABLE table_name ENABLE/DISABLE CONSTRAINT constraint_name;"
+    }
+  },
+  {
+    "id": 74,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which statement is not correct about the use of constraints?",
+    "prompt_vi": "Phát biểu nào sau đây là KHÔNG ĐÚNG về việc sử dụng các ràng buộc (Constraints)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Constraints make complex queries easy",
+        "text_vi": "Ràng buộc giúp các câu truy vấn phức tạp trở nên dễ dàng hơn (Constraints make complex queries easy).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Constraints enforce rules at the view level.",
+        "text_vi": "Ràng buộc thực thi các quy tắc nghiệp vụ ở cấp độ khung nhìn (view).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Constraints enforce rules at the table level.",
+        "text_vi": "Ràng buộc thực thi các quy tắc nghiệp vụ ở cấp độ bảng (table).",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Constraints prevent the deletion of a table if there are dependencies.",
+        "text_vi": "Ràng buộc ngăn chặn việc xóa một bảng nếu bảng đó đang có các quan hệ phụ thuộc.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Mục đích duy nhất của ràng buộc (Constraint) là bảo vệ và duy trì tính toàn vẹn dữ liệu (Data Integrity) theo quy tắc nghiệp vụ. Ràng buộc không có chức năng 'làm cho các câu truy vấn phức tạp trở nên dễ viết hơn'.",
+    "key_takeaway_vi": "Ràng buộc dùng để bảo vệ tính toàn vẹn dữ liệu, không giúp đơn giản hóa việc viết truy vấn.",
+    "flashcard": {
+      "front_en": "Which statement is not correct about the use of constraints?",
+      "front_vi": "Mục đích chính của ràng buộc trong CSDL là gì?",
+      "back_vi": "Đảm bảo tính toàn vẹn và hợp lệ của dữ liệu (Data Integrity), ngăn dữ liệu sai quy tắc."
+    }
+  },
+  {
+    "id": 75,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which statement about NOT NULL constraints is true?",
+    "prompt_vi": "Phát biểu nào sau đây về ràng buộc NOT NULL là ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NOT NULL constraints can only be defined at the column level.",
+        "text_vi": "Ràng buộc NOT NULL chỉ có thể được định nghĩa ở cấp độ cột (column level).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "You CANNOT add a NOT NULL constraint to an existing column using the ALTER TABLE statement",
+        "text_vi": "Bạn không thể thêm ràng buộc NOT NULL vào cột đã có bằng lệnh ALTER TABLE.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "You can modify the structure of a NOT NULL constraint using the ALTER TABLE statement.",
+        "text_vi": "Bạn có thể thay đổi cấu trúc của ràng buộc NOT NULL bằng lệnh ALTER TABLE.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "A NOT NULL constraint is stored in the data dictionary as a UNIQUE constraint.",
+        "text_vi": "Ràng buộc NOT NULL được lưu trữ trong từ điển dữ liệu dưới dạng ràng buộc UNIQUE.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong Oracle SQL, ràng buộc `NOT NULL` là ràng buộc duy nhất CHỈ CÓ THỂ ĐỊNH NGHĨA Ở CẤP ĐỘ CỘT (Column level), không thể định nghĩa ở cấp độ bảng (Table level). Khi muốn thêm NOT NULL cho cột đã có, ta phải dùng cú pháp `ALTER TABLE table MODIFY (column NOT NULL)`.",
+    "key_takeaway_vi": "Ràng buộc NOT NULL chỉ có thể được khai báo ở cấp độ cột (Column level).",
+    "flashcard": {
+      "front_en": "Which statement about NOT NULL constraints is true?",
+      "front_vi": "Ràng buộc nào chỉ khai báo được ở cấp độ cột, không khai báo được ở cấp độ bảng?",
+      "back_vi": "Ràng buộc NOT NULL."
+    }
+  },
+  {
+    "id": 76,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "The PO_DETAIL table contains these columns: \nPO_NUM      NUMBER  NOT NULL, Primary Key \nPO_LINE_ID  NUMBER  NOT NULL, Primary Key \nPRODUCT_ID  NUMBER  Foreign Key to PRODUCT_ID column of the PRODUCT table \nQUANTITY    NUMBER \nUNIT_PRICE  NUMBER(5,2) \nEvaluate this statement: \nALTER TABLE po_detail \nENABLE CONSTRAINT po_num_pk; \nFor which task would you issue this statement?",
+    "prompt_vi": "Bảng PO_DETAIL có các cột: PO_NUM NOT NULL PK, PO_LINE_ID NOT NULL PK, PRODUCT_ID FK, QUANTITY, UNIT_PRICE.\nĐánh giá câu lệnh: ALTER TABLE po_detail ENABLE CONSTRAINT po_num_pk;\nBạn thực hiện câu lệnh này nhằm mục đích gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "to activate the previously disabled constraint on the PO_NUM column while creating a PRIMARY KEY index",
+        "text_vi": "Kích hoạt lại ràng buộc đã bị vô hiệu hóa trước đó trên cột PO_NUM và đồng thời tạo chỉ mục khóa chính (PRIMARY KEY index).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "to drop and recreate the PRIMARY KEY constraint on the PO_NUM column",
+        "text_vi": "Xóa và tạo lại ràng buộc PRIMARY KEY trên cột PO_NUM.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "to create a new PRIMARY KEY constraint on the PO_NUM column",
+        "text_vi": "Tạo một ràng buộc PRIMARY KEY mới trên cột PO_NUM.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "to enable any previously disabled FOREIGN KEY constraints that are dependent on thePO_NUM column",
+        "text_vi": "Kích hoạt bất kỳ ràng buộc FOREIGN KEY nào bị vô hiệu hóa trước đó phụ thuộc vào cột PO_NUM.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Lệnh `ENABLE CONSTRAINT` dùng để kích hoạt lại một ràng buộc đang ở trạng thái DISABLED. Đối với ràng buộc khóa chính (Primary Key), khi ENABLE, Oracle sẽ tự động quét kiểm tra dữ liệu hiện có và tự động tạo lại một Unique Index trên các cột khóa chính.",
+    "key_takeaway_vi": "ENABLE CONSTRAINT kích hoạt lại ràng buộc và tự động tạo index cho Primary Key.",
+    "flashcard": {
+      "front_en": "The PO_DETAIL table contains these columns: \nPO_NUM      NUMBER  NOT NULL, Primary Key \nPO_LINE_ID  NUMBER  NOT NULL, Primary Key \nPRODUCT_ID  NUMBER  Foreign Key to PRODUCT_ID column of the PRODUCT table \nQUANTITY    NUMBER \nUNIT_PRICE  NUMBER(5,2) \nEvaluate this statement: \nALTER TABLE po_detail \nENABLE CONSTRAINT po_num_pk; \nFor which task would you issue this statement?",
+      "front_vi": "Khi ENABLE một ràng buộc PRIMARY KEY bị tắt, Oracle làm gì?",
+      "back_vi": "Kiểm tra tính hợp lệ dữ liệu của bảng và tự động tạo chỉ mục Unique Index cho khóa chính."
+    }
+  },
+  {
+    "id": 77,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which statement about constraints is true?",
+    "prompt_vi": "Phát biểu nào sau đây về các ràng buộc (constraints) là ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Constraints prevent a table with dependencies from being deleted.",
+        "text_vi": "Ràng buộc ngăn chặn việc xóa một bảng nếu bảng đó đang có các quan hệ phụ thuộc (dependencies).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Constraints only enforce rules at the table level.",
+        "text_vi": "Ràng buộc chỉ thực thi các quy tắc ở cấp độ bảng.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "You must provide a name for each constraint at the time of its creation.",
+        "text_vi": "Bạn bắt buộc phải đặt tên cho mỗi ràng buộc tại thời điểm tạo.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Constraint names are NOT required to follow the standard object-naming rules.",
+        "text_vi": "Tên ràng buộc không bắt buộc phải tuân theo quy tắc đặt tên đối tượng chuẩn.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Nếu một bảng cha đang được tham chiếu bởi khóa ngoại của bảng con, lệnh `DROP TABLE bảng_cha` sẽ bị chặn (lỗi ORA-02449: unique/primary keys in table referenced by foreign keys) để bảo toàn tính toàn vẹn dữ liệu.",
+    "key_takeaway_vi": "Ràng buộc khóa ngoại ngăn không cho xóa bảng cha nếu có bảng con đang phụ thuộc.",
+    "flashcard": {
+      "front_en": "Which statement about constraints is true?",
+      "front_vi": "Tại sao không thể DROP bảng cha khi đang có khóa ngoại tham chiếu?",
+      "back_vi": "Vì ràng buộc toàn vẹn tham chiếu (Foreign Key) ngăn chặn để tránh sinh ra dữ liệu mồ côi."
+    }
+  },
+  {
+    "id": 78,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which syntax turns an existing constraint on?",
+    "prompt_vi": "Cú pháp nào sau đây dùng để kích hoạt (bật) một ràng buộc đang tồn tại?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ALTER TABLE table_name ENABLE CONSTRAINT constraint_name;",
+        "text_vi": "ALTER TABLE table_name ENABLE CONSTRAINT constraint_name;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "ALTER TABLE table_name ENABLE constraint_name;",
+        "text_vi": "ALTER TABLE table_name ENABLE constraint_name;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "ALTER TABLE table_name STATUS = ENABLE CONSTRAINT constraint_name;",
+        "text_vi": "ALTER TABLE table_name STATUS = ENABLE CONSTRAINT constraint_name;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ALTER TABLE table_name STATUS ENABLE CONSTRAINT constraint_name;",
+        "text_vi": "ALTER TABLE table_name STATUS ENABLE CONSTRAINT constraint_name;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Cú pháp chuẩn xác trong Oracle SQL để bật lại một ràng buộc là: `ALTER TABLE <tên_bảng> ENABLE CONSTRAINT <tên_ràng_buộc>;`.",
+    "key_takeaway_vi": "Cú pháp bật ràng buộc: ALTER TABLE table_name ENABLE CONSTRAINT constraint_name;",
+    "flashcard": {
+      "front_en": "Which syntax turns an existing constraint on?",
+      "front_vi": "Cú pháp bật lại một ràng buộc trong Oracle?",
+      "back_vi": "ALTER TABLE table_name ENABLE CONSTRAINT constraint_name;"
+    }
+  },
+  {
+    "id": 79,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which statement about creating constraints is true?",
+    "prompt_vi": "Phát biểu nào sau đây về việc tạo các ràng buộc là ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Constraints can be created after the table is created.",
+        "text_vi": "Các ràng buộc có thể được tạo sau khi bảng đã được tạo (Constraints can be created after the table is created).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Constraint names must start with SYS_C.",
+        "text_vi": "Tên ràng buộc bắt buộc phải bắt đầu bằng SYS_C.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "All constraints must be defines at the column level.",
+        "text_vi": "Tất cả các ràng buộc bắt buộc phải định nghĩa ở cấp độ cột.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Information about constraints is found in the VIEW_CONSTRAINTS dictionary view.",
+        "text_vi": "Thông tin về các ràng buộc được tìm thấy trong view VIEW_CONSTRAINTS.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Bạn có thể định nghĩa ràng buộc ngay khi tạo bảng (`CREATE TABLE`) hoặc thêm sau đó bất kỳ lúc nào bằng câu lệnh `ALTER TABLE table_name ADD CONSTRAINT...`.",
+    "key_takeaway_vi": "Có thể thêm ràng buộc vào bảng bất kỳ lúc nào sau khi bảng đã tạo.",
+    "flashcard": {
+      "front_en": "Which statement about creating constraints is true?",
+      "front_vi": "Có thể tạo ràng buộc sau khi bảng đã được tạo từ trước không?",
+      "back_vi": "CÓ. Sử dụng câu lệnh ALTER TABLE table_name ADD CONSTRAINT..."
+    }
+  },
+  {
+    "id": 80,
+    "module_id": 4,
+    "module_name_en": "Module 4: Constraints",
+    "module_name_vi": "Module 4: Ràng buộc toàn vẹn (Constraints)",
+    "prompt_en": "Which constraint can be defined only at the column level?",
+    "prompt_vi": "Ràng buộc nào sau đây CHỈ CÓ THỂ được định nghĩa ở cấp độ cột (column level)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NOT NULL",
+        "text_vi": "NOT NULL",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "UNIQUE",
+        "text_vi": "UNIQUE",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "CHECK",
+        "text_vi": "CHECK",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "PRIMARY KEY",
+        "text_vi": "PRIMARY KEY",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong Oracle SQL, các ràng buộc UNIQUE, CHECK, PRIMARY KEY, FOREIGN KEY đều có thể định nghĩa ở cả cấp độ cột lẫn cấp độ bảng. Riêng ràng buộc `NOT NULL` chỉ có thể được khai báo duy nhất ở cấp độ cột.",
+    "key_takeaway_vi": "NOT NULL là ràng buộc duy nhất chỉ định nghĩa được ở cấp độ cột.",
+    "flashcard": {
+      "front_en": "Which constraint can be defined only at the column level?",
+      "front_vi": "Ràng buộc nào không thể khai báo ở cấp độ bảng (Table level)?",
+      "back_vi": "Ràng buộc NOT NULL."
+    }
+  },
+  {
+    "id": 81,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "A data manipulation language statement _____.",
+    "prompt_vi": "Một câu lệnh ngôn ngữ thao tác dữ liệu (DML) thực hiện nhiệm vụ gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Modifies the data but not the structure of a table",
+        "text_vi": "Sửa đổi dữ liệu nhưng không thay đổi cấu trúc của bảng (Modifies data but not structure).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Completes a transaction on a table.",
+        "text_vi": "Hoàn tất một giao dịch trên bảng.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Modifies the structure and data in a table",
+        "text_vi": "Sửa đổi cả cấu trúc và dữ liệu trong bảng.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Modifies the structure but not the data of a table",
+        "text_vi": "Sửa đổi cấu trúc nhưng không sửa đổi dữ liệu của bảng.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "DML (Data Manipulation Language - gồm INSERT, UPDATE, DELETE, MERGE) chỉ thao tác trên các bản ghi dữ liệu bên trong bảng. Việc thay đổi cấu trúc bảng (thêm/xóa cột, đổi kiểu dữ liệu) là trách nhiệm của DDL (ALTER TABLE, CREATE TABLE...).",
+    "key_takeaway_vi": "DML chỉ sửa đổi dữ liệu (dòng), không làm thay đổi cấu trúc (cột/kiểu dữ liệu) của bảng.",
+    "flashcard": {
+      "front_en": "A data manipulation language statement _____.",
+      "front_vi": "DML khác DDL ở điểm mấu chốt nào?",
+      "back_vi": "DML (INSERT/UPDATE/DELETE) thao tác trên dữ liệu hàng; DDL (CREATE/ALTER/DROP) thao tác trên cấu trúc đối tượng."
+    }
+  },
+  {
+    "id": 82,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "Which statement regarding DML statement functionality is true?",
+    "prompt_vi": "Phát biểu nào sau đây về chức năng của câu lệnh DML là ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "UPDATE can update multiple columns in one table.",
+        "text_vi": "Lệnh UPDATE có thể cập nhật nhiều cột trong cùng một bảng cùng lúc.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "DELETE can be used to delete rows or columns from a table.",
+        "text_vi": "Lệnh DELETE có thể được dùng để xóa các dòng hoặc các cột khỏi bảng.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "MERGE will delete rows that do NOT exist in either table.",
+        "text_vi": "Lệnh MERGE sẽ xóa các dòng không tồn tại ở cả hai bảng.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "UPDATE will add rows to a table if an INTO clause is specified.",
+        "text_vi": "Lệnh UPDATE sẽ thêm các dòng mới vào bảng nếu có mệnh đề INTO.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Lệnh UPDATE cho phép cập nhật nhiều cột cùng lúc bằng cách liệt kê ngăn cách bởi dấu phẩy: `UPDATE table SET col1 = val1, col2 = val2 WHERE ...`. Phương án B sai vì DELETE chỉ xóa dòng, xóa cột phải dùng ALTER TABLE DROP COLUMN.",
+    "key_takeaway_vi": "UPDATE có thể cập nhật nhiều cột trong một lệnh bằng cách ngăn cách bằng dấu phẩy.",
+    "flashcard": {
+      "front_en": "Which statement regarding DML statement functionality is true?",
+      "front_vi": "Có thể cập nhật nhiều cột trong một câu lệnh UPDATE không?",
+      "back_vi": "CÓ. Cú pháp: UPDATE table SET col1 = val1, col2 = val2 WHERE..."
+    }
+  },
+  {
+    "id": 83,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "You own a table called EMPLOYEES. What happens when you execute this DELETE \nstatement? \nDELETE employees;",
+    "prompt_vi": "Bạn là chủ sở hữu bảng EMPLOYEES. Điều gì xảy ra khi bạn thực thi câu lệnh: DELETE employees;",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The data in the EMPLOYEES table is deleted but not the structure.",
+        "text_vi": "Dữ liệu trong bảng EMPLOYEES bị xóa toàn bộ nhưng cấu trúc bảng vẫn được giữ nguyên.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "You get an error because of a primary key violation",
+        "text_vi": "Báo lỗi vi phạm khóa chính.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The data and structure of the EMPLOYEES table are deleted.",
+        "text_vi": "Cả dữ liệu và cấu trúc của bảng EMPLOYEES đều bị xóa.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "You get an error because the statement is not syntactically correct.",
+        "text_vi": "Báo lỗi vì câu lệnh sai cú pháp.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Khi chạy `DELETE employees;` (không có mệnh đề WHERE), tất cả các dòng dữ liệu trong bảng sẽ bị xóa sạch, nhưng cấu trúc bảng (các cột, ràng buộc, chỉ mục) vẫn còn nguyên và giao dịch này có thể ROLLBACK được nếu chưa COMMIT.",
+    "key_takeaway_vi": "DELETE không có WHERE sẽ xóa sạch dữ liệu nhưng giữ nguyên cấu trúc bảng.",
+    "flashcard": {
+      "front_en": "You own a table called EMPLOYEES. What happens when you execute this DELETE \nstatement? \nDELETE employees;",
+      "front_vi": "DELETE không có WHERE khác gì với DROP TABLE?",
+      "back_vi": "DELETE chỉ xóa hết các dòng dữ liệu, giữ lại cấu trúc bảng; DROP xóa luôn cả cấu trúc bảng."
+    }
+  },
+  {
+    "id": 84,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "Examine the structure of the EMPLOYEES table: \nEMPLOYEE_ID  NUMBER        Primary Key \nFIRST_NAME   VARCHAR2(25) \nLAST_NAME    VARCHAR2(25) \nWhich statement fails to insert a row into the table?",
+    "prompt_vi": "Xét cấu trúc bảng EMPLOYEES: EMPLOYEE_ID NUMBER Primary Key, FIRST_NAME VARCHAR2(25), LAST_NAME VARCHAR2(25).\nCâu lệnh nào sau đây sẽ THẤT BẠI khi chèn bản ghi vào bảng?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "INSERT INTO employees( first_name, last_name) VALUES( 'John', 'Smith');",
+        "text_vi": "INSERT INTO employees( first_name, last_name) VALUES( 'John', 'Smith');",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "INSERT INTO employees VALUES ( '1000', 'John', NULL);",
+        "text_vi": "INSERT INTO employees VALUES ( '1000', 'John', NULL);",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "INSERT INTO employees (employee_id) VALUES (1000);",
+        "text_vi": "INSERT INTO employees (employee_id) VALUES (1000);",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "INSERT INTO employees (employee_id, first_name, last_name) VALUES ( 1000, 'John', ' ');",
+        "text_vi": "INSERT INTO employees (employee_id, first_name, last_name) VALUES ( 1000, 'John', ' ');",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Cột `EMPLOYEE_ID` là Khóa chính (Primary Key), do đó bắt buộc phải có giá trị và không được phép chứa giá trị NULL. Câu lệnh A không liệt kê cột `employee_id`, nên Oracle sẽ ngầm định gán NULL cho cột này, dẫn đến lỗi vi phạm ràng buộc khóa chính `ORA-01400: cannot insert NULL into (...)`.",
+    "key_takeaway_vi": "Khóa chính bắt buộc phải có giá trị, không được phép chèn NULL.",
+    "flashcard": {
+      "front_en": "Examine the structure of the EMPLOYEES table: \nEMPLOYEE_ID  NUMBER        Primary Key \nFIRST_NAME   VARCHAR2(25) \nLAST_NAME    VARCHAR2(25) \nWhich statement fails to insert a row into the table?",
+      "front_vi": "Tại sao câu lệnh INSERT thiếu cột Primary Key sẽ bị lỗi?",
+      "back_vi": "Vì cột Primary Key không chấp nhận giá trị NULL; nếu không gán giá trị, Oracle sẽ báo lỗi ORA-01400."
+    }
+  },
+  {
+    "id": 85,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "Which is not true?",
+    "prompt_vi": "Phát biểu nào sau đây là KHÔNG ĐÚNG về câu lệnh MERGE?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A MERGE statement replaces the complete data of one table with that of another.",
+        "text_vi": "Lệnh MERGE thay thế hoàn toàn toàn bộ dữ liệu của một bảng bằng dữ liệu của một bảng khác.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "A MERGE statement is used to merge the data of one table with data from another.",
+        "text_vi": "Lệnh MERGE được sử dụng để trộn dữ liệu của một bảng với dữ liệu từ bảng khác.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "A MERGE statement can be used to insert new rows into a table.",
+        "text_vi": "Lệnh MERGE có thể được dùng để chèn các dòng mới vào một bảng.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "A MERGE statement can be used to update existing rows in a table.",
+        "text_vi": "Lệnh MERGE có thể được dùng để cập nhật các dòng hiện có trong một bảng.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Lệnh `MERGE` (còn gọi là UPSERT) thực hiện cập nhật có điều kiện: nếu bản ghi đã tồn tại thì UPDATE, nếu chưa tồn tại thì INSERT. Nó KHÔNG PHẢI là thao tác xóa và thay thế toàn bộ dữ liệu bảng (không phải truncate and reload). Do đó phát biểu A là SAI.",
+    "key_takeaway_vi": "MERGE thực hiện chèn hoặc cập nhật có chọn lọc dựa trên điều kiện ON, không thay thế mù quáng toàn bảng.",
+    "flashcard": {
+      "front_en": "Which is not true?",
+      "front_vi": "Lệnh MERGE trong SQL làm nhiệm vụ gì?",
+      "back_vi": "Kết hợp INSERT và UPDATE trong một lệnh duy nhất (UPSERT) dựa trên điều kiện so khớp."
+    }
+  },
+  {
+    "id": 86,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "With SQL, how can you insert \"Olsen\" as the \"LastName\" in the \"Persons\" table?",
+    "prompt_vi": "Trong SQL, làm thế nào để chèn giá trị \"Olsen\" vào cột \"LastName\" trong bảng \"Persons\"?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "INSERT INTO Persons (LastName) VALUES ('Olsen')",
+        "text_vi": "INSERT INTO Persons (LastName) VALUES ('Olsen')",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "INSERT INTO Persons ('Olsen') as LastName",
+        "text_vi": "INSERT INTO Persons ('Olsen') as LastName",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "INSERT LastName('Olsen') INTO Persons",
+        "text_vi": "INSERT LastName('Olsen') INTO Persons",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "None of the above",
+        "text_vi": "Không có câu nào ở trên đúng.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Cú pháp chèn dữ liệu chuẩn trong SQL: `INSERT INTO <tên_bảng> (<danh_sách_cột>) VALUES (<danh_sách_giá_trị>);`.",
+    "key_takeaway_vi": "Cú pháp chèn chuẩn: INSERT INTO table (col) VALUES ('val');",
+    "flashcard": {
+      "front_en": "With SQL, how can you insert \"Olsen\" as the \"LastName\" in the \"Persons\" table?",
+      "front_vi": "Cú pháp INSERT INTO chuẩn trong SQL?",
+      "back_vi": "INSERT INTO table_name (column_name) VALUES (value);"
+    }
+  },
+  {
+    "id": 87,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "How can you change \"Hansen\" into \"Nilsen\" in the \"LastName\" column in the Persons \ntable?",
+    "prompt_vi": "Làm thế nào để đổi giá trị \"Hansen\" thành \"Nilsen\" trong cột \"LastName\" của bảng Persons?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "UPDATE Persons SET LastName='Nilsen' WHERE LastName='Hansen'",
+        "text_vi": "UPDATE Persons SET LastName='Nilsen' WHERE LastName='Hansen'",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "MODIFY Persons SET LastName='Hansen' INTO LastName='Nilsen",
+        "text_vi": "MODIFY Persons SET LastName='Hansen' INTO LastName='Nilsen'",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "UPDATE Persons SET LastName='Hansen' INTO LastName='Nilsen'",
+        "text_vi": "UPDATE Persons SET LastName='Hansen' INTO LastName='Nilsen'",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "MODIFY Persons SET LastName='Nilsen' WHERE LastName='Hansen'",
+        "text_vi": "MODIFY Persons SET LastName='Nilsen' WHERE LastName='Hansen'",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Cú pháp cập nhật dữ liệu chuẩn: `UPDATE <tên_bảng> SET <cột> = <giá_trị_mới> WHERE <điều_kiện>;`. Cần gán giá trị mới 'Nilsen' vào SET và đặt điều kiện tìm giá trị cũ 'Hansen' ở WHERE.",
+    "key_takeaway_vi": "Cú pháp UPDATE chuẩn: UPDATE table SET col = new_val WHERE col = old_val;",
+    "flashcard": {
+      "front_en": "How can you change \"Hansen\" into \"Nilsen\" in the \"LastName\" column in the Persons \ntable?",
+      "front_vi": "Cú pháp UPDATE một cột có điều kiện trong SQL?",
+      "back_vi": "UPDATE table_name SET col = new_val WHERE condition;"
+    }
+  },
+  {
+    "id": 88,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "With SQL, how can you delete the records where the \"FirstName\" is \"Peter\" in the \nPersons Table?",
+    "prompt_vi": "Trong SQL, làm thế nào để xóa các bản ghi có \"FirstName\" là \"Peter\" trong bảng Persons?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "DELETE FROM Persons WHERE FirstName = 'Peter'",
+        "text_vi": "DELETE FROM Persons WHERE FirstName = 'Peter'",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "DELETE * FROM Persons WHERE FirstName = 'Peter'",
+        "text_vi": "DELETE * FROM Persons WHERE FirstName = 'Peter'",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "DELETE FirstName FROM Persons WHERE FirstName = 'Peter'",
+        "text_vi": "DELETE FirstName FROM Persons WHERE FirstName = 'Peter'",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "DELETE 'Peter' FROM Persons",
+        "text_vi": "DELETE 'Peter' FROM Persons",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Cú pháp xóa bản ghi trong SQL là: `DELETE FROM <tên_bảng> WHERE <điều_kiện>;`. Không bao giờ có dấu sao `*` hoặc danh sách tên cột sau từ khóa DELETE.",
+    "key_takeaway_vi": "Lệnh DELETE không bao giờ đi kèm dấu * hay tên cột: DELETE FROM table WHERE condition;",
+    "flashcard": {
+      "front_en": "With SQL, how can you delete the records where the \"FirstName\" is \"Peter\" in the \nPersons Table?",
+      "front_vi": "Câu lệnh DELETE có đi kèm dấu * như SELECT * không?",
+      "back_vi": "KHÔNG. Cú pháp chuẩn là DELETE FROM table_name WHERE condition."
+    }
+  },
+  {
+    "id": 89,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "Which of the following Insert statement will successfully insert only records of Sales \nRepresentatives from the employees table into a new table called Sales_rep ?",
+    "prompt_vi": "Câu lệnh nào sau đây sẽ chèn thành công chỉ các bản ghi của Sales Representative (job_id = 'SA_REP') từ bảng employees vào bảng mới sales_reps?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "INSERT INTO sales_reps(id, name, salary, commission_pct) SELECT employee_id, last_name, salary, commission_pct FROM employees WHERE job_id = 'SA_REP';",
+        "text_vi": "INSERT INTO sales_reps(id, name, salary, commission_pct) SELECT employee_id, last_name, salary, commission_pct FROM employees WHERE job_id = 'SA_REP';",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "INSERT INTO sales_reps(id, name, salary, commission_pct) VALUES SELECT employee_id, last_name, salary, commission_pct FROM employees WHERE job_id = 'SA_REP';",
+        "text_vi": "INSERT INTO sales_reps(id, name, salary, commission_pct) VALUES SELECT employee_id, last_name, salary, commission_pct FROM employees WHERE job_id = 'SA_REP';",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "INSERT INTO sales_reps(id, name, salary, commission_pct) SELECT employee_id, last_name, salary, commission_pct FROM employees;",
+        "text_vi": "INSERT INTO sales_reps(id, name, salary, commission_pct) SELECT employee_id, last_name, salary, commission_pct FROM employees;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "INSERT INTO sales_reps(id, name, salary, commission_pct) SELECT last_name, employee_id, salary, commission_pct FROM employees WHERE job_id = 'SA_REP';",
+        "text_vi": "INSERT INTO sales_reps(id, name, salary, commission_pct) SELECT last_name, employee_id, salary, commission_pct FROM employees WHERE job_id = 'SA_REP';",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Khi chèn dữ liệu bằng câu truy vấn con (INSERT with Subquery), TUYỆT ĐỐI KHÔNG DÙNG từ khóa `VALUES`. Thứ tự các cột trong câu lệnh INSERT phải khớp tương ứng về mặt ý nghĩa và kiểu dữ liệu với thứ tự cột trong SELECT.",
+    "key_takeaway_vi": "Khi dùng INSERT INTO ... SELECT, không được có từ khóa VALUES.",
+    "flashcard": {
+      "front_en": "Which of the following Insert statement will successfully insert only records of Sales \nRepresentatives from the employees table into a new table called Sales_rep ?",
+      "front_vi": "Có dùng từ khóa VALUES khi thực hiện INSERT bằng SELECT subquery không?",
+      "back_vi": "KHÔNG. Dùng trực tiếp: INSERT INTO table (cols) SELECT cols FROM source_table WHERE..."
+    }
+  },
+  {
+    "id": 90,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "Which of the following is not a valid usage of a Merge statement?",
+    "prompt_vi": "Trường hợp nào sau đây KHÔNG PHẢI là mục đích sử dụng hợp lệ của câu lệnh Merge?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Insert as well as update each row in a table.",
+        "text_vi": "Vừa chèn vừa cập nhật trên cùng mỗi một dòng trong một bảng (Insert as well as update each row).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Conditionally update or insert data into a database table",
+        "text_vi": "Cập nhật hoặc chèn dữ liệu có điều kiện vào bảng cơ sở dữ liệu.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Perform an UPDATE if the row exists, and an INSERT if it is a new row",
+        "text_vi": "Thực hiện UPDATE nếu dòng đã tồn tại, và thực hiện INSERT nếu đó là dòng mới.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Increase performance and ease of use",
+        "text_vi": "Tăng hiệu năng và tăng tính tiện dụng khi đồng bộ dữ liệu.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trên mỗi dòng dữ liệu được so khớp, lệnh MERGE chỉ thực hiện MỘT trong hai nhánh: hoặc UPDATE (khi match), hoặc INSERT (khi không match). Nó không thể vừa INSERT vừa UPDATE trên cùng một dòng.",
+    "key_takeaway_vi": "MERGE chỉ thực hiện hoặc INSERT hoặc UPDATE trên một bản ghi, không làm cả hai trên cùng một dòng.",
+    "flashcard": {
+      "front_en": "Which of the following is not a valid usage of a Merge statement?",
+      "front_vi": "Lệnh MERGE có thực hiện cả INSERT và UPDATE trên cùng một dòng không?",
+      "back_vi": "KHÔNG. Nó rẽ nhánh: MATCHED thì UPDATE, NOT MATCHED thì INSERT."
+    }
+  },
+  {
+    "id": 91,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "What will be the output of following statement? \nUPDATE employees a \nSET job_id = (SELECT job_id \n              FROM new_employees b \n              WHERE a.employee_id = b.employee_id); \nAssume that Employee and New_employees tables have same structure.",
+    "prompt_vi": "Kết quả xuất ra của câu lệnh sau là gì?\nUPDATE employees a SET job_id = (SELECT job_id FROM new_employees b WHERE a.employee_id = b.employee_id);\n(Giả sử Employee và New_employees có cùng cấu trúc)",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "This statement will update job_id for all records of employees as:Match found in New_employees table use job_id from New_employees tableno match found in New_employees table update job_id as NULL.",
+        "text_vi": "Cập nhật job_id cho tất cả các bản ghi: Khớp trong New_employees thì lấy job_id mới; không khớp thì cập nhật job_id thành NULL.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "This statement will return error",
+        "text_vi": "Câu lệnh sẽ trả về lỗi.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "This statement will update only those records of Employees table which have matching employee_id in the New_employees table.",
+        "text_vi": "Chỉ cập nhật những bản ghi có employee_id khớp trong bảng New_employees.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "This statement will update job_id for all records of employees table but for records that do not have matching employee_id in the New_employees table the existing job_id will be retained.",
+        "text_vi": "Cập nhật những bản ghi khớp, các bản ghi không khớp sẽ giữ nguyên job_id cũ.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "🔥 BẪY KINH ĐIỂN TRONG SQL: Câu lệnh UPDATE không có mệnh đề WHERE ở tầng ngoài cùng! Khi đó nó duyệt qua TẤT CẢ các dòng của bảng employees. Đối với các dòng không tìm thấy `employee_id` tương ứng trong `new_employees`, truy vấn con trả về giá trị `NULL`. Do đó, `job_id` của các dòng này sẽ bị gán thành `NULL`!",
+    "key_takeaway_vi": "UPDATE dùng scalar subquery không có WHERE ngoài sẽ gán NULL cho các dòng không tìm thấy kết quả khớp.",
+    "flashcard": {
+      "front_en": "What will be the output of following statement? \nUPDATE employees a \nSET job_id = (SELECT job_id \n              FROM new_employees b \n              WHERE a.employee_id = b.employee_id); \nAssume that Employee and New_employees tables have same structure.",
+      "front_vi": "Điều gì xảy ra khi UPDATE a SET col = (SELECT ...) mà không có WHERE ở câu UPDATE ngoài?",
+      "back_vi": "Tất cả các dòng không khớp trong bảng con sẽ bị ghi đè thành NULL!"
+    }
+  },
+  {
+    "id": 92,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "Which of the following is not a DML statement?",
+    "prompt_vi": "Lệnh nào sau đây KHÔNG PHẢI là một câu lệnh thao tác dữ liệu (DML)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "COMMIT",
+        "text_vi": "COMMIT",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "MERGE",
+        "text_vi": "MERGE",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "UPDATE",
+        "text_vi": "UPDATE",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "DELETE",
+        "text_vi": "DELETE",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "`COMMIT` là câu lệnh thuộc nhóm TCL (Transaction Control Language - Ngôn ngữ điều khiển giao dịch), dùng để lưu vĩnh viễn các thay đổi vào đĩa. DML chỉ gồm: INSERT, UPDATE, DELETE, MERGE.",
+    "key_takeaway_vi": "COMMIT và ROLLBACK thuộc nhóm lệnh TCL, không phải DML.",
+    "flashcard": {
+      "front_en": "Which of the following is not a DML statement?",
+      "front_vi": "COMMIT thuộc nhóm ngôn ngữ nào trong SQL?",
+      "back_vi": "TCL (Transaction Control Language)."
+    }
+  },
+  {
+    "id": 93,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "What will be the output of following statement? \nINSERT INTO departments (department_id, department_name, manager_id) \nVALUES (300, 'Engineering', DEFAULT);",
+    "prompt_vi": "Kết quả của câu lệnh sau là gì?\nINSERT INTO departments (department_id, department_name, manager_id) VALUES (300, 'Engineering', DEFAULT);",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "This will insert one record in Employees table with values (300, 'Engineering') for the (department_id, department_name) respectively.",
+        "text_vi": "Sẽ chèn một bản ghi với các giá trị (300, 'Engineering') và giá trị mặc định cho cột manager_id.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "This will insert one record in Employees table with values (300, 'Engineering', DEFAULT) for the (department_id, department_name, manager_id) respectively",
+        "text_vi": "Chèn bản ghi với chuỗi chữ 'DEFAULT' cho manager_id.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "This will insert one record in Employees table with values (300, 'Engineering') for the (department_id, department_name) respectively manager_id will be NULL as DEFAULT is not a valid value.",
+        "text_vi": "Báo lỗi vì DEFAULT không phải là giá trị hợp lệ.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "This will return Error as DEFAULT is not allowed in the INSERT",
+        "text_vi": "Báo lỗi cú pháp vì từ khóa DEFAULT không được dùng trong mệnh đề VALUES.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong Oracle SQL, từ khóa `DEFAULT` là hoàn toàn hợp lệ trong mệnh đề `VALUES`. Khi chỉ định `DEFAULT`, Oracle sẽ tự động lấy giá trị mặc định được định nghĩa khi tạo bảng cho cột đó (hoặc NULL nếu không có giá trị mặc định).",
+    "key_takeaway_vi": "Từ khóa DEFAULT được phép sử dụng trong mệnh đề VALUES của lệnh INSERT.",
+    "flashcard": {
+      "front_en": "What will be the output of following statement? \nINSERT INTO departments (department_id, department_name, manager_id) \nVALUES (300, 'Engineering', DEFAULT);",
+      "front_vi": "Có thể dùng từ khóa DEFAULT trong câu lệnh INSERT VALUES (...) không?",
+      "back_vi": "CÓ. Oracle sẽ gán giá trị mặc định đã định nghĩa của cột đó."
+    }
+  },
+  {
+    "id": 94,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "You maintain two tables, CUSTOMER and PROSPECT, that have identical structures \nbut different data. You want to synchronize these two tables by inserting records from \nthe PROSPECT table into the CUSTOMER table, if they do not exist. If the customer \nalready exists in the CUSTOMER table, you want to update customer data. \nWhich DML statement should you use to perform this task?",
+    "prompt_vi": "Bạn có 2 bảng CUSTOMER và PROSPECT cùng cấu trúc. Bạn muốn đồng bộ: chèn các bản ghi từ PROSPECT vào CUSTOMER nếu chưa tồn tại; nếu đã tồn tại thì cập nhật thông tin khách hàng. Bạn nên dùng câu lệnh DML nào?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "MERGE",
+        "text_vi": "MERGE",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "INSERT",
+        "text_vi": "INSERT",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "UPDATE",
+        "text_vi": "UPDATE",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "You CANNOT perform this task with one DML operation.",
+        "text_vi": "Không thể thực hiện việc này chỉ với một câu lệnh DML.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Lệnh `MERGE` được sinh ra chính xác cho bài toán này (Conditional Insert/Update hay UPSERT). Nó cho phép kiểm tra sự tồn tại của dữ liệu và thực hiện đồng thời INSERT bản ghi mới hoặc UPDATE bản ghi cũ trong một câu lệnh duy nhất.",
+    "key_takeaway_vi": "Đồng bộ 2 bảng (chưa có thì chèn, có rồi thì cập nhật) dùng lệnh MERGE.",
+    "flashcard": {
+      "front_en": "You maintain two tables, CUSTOMER and PROSPECT, that have identical structures \nbut different data. You want to synchronize these two tables by inserting records from \nthe PROSPECT table into the CUSTOMER table, if they do not exist. If the customer \nalready exists in the CUSTOMER table, you want to update customer data. \nWhich DML statement should you use to perform this task?",
+      "front_vi": "Lệnh DML nào dùng để đồng bộ dữ liệu (Upsert) giữa 2 bảng?",
+      "back_vi": "MERGE."
+    }
+  },
+  {
+    "id": 95,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "You added a PHONE-NUMBER column of NUMBER data type to an existing \nEMPLOYEES table. \nThe EMPLOYEES table already contains records of 100 employees. Now, you want to \nenter the phone numbers of each of the 100 employees into the table. Some of the \nemployees may not have a phone number available. \nWhich data manipulation operation do you perform?",
+    "prompt_vi": "Bạn vừa thêm cột PHONE-NUMBER kiểu NUMBER vào bảng EMPLOYEES hiện có 100 nhân viên. Bây giờ bạn cần nhập số điện thoại cho các nhân viên này. Bạn sử dụng thao tác thao tác dữ liệu (DML) nào?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "PDATE",
+        "text_vi": "UPDATE (Trong đề thi gốc bị lỗi in ấn mất chữ U thành 'PDATE')",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "MERGE",
+        "text_vi": "MERGE",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "INSERT",
+        "text_vi": "INSERT",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ADD",
+        "text_vi": "ADD",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "⚠️ LƯU Ý ĐỀ THI: Khi các dòng dữ liệu nhân viên đã tồn tại sẵn trong bảng, việc điền dữ liệu vào một cột mới thêm là hành động CẬP NHẬT các dòng đã có, do đó bắt buộc phải dùng lệnh `UPDATE`. (Trong tài liệu gốc CDAC, phương án A bị lỗi in ấn rụng mất chữ cái 'U', hiển thị thành 'PDATE').",
+    "key_takeaway_vi": "Điền dữ liệu vào cột mới cho các dòng đã tồn tại dùng lệnh UPDATE.",
+    "flashcard": {
+      "front_en": "You added a PHONE-NUMBER column of NUMBER data type to an existing \nEMPLOYEES table. \nThe EMPLOYEES table already contains records of 100 employees. Now, you want to \nenter the phone numbers of each of the 100 employees into the table. Some of the \nemployees may not have a phone number available. \nWhich data manipulation operation do you perform?",
+      "front_vi": "Nhập dữ liệu vào một cột mới cho các hàng đã có sẵn trong bảng dùng lệnh gì?",
+      "back_vi": "UPDATE (Lưu ý trong đề thi CDAC có lỗi in ấn 'PDATE')."
+    }
+  },
+  {
+    "id": 96,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "Evaluate this DELETE statement: \nDELETE employee_id, salary, job_id \nFROM employees \nWHERE dept_id = 90; \nWhy does the DELETE statement fail when you execute it?",
+    "prompt_vi": "Đánh giá câu lệnh DELETE:\nDELETE employee_id, salary, job_id FROM employees WHERE dept_id = 90;\nTại sao câu lệnh DELETE này bị lỗi khi thực thi?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "You cannot specify column names in the DELETE clause of the DELETE statement.",
+        "text_vi": "Bạn không được phép chỉ định tên cột trong mệnh đề DELETE của câu lệnh DELETE.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "There is no row with dept_id 90 in the EMPLOYEES table.",
+        "text_vi": "Không có dòng nào có dept_id = 90 trong bảng.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "You cannot delete the JOB_ID column because it is a NOT NULL column.",
+        "text_vi": "Không thể xóa cột JOB_ID vì đó là cột NOT NULL.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "You cannot delete the EMPLOYEE_ID column because it is the primary key of the table.",
+        "text_vi": "Không thể xóa cột EMPLOYEE_ID vì đó là khóa chính của bảng.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Lệnh `DELETE` dùng để xóa CẢ DÒNG (records), do đó cú pháp SQL không cho phép liệt kê tên cột sau từ khóa DELETE. Cú pháp đúng phải là `DELETE FROM employees WHERE dept_id = 90;`.",
+    "key_takeaway_vi": "DELETE xóa cả bản ghi, không cho phép chỉ định danh sách tên cột.",
+    "flashcard": {
+      "front_en": "Evaluate this DELETE statement: \nDELETE employee_id, salary, job_id \nFROM employees \nWHERE dept_id = 90; \nWhy does the DELETE statement fail when you execute it?",
+      "front_vi": "Tại sao viết DELETE col1, col2 FROM table lại bị lỗi?",
+      "back_vi": "Vì DELETE thao tác trên toàn bộ hàng, không được phép liệt kê tên cột trong mệnh đề DELETE."
+    }
+  },
+  {
+    "id": 97,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "Examine the structure of the EMPLOYEES table: \nEMPLOYEE_ID  NUMBER        Primary Key \nFIRST_NAME   VARCHAR2(25) \nLAST_NAME    VARCHAR2(25) \nWhich statement inserts a row into the table?",
+    "prompt_vi": "Xét cấu trúc bảng EMPLOYEES: EMPLOYEE_ID NUMBER Primary Key, FIRST_NAME VARCHAR2(25), LAST_NAME VARCHAR2(25).\nCâu lệnh nào sau đây chèn thành công một dòng vào bảng?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "INSERT INTO employees VALUES ('1000','John',NULL);",
+        "text_vi": "INSERT INTO employees VALUES ('1000','John',NULL);",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "INSERT INTO employees VALUES ( NULL, 'John','Smith');",
+        "text_vi": "INSERT INTO employees VALUES ( NULL, 'John','Smith');",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "INSERT INTO employees( first_name, last_name) VALUES('John','Smith');",
+        "text_vi": "INSERT INTO employees( first_name, last_name) VALUES('John','Smith');",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "INSERT INTO employees(first_name,last_name, employee_id) VALUES ( 1000, 'John','Smith');",
+        "text_vi": "INSERT INTO employees(first_name,last_name, employee_id) VALUES ( 1000, 'John','Smith'); (Thứ tự giá trị bị đảo lộn)",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Cột `EMPLOYEE_ID` là Primary Key nên bắt buộc phải có giá trị khác NULL. Các cột `first_name` và `last_name` không có ràng buộc NOT NULL nên có thể nhận giá trị NULL. Phương án A truyền '1000' (chuỗi số tự động ép sang NUMBER) làm khóa chính, 'John' cho first_name và NULL cho last_name nên hoàn toàn hợp lệ.",
+    "key_takeaway_vi": "Cột Primary Key bắt buộc phải có giá trị khác NULL, các cột khác cho phép NULL có thể nhận giá trị NULL.",
+    "flashcard": {
+      "front_en": "Examine the structure of the EMPLOYEES table: \nEMPLOYEE_ID  NUMBER        Primary Key \nFIRST_NAME   VARCHAR2(25) \nLAST_NAME    VARCHAR2(25) \nWhich statement inserts a row into the table?",
+      "front_vi": "Điều kiện tiên quyết của giá trị chèn vào cột Primary Key là gì?",
+      "back_vi": "Phải có giá trị duy nhất và KHÔNG ĐƯỢC LÀ NULL."
+    }
+  },
+  {
+    "id": 98,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "Examine the data from the CLASS and INSTRUCTOR tables. \nCLASS Table \nCLASS_ID  CLASS_NAME                  HOURS_CREDIT  INSTRUCTOR_ID \n--------  --------------------------  ------------  ------------- \n1         Introduction to Accounting  3             4 \n2         Computer Basics             3             1 \n3         Tax Accounting Principles   3             4 \n4         American History            3             2 \n5         Basic Engineering           3 \nYou want to delete the classes that do NOT have an instructor assigned. Which \nDELETE statement will accomplish the desired result?",
+    "prompt_vi": "Xem dữ liệu bảng CLASS (gồm CLASS_ID, CLASS_NAME, HOURS_CREDIT, INSTRUCTOR_ID). Bạn muốn xóa các lớp học CHƯA ĐƯỢC phân công giảng viên. Câu lệnh DELETE nào cho kết quả mong muốn?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "DELETE FROM class WHERE instructor_id IS NULL;",
+        "text_vi": "DELETE FROM class WHERE instructor_id IS NULL;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "DELETE class_id, class_name, hours_credit, instructor_id FROM class WHERE instructor_id IS NULL;",
+        "text_vi": "DELETE class_id, class_name, hours_credit, instructor_id FROM class WHERE instructor_id IS NULL;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "DELETE FROM class WHERE instructor_id NOT IN(SELECT instructor_id FROM class);",
+        "text_vi": "DELETE FROM class WHERE instructor_id NOT IN(SELECT instructor_id FROM class);",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "DELETE FROM instructor NATURAL JOIN class WHERE instructor_id IS NOT NULL;",
+        "text_vi": "DELETE FROM instructor NATURAL JOIN class WHERE instructor_id IS NOT NULL;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Để kiểm tra một cột có giá trị rỗng/chưa được phân công, toán tử chuẩn trong SQL là `IS NULL` (không được dùng `= NULL`). Do đó câu lệnh chính xác là `DELETE FROM class WHERE instructor_id IS NULL;`.",
+    "key_takeaway_vi": "Kiểm tra giá trị rỗng trong SQL bắt buộc dùng toán tử IS NULL.",
+    "flashcard": {
+      "front_en": "Examine the data from the CLASS and INSTRUCTOR tables. \nCLASS Table \nCLASS_ID  CLASS_NAME                  HOURS_CREDIT  INSTRUCTOR_ID \n--------  --------------------------  ------------  ------------- \n1         Introduction to Accounting  3             4 \n2         Computer Basics             3             1 \n3         Tax Accounting Principles   3             4 \n4         American History            3             2 \n5         Basic Engineering           3 \nYou want to delete the classes that do NOT have an instructor assigned. Which \nDELETE statement will accomplish the desired result?",
+      "front_vi": "So sánh giá trị rỗng trong điều kiện WHERE của SQL như thế nào?",
+      "back_vi": "Dùng toán tử IS NULL (ví dụ: WHERE instructor_id IS NULL), không dùng = NULL."
+    }
+  },
+  {
+    "id": 99,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "The PRODUCT table contains these columns: \nPRODUCT_ID    NUMBER  NOT NULL \nPRODUCT_NAME  VARCHAR2(25) \nSUPPLIER_ID   NUMBER \nLIST_PRICE    NUMBER(7,2) \nCOST          NUMBER(7,2) \nYou need to increase the list price and cost of all products supplied by Global Imports, \nInc. by 5.5 percent. The SUPPLIER_ID for Global Imports, Inc. is 105. Which \nstatement should you use?",
+    "prompt_vi": "Bảng PRODUCT có các cột: PRODUCT_ID, PRODUCT_NAME, SUPPLIER_ID, LIST_PRICE, COST.\nBạn cần tăng giá niêm yết (list price) và giá vốn (cost) thêm 5.5% cho tất cả các sản phẩm do nhà cung cấp ID = 105 cung cấp. Câu lệnh nào đúng?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "UPDATE product SET list_price = list_price * 1.055, cost = cost * 1.055 WHERE supplier_id = 105;",
+        "text_vi": "UPDATE product SET list_price = list_price * 1.055, cost = cost * 1.055 WHERE supplier_id = 105;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "UPDATE product SET list_price = list_price * 1.055 SET cost = cost * 1.055 WHERE supplier_id = 105;",
+        "text_vi": "UPDATE product SET list_price = list_price * 1.055 SET cost = cost * 1.055 WHERE supplier_id = 105;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "UPDATE product",
+        "text_vi": "UPDATE product",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "UPDATE product SET list_price = list_price + (list_price * .055), cost = cost + (cost * .055) WHERE supplier_id LIKE 'Global Imports, Inc.' OR supplier_id = 105;",
+        "text_vi": "UPDATE product SET list_price = list_price + (list_price * .055), cost = cost + (cost * .055) WHERE supplier_id LIKE 'Global Imports, Inc.' OR supplier_id = 105;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Để cập nhật nhiều cột trong câu lệnh UPDATE, các cặp phép gán được ngăn cách bằng dấu phẩy `,` sau duy nhất một từ khóa `SET`. Tăng 5.5% tương đương với nhân giá trị với `1.055` (`1 + 0.055`). Phương án B sai vì lặp lại từ khóa SET.",
+    "key_takeaway_vi": "Cập nhật nhiều cột: SET col1 = val1, col2 = val2 (chỉ dùng một từ khóa SET, phân cách bằng dấu phẩy).",
+    "flashcard": {
+      "front_en": "The PRODUCT table contains these columns: \nPRODUCT_ID    NUMBER  NOT NULL \nPRODUCT_NAME  VARCHAR2(25) \nSUPPLIER_ID   NUMBER \nLIST_PRICE    NUMBER(7,2) \nCOST          NUMBER(7,2) \nYou need to increase the list price and cost of all products supplied by Global Imports, \nInc. by 5.5 percent. The SUPPLIER_ID for Global Imports, Inc. is 105. Which \nstatement should you use?",
+      "front_vi": "Cách viết nhiều cột trong mệnh đề SET của lệnh UPDATE?",
+      "back_vi": "SET col1 = expr1, col2 = expr2 (ngăn cách bằng dấu phẩy)."
+    }
+  },
+  {
+    "id": 100,
+    "module_id": 5,
+    "module_name_en": "Module 5: DML",
+    "module_name_vi": "Module 5: Ngôn ngữ thao tác dữ liệu (DML)",
+    "prompt_en": "Examine the structures of the EVENT and NEW_EVENT tables. \nEVENT Table \nEVENT_ID           NUMBER \nEVENT_NAME         VARCHAR2(30) \nEVENT_DESCRIPTION  VARCHAR2(100) \nEVENT_TYPE_ID      NUMBER \nNEW_EVENT Table \nEVENT_ID           NUMBER \nEVENT_NAME         VARCHAR2(30) \nEVENT_DESCRIPTION  VARCHAR2(100) \nEVENT_TYPE_ID      NUMBER \nSTART_DT           DATE \nYou execute this MERGE statement: \nMERGE INTO event e \nUSING (SELECT * \n       FROM new_event \n       WHERE event_type_id = 4) n \nON (e.event_id = n.event_id) \nWHEN MATCHED THEN \n  UPDATE SET \n    e.event_type_id = n.event_type_id, \n    e.start_dt = n.start_dt \nWHEN NOT MATCHED THEN \n  INSERT (event_id, event_name, event_type_id) \n  VALUES (n.event_id, n.event_name, n.event_type_id); \nThis MERGE statement generates an error. Which statement describes the cause of the \nerror?",
+    "prompt_vi": "Xét cấu trúc bảng EVENT và NEW_EVENT. Bạn thực thi câu lệnh MERGE sau:\nMERGE INTO event e USING (SELECT * FROM new_event WHERE event_type_id = 4) n ON (e.event_id = n.event_id)\nWHEN MATCHED THEN UPDATE SET e.event_type_id = n.event_type_id, e.start_dt = n.start_dt\nWHEN NOT MATCHED THEN INSERT (event_id, event_name, event_type_id) VALUES (n.event_id, n.event_name, n.event_type_id);\nCâu lệnh MERGE này bị lỗi. Nguyên nhân là gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The UPDATE portion of the statement is invalid.",
+        "text_vi": "Phần UPDATE của câu lệnh không hợp lệ (The UPDATE portion of the statement is invalid).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "A subquery CANNOT be used in the USING clause of a MERGE statement.",
+        "text_vi": "Không thể dùng subquery trong mệnh đề USING của câu lệnh MERGE.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Table aliases CANNOT be used in a MERGE statement.",
+        "text_vi": "Không được dùng bí danh bảng trong câu lệnh MERGE.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The ON clause of the statement is invalid.",
+        "text_vi": "Mệnh đề ON của câu lệnh không hợp lệ.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong Oracle SQL, mệnh đề `UPDATE SET` bên trong `MERGE` KHÔNG ĐƯỢC phép thêm tiền tố bí danh của bảng đích vào các cột được cập nhật (phải viết `event_type_id = n.event_type_id`, không được viết `e.event_type_id`). Ngoài ra, bảng EVENT không có cột `start_dt` (cột này chỉ có ở bảng `new_event`). Do đó phần UPDATE bị lỗi.",
+    "key_takeaway_vi": "Trong MERGE UPDATE SET, không được đặt bí danh bảng đích vào tên cột cần sửa.",
+    "flashcard": {
+      "front_en": "Examine the structures of the EVENT and NEW_EVENT tables. \nEVENT Table \nEVENT_ID           NUMBER \nEVENT_NAME         VARCHAR2(30) \nEVENT_DESCRIPTION  VARCHAR2(100) \nEVENT_TYPE_ID      NUMBER \nNEW_EVENT Table \nEVENT_ID           NUMBER \nEVENT_NAME         VARCHAR2(30) \nEVENT_DESCRIPTION  VARCHAR2(100) \nEVENT_TYPE_ID      NUMBER \nSTART_DT           DATE \nYou execute this MERGE statement: \nMERGE INTO event e \nUSING (SELECT * \n       FROM new_event \n       WHERE event_type_id = 4) n \nON (e.event_id = n.event_id) \nWHEN MATCHED THEN \n  UPDATE SET \n    e.event_type_id = n.event_type_id, \n    e.start_dt = n.start_dt \nWHEN NOT MATCHED THEN \n  INSERT (event_id, event_name, event_type_id) \n  VALUES (n.event_id, n.event_name, n.event_type_id); \nThis MERGE statement generates an error. Which statement describes the cause of the \nerror?",
+      "front_vi": "Lỗi phổ biến nhất trong mệnh đề UPDATE của lệnh MERGE là gì?",
+      "back_vi": "Gắn bí danh bảng đích vào cột cần cập nhật (ví dụ viết e.col = ... là vi phạm cú pháp Oracle)."
+    }
+  },
+  {
+    "id": 101,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "You want to use a function in your column clause of a SQL statement. \nThe NVL function accomplishes which of the following tasks?",
+    "prompt_vi": "Hàm NVL trong Oracle SQL thực hiện tác vụ nào sau đây?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Enables you to specify alternated out for NULL column values.",
+        "text_vi": "Cho phép chỉ định một giá trị thay thế cho các giá trị cột là NULL (specify alternate output for NULL).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Assists in the distribution of output across multiple columns.",
+        "text_vi": "Hỗ trợ phân phối kết quả đầu ra trên nhiều cột.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Enables you to specify alternate output for non-NULL column values.",
+        "text_vi": "Chỉ định giá trị thay thế cho các giá trị KHÔNG NULL.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Nullifies the value of the column output.",
+        "text_vi": "Biến giá trị của cột thành NULL.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Cú pháp `NVL(expr1, expr2)`: Nếu `expr1` là NULL thì hàm sẽ trả về `expr2`; nếu `expr1` không phải là NULL thì giữ nguyên giá trị `expr1`. Cả hai đối số phải có kiểu dữ liệu tương thích.",
+    "key_takeaway_vi": "NVL(biểu_thức, giá_trị_thay_thế): Thay thế NULL bằng một giá trị cụ thể.",
+    "flashcard": {
+      "front_en": "You want to use a function in your column clause of a SQL statement. \nThe NVL function accomplishes which of the following tasks?",
+      "front_vi": "Cú pháp và tác dụng của hàm NVL trong Oracle?",
+      "back_vi": "NVL(expr1, expr2): Nếu expr1 là NULL thì trả về expr2, ngược lại trả về expr1."
+    }
+  },
+  {
+    "id": 102,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Which SELECT statement will show the result 'elloworld' from the string 'HelloWorld'?",
+    "prompt_vi": "Câu lệnh SELECT nào sau đây trả về kết quả 'elloworld' từ chuỗi 'HelloWorld'?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT LOWER (TRIM ('H' FROM 'HelloWorld')) FROM dual;",
+        "text_vi": "SELECT LOWER (TRIM ('H' FROM 'HelloWorld')) FROM dual;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT SUBSTR ('HelloWorld', 1) FROM dual;",
+        "text_vi": "SELECT SUBSTR ('HelloWorld', 1) FROM dual;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT INITCAP (TRIM ('HelloWorld', 1, 1)) FROM dual;",
+        "text_vi": "SELECT INITCAP (TRIM ('HelloWorld', 1, 1)) FROM dual;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT LOWER (SUBSTR ('HelloWorld', 1, 1) FROM dual;",
+        "text_vi": "SELECT LOWER (SUBSTR ('HelloWorld', 1, 1) FROM dual;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "`TRIM ('H' FROM 'HelloWorld')` sẽ cắt bỏ ký tự 'H' ở đầu chuỗi, thu được `'elloWorld'`. Sau đó, hàm `LOWER()` chuyển toàn bộ chuỗi sang chữ thường, thu được kết quả chính xác là `'elloworld'`.",
+    "key_takeaway_vi": "TRIM cắt ký tự chỉ định ở đầu/cuối chuỗi, LOWER chuyển toàn bộ thành chữ thường.",
+    "flashcard": {
+      "front_en": "Which SELECT statement will show the result 'elloworld' from the string 'HelloWorld'?",
+      "front_vi": "TRIM('H' FROM 'HelloWorld') trả về kết quả gì?",
+      "back_vi": "'elloWorld' (cắt bỏ ký tự 'H' ở đầu chuỗi)."
+    }
+  },
+  {
+    "id": 103,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Which script displays '01-JAN-02' when the ENROLL_DATE value is '01-JUL-01'?",
+    "prompt_vi": "Đoạn mã nào sau đây hiển thị '01-JAN-02' khi giá trị của ENROLL_DATE là '01-JUL-01'?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT ROUND (enroll_date, 'YEAR') FROM student;",
+        "text_vi": "SELECT ROUND (enroll_date, 'YEAR') FROM student;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT ROUND (enroll_date, 'DAY') FROM student;",
+        "text_vi": "SELECT ROUND (enroll_date, 'DAY') FROM student;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT ROUND (enroll_date, 'MONTH') FROM student;",
+        "text_vi": "SELECT ROUND (enroll_date, 'MONTH') FROM student;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT ROUND (TO_CHAR(enroll_date, 'YYYY')) FROM student;",
+        "text_vi": "SELECT ROUND (TO_CHAR(enroll_date, 'YYYY')) FROM student;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Hàm `ROUND(date, 'YEAR')` làm tròn ngày đến ngày 1 tháng 1 gần nhất. Mốc làm tròn là ngày 1 tháng 7: từ ngày 1/7 trở đi sẽ được làm tròn lên năm tiếp theo. Ngày '01-JUL-01' đạt mốc làm tròn lên, nên kết quả là ngày đầu năm sau: '01-JAN-02'.",
+    "key_takeaway_vi": "ROUND(date, 'YEAR') làm tròn lên năm tiếp theo nếu ngày từ 01-JUL trở đi.",
+    "flashcard": {
+      "front_en": "Which script displays '01-JAN-02' when the ENROLL_DATE value is '01-JUL-01'?",
+      "front_vi": "Hàm ROUND(ngày, 'YEAR') làm tròn ngày theo quy tắc nào?",
+      "back_vi": "Nếu từ 01-JUL trở đi thì làm tròn lên ngày 01-JAN của năm sau; trước 01-JUL thì làm tròn về 01-JAN của năm hiện tại."
+    }
+  },
+  {
+    "id": 104,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Which function can be used in your query on department table to restrict the data \ndisplayed to only those department names containing 3 characters?",
+    "prompt_vi": "Hàm nào có thể dùng trong truy vấn trên bảng department để chỉ hiển thị các phòng ban có tên chứa đúng 3 ký tự?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "LENGTH",
+        "text_vi": "LENGTH",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "REPLACE",
+        "text_vi": "REPLACE",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SUBSTR",
+        "text_vi": "SUBSTR",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "RPAD",
+        "text_vi": "RPAD",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Hàm `LENGTH(chuỗi)` trả về độ dài số lượng ký tự của chuỗi. Để lọc các tên phòng ban có 3 ký tự, ta dùng: `WHERE LENGTH(department_name) = 3`.",
+    "key_takeaway_vi": "Hàm LENGTH(str) trả về số lượng ký tự trong chuỗi.",
+    "flashcard": {
+      "front_en": "Which function can be used in your query on department table to restrict the data \ndisplayed to only those department names containing 3 characters?",
+      "front_vi": "Hàm nào trong SQL đếm số lượng ký tự của một chuỗi?",
+      "back_vi": "LENGTH(string)."
+    }
+  },
+  {
+    "id": 105,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Which statement concerning SQL functions is true?",
+    "prompt_vi": "Phát biểu nào sau đây về các hàm trong SQL là ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Character functions can return character or number values.",
+        "text_vi": "Các hàm chuỗi (Character functions) có thể trả về giá trị kiểu chuỗi hoặc kiểu số.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Conversion functions convert a column definition from one data type to another data type.",
+        "text_vi": "Hàm chuyển đổi (Conversion functions) chuyển đổi định nghĩa cột từ kiểu dữ liệu này sang kiểu khác.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Single-row functions can only be used in SELECT and WHERE clauses.",
+        "text_vi": "Hàm xử lý đơn dòng chỉ có thể được sử dụng trong các mệnh đề SELECT và WHERE.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "All date functions return DATE data type values.",
+        "text_vi": "Tất cả các hàm ngày tháng đều trả về giá trị kiểu dữ liệu DATE.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Phát biểu A là hoàn toàn chính xác. Ví dụ: hàm `UPPER()`, `SUBSTR()` trả về kiểu chuỗi (character), trong khi hàm `LENGTH()`, `INSTR()` cũng là hàm xử lý chuỗi nhưng trả về kiểu số (number). Phương án C sai vì dùng được cả ở ORDER BY; phương án D sai vì MONTHS_BETWEEN trả về số.",
+    "key_takeaway_vi": "Hàm chuỗi có thể trả về chuỗi (UPPER, LOWER) hoặc trả về số (LENGTH, INSTR).",
+    "flashcard": {
+      "front_en": "Which statement concerning SQL functions is true?",
+      "front_vi": "Hàm chuỗi trong SQL có thể trả về kiểu dữ liệu số không?",
+      "back_vi": "CÓ. Ví dụ LENGTH(str) và INSTR(str, substr) là hàm chuỗi trả về kiểu số NUMBER."
+    }
+  },
+  {
+    "id": 106,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Evaluate the SQL statement: \nSELECT ROUND(45.953, -1), TRUNC(45.936, 2) \nFROM dual; \nWhich values are displayed?",
+    "prompt_vi": "Đánh giá câu lệnh SQL sau:\nSELECT ROUND(45.953, -1), TRUNC(45.936, 2) FROM dual;\nNhững giá trị nào sẽ được hiển thị?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "50 and 45.93",
+        "text_vi": "50 và 45.93",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "46 and 45",
+        "text_vi": "46 và 45",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "46 and 45.93",
+        "text_vi": "46 và 45.93",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "50 and 45.9",
+        "text_vi": "50 và 45.9",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "`ROUND(45.953, -1)`: tham số -1 nghĩa là làm tròn đến hàng chục. 45.953 có hàng đơn vị là 5 nên làm tròn lên thành 50. `TRUNC(45.936, 2)`: cắt bớt sau 2 chữ số thập phân (không làm tròn) thu được 45.93.",
+    "key_takeaway_vi": "ROUND(x, -1) làm tròn đến hàng chục; TRUNC(x, 2) cắt cụt chỉ giữ lại 2 số thập phân.",
+    "flashcard": {
+      "front_en": "Evaluate the SQL statement: \nSELECT ROUND(45.953, -1), TRUNC(45.936, 2) \nFROM dual; \nWhich values are displayed?",
+      "front_vi": "ROUND(45.953, -1) và TRUNC(45.936, 2) ra kết quả gì?",
+      "back_vi": "50 và 45.93."
+    }
+  },
+  {
+    "id": 107,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Which of the following is not a number function?",
+    "prompt_vi": "Hàm nào sau đây KHÔNG PHẢI là một hàm xử lý số (Number function)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "TO_NUMBER.",
+        "text_vi": "TO_NUMBER",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "TRUNC",
+        "text_vi": "TRUNC",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SQRT",
+        "text_vi": "SQRT",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ROUND",
+        "text_vi": "ROUND",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "`TO_NUMBER` là một hàm chuyển đổi kiểu dữ liệu (Conversion Function) dùng để chuyển chuỗi ký tự thành kiểu số, không phải là hàm toán học xử lý số. Các hàm TRUNC, SQRT, ROUND, MOD là các hàm số (Number functions).",
+    "key_takeaway_vi": "TO_NUMBER là hàm chuyển đổi (Conversion Function), không phải hàm toán học xử lý số.",
+    "flashcard": {
+      "front_en": "Which of the following is not a number function?",
+      "front_vi": "TO_NUMBER thuộc nhóm hàm nào trong SQL?",
+      "back_vi": "Nhóm hàm chuyển đổi kiểu dữ liệu (Conversion Functions)."
+    }
+  },
+  {
+    "id": 108,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "You are using single row function in a SELECT statement which function can best be \ncategorized as similar in function to an IF-THEN-ELSE statement?",
+    "prompt_vi": "Khi sử dụng hàm đơn dòng trong câu lệnh SELECT, hàm nào sau đây có chức năng tương tự như cấu trúc lệnh rẽ nhánh IF-THEN-ELSE?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "DECODE",
+        "text_vi": "DECODE",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SQRT",
+        "text_vi": "SQRT",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "NEW_TIME",
+        "text_vi": "NEW_TIME",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ROWIDTOCHAR.",
+        "text_vi": "ROWIDTOCHAR",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Hàm `DECODE(col, val1, res1, val2, res2, default)` là hàm đặc trưng của Oracle cung cấp logic điều kiện tương tự câu lệnh `IF col = val1 THEN res1 ELSIF col = val2 THEN res2 ELSE default END`.",
+    "key_takeaway_vi": "Hàm DECODE tương đương cấu trúc IF-THEN-ELSE trong Oracle SQL.",
+    "flashcard": {
+      "front_en": "You are using single row function in a SELECT statement which function can best be \ncategorized as similar in function to an IF-THEN-ELSE statement?",
+      "front_vi": "Hàm nào trong Oracle tương đương với mệnh đề IF-THEN-ELSE?",
+      "back_vi": "Hàm DECODE (và biểu thức CASE)."
+    }
+  },
+  {
+    "id": 109,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Which is not an attributes of single row functions?",
+    "prompt_vi": "Đặc điểm nào sau đây KHÔNG PHẢI là đặc tính của các hàm đơn dòng (Single row functions)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "cannot be nested",
+        "text_vi": "Không thể lồng nhau (cannot be nested).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "manipulate data items",
+        "text_vi": "Thao tác trên từng phần tử dữ liệu.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "act on each row returned",
+        "text_vi": "Tác động trên mỗi dòng được trả về.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "return one result per row",
+        "text_vi": "Trả về duy nhất một kết quả cho mỗi dòng.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Phát biểu A là SAI vì các hàm đơn dòng trong SQL CÓ THỂ LỒNG NHAU đến độ sâu tùy ý. Ví dụ: `ROUND(TRUNC(MOD(1600, 10), -1), 2)` là lồng 3 hàm đơn dòng với nhau.",
+    "key_takeaway_vi": "Hàm đơn dòng tác động lên từng dòng, trả về 1 kết quả mỗi dòng và có thể lồng nhau không giới hạn.",
+    "flashcard": {
+      "front_en": "Which is not an attributes of single row functions?",
+      "front_vi": "Các hàm đơn dòng trong SQL có thể lồng nhau được không?",
+      "back_vi": "CÓ. Có thể lồng các hàm đơn dòng với nhau tới bất kỳ độ sâu nào."
+    }
+  },
+  {
+    "id": 110,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Which SQL statement returns a numeric value?",
+    "prompt_vi": "Câu lệnh SQL nào sau đây trả về một giá trị kiểu số (numeric value)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT sysdate-hire_date FROM EMP;",
+        "text_vi": "SELECT sysdate-hire_date FROM EMP;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT ADD_MONTHS(MAX(hire_Date), 6) FROM EMP;",
+        "text_vi": "SELECT ADD_MONTHS(MAX(hire_Date), 6) FROM EMP;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT ROUND(hire_date) FROM EMP;",
+        "text_vi": "SELECT ROUND(hire_date) FROM EMP;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT TO_NUMBER(hire_date + 7) FROM EMP;",
+        "text_vi": "SELECT TO_NUMBER(hire_date + 7) FROM EMP;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong Oracle, phép trừ giữa hai giá trị ngày tháng (`DATE - DATE`) sẽ trả về kết quả là một số (NUMBER) biểu thị số ngày chênh lệch giữa hai thời điểm. Do đó `sysdate - hire_date` trả về số ngày làm việc.",
+    "key_takeaway_vi": "Ngày trừ Ngày (DATE - DATE) trả về số lượng ngày (kiểu NUMBER).",
+    "flashcard": {
+      "front_en": "Which SQL statement returns a numeric value?",
+      "front_vi": "Phép tính SYSDATE - hire_date trả về kiểu dữ liệu gì?",
+      "back_vi": "Kiểu số (NUMBER) - biểu thị khoảng thời gian chênh lệch tính theo số ngày."
+    }
+  },
+  {
+    "id": 111,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Which is not a type of Single Row functions available in SQL?",
+    "prompt_vi": "Loại nào sau đây KHÔNG PHẢI là một loại hàm đơn dòng (Single Row functions) trong SQL?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "calendar",
+        "text_vi": "calendar",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "string",
+        "text_vi": "string",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "character",
+        "text_vi": "character",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Numeric",
+        "text_vi": "Numeric",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Các nhóm hàm đơn dòng chuẩn trong SQL gồm: Character/String (chuỗi), Number/Numeric (số), Date (ngày tháng), Conversion (chuyển đổi) và General (tổng quát). Không có nhóm hàm nào tên là 'calendar'.",
+    "key_takeaway_vi": "SQL không có nhóm hàm nào tên là 'calendar'.",
+    "flashcard": {
+      "front_en": "Which is not a type of Single Row functions available in SQL?",
+      "front_vi": "Các nhóm hàm đơn dòng chính trong SQL là gì?",
+      "back_vi": "Character (chuỗi), Number (số), Date (ngày), Conversion (chuyển đổi), General (tổng quát)."
+    }
+  },
+  {
+    "id": 112,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Management has asked you to calculate the value 12*salary*commission_pct for all the \nemployees in the EMP table. \nThe EMP table contains these columns: \nLAST_NAME       VARCHAR2(35)  NOT NULL \nSALARY          NUMBER(9,2)   NOT NULL \nCOMMISSION_PCT  NUMBER(4,2) \nWhich statement ensures that a value is displayed in the calculated columns for all \nemployees?",
+    "prompt_vi": "Ban quản lý yêu cầu tính giá trị `12 * salary * commission_pct` cho tất cả nhân viên trong bảng EMP. Bảng có các cột: LAST_NAME, SALARY, COMMISSION_PCT.\nCâu lệnh nào đảm bảo luôn hiển thị một giá trị cụ thể (không bị ra NULL) cho tất cả nhân viên?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT last_name, 12*salary*(nvl(commission_pct,0)) FROM emp;",
+        "text_vi": "SELECT last_name, 12*salary*(nvl(commission_pct,0)) FROM emp;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT last_name, 12*salary*commison_pct FROM emp;",
+        "text_vi": "SELECT last_name, 12*salary*commison_pct FROM emp;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT last_name, 12*salary* (commission_pct,0) FROM emp;",
+        "text_vi": "SELECT last_name, 12*salary* (commission_pct,0) FROM emp;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT last_name, 12*salary*(decode(commission_pct,0)) FROM emp;",
+        "text_vi": "SELECT last_name, 12*salary*(decode(commission_pct,0)) FROM emp;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Nếu một nhân viên không có hoa hồng, `commission_pct` sẽ là NULL. Khi đó phép nhân với NULL sẽ biến toàn bộ kết quả thành NULL. Hàm `NVL(commission_pct, 0)` sẽ chuyển các giá trị NULL thành số 0, đảm bảo phép nhân luôn ra một kết quả số xác định.",
+    "key_takeaway_vi": "Sử dụng NVL(col, 0) để thay thế NULL bằng 0 trong các biểu thức tính toán số học.",
+    "flashcard": {
+      "front_en": "Management has asked you to calculate the value 12*salary*commission_pct for all the \nemployees in the EMP table. \nThe EMP table contains these columns: \nLAST_NAME       VARCHAR2(35)  NOT NULL \nSALARY          NUMBER(9,2)   NOT NULL \nCOMMISSION_PCT  NUMBER(4,2) \nWhich statement ensures that a value is displayed in the calculated columns for all \nemployees?",
+      "front_vi": "Tại sao cần dùng NVL khi tính toán lương có hoa hồng?",
+      "back_vi": "Vì nếu hoa hồng là NULL, phép nhân sẽ ra NULL. NVL(comm, 0) giúp chuyển NULL thành 0."
+    }
+  },
+  {
+    "id": 113,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Evaluate the SQL statement: \nSELECT LPAD(salary, 10, *) \nFROM EMP \nWHERE EMP_ID = 1001; \nIf the employee with the EMP_ID 1001 has a salary of 17000, what is displayed?",
+    "prompt_vi": "Đánh giá câu lệnh SQL:\nSELECT LPAD(salary, 10, *) FROM EMP WHERE EMP_ID = 1001;\nNếu nhân viên có lương là 17000, kết quả hiển thị sẽ là gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "An error statement",
+        "text_vi": "Một thông báo lỗi (An error statement).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "17000.00",
+        "text_vi": "17000.00",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "17000*****",
+        "text_vi": "17000*****",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "*****17000",
+        "text_vi": "*****17000",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "⚠️ BẪY CÚ PHÁP: Ký tự đệm trong hàm LPAD bắt buộc phải là một chuỗi ký tự đặt trong dấu nháy đơn `'*'`. Ở đây câu lệnh viết dấu sao trần `*` không có dấu nháy đơn, do đó Oracle sẽ hiểu nhầm dấu sao là toán tử hoặc ký tự đại diện và báo lỗi cú pháp ngay lập tức!",
+    "key_takeaway_vi": "Đối số ký tự đệm trong LPAD/RPAD bắt buộc phải đặt trong dấu nháy đơn: LPAD(col, 10, '*').",
+    "flashcard": {
+      "front_en": "Evaluate the SQL statement: \nSELECT LPAD(salary, 10, *) \nFROM EMP \nWHERE EMP_ID = 1001; \nIf the employee with the EMP_ID 1001 has a salary of 17000, what is displayed?",
+      "front_vi": "SELECT LPAD(salary, 10, *) có chạy được không?",
+      "back_vi": "Báo lỗi cú pháp vì thiếu dấu nháy đơn quanh ký tự '*': phải viết là LPAD(salary, 10, '*')."
+    }
+  },
+  {
+    "id": 114,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "The EMPLOYEE table has these columns: \nLAST_NAME       VARCHAR2(35) \nSALARY          NUMBER(8,2) \nCOMMISSION_PCT  NUMBER(5,2) \nYou want to display the name and annual salary multiplied by the commission_pct for \nall employees. For records that have a NULL commission_pct, a zero must be displayed \nagainst the calculated column. Which SQL statement displays the desired results?",
+    "prompt_vi": "Bạn muốn hiển thị tên và thu nhập hoa hồng hàng năm `(salary * 12) * commission_pct`. Với những nhân viên có commission_pct là NULL, kết quả tính toán phải hiển thị là 0. Câu lệnh nào đúng?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT last_name, (salary * 12) * NVL(commission_pct, 0) FROM EMPLOYEES;",
+        "text_vi": "SELECT last_name, (salary * 12) * NVL(commission_pct, 0) FROM EMPLOYEES;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT last_name, (salary * 12) * commission_pct FROM EMPLOYEES;",
+        "text_vi": "SELECT last_name, (salary * 12) * commission_pct FROM EMPLOYEES;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT last_name, (salary * 12) * IFNULL(commission_pct,0) FROM EMPLOYEES;",
+        "text_vi": "SELECT last_name, (salary * 12) * IFNULL(commission_pct,0) FROM EMPLOYEES;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT last_name, (salary * 12) * NVL2(commission_pct, 0) FROM EMPLOYEES;",
+        "text_vi": "SELECT last_name, (salary * 12) * NVL2(commission_pct, 0) FROM EMPLOYEES;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Hàm `NVL(commission_pct, 0)` kiểm tra nếu giá trị là NULL thì trả về 0, giúp phép tính trở thành `(salary * 12) * 0 = 0`. Oracle không có hàm `IFNULL` (đó là của MySQL) và `NVL2` yêu cầu 3 tham số.",
+    "key_takeaway_vi": "Oracle dùng NVL(val, 0) để thay thế NULL trong biểu thức tính toán.",
+    "flashcard": {
+      "front_en": "The EMPLOYEE table has these columns: \nLAST_NAME       VARCHAR2(35) \nSALARY          NUMBER(8,2) \nCOMMISSION_PCT  NUMBER(5,2) \nYou want to display the name and annual salary multiplied by the commission_pct for \nall employees. For records that have a NULL commission_pct, a zero must be displayed \nagainst the calculated column. Which SQL statement displays the desired results?",
+      "front_vi": "Oracle có hàm IFNULL(val, default) không?",
+      "back_vi": "KHÔNG. Hàm IFNULL thuộc MySQL. Trong Oracle sử dụng hàm NVL(val, default)."
+    }
+  },
+  {
+    "id": 115,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "You would like to display the system date in the format \"Monday, 01 June, 2001\". \nWhich SELECT statement should you use?",
+    "prompt_vi": "Bạn muốn hiển thị ngày hệ thống theo định dạng \"Monday, 01 June, 2001\". Bạn nên sử dụng câu lệnh SELECT nào?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT TO_CHAR(SYSDATE, 'FMDay, DD Month, YYYY') FROM dual;",
+        "text_vi": "SELECT TO_CHAR(SYSDATE, 'FMDay, DD Month, YYYY') FROM dual;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT TO_DATE(SYSDATE, 'FMDAY, DD Month, YYYY') FROM dual;",
+        "text_vi": "SELECT TO_DATE(SYSDATE, 'FMDAY, DD Month, YYYY') FROM dual;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT TO_CHAR(SYSDATE, 'FMDD, DY Month, 'YYY') FROM dual;",
+        "text_vi": "SELECT TO_CHAR(SYSDATE, 'FMDD, DY Month, 'YYY') FROM dual;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT TO_CHAR(SYSDATE, 'FMDY, DDD Month, YYYY') FROM dual;",
+        "text_vi": "SELECT TO_CHAR(SYSDATE, 'FMDY, DDD Month, YYYY') FROM dual;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Để định dạng ngày thành chuỗi hiển thị, ta dùng `TO_CHAR(date, format)`. Mô hình định dạng: `Day` hiển thị đầy đủ tên thứ ('Monday'), `DD` hiển thị 2 chữ số ngày ('01'), `Month` hiển thị đầy đủ tên tháng ('June'), `YYYY` hiển thị 4 chữ số năm. Tiền tố `FM` (Fill Mode) loại bỏ các khoảng trắng thừa do Oracle tự đệm vào tên thứ và tháng.",
+    "key_takeaway_vi": "TO_CHAR(SYSDATE, 'FMDay, DD Month, YYYY') định dạng ngày đầy đủ và loại bỏ khoảng trắng thừa.",
+    "flashcard": {
+      "front_en": "You would like to display the system date in the format \"Monday, 01 June, 2001\". \nWhich SELECT statement should you use?",
+      "front_vi": "Ký hiệu FM trong format model của TO_CHAR có tác dụng gì?",
+      "back_vi": "FM (Fill Mode) dùng để loại bỏ các khoảng trắng và số 0 đệm thừa trong kết quả ngày/tháng."
+    }
+  },
+  {
+    "id": 116,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Evaluate the SQL statement: \nSELECT ROUND(TRUNC(MOD(1600, 10), -1), 2) \nFROM dual; \nWhat will be displayed?",
+    "prompt_vi": "Đánh giá câu lệnh SQL sau:\nSELECT ROUND(TRUNC(MOD(1600, 10), -1), 2) FROM dual;\nGiá trị nào sẽ được hiển thị?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "0",
+        "text_vi": "0",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "1",
+        "text_vi": "1",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "0.00",
+        "text_vi": "0.00",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "An error statement",
+        "text_vi": "Một thông báo lỗi (An error statement)",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Phân tích từng bước từ trong ra ngoài: 1. `MOD(1600, 10)` = 0 (1600 chia hết cho 10, dư 0). 2. `TRUNC(0, -1)` = 0. 3. `ROUND(0, 2)` = 0. Kết quả cuối cùng hiển thị là 0.",
+    "key_takeaway_vi": "Các hàm lồng nhau thực thi từ trong ra ngoài: MOD(1600,10) = 0 -> kết quả cuối cùng = 0.",
+    "flashcard": {
+      "front_en": "Evaluate the SQL statement: \nSELECT ROUND(TRUNC(MOD(1600, 10), -1), 2) \nFROM dual; \nWhat will be displayed?",
+      "front_vi": "Các hàm lồng nhau trong SQL thực thi theo thứ tự nào?",
+      "back_vi": "Thực thi từ hàm trong cùng ra hàm ngoài cùng."
+    }
+  },
+  {
+    "id": 117,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Which SELECT statement will not display 2000 in the format '$2,000.00'",
+    "prompt_vi": "Câu lệnh SELECT nào sau đây sẽ KHÔNG HIỂN THỊ số 2000 theo định dạng '$2,000.00'?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT TO_CHAR (2000, '$2,000.00') FROM dual;",
+        "text_vi": "SELECT TO_CHAR (2000, '$2,000.00') FROM dual;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT TO_CHAR (2000, '$0,000.00') FROM dual;",
+        "text_vi": "SELECT TO_CHAR (2000, '$0,000.00') FROM dual;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT TO_CHAR (2000, '$9,999.00') FROM dual;",
+        "text_vi": "SELECT TO_CHAR (2000, '$9,999.00') FROM dual;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT TO_CHAR (2000, '$9,999.99') FROM dual;",
+        "text_vi": "SELECT TO_CHAR (2000, '$9,999.99') FROM dual;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong chuỗi định dạng (Format Model) số của hàm `TO_CHAR`, các ký tự định dạng vị trí số hợp lệ chỉ có thể là `9` (chữ số tùy chọn) hoặc `0` (chữ số bắt buộc hiển thị). Ký tự `'2'` không phải là một ký tự định dạng hợp lệ của format model, nên câu lệnh A là không hợp lệ.",
+    "key_takeaway_vi": "Mô hình định dạng số trong TO_CHAR chỉ dùng ký tự 9 hoặc 0, không dùng số cụ thể như 2 trong format string.",
+    "flashcard": {
+      "front_en": "Which SELECT statement will not display 2000 in the format '$2,000.00'",
+      "front_vi": "Các ký hiệu đại diện cho chữ số trong format model của TO_CHAR là gì?",
+      "back_vi": "Ký tự 9 (hiển thị số hoặc khoảng trống) và ký tự 0 (bắt buộc hiển thị số 0 nếu thiếu)."
+    }
+  },
+  {
+    "id": 118,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Which statement is incorrect about functions that are available in SQL?",
+    "prompt_vi": "Phát biểu nào sau đây là KHÔNG CHÍNH XÁC về các hàm có sẵn trong SQL?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "NVL2 returns the first non-null expression in the expression list.",
+        "text_vi": "Hàm NVL2 trả về biểu thức khác null đầu tiên trong danh sách các biểu thức (first non-null expression).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "DECODE translates an expression after comparing it to each search value.",
+        "text_vi": "Hàm DECODE biên dịch một biểu thức sau khi so sánh nó với từng giá trị tìm kiếm.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "TRIM trims the heading of trailing characters (or both) from a character string.",
+        "text_vi": "Hàm TRIM cắt bớt các ký tự đầu hoặc cuối (hoặc cả hai) khỏi một chuỗi ký tự.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "NULLIF compares two expressions and returns null if they are equal, or the first expression if they are not equal",
+        "text_vi": "Hàm NULLIF so sánh hai biểu thức và trả về null nếu chúng bằng nhau, hoặc trả về biểu thức thứ nhất nếu chúng không bằng nhau.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Phát biểu A là SAI vì hàm trả về giá trị khác null đầu tiên trong danh sách là hàm `COALESCE(expr1, expr2, ...)`. Hàm `NVL2(expr1, expr2, expr3)` có cơ chế: nếu `expr1` khác NULL thì trả về `expr2`, ngược lại (nếu `expr1` là NULL) thì trả về `expr3`.",
+    "key_takeaway_vi": "COALESCE trả về giá trị non-null đầu tiên; NVL2(expr1, expr2, expr3) kiểm tra expr1 để chọn expr2 hoặc expr3.",
+    "flashcard": {
+      "front_en": "Which statement is incorrect about functions that are available in SQL?",
+      "front_vi": "Phân biệt hàm COALESCE và hàm NVL2?",
+      "back_vi": "COALESCE trả về giá trị non-null đầu tiên trong danh sách. NVL2(a, b, c): nếu a khác null trả về b, nếu a null trả về c."
+    }
+  },
+  {
+    "id": 119,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Which is a character manipulation function?",
+    "prompt_vi": "Hàm nào sau đây là một hàm thao tác trên chuỗi ký tự (Character manipulation function)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "TRIM",
+        "text_vi": "TRIM",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "TRUNC",
+        "text_vi": "TRUNC",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "TO_DATE",
+        "text_vi": "TO_DATE",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "MOD",
+        "text_vi": "MOD",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "`TRIM` là hàm thao tác trên chuỗi (cắt bỏ ký tự ở đầu/cuối chuỗi). TRUNC và MOD là hàm số (Number), TO_DATE là hàm chuyển đổi (Conversion).",
+    "key_takeaway_vi": "TRIM là hàm thao tác chuỗi ký tự (Character Manipulation Function).",
+    "flashcard": {
+      "front_en": "Which is a character manipulation function?",
+      "front_vi": "Hàm nào dùng để loại bỏ khoảng trắng hoặc ký tự thừa ở 2 đầu chuỗi?",
+      "back_vi": "Hàm TRIM."
+    }
+  },
+  {
+    "id": 120,
+    "module_id": 6,
+    "module_name_en": "Module 6: Single Row Functions",
+    "module_name_vi": "Module 6: Hàm xử lý đơn dòng (Single Row Functions)",
+    "prompt_en": "Which task can you perform by using the TO_CHAR function?",
+    "prompt_vi": "Tác vụ nào sau đây bạn có thể thực hiện bằng cách sử dụng hàm TO_CHAR?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Convert '10' to '10'",
+        "text_vi": "Chuyển đổi số hoặc ngày tháng sang dạng chuỗi (Convert number/date to character string).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Convert 10 to 'TEN'",
+        "text_vi": "Chuyển số 10 thành chữ 'TEN'.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Convert '10' to 10",
+        "text_vi": "Chuyển chuỗi '10' thành số 10.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Convert 'TEN' to 10",
+        "text_vi": "Chuyển chữ 'TEN' thành số 10.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Hàm `TO_CHAR` chuyên dùng để chuyển đổi kiểu dữ liệu ngày tháng (DATE) hoặc kiểu số (NUMBER) sang chuỗi ký tự (VARCHAR2) theo một định dạng cụ thể. Chuyển chuỗi thành số phải dùng `TO_NUMBER`.",
+    "key_takeaway_vi": "Hàm TO_CHAR dùng để chuyển đổi kiểu số hoặc ngày tháng sang chuỗi ký tự có định dạng.",
+    "flashcard": {
+      "front_en": "Which task can you perform by using the TO_CHAR function?",
+      "front_vi": "Hàm TO_CHAR dùng để làm gì?",
+      "back_vi": "Chuyển đổi kiểu NUMBER hoặc DATE thành kiểu chuỗi VARCHAR2 có định dạng."
+    }
+  },
+  {
+    "id": 121,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "Which statement is true about WHERE and HAVING clauses?",
+    "prompt_vi": "Phát biểu nào sau đây là ĐÚNG khi nói về các mệnh đề WHERE và HAVING?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A HAVING clause can be used to restrict groups only.",
+        "text_vi": "Mệnh đề HAVING chỉ có thể được dùng để giới hạn các nhóm (restrict groups only).",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "A WHERE clause can be used to restrict groups only.",
+        "text_vi": "Mệnh đề WHERE chỉ có thể được dùng để giới hạn các nhóm.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "A WHERE clause can be used to restrict both rows and groups.",
+        "text_vi": "Mệnh đề WHERE có thể được dùng để giới hạn cả dòng đơn lẻ và các nhóm.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "A HAVING clause can be used to restrict both rows and groups.",
+        "text_vi": "Mệnh đề HAVING có thể được dùng để giới hạn cả dòng đơn lẻ và các nhóm (restrict both rows and groups).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Về mặt kỹ thuật SQL: Mệnh đề WHERE chỉ lọc từng dòng dữ liệu TRƯỚC KHI gom nhóm (không thể chứa hàm nhóm). Mệnh đề HAVING được thiết kế để lọc các nhóm SAU KHI gom nhóm, nhưng nó cũng có thể chứa các điều kiện lọc cột không gom nhóm (lọc dòng). Do đó HAVING có khả năng lọc cả dòng và nhóm (mặc dù lọc dòng ở WHERE tối ưu hiệu năng hơn rất nhiều).",
+    "key_takeaway_vi": "WHERE chỉ lọc từng dòng trước khi gom nhóm; HAVING lọc các nhóm sau khi GROUP BY (và có thể lọc cả dòng).",
+    "flashcard": {
+      "front_en": "Which statement is true about WHERE and HAVING clauses?",
+      "front_vi": "Sự khác biệt cốt lõi giữa WHERE và HAVING trong SQL là gì?",
+      "back_vi": "WHERE lọc từng dòng trước khi GROUP BY (không được chứa hàm nhóm). HAVING lọc sau khi GROUP BY (chứa được hàm nhóm)."
+    }
+  },
+  {
+    "id": 122,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "Examine the description of the EMPLOYEES table: \nEMP_ID      NUMBER(4)     NOT NULL \nLAST_NAME   VARCHAR2(30)  NOT NULL \nFIRST_NAME  VARCHAR2(30) \nDEPT_ID     NUMBER(2) \nWhich statement produces the number of different departments that have employees with \nlast name Smith?",
+    "prompt_vi": "Bảng EMPLOYEES có các cột: EMP_ID, LAST_NAME, FIRST_NAME, DEPT_ID.\nCâu lệnh nào sau đây đếm số lượng các phòng ban KHÁC NHAU có nhân viên mang họ 'Smith'?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT DISTINCT(COUNT(dept_id)) FROM employees WHERE last_name='Smith';",
+        "text_vi": "SELECT DISTINCT(COUNT(dept_id)) FROM employees WHERE last_name='Smith';",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT COUNT(*) FROM employees WHERE last_name='Smith';",
+        "text_vi": "SELECT COUNT(*) FROM employees WHERE last_name='Smith';",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT COUNT(DISTINCT dept_id) FROM employees WHERE last_name='Smith';",
+        "text_vi": "SELECT COUNT(DISTINCT dept_id) FROM employees WHERE last_name='Smith';",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT COUNT (dept_id) FROM employees WHERE last_name='Smith';",
+        "text_vi": "SELECT COUNT (dept_id) FROM employees WHERE last_name='Smith';",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Để đếm số lượng giá trị không trùng lặp, từ khóa `DISTINCT` phải được đặt BÊN TRONG dấu ngoặc của hàm đếm: `COUNT(DISTINCT dept_id)`. Nếu viết `DISTINCT(COUNT(...))` thì hàm COUNT sẽ đếm hết rồi mới áp dụng DISTINCT trên con số duy nhất đó, hoàn toàn vô nghĩa.",
+    "key_takeaway_vi": "Đếm số lượng giá trị phân biệt: COUNT(DISTINCT column_name).",
+    "flashcard": {
+      "front_en": "Examine the description of the EMPLOYEES table: \nEMP_ID      NUMBER(4)     NOT NULL \nLAST_NAME   VARCHAR2(30)  NOT NULL \nFIRST_NAME  VARCHAR2(30) \nDEPT_ID     NUMBER(2) \nWhich statement produces the number of different departments that have employees with \nlast name Smith?",
+      "front_vi": "Cú pháp đếm số lượng giá trị không trùng lặp trong một cột?",
+      "back_vi": "COUNT(DISTINCT column_name)."
+    }
+  },
+  {
+    "id": 123,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "What is true of using group functions on columns that contain NULL values?",
+    "prompt_vi": "Điều nào sau đây là ĐÚNG khi sử dụng các hàm nhóm (group functions) trên các cột có chứa giá trị NULL?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Group functions on columns returning dates include NULL values.",
+        "text_vi": "Các hàm nhóm trên cột kiểu ngày tháng sẽ bao gồm cả giá trị NULL.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Group functions on columns ignore NULL values.",
+        "text_vi": "Các hàm nhóm trên các cột sẽ TỰ ĐỘNG BỎ QUA các giá trị NULL (ignore NULL values).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "Group functions on columns cannot be accurately used on columns that contain NULL values.",
+        "text_vi": "Hàm nhóm không thể sử dụng chính xác trên cột có chứa giá trị NULL.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Group functions on columns returning numbers include NULL values.",
+        "text_vi": "Các hàm nhóm trên cột kiểu số sẽ bao gồm cả giá trị NULL.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Quy tắc bất biến của SQL: Tất cả các hàm nhóm (SUM, AVG, MIN, MAX, COUNT(cột)) đều TỰ ĐỘNG BỎ QUA (ignore) các giá trị NULL khi tính toán. Duy nhất chỉ có hàm `COUNT(*)` là đếm tất cả các dòng bao gồm cả các dòng có cột chứa NULL.",
+    "key_takeaway_vi": "Các hàm nhóm tự động bỏ qua NULL. Riêng COUNT(*) đếm cả dòng chứa NULL.",
+    "flashcard": {
+      "front_en": "What is true of using group functions on columns that contain NULL values?",
+      "front_vi": "Hàm nhóm (SUM, AVG, COUNT(col)) xử lý giá trị NULL như thế nào?",
+      "back_vi": "Tự động bỏ qua (ignore) các giá trị NULL. Chỉ có COUNT(*) đếm tất cả các dòng."
+    }
+  },
+  {
+    "id": 124,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "The STUDENT_GRADES table has these columns: \nSTUDENT_ID    NUMBER(12) \nSEMESTER_END  DATE \nGPA           NUMBER(4,3) \nWhich statement finds the highest grade point average (GPA) per semester?",
+    "prompt_vi": "Bảng STUDENT_GRADES có: STUDENT_ID, SEMESTER_END, GPA.\nCâu lệnh nào sau đây tìm điểm trung bình tích lũy (GPA) cao nhất theo từng học kỳ (per semester)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT MAX(gpa) FROM student_grades WHERE gpa IS NOT NULL GROUP BY semester_end;",
+        "text_vi": "SELECT MAX(gpa) FROM student_grades WHERE gpa IS NOT NULL GROUP BY semester_end;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT (gpa) FROM student_grades GROUP BY semester_end WHERE gpa IS NOT NULL",
+        "text_vi": "SELECT (gpa) FROM student_grades GROUP BY semester_end WHERE gpa IS NOT NULL",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT MAX(gpa) FROM student_grades WHERE gpa IS NOT NULL",
+        "text_vi": "SELECT MAX(gpa) FROM student_grades WHERE gpa IS NOT NULL",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT MAX(gpa) GROUP BY semester_end WHERE gpa IS NOT NULL FROM student_grades",
+        "text_vi": "SELECT MAX(gpa) GROUP BY semester_end WHERE gpa IS NOT NULL FROM student_grades",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Để tính theo từng học kỳ, bắt buộc phải có mệnh đề `GROUP BY semester_end`. Thứ tự các mệnh đề chuẩn trong SQL: `SELECT ... FROM ... WHERE ... GROUP BY ...`. Do đó phương án A là chính xác.",
+    "key_takeaway_vi": "Tính giá trị lớn nhất theo từng nhóm: SELECT MAX(col) FROM table GROUP BY group_col;",
+    "flashcard": {
+      "front_en": "The STUDENT_GRADES table has these columns: \nSTUDENT_ID    NUMBER(12) \nSEMESTER_END  DATE \nGPA           NUMBER(4,3) \nWhich statement finds the highest grade point average (GPA) per semester?",
+      "front_vi": "Thứ tự đúng của các mệnh đề SELECT, FROM, WHERE, GROUP BY là gì?",
+      "back_vi": "SELECT -> FROM -> WHERE -> GROUP BY -> HAVING -> ORDER BY."
+    }
+  },
+  {
+    "id": 125,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "Which of the following data types are compatible for applying the group functions such as \nMIN, MAX ?",
+    "prompt_vi": "Những kiểu dữ liệu nào sau đây tương thích để áp dụng các hàm nhóm như MIN và MAX?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Numeric",
+        "text_vi": "Kiểu số (Numeric)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Date",
+        "text_vi": "Kiểu ngày tháng (Date)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "All of the above",
+        "text_vi": "Tất cả các kiểu trên (All of the above - Numeric, Date, Character)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "Character",
+        "text_vi": "Kiểu chuỗi ký tự (Character)",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Các hàm `MIN` và `MAX` có thể áp dụng cho MỌI kiểu dữ liệu có thể so sánh thứ tự: Số (nhỏ nhất/lớn nhất), Ngày tháng (sớm nhất/muộn nhất), và Chuỗi ký tự (thứ tự chữ cái A-Z). Ngược lại, hàm `SUM` và `AVG` chỉ áp dụng được duy nhất cho kiểu số.",
+    "key_takeaway_vi": "MIN và MAX áp dụng được cho cả Kiểu Số, Kiểu Ngày và Kiểu Chuỗi. SUM và AVG chỉ dùng cho Kiểu Số.",
+    "flashcard": {
+      "front_en": "Which of the following data types are compatible for applying the group functions such as \nMIN, MAX ?",
+      "front_vi": "Hàm MIN và MAX có dùng được cho kiểu chuỗi và ngày tháng không?",
+      "back_vi": "CÓ. Dùng được cho cả số, chuỗi (thứ tự từ điển) và ngày tháng (thời gian sớm/muộn)."
+    }
+  },
+  {
+    "id": 126,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "Which of the following is not a valid variation of the COUNT function ?",
+    "prompt_vi": "Cách viết nào sau đây KHÔNG PHẢI là một biến thể hợp lệ của hàm COUNT?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "COUNT(*)",
+        "text_vi": "COUNT(*)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "COUNT(expr1, expr2)",
+        "text_vi": "COUNT(expr1, expr2)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "COUNT(DISTINCT expr)",
+        "text_vi": "COUNT(DISTINCT expr)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "COUNT(expr)",
+        "text_vi": "COUNT(expr)",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Hàm `COUNT` trong SQL chỉ chấp nhận duy nhất MỘT đối số (hoặc dấu `*`). Cú pháp `COUNT(expr1, expr2)` với 2 đối số là hoàn toàn sai cú pháp.",
+    "key_takeaway_vi": "Hàm COUNT chỉ nhận 1 tham số duy nhất hoặc dấu *; không chấp nhận 2 tham số.",
+    "flashcard": {
+      "front_en": "Which of the following is not a valid variation of the COUNT function ?",
+      "front_vi": "Hàm COUNT có nhận 2 tham số: COUNT(col1, col2) được không?",
+      "back_vi": "KHÔNG. Hàm COUNT chỉ nhận 1 đối số: COUNT(*), COUNT(col), hoặc COUNT(DISTINCT col)."
+    }
+  },
+  {
+    "id": 127,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "Which of the following statements calculates the Average commission percentage from the \nemployees table by treating the NULLs as zeros wherever the commission percentage is \nNULL ?",
+    "prompt_vi": "Câu lệnh nào sau đây tính tỷ lệ phần trăm hoa hồng trung bình (Average commission percentage) từ bảng employees bằng cách coi các giá trị NULL là số 0?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT AVG(NVL(commission_pct, 0)) FROM employees",
+        "text_vi": "SELECT AVG(NVL(commission_pct, 0)) FROM employees",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT NULLIF(AVG(commission_pct), 0) FROM employees",
+        "text_vi": "SELECT NULLIF(AVG(commission_pct), 0) FROM employees",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT AVG(NULLIF(commission_pct, 0)) FROM employees",
+        "text_vi": "SELECT AVG(NULLIF(commission_pct, 0)) FROM employees",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT NVL(AVG(commission_pct), 0) FROM employees",
+        "text_vi": "SELECT NVL(AVG(commission_pct), 0) FROM employees",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Mặc định hàm `AVG(commission_pct)` sẽ bỏ qua các dòng có hoa hồng là NULL (tổng hoa hồng chia cho số nhân viên CÓ hoa hồng). Muốn tính trung bình trên TOÀN BỘ nhân viên (coi người không có hoa hồng là 0%), ta bắt buộc phải dùng `NVL(commission_pct, 0)` bên trong hàm AVG.",
+    "key_takeaway_vi": "Để hàm AVG tính cả các dòng NULL như số 0, bắt buộc viết: AVG(NVL(column, 0)).",
+    "flashcard": {
+      "front_en": "Which of the following statements calculates the Average commission percentage from the \nemployees table by treating the NULLs as zeros wherever the commission percentage is \nNULL ?",
+      "front_vi": "Sự khác biệt giữa AVG(commission_pct) và AVG(NVL(commission_pct, 0))?",
+      "back_vi": "AVG(col) chia cho số dòng khác NULL. AVG(NVL(col,0)) chia cho tổng số dòng (coi NULL là 0)."
+    }
+  },
+  {
+    "id": 128,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "Which of the following statements will return error?",
+    "prompt_vi": "Câu lệnh nào sau đây sẽ BỊ LỖI khi thực thi?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT AVG(salary) FROM employees GROUP BY department_id",
+        "text_vi": "SELECT AVG(salary) FROM employees GROUP BY department_id",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT department_id, AVG(salary) FROM employees GROUP BY department_id",
+        "text_vi": "SELECT department_id, AVG(salary) FROM employees GROUP BY department_id",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT job_id, AVG(salary) FROM employees GROUP BY department_id",
+        "text_vi": "SELECT job_id, AVG(salary) FROM employees GROUP BY department_id",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT AVG(salary), job_id FROM employees GROUP BY department_id, job_id",
+        "text_vi": "SELECT AVG(salary), job_id FROM employees GROUP BY department_id, job_id",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "🔥 QUY TẮC BẤT DI BẤT DỊCH CỦA GROUP BY: Bất kỳ cột đơn lẻ nào xuất hiện trong mệnh đề `SELECT` mà KHÔNG nằm bên trong một hàm nhóm thì BẮT BUỘC phải có mặt trong mệnh đề `GROUP BY`. Ở câu C, `job_id` có trong SELECT nhưng không có trong GROUP BY nên Oracle báo lỗi `ORA-00979: not a GROUP BY expression`.",
+    "key_takeaway_vi": "Cột không phải hàm nhóm trong SELECT bắt buộc phải xuất hiện trong GROUP BY.",
+    "flashcard": {
+      "front_en": "Which of the following statements will return error?",
+      "front_vi": "Nguyên nhân gây ra lỗi ORA-00979 'not a GROUP BY expression'?",
+      "back_vi": "Liệt kê cột trong mệnh đề SELECT mà không đặt cột đó vào mệnh đề GROUP BY (và không bọc trong hàm nhóm)."
+    }
+  },
+  {
+    "id": 129,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "Which of the following statements is not correct?",
+    "prompt_vi": "Phát biểu nào sau đây là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "You cannot use the WHERE clause to restrict groups",
+        "text_vi": "Bạn không thể sử dụng mệnh đề WHERE để giới hạn (lọc) các nhóm.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "You can use group functions in the WHERE clause",
+        "text_vi": "Bạn có thể sử dụng các hàm nhóm trong mệnh đề WHERE (You can use group functions in the WHERE clause).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "You cannot use group functions in the WHERE clause",
+        "text_vi": "Bạn không thể sử dụng các hàm nhóm trong mệnh đề WHERE.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "You use the HAVING clause to restrict groups",
+        "text_vi": "Bạn sử dụng mệnh đề HAVING để giới hạn các nhóm.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Các hàm nhóm (SUM, AVG, COUNT, MIN, MAX...) TUYỆT ĐỐI KHÔNG ĐƯỢC PHÉP xuất hiện trong mệnh đề `WHERE`. Muốn lọc dựa trên kết quả của hàm nhóm, bắt buộc phải dùng mệnh đề `HAVING`. Do đó phát biểu B là SAI.",
+    "key_takeaway_vi": "Hàm nhóm không bao giờ được xuất hiện trong mệnh đề WHERE. Phải dùng HAVING để lọc hàm nhóm.",
+    "flashcard": {
+      "front_en": "Which of the following statements is not correct?",
+      "front_vi": "Có được viết WHERE AVG(salary) > 5000 không?",
+      "back_vi": "KHÔNG. Tuyệt đối không dùng hàm nhóm trong WHERE. Phải viết: HAVING AVG(salary) > 5000."
+    }
+  },
+  {
+    "id": 130,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "Which of the following statements displays the number of distinct department values in \nthe EMPLOYEES table",
+    "prompt_vi": "Câu lệnh nào sau đây hiển thị số lượng các giá trị phòng ban khác nhau (distinct department values) trong bảng EMPLOYEES?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT COUNT(department_id) FROM employees",
+        "text_vi": "SELECT COUNT(department_id) FROM employees",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT DISTINCT COUNT(department_id) FROM employees",
+        "text_vi": "SELECT DISTINCT COUNT(department_id) FROM employees",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT COUNT(DISTINCT department_id) FROM employees",
+        "text_vi": "SELECT COUNT(DISTINCT department_id) FROM employees",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT DISTINCT department_id FROM employees;",
+        "text_vi": "SELECT DISTINCT department_id FROM employees;",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Để đếm số lượng các giá trị phòng ban duy nhất không trùng lặp, cú pháp chính xác là `SELECT COUNT(DISTINCT department_id) FROM employees;`.",
+    "key_takeaway_vi": "Đếm số lượng giá trị phân biệt: COUNT(DISTINCT col).",
+    "flashcard": {
+      "front_en": "Which of the following statements displays the number of distinct department values in \nthe EMPLOYEES table",
+      "front_vi": "Hàm đếm số giá trị phân biệt trong một cột?",
+      "back_vi": "COUNT(DISTINCT column_name)."
+    }
+  },
+  {
+    "id": 131,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "What will be the output of the following statement? \nSELECT department_id, AVG(salary) \nFROM employees \nWHERE AVG(salary) > 8000 \nGROUP BY department_id;",
+    "prompt_vi": "Kết quả của câu lệnh sau là gì?\nSELECT department_id, AVG(salary) FROM employees WHERE AVG(salary) > 8000 GROUP BY department_id;",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The statement will display the list of department ids and average salary of the employees table where average",
+        "text_vi": "Hiển thị mã phòng ban và lương trung bình của nhân viên.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The statement will display a list of departments and average salary of each department",
+        "text_vi": "Hiển thị danh sách phòng ban và lương trung bình của từng phòng.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The statement will display a list departments and average salary of each department only for departments whose average salary is greater than 8000",
+        "text_vi": "Chỉ hiển thị các phòng ban có lương trung bình lớn hơn 8000.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The statement will return an error",
+        "text_vi": "Câu lệnh sẽ trả về thông báo lỗi (The statement will return an error).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Câu lệnh bị lỗi `ORA-00934: group function is not allowed here` vì hàm nhóm `AVG(salary)` được sử dụng trái phép trong mệnh đề `WHERE`. Muốn lọc lương trung bình > 8000, bắt buộc phải dùng `HAVING AVG(salary) > 8000` đặt sau mệnh đề GROUP BY.",
+    "key_takeaway_vi": "Viết hàm nhóm trong WHERE luôn luôn sinh lỗi ORA-00934.",
+    "flashcard": {
+      "front_en": "What will be the output of the following statement? \nSELECT department_id, AVG(salary) \nFROM employees \nWHERE AVG(salary) > 8000 \nGROUP BY department_id;",
+      "front_vi": "Tại sao SELECT ... WHERE AVG(salary) > 8000 GROUP BY ... bị lỗi?",
+      "back_vi": "Vì hàm nhóm (AVG) không được phép nằm trong mệnh đề WHERE. Phải chuyển sang HAVING."
+    }
+  },
+  {
+    "id": 132,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "Examine the description of the STUDENTS table: \nSTD_ID      NUMBER(4) \nCOURSE_ID   VARCHAR2(10) \nSTART_DATE  DATE \nEND_DATE    DATE \nWhich of the aggregate functions is valid on the START_DATE column?",
+    "prompt_vi": "Bảng STUDENTS có cột START_DATE kiểu DATE. Hàm tổng hợp nào sau đây là hợp lệ trên cột START_DATE?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "MIN(start_date)",
+        "text_vi": "MIN(start_date)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "AVG(start_date)",
+        "text_vi": "AVG(start_date)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "MAXIMUM(start_date)",
+        "text_vi": "MAXIMUM(start_date)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SUM(start_date)",
+        "text_vi": "SUM(start_date)",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trên kiểu dữ liệu ngày tháng (DATE), chỉ có các hàm `MIN` (ngày sớm nhất), `MAX` (ngày muộn nhất) và `COUNT` là hợp lệ. Các hàm `AVG` và `SUM` chỉ áp dụng cho kiểu số. Cú pháp 'MAXIMUM' không tồn tại trong SQL.",
+    "key_takeaway_vi": "Cột ngày tháng chỉ áp dụng được MIN, MAX, COUNT; không dùng được AVG hay SUM.",
+    "flashcard": {
+      "front_en": "Examine the description of the STUDENTS table: \nSTD_ID      NUMBER(4) \nCOURSE_ID   VARCHAR2(10) \nSTART_DATE  DATE \nEND_DATE    DATE \nWhich of the aggregate functions is valid on the START_DATE column?",
+      "front_vi": "Cột kiểu DATE có tính được AVG hay SUM không?",
+      "back_vi": "KHÔNG. AVG và SUM chỉ dùng cho số. Cột DATE chỉ dùng được MIN, MAX và COUNT."
+    }
+  },
+  {
+    "id": 133,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "What is True about the below statement? \nSELECT MAX(AVG(salary)) \nFROM employees \nGROUP BY department_id;",
+    "prompt_vi": "Điều gì là ĐÚNG về câu lệnh sau?\nSELECT MAX(AVG(salary)) FROM employees GROUP BY department_id;",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It will return an error as Group functions can not be nested",
+        "text_vi": "Sẽ báo lỗi vì các hàm nhóm không thể lồng nhau.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "It will return Maximum average salary for each department",
+        "text_vi": "Sẽ trả về lương trung bình lớn nhất cho từng phòng ban.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "It will return error because Salary is not included in the group by clause",
+        "text_vi": "Sẽ báo lỗi vì Salary không có trong mệnh đề group by.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "It will display the maximum of the average salaries for each department",
+        "text_vi": "Sẽ hiển thị giá trị lớn nhất trong số các mức lương trung bình của các phòng ban (maximum of average salaries).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Trong Oracle SQL, các hàm nhóm ĐƯỢC PHÉP LỒNG NHAU TỐI ĐA 2 CẤP khi có mệnh đề `GROUP BY`. `AVG(salary)` tính lương trung bình của từng phòng ban, sau đó `MAX(...)` lấy ra con số trung bình cao nhất trong tất cả các phòng ban đó và trả về duy nhất 1 dòng.",
+    "key_takeaway_vi": "Oracle cho phép lồng hàm nhóm tối đa 2 cấp (ví dụ MAX(AVG(salary))) khi có GROUP BY.",
+    "flashcard": {
+      "front_en": "What is True about the below statement? \nSELECT MAX(AVG(salary)) \nFROM employees \nGROUP BY department_id;",
+      "front_vi": "Hàm nhóm trong Oracle có thể lồng nhau tối đa mấy cấp?",
+      "back_vi": "Tối đa 2 cấp (ví dụ: MAX(AVG(salary)) GROUP BY dept_id)."
+    }
+  },
+  {
+    "id": 134,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "Examine the description of the MARKS table: \nSTD_ID        NUMBER(4) \nSTUDENT_NAME  VARCHAR2(30) \nSUBJ1         NUMBER(3) \nSUBJ2         NUMBER(3) \nSUBJ1 and SUBJ2 indicate the marks obtained by a student in two subjects. Examine this \nSELECT statement based on the MARKS table: \nSELECT subj1+subj2 total_marks, std_id \nFROM marks \nWHERE subj1 > AVG(subj1) AND subj2 > AVG(subj2) \nORDER BY total marks; \nWhat is the result of the SELECT statement?",
+    "prompt_vi": "Bảng MARKS có STD_ID, STUDENT_NAME, SUBJ1, SUBJ2. Đánh giá câu lệnh:\nSELECT subj1+subj2 total_marks, std_id FROM marks WHERE subj1 > AVG(subj1) AND subj2 > AVG(subj2) ORDER BY total_marks;\nKết quả của câu lệnh SELECT là gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The statement returns an error at the WHERE clause.",
+        "text_vi": "Câu lệnh báo lỗi tại mệnh đề WHERE (returns an error at the WHERE clause).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "The statement executes successfully and returns the student ID and sum of all marks for each student who obtained more than the average mark in each subject.",
+        "text_vi": "Thực thi thành công và hiển thị kết quả.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The statement returns an error at the SELECT clause.",
+        "text_vi": "Báo lỗi tại mệnh đề SELECT.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The statement returns an error at the ORDER BY clause.",
+        "text_vi": "Báo lỗi tại mệnh đề ORDER BY.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Mệnh đề `WHERE` chứa các hàm nhóm `AVG(subj1)` và `AVG(subj2)` mà không dùng qua subquery, điều này vi phạm nghiêm trọng cú pháp SQL và gây ra lỗi trực tiếp tại mệnh đề WHERE.",
+    "key_takeaway_vi": "Hàm nhóm không được đứng trực tiếp trong WHERE, muốn so sánh phải dùng subquery: WHERE col > (SELECT AVG...).",
+    "flashcard": {
+      "front_en": "Examine the description of the MARKS table: \nSTD_ID        NUMBER(4) \nSTUDENT_NAME  VARCHAR2(30) \nSUBJ1         NUMBER(3) \nSUBJ2         NUMBER(3) \nSUBJ1 and SUBJ2 indicate the marks obtained by a student in two subjects. Examine this \nSELECT statement based on the MARKS table: \nSELECT subj1+subj2 total_marks, std_id \nFROM marks \nWHERE subj1 > AVG(subj1) AND subj2 > AVG(subj2) \nORDER BY total marks; \nWhat is the result of the SELECT statement?",
+      "front_vi": "Làm sao để so sánh cột với giá trị trung bình trong WHERE?",
+      "back_vi": "Bắt buộc dùng subquery: WHERE subj1 > (SELECT AVG(subj1) FROM marks)."
+    }
+  },
+  {
+    "id": 135,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "Which statement is true about aggregate functions?",
+    "prompt_vi": "Phát biểu nào sau đây là ĐÚNG về các hàm tổng hợp (aggregate functions)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "You can mix single row columns with aggregate functions in the column list of a SELECT statement by grouping on the single row columns.",
+        "text_vi": "Bạn có thể kết hợp các cột đơn dòng với hàm tổng hợp trong danh sách SELECT bằng cách gom nhóm theo các cột đơn dòng đó trong GROUP BY.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "You can use aggregate functions only in the column list of the SELECT clause and in the WHERE clause of a SELECT statement.",
+        "text_vi": "Bạn chỉ có thể dùng hàm tổng hợp trong danh sách cột SELECT và trong mệnh đề WHERE.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "You can use aggregate functions on a table, only by grouping the whole table as one single group.",
+        "text_vi": "Bạn chỉ có thể dùng hàm tổng hợp trên bảng bằng cách gom toàn bộ bảng thành 1 nhóm duy nhất.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "You can use aggregate functions in any clause of a SELECT statement.",
+        "text_vi": "Bạn có thể dùng hàm tổng hợp trong bất kỳ mệnh đề nào của câu lệnh SELECT.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Muốn hiển thị một cột thông thường cùng với một hàm nhóm trong SELECT, cột đó BẮT BUỘC phải được đưa vào mệnh đề `GROUP BY`. Đó chính là quy tắc phối hợp giữa cột đơn lẻ và hàm nhóm.",
+    "key_takeaway_vi": "Cột đơn dòng muốn đứng cạnh hàm nhóm trong SELECT thì phải được gom nhóm trong GROUP BY.",
+    "flashcard": {
+      "front_en": "Which statement is true about aggregate functions?",
+      "front_vi": "Điều kiện để chọn một cột đơn dòng cùng với hàm tổng hợp là gì?",
+      "back_vi": "Cột đơn dòng đó bắt buộc phải nằm trong mệnh đề GROUP BY."
+    }
+  },
+  {
+    "id": 136,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "Which clause should you use to exclude group results?",
+    "prompt_vi": "Mệnh đề nào sau đây bạn nên sử dụng để loại trừ (lọc bớt) các kết quả nhóm?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "HAVING",
+        "text_vi": "HAVING",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "RESTRICT",
+        "text_vi": "RESTRICT",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "WHERE",
+        "text_vi": "WHERE",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "GROUP BY",
+        "text_vi": "GROUP BY",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Mệnh đề `HAVING` là mệnh đề chuyên biệt dùng để thiết lập điều kiện lọc bỏ các nhóm không thỏa mãn sau khi đã thực hiện phép gom nhóm (`GROUP BY`).",
+    "key_takeaway_vi": "Để lọc điều kiện trên nhóm kết quả, dùng mệnh đề HAVING.",
+    "flashcard": {
+      "front_en": "Which clause should you use to exclude group results?",
+      "front_vi": "Mệnh đề nào dùng để lọc các nhóm sau khi gom nhóm?",
+      "back_vi": "Mệnh đề HAVING."
+    }
+  },
+  {
+    "id": 137,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "In a SELECT statement that includes a WHERE clause, where should the GROUP BY \nclause placed?",
+    "prompt_vi": "Trong một câu lệnh SELECT có chứa mệnh đề WHERE, mệnh đề GROUP BY phải được đặt ở vị trí nào?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Before the WHERE clause",
+        "text_vi": "Trước mệnh đề WHERE",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "After the ORDER BY clause",
+        "text_vi": "Sau mệnh đề ORDER BY",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Immediately after the SELECT clause",
+        "text_vi": "Ngay sau mệnh đề SELECT",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "After the WHERE clause",
+        "text_vi": "Sau mệnh đề WHERE (After the WHERE clause)",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Thứ tự các mệnh đề chuẩn trong câu lệnh SQL: `SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ... ORDER BY ...`. Do đó `GROUP BY` bắt buộc phải đặt SAU mệnh đề `WHERE`.",
+    "key_takeaway_vi": "GROUP BY luôn đứng sau WHERE và đứng trước HAVING / ORDER BY.",
+    "flashcard": {
+      "front_en": "In a SELECT statement that includes a WHERE clause, where should the GROUP BY \nclause placed?",
+      "front_vi": "Vị trí của GROUP BY so với WHERE và HAVING?",
+      "back_vi": "GROUP BY đứng SAU WHERE và đứng TRƯỚC HAVING."
+    }
+  },
+  {
+    "id": 138,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "The EVENT table contains these columns: \nEVENT_ID     NUMBER \nEVENT_NAME   VARCHAR2(30) \nEVENT_DESC   VARCHAR2(100) \nEVENT_TYPE   NUMBER \nLOCATION_ID  NUMBER \nYou have been asked to provide a report of the number of different event types at each \nlocation. \nWhich SELECT statement will produce the desired result?",
+    "prompt_vi": "Bảng EVENT có: EVENT_ID, EVENT_NAME, EVENT_DESC, EVENT_TYPE, LOCATION_ID.\nBạn cần báo cáo số lượng các loại sự kiện khác nhau (number of different event types) tại mỗi địa điểm (location). Câu lệnh nào đúng?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT COUNT(*), DISTINCT(location_id) FROM event;",
+        "text_vi": "SELECT COUNT(*), DISTINCT(location_id) FROM event;",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT location_id, COUNT(DISTINCT event_type) FROM event GROUP BY location_id;",
+        "text_vi": "SELECT location_id, COUNT(DISTINCT event_type) FROM event GROUP BY location_id;",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT DISTINCT (event_type) FROM event GROUP BY location_id;",
+        "text_vi": "SELECT DISTINCT (event_type) FROM event GROUP BY location_id;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT UNIQUE(location_id), COUNT(event_type) FROM event GROUP BY location_id;",
+        "text_vi": "SELECT UNIQUE(location_id), COUNT(event_type) FROM event GROUP BY location_id;",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "'Tại mỗi địa điểm' đòi hỏi gom nhóm theo `GROUP BY location_id`. 'Số lượng các loại sự kiện khác nhau' đòi hỏi đếm phân biệt `COUNT(DISTINCT event_type)`. Cú pháp B là hoàn toàn chính xác.",
+    "key_takeaway_vi": "Số lượng loại khác nhau tại mỗi nhóm: SELECT group_col, COUNT(DISTINCT type_col) ... GROUP BY group_col;",
+    "flashcard": {
+      "front_en": "The EVENT table contains these columns: \nEVENT_ID     NUMBER \nEVENT_NAME   VARCHAR2(30) \nEVENT_DESC   VARCHAR2(100) \nEVENT_TYPE   NUMBER \nLOCATION_ID  NUMBER \nYou have been asked to provide a report of the number of different event types at each \nlocation. \nWhich SELECT statement will produce the desired result?",
+      "front_vi": "Cách đếm số lượng phần tử phân biệt theo từng nhóm?",
+      "back_vi": "SELECT nhóm, COUNT(DISTINCT phân_loại) FROM bảng GROUP BY nhóm;"
+    }
+  },
+  {
+    "id": 139,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "Which statement about the evaluation of clauses in a SELECT statement is true?",
+    "prompt_vi": "Phát biểu nào sau đây về thứ tự thực thi (evaluation) các mệnh đề trong câu lệnh SELECT là ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The Oracle Server will evaluate an ORDER BY clause before a WHERE clause.",
+        "text_vi": "Oracle Server thực thi ORDER BY trước WHERE.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The Oracle Server will evaluate a WHERE clause before a GROUP BY clause.",
+        "text_vi": "Oracle Server thực thi mệnh đề WHERE trước mệnh đề GROUP BY.",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "The Oracle Server will evaluate an ORDER BY clause before a HAVING clause.",
+        "text_vi": "Oracle Server thực thi ORDER BY trước HAVING.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The Oracle Server will evaluate a HAVING clause before a WHERE clause",
+        "text_vi": "Oracle Server thực thi HAVING trước WHERE.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Thứ tự thực thi luận lý (Logical Query Processing) của SQL Server / Oracle: 1. `FROM` -> 2. `WHERE` (lọc dòng thô) -> 3. `GROUP BY` (gom nhóm) -> 4. `HAVING` (lọc nhóm) -> 5. `SELECT` (chiếu cột) -> 6. `ORDER BY` (sắp xếp). Do đó WHERE luôn được thực thi trước GROUP BY.",
+    "key_takeaway_vi": "Thứ tự thực thi logic: FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY.",
+    "flashcard": {
+      "front_en": "Which statement about the evaluation of clauses in a SELECT statement is true?",
+      "front_vi": "Mệnh đề WHERE được thực thi trước hay sau GROUP BY?",
+      "back_vi": "Thực thi TRƯỚC GROUP BY để lọc bớt các dòng dữ liệu không đạt yêu cầu trước khi gom nhóm."
+    }
+  },
+  {
+    "id": 140,
+    "module_id": 7,
+    "module_name_en": "Module 7: Group Functions",
+    "module_name_vi": "Module 7: Hàm nhóm & Gom nhóm dữ liệu (Group Functions)",
+    "prompt_en": "You need to calculate the total of all salaries in the accounting department. Which group \nfunction should you use?",
+    "prompt_vi": "Bạn cần tính tổng tất cả tiền lương của nhân viên trong phòng kế toán (accounting department). Bạn nên dùng hàm nhóm nào?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "COUNT",
+        "text_vi": "COUNT",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "MAX",
+        "text_vi": "MAX",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "MIN",
+        "text_vi": "MIN",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SUM",
+        "text_vi": "SUM",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Hàm tính tổng các giá trị số trong SQL là hàm `SUM()`. COUNT dùng để đếm số dòng, MAX tìm giá trị lớn nhất, MIN tìm giá trị nhỏ nhất.",
+    "key_takeaway_vi": "Hàm tính tổng trong SQL là SUM.",
+    "flashcard": {
+      "front_en": "You need to calculate the total of all salaries in the accounting department. Which group \nfunction should you use?",
+      "front_vi": "Hàm nào tính tổng giá trị của một cột số?",
+      "back_vi": "Hàm SUM(column_name)."
+    }
+  },
+  {
+    "id": 141,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "In which case would you use a FULL OUTER JOIN?",
+    "prompt_vi": "Trong trường hợp nào sau đây bạn sẽ sử dụng phép kết nối FULL OUTER JOIN?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "You want all unmatched data from one table.",
+        "text_vi": "Bạn muốn lấy tất cả dữ liệu không khớp từ một bảng duy nhất.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "You want all unmatched data from both tables.",
+        "text_vi": "Bạn muốn lấy tất cả dữ liệu không khớp từ CẢ HAI BẢNG (all unmatched data from both tables).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "Both tables have NULL values.",
+        "text_vi": "Cả hai bảng đều có chứa giá trị NULL.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "You want all matched data from both tables.",
+        "text_vi": "Bạn muốn lấy tất cả dữ liệu khớp từ cả hai bảng.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "`FULL OUTER JOIN` kết hợp kết quả của cả LEFT OUTER JOIN và RIGHT OUTER JOIN. Nó trả về tất cả các dòng khớp nhau, đồng thời giữ lại cả các dòng không khớp từ bảng bên trái VÀ các dòng không khớp từ bảng bên phải (điền NULL vào các cột thiếu).",
+    "key_takeaway_vi": "FULL OUTER JOIN trả về toàn bộ dữ liệu khớp và không khớp từ cả hai bảng.",
+    "flashcard": {
+      "front_en": "In which case would you use a FULL OUTER JOIN?",
+      "front_vi": "FULL OUTER JOIN trả về những dòng nào?",
+      "back_vi": "Trả về các dòng khớp nhau + các dòng không khớp từ bảng trái + các dòng không khớp từ bảng phải."
+    }
+  },
+  {
+    "id": 142,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "What will be the output of the following query? \nSELECT * \nFROM employees, departments;",
+    "prompt_vi": "Kết quả của câu truy vấn sau sẽ là gì?\nSELECT * FROM employees, departments;",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It will display rows from employees table followed by rows from departments table.",
+        "text_vi": "Hiển thị các dòng từ bảng employees trước, sau đó nối tiếp các dòng từ bảng departments.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "It will by default the join two tables on department_id because it is a referential integrity column.",
+        "text_vi": "Mặc định tự động nối 2 bảng theo department_id vì đây là khóa ngoại.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "It will result in a Cartesian product as a joining condition is not specified",
+        "text_vi": "Tạo ra một tích Descartes (Cartesian product) do không chỉ định điều kiện kết nối (joining condition).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "It will return error as a join condition is not specified",
+        "text_vi": "Báo lỗi vì thiếu điều kiện kết nối.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Khi liệt kê nhiều bảng trong mệnh đề `FROM` mà hoàn toàn KHÔNG CÓ điều kiện kết nối (trong WHERE hoặc ON), cơ sở dữ liệu sẽ thực hiện phép nhân Descartes (Cartesian Product): mỗi dòng của bảng thứ nhất sẽ ghép đôi với mọi dòng của bảng thứ hai. Số dòng kết quả = số dòng bảng 1 * số dòng bảng 2.",
+    "key_takeaway_vi": "Nối bảng mà quên điều kiện kết nối sẽ tạo ra tích Descartes (Cartesian Product).",
+    "flashcard": {
+      "front_en": "What will be the output of the following query? \nSELECT * \nFROM employees, departments;",
+      "front_vi": "Điều gì xảy ra khi viết SELECT * FROM table1, table2 mà không có WHERE?",
+      "back_vi": "Sinh ra tích Descartes (Cartesian Product): nhân toàn bộ số hàng của 2 bảng với nhau."
+    }
+  },
+  {
+    "id": 143,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "Which of the following queries will produce identical output as the query below? \nSELECT last_name, department_name \nFROM employees \nCROSS JOIN departments;",
+    "prompt_vi": "Câu truy vấn nào sau đây tạo ra kết quả giống hệt như câu lệnh dưới đây?\nSELECT last_name, department_name FROM employees CROSS JOIN departments;",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT last_name, department_name FROM employees e, departments d WHERE e.depatment_id (+) = d.department_id (+);",
+        "text_vi": "SELECT last_name, department_name FROM employees e, departments d WHERE e.depatment_id (+) = d.department_id (+);",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT last_name, department_name FROM employees JOIN departments USING (department_id)",
+        "text_vi": "SELECT last_name, department_name FROM employees JOIN departments USING (department_id)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT last_name, department_name FROM employees e, departments d WHERE e.depatment_id = d.department_id;",
+        "text_vi": "SELECT last_name, department_name FROM employees e, departments d WHERE e.depatment_id = d.department_id;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT last_name, department_name FROM employees e, departments d;",
+        "text_vi": "SELECT last_name, department_name FROM employees e, departments d;",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "`CROSS JOIN` là cú pháp chuẩn SQL:1999 để thực hiện phép nhân Descartes giữa 2 bảng. Trong cú pháp truyền thống của Oracle, phép nhân Descartes được viết đơn giản bằng cách liệt kê 2 bảng cách nhau bằng dấu phẩy trong mệnh đề FROM mà không có WHERE: `FROM employees e, departments d;`.",
+    "key_takeaway_vi": "CROSS JOIN theo chuẩn SQL-99 tương đương với cú pháp truyền thống FROM table1, table2 không có WHERE.",
+    "flashcard": {
+      "front_en": "Which of the following queries will produce identical output as the query below? \nSELECT last_name, department_name \nFROM employees \nCROSS JOIN departments;",
+      "front_vi": "Cú pháp truyền thống tương đương với CROSS JOIN là gì?",
+      "back_vi": "SELECT ... FROM table1, table2; (không có mệnh đề WHERE)."
+    }
+  },
+  {
+    "id": 144,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "Which of the following is an outer join symbol?",
+    "prompt_vi": "Ký hiệu nào sau đây là ký hiệu của phép nối ngoài (outer join) trong cú pháp truyền thống của Oracle?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "[+]",
+        "text_vi": "[+]",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "(+)",
+        "text_vi": "(+)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "{+}",
+        "text_vi": "{+}",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "+",
+        "text_vi": "+",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Trong cú pháp SQL độc quyền truyền thống của Oracle, toán tử kết nối ngoài được ký hiệu là `(+)`. Dấu `(+)` được đặt ở phía bảng bị thiếu dữ liệu (thiếu dòng) để yêu cầu Oracle tự động bù các dòng NULL.",
+    "key_takeaway_vi": "Toán tử nối ngoài truyền thống của Oracle là (+).",
+    "flashcard": {
+      "front_en": "Which of the following is an outer join symbol?",
+      "front_vi": "Toán tử nối ngoài truyền thống của Oracle là gì?",
+      "back_vi": "(+) đặt bên phía bảng thiếu dữ liệu."
+    }
+  },
+  {
+    "id": 145,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "What will be the output of the following query? \nSELECT e.last_name, e.department_id, d.department_name \nFROM employees e, departments d \nWHERE e.department_id(+) = d.department_id;",
+    "prompt_vi": "Kết quả của câu lệnh sau sẽ là gì?\nSELECT e.last_name, e.department_id, d.department_name\nFROM employees e, departments d\nWHERE e.department_id(+) = d.department_id;",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Displays employee last names, department ID's and department names for all employees irrespective of the matching department id present in departments table or not.",
+        "text_vi": "Hiển thị thông tin cho tất cả nhân viên bất kể có phòng ban hay không.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Displays employee last names, department ID's and department names for all employees.",
+        "text_vi": "Chỉ hiển thị thông tin khi có phòng ban khớp.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Displays employee last names, department ID's for all employees and also the department names for all departments.",
+        "text_vi": "Hiển thị thông tin nhân viên cho tất cả nhân viên và phòng ban cho tất cả phòng ban.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Displays employee last names, department ID's and department names for all employees and also the department names of departments who have no match in employees table.",
+        "text_vi": "Hiển thị tất cả nhân viên khớp và hiển thị cả những phòng ban CHƯA CÓ nhân viên nào (departments who have no match in employees table).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Toán tử `(+)` đặt ở cột `e.department_id(+)` nghĩa là bảng `employees` là bảng bị thiếu dữ liệu (phía thiếu). Điều này có nghĩa toàn bộ các phòng ban từ bảng `departments` đều được giữ lại, kể cả những phòng ban trống không có nhân viên nào (tương đương với RIGHT OUTER JOIN).",
+    "key_takeaway_vi": "Dấu (+) đặt ở bảng nào thì bảng ĐỐI DIỆN sẽ được giữ lại toàn bộ (kể cả không có dữ liệu khớp).",
+    "flashcard": {
+      "front_en": "What will be the output of the following query? \nSELECT e.last_name, e.department_id, d.department_name \nFROM employees e, departments d \nWHERE e.department_id(+) = d.department_id;",
+      "front_vi": "Trong điều kiện e.dept_id(+) = d.dept_id, bảng nào được giữ lại toàn bộ dữ liệu?",
+      "back_vi": "Bảng departments (d). Đây tương đương với RIGHT OUTER JOIN."
+    }
+  },
+  {
+    "id": 146,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "Which of the following type of join was not available in Oracle versions 8i and prior?",
+    "prompt_vi": "Loại kết nối nào sau đây KHÔNG CÓ SẴN (chưa được hỗ trợ) trong Oracle phiên bản 8i trở về trước?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Full Outer Join",
+        "text_vi": "Full Outer Join",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Self Join",
+        "text_vi": "Self Join",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Left Outer Join",
+        "text_vi": "Left Outer Join",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Right Outer Join",
+        "text_vi": "Right Outer Join",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong Oracle 8i trở về trước, Oracle chỉ có cú pháp `(+)` và luật của Oracle là dấu `(+)` không được phép xuất hiện ở cả hai vế của điều kiện (nghĩa là không thể làm Full Outer Join trực tiếp mà phải dùng phép UNION giữa Left Join và Right Join). Từ Oracle 9i hỗ trợ chuẩn SQL:1999 thì từ khóa `FULL OUTER JOIN` mới chính thức xuất hiện.",
+    "key_takeaway_vi": "FULL OUTER JOIN chưa được hỗ trợ trực tiếp trong Oracle 8i trở về trước (mãi đến 9i mới có).",
+    "flashcard": {
+      "front_en": "Which of the following type of join was not available in Oracle versions 8i and prior?",
+      "front_vi": "Tại sao Oracle 8i không thể viết a.id(+) = b.id(+)?",
+      "back_vi": "Vì cú pháp (+) của Oracle cấm đặt dấu (+) ở cả 2 vế. Muốn Full Join thời 8i phải dùng UNION giữa Left và Right Join."
+    }
+  },
+  {
+    "id": 147,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "Which of the following statements about use of table aliases and prefixes in Join queries is \nnot Valid ?",
+    "prompt_vi": "Phát biểu nào sau đây về việc sử dụng bí danh bảng (table aliases) và tiền tố bảng trong câu truy vấn Join là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "We can simplify queries by using table aliases.",
+        "text_vi": "Chúng ta có thể làm câu truy vấn ngắn gọn và dễ hiểu hơn bằng cách dùng bí danh bảng.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Table prefixes must be used to unambiguously identify the columns with same names.",
+        "text_vi": "Tiền tố bảng bắt buộc phải dùng để phân biệt rõ ràng các cột có cùng tên ở các bảng khác nhau.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "We can improve performance by using table prefixes.",
+        "text_vi": "Chúng ta có thể cải thiện hiệu năng thực thi bằng cách dùng tiền tố bảng.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Table prefixes must be used when joining more than three tables.",
+        "text_vi": "Tiền tố bảng bắt buộc phải sử dụng khi kết nối từ 3 bảng trở lên (must be used when joining more than three tables).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Phát biểu D là SAI vì không có quy định nào bắt buộc phải dùng tiền tố bảng khi nối từ 3 bảng trở lên. Tiền tố bảng chỉ bắt buộc khi các bảng có các cột trùng tên nhau (để tránh lỗi ambigous column).",
+    "key_takeaway_vi": "Tiền tố bảng chỉ bắt buộc khi tên cột bị trùng lặp giữa các bảng; không bắt buộc dựa trên số lượng bảng.",
+    "flashcard": {
+      "front_en": "Which of the following statements about use of table aliases and prefixes in Join queries is \nnot Valid ?",
+      "front_vi": "Khi nào bắt buộc phải dùng tiền tố bảng (table_name.column)?",
+      "back_vi": "Khi câu truy vấn nối nhiều bảng mà có các cột trùng tên nhau (tránh lỗi ORA-00918: column ambiguously defined)."
+    }
+  },
+  {
+    "id": 148,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "Which of the following statements indicate correct way of using a Natural Join?",
+    "prompt_vi": "Câu lệnh nào sau đây thể hiện cách sử dụng ĐÚNG của phép kết nối tự nhiên (Natural Join)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT department_id, department_name, location_id, city FROM departments d NATURAL JOIN locations l using (l.location_id);",
+        "text_vi": "SELECT department_id, department_name, location_id, city FROM departments d NATURAL JOIN locations l using (l.location_id);",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT department_id, department_name, location_id, city FROM departments NATURAL JOIN locations on (location_id);",
+        "text_vi": "SELECT department_id, department_name, location_id, city FROM departments NATURAL JOIN locations on (location_id);",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT department_id, department_name, location_id, city FROM departments NATURAL JOIN locations;",
+        "text_vi": "SELECT department_id, department_name, location_id, city FROM departments NATURAL JOIN locations;",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT department_id, department_name, location_id, city FROM departments d NATURAL JOIN locations l WHERE d.location_id = l.location_id",
+        "text_vi": "SELECT department_id, department_name, location_id, city FROM departments d NATURAL JOIN locations l WHERE d.location_id = l.location_id",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "`NATURAL JOIN` tự động tìm kiếm tất cả các cột có cùng tên và cùng kiểu dữ liệu ở cả hai bảng để làm điều kiện kết nối ngầm định. Vì vậy nó TUYỆT ĐỐI KHÔNG ĐI KÈM mệnh đề `ON` hoặc `USING`.",
+    "key_takeaway_vi": "NATURAL JOIN tự động so khớp cột cùng tên, không được có mệnh đề ON hay USING.",
+    "flashcard": {
+      "front_en": "Which of the following statements indicate correct way of using a Natural Join?",
+      "front_vi": "Có được dùng mệnh đề ON hoặc USING trong câu lệnh NATURAL JOIN không?",
+      "back_vi": "KHÔNG. NATURAL JOIN tự động nối các cột cùng tên, dùng thêm ON/USING sẽ bị lỗi cú pháp."
+    }
+  },
+  {
+    "id": 149,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "Which of the following statements is not true about joins?",
+    "prompt_vi": "Phát biểu nào sau đây là KHÔNG ĐÚNG về các phép kết nối (joins)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To specify arbitrary conditions or specify columns to join, the ON clause is used.",
+        "text_vi": "Mệnh đề ON được sử dụng để chỉ định các điều kiện tùy ý hoặc chỉ định các cột để kết nối.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Natural join and using clause can be used together.",
+        "text_vi": "Phép kết nối Natural join và mệnh đề USING có thể được sử dụng cùng nhau (can be used together).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "Use the USING clause to match only one column when more than one column matches.",
+        "text_vi": "Sử dụng mệnh đề USING để chỉ định so khớp đúng một cột khi hai bảng có nhiều hơn một cột trùng tên.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "If the columns having the same names have different data types, an error is returned in case of a Natural Join.",
+        "text_vi": "Nếu các cột có cùng tên nhưng khác kiểu dữ liệu, Natural Join sẽ trả về lỗi.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Phát biểu B là SAI vì `NATURAL JOIN` và mệnh đề `USING` là hai cơ chế loại trừ lẫn nhau (mutually exclusive). Nếu đã viết NATURAL JOIN thì không được viết USING, và ngược lại nếu dùng USING thì phải dùng cú pháp `JOIN ... USING (cột)`.",
+    "key_takeaway_vi": "NATURAL JOIN và mệnh đề USING không bao giờ được dùng chung trong một câu lệnh.",
+    "flashcard": {
+      "front_en": "Which of the following statements is not true about joins?",
+      "front_vi": "Khi nào nên dùng mệnh đề USING thay vì NATURAL JOIN?",
+      "back_vi": "Khi 2 bảng có nhiều cột cùng tên nhưng ta chỉ muốn nối theo 1 cột duy nhất."
+    }
+  },
+  {
+    "id": 150,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "Which SQL statement produces the name, department name, and the city of all the \nemployees who earn more than 10000?",
+    "prompt_vi": "Câu lệnh SQL nào sau đây hiển thị tên, tên phòng ban và thành phố của tất cả nhân viên có mức lương lớn hơn 10000?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT emp_name, department_name, city FROM employees e, departments d, locations 1 JOIN ON (e.department_id = d.department id) AND (d.location_id =1.location_id) AND salary > 10000;",
+        "text_vi": "SELECT emp_name, department_name, city FROM employees e, departments d, locations l JOIN ON (e.department_id = d.department_id) AND (d.location_id = l.location_id) AND salary > 10000; (Theo đáp án đề CDAC)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT emp_name, department_name, city FROM employees e, departments d, locations 1 WHERE salary > 10000;",
+        "text_vi": "SELECT emp_name, department_name, city FROM employees e, departments d, locations l WHERE salary > 10000;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT emp_name, department_name, city FROM employees e JOIN departments d USING (department_id) JOIN locations 1 USING (location_id) WHERE salary > 10000;",
+        "text_vi": "SELECT emp_name, department_name, city FROM employees e JOIN departments d USING (department_id) JOIN locations l USING (location_id) WHERE salary > 10000;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT emp_name, department_name, city FROM employees e NATURAL JOIN departments, locations WHERE salary > 10000;",
+        "text_vi": "SELECT emp_name, department_name, city FROM employees e NATURAL JOIN departments, locations WHERE salary > 10000;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Để kết nối 3 bảng `employees`, `departments`, `locations` và lọc nhân viên lương > 10000, câu lệnh cần liên kết khóa giữa employee với department (`department_id`) và department với location (`location_id`). (Lưu ý: Phương án C là chuẩn ANSI hoàn hảo, nhưng trong đề thi CDAC phương án A được đánh dấu 100 điểm).",
+    "key_takeaway_vi": "Khi kết nối 3 bảng cần tối thiểu 2 điều kiện kết nối để tránh tích Descartes.",
+    "flashcard": {
+      "front_en": "Which SQL statement produces the name, department name, and the city of all the \nemployees who earn more than 10000?",
+      "front_vi": "Để nối N bảng cần tối thiểu bao nhiêu điều kiện kết nối?",
+      "back_vi": "Tối thiểu N - 1 điều kiện kết nối."
+    }
+  },
+  {
+    "id": 151,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "You want to retrieve all employees, whether or not they have matching departments in the \ndepartments table. Which query would you use?",
+    "prompt_vi": "Bạn muốn lấy ra danh sách tất cả các nhân viên, bất kể họ đã được phân công vào phòng ban trong bảng departments hay chưa. Bạn dùng truy vấn nào?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT last_name, department_name FROM employees e LEFT OUTER JOIN departments d ON (e.department_id = d.department_id);",
+        "text_vi": "SELECT last_name, department_name FROM employees e LEFT OUTER JOIN departments d ON (e.department_id = d.department_id);",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT last_name, department_name FROM employees , departments(+);",
+        "text_vi": "SELECT last_name, department_name FROM employees , departments(+);",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT last_name, department_name FROM employees JOIN departments (+);",
+        "text_vi": "SELECT last_name, department_name FROM employees JOIN departments (+);",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT last_name, department_name FROM employees e RIGHT OUTER JOIN departments d ON (e.department_id = d.department_id);",
+        "text_vi": "SELECT last_name, department_name FROM employees e RIGHT OUTER JOIN departments d ON (e.department_id = d.department_id);",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Vì bảng `employees` nằm ở phía bên trái của từ khóa JOIN và bạn muốn giữ lại TẤT CẢ các bản ghi của bảng employees (kể cả nhân viên chưa có phòng ban), bạn bắt buộc phải dùng `LEFT OUTER JOIN`.",
+    "key_takeaway_vi": "Giữ lại toàn bộ dữ liệu bảng bên trái (dù không khớp với bảng phải) dùng LEFT OUTER JOIN.",
+    "flashcard": {
+      "front_en": "You want to retrieve all employees, whether or not they have matching departments in the \ndepartments table. Which query would you use?",
+      "front_vi": "Lấy tất cả nhân viên kể cả người chưa thuộc phòng ban nào dùng phép JOIN gì?",
+      "back_vi": "LEFT OUTER JOIN (với bảng employees đứng bên trái)."
+    }
+  },
+  {
+    "id": 152,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "Which is not true regarding the use of outer joins?",
+    "prompt_vi": "Điều nào sau đây là KHÔNG ĐÚNG về việc sử dụng các phép kết nối ngoài (outer joins)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "In the WHERE condition, you use (+) following the name of the column in the table without matching rows, to perform an outerjoin.",
+        "text_vi": "Trong điều kiện WHERE, bạn dùng ký hiệu (+) theo sau tên cột của bảng thiếu dòng để thực hiện outer join.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "You use an outerjoin to see only the rows that do not meet the join condition.",
+        "text_vi": "Bạn dùng outer join để xem cả những dòng không thỏa mãn điều kiện kết nối thông thường.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "You cannot link a condition that is involved in an outerjoin to another condition by using the OR operator.",
+        "text_vi": "Bạn không thể liên kết một điều kiện outer join với một điều kiện khác bằng toán tử OR.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "You cannot an outer join while joining more than 2 tables",
+        "text_vi": "Bạn không thể thực hiện phép nối ngoài khi kết nối nhiều hơn 2 bảng (You cannot an outer join while joining more than 2 tables).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Phát biểu D là SAI vì bạn hoàn toàn có thể thực hiện phép kết nối ngoài qua 3 bảng, 4 bảng hoặc nhiều hơn (ví dụ: A LEFT JOIN B ON ... LEFT JOIN C ON ...).",
+    "key_takeaway_vi": "Outer join hoàn toàn có thể kết nối nhiều hơn 2 bảng.",
+    "flashcard": {
+      "front_en": "Which is not true regarding the use of outer joins?",
+      "front_vi": "Có thể thực hiện Outer Join trên 3 bảng trở lên không?",
+      "back_vi": "CÓ. Có thể kết hợp nhiều mệnh đề LEFT/RIGHT OUTER JOIN trên nhiều bảng liên tiếp."
+    }
+  },
+  {
+    "id": 153,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "Which of the following joins is also called an Inner join?",
+    "prompt_vi": "Phép kết nối nào sau đây còn được gọi là phép Inner Join (kết nối trong)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Self Join",
+        "text_vi": "Self Join",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Outer Join",
+        "text_vi": "Outer Join",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Non-Equi Join",
+        "text_vi": "Non-Equi Join",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Equi Join",
+        "text_vi": "Equi Join (Phép kết nối bằng)",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Phép `Equi Join` (kết nối dựa trên toán tử bằng `=`) là dạng phổ biến và tiêu biểu nhất của `Inner Join` (kết nối trong), trong đó chỉ những bản ghi thỏa mãn điều kiện bằng nhau ở cả hai bảng mới được trả về.",
+    "key_takeaway_vi": "Equijoin (kết nối bằng) là dạng tiêu chuẩn của Inner Join.",
+    "flashcard": {
+      "front_en": "Which of the following joins is also called an Inner join?",
+      "front_vi": "Equijoin là gì?",
+      "back_vi": "Là phép kết nối trong sử dụng toán tử so sánh bằng (=) giữa các cột của 2 bảng."
+    }
+  },
+  {
+    "id": 154,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "What is true about joining tables through an equijoin?",
+    "prompt_vi": "Điều gì là ĐÚNG khi kết nối các bảng thông qua một phép equijoin?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "You specify an equijoin condition in the SELECT or FROM clauses of a SELECT statement.",
+        "text_vi": "Bạn chỉ định điều kiện equijoin trong mệnh đề SELECT hoặc FROM.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "You can join n tables (all having single column primary keys) in a SQL statement by specifying a minimum of n-1 join conditions.",
+        "text_vi": "Bạn có thể kết nối n bảng (mỗi bảng có khóa chính 1 cột) bằng cách chỉ định tối thiểu là n-1 điều kiện kết nối.",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "You can join a maximum of two columns through an equijoin.",
+        "text_vi": "Bạn chỉ có thể kết nối tối đa 2 cột qua một equijoin.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "You can join a maximum of two tables through an equijoin.",
+        "text_vi": "Bạn chỉ có thể kết nối tối đa 2 bảng qua một equijoin.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Quy tắc kinh điển trong thiết kế truy vấn CSDL quan hệ: Để kết nối `n` bảng mà không bị tích Descartes, số điều kiện kết nối tối thiểu cần có luôn luôn là `n - 1` điều kiện.",
+    "key_takeaway_vi": "Để kết nối n bảng cần tối thiểu n - 1 điều kiện kết nối.",
+    "flashcard": {
+      "front_en": "What is true about joining tables through an equijoin?",
+      "front_vi": "Công thức tính số điều kiện kết nối tối thiểu để nối n bảng?",
+      "back_vi": "Số điều kiện tối thiểu = n - 1."
+    }
+  },
+  {
+    "id": 155,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "Examine the structure of the EMPLOYEES, DEPARTMENTS, and TAX tables. \nEMPLOYEES \nEMPLOYEE_ID      NUMBER        NOT NULL, Primary Key \nEMP_NAME         VARCHAR2(30) \nJOB_ID           VARCHAR2(20) \nSALARY           NUMBER \nMGR_ID           NUMBER        References EMPLOYEE_ID column \nDEPARTMENT_ID    NUMBER        Foreign key to DEPARTMENT_ID column of the \nDEPARTMENTS table \nDEPARTMENTS \nDEPARTMENT_ID    NUMBER        NOT NULL, Primary Key \nDEPARTMENT_NAME  VARCHAR2(30) \nMGR_ID           NUMBER        References MGR_ID column of the EMPLOYEES table \nTAX \nMIN_SALARY       NUMBER \nMAX_SALARY       NUMBER \nTAX_PERCENT      NUMBER \nFor which situation would you use a non-equijoin query?",
+    "prompt_vi": "Xét cấu trúc bảng EMPLOYEES, DEPARTMENTS và TAX (chứa MIN_SALARY, MAX_SALARY, TAX_PERCENT).\nTrong tình huống nào sau đây bạn sẽ sử dụng một truy vấn Non-Equijoin (kết nối không dùng dấu bằng)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To find the number of employees working for the Administrative department and earning less then 4000.",
+        "text_vi": "Tìm số lượng nhân viên làm việc cho phòng Hành chính và có lương < 4000.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "To find the tax percentage for each of the employees",
+        "text_vi": "Tìm phần trăm thuế (tax percentage) áp dụng cho mỗi nhân viên (To find the tax percentage for each employee).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "To list the name, job id, and manager name for all the employees.",
+        "text_vi": "Liệt kê tên, chức vụ và tên người quản lý của tất cả nhân viên.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "To find the name, salary, and department name of employees who are not working with Smith.",
+        "text_vi": "Tìm tên, lương và tên phòng ban của nhân viên không làm cùng với Smith.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Để tìm mức thuế trong bảng `TAX`, tiền lương của nhân viên không thể so sánh bằng (`=`) với mức thuế cụ thể, mà phải so sánh trong khoảng: `WHERE e.salary BETWEEN t.min_salary AND t.max_salary`. Phép kết nối dùng toán tử `BETWEEN ... AND` hoặc `>=`, `<=` chính là định nghĩa chuẩn của `Non-Equijoin`.",
+    "key_takeaway_vi": "So sánh giá trị nằm trong khoảng (dùng BETWEEN ... AND hoặc >=, <=) là Non-Equijoin.",
+    "flashcard": {
+      "front_en": "Examine the structure of the EMPLOYEES, DEPARTMENTS, and TAX tables. \nEMPLOYEES \nEMPLOYEE_ID      NUMBER        NOT NULL, Primary Key \nEMP_NAME         VARCHAR2(30) \nJOB_ID           VARCHAR2(20) \nSALARY           NUMBER \nMGR_ID           NUMBER        References EMPLOYEE_ID column \nDEPARTMENT_ID    NUMBER        Foreign key to DEPARTMENT_ID column of the \nDEPARTMENTS table \nDEPARTMENTS \nDEPARTMENT_ID    NUMBER        NOT NULL, Primary Key \nDEPARTMENT_NAME  VARCHAR2(30) \nMGR_ID           NUMBER        References MGR_ID column of the EMPLOYEES table \nTAX \nMIN_SALARY       NUMBER \nMAX_SALARY       NUMBER \nTAX_PERCENT      NUMBER \nFor which situation would you use a non-equijoin query?",
+      "front_vi": "Non-Equijoin là gì? Cho ví dụ thực tế.",
+      "back_vi": "Là phép nối dùng toán tử khác dấu bằng (như BETWEEN, >=, <=). Ví dụ: Tra cứu bậc lương hoặc khung thuế thu nhập."
+    }
+  },
+  {
+    "id": 156,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "To produce a meaningful result set without any cartesian products, what is the minimum \nnumber of conditions that should appear in the WHERE clause of a four-table join?",
+    "prompt_vi": "Để tạo ra một tập kết quả có ý nghĩa mà không bị tích Descartes, số lượng điều kiện tối thiểu phải xuất hiện trong mệnh đề WHERE của một câu truy vấn nối 4 bảng là bao nhiêu?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "2",
+        "text_vi": "2",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "4",
+        "text_vi": "4",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "3",
+        "text_vi": "3",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "8",
+        "text_vi": "8",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Áp dụng công thức `n - 1`: Với `n = 4` bảng, số điều kiện kết nối tối thiểu cần thiết trong mệnh đề WHERE là `4 - 1 = 3` điều kiện.",
+    "key_takeaway_vi": "Nối 4 bảng cần tối thiểu: 4 - 1 = 3 điều kiện kết nối.",
+    "flashcard": {
+      "front_en": "To produce a meaningful result set without any cartesian products, what is the minimum \nnumber of conditions that should appear in the WHERE clause of a four-table join?",
+      "front_vi": "Nối 4 bảng cần tối thiểu bao nhiêu điều kiện WHERE để không bị Cartesian Product?",
+      "back_vi": "3 điều kiện kết nối."
+    }
+  },
+  {
+    "id": 157,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "In which case would you use an outer join?",
+    "prompt_vi": "Trong trường hợp nào sau đây bạn sẽ sử dụng phép kết nối ngoài (Outer Join)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The tables being joined have NOT NULL columns.",
+        "text_vi": "Các bảng được kết nối có các cột mang ràng buộc NOT NULL.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The tables being joined have both matched and unmatched data.",
+        "text_vi": "Các bảng được kết nối có cả dữ liệu khớp và dữ liệu không khớp mà bạn vẫn muốn hiển thị (both matched and unmatched data).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "The tables being joined have only unmatched data",
+        "text_vi": "Các bảng được kết nối chỉ có dữ liệu không khớp.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The tables being joined have only matched data.",
+        "text_vi": "Các bảng được kết nối chỉ có dữ liệu khớp.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Phép kết nối trong (Inner Join) chỉ hiển thị các dòng có dữ liệu khớp ở cả hai bảng. Khi bạn muốn hiển thị các dòng khớp VÀ CẢ các dòng không khớp từ một hoặc hai bảng (ví dụ: phòng ban chưa có nhân viên nào, khách hàng chưa mua đơn nào), bạn bắt buộc phải dùng `Outer Join`.",
+    "key_takeaway_vi": "Outer Join dùng khi muốn lấy cả dữ liệu khớp lẫn các bản ghi không có đối chiếu ở bảng kia.",
+    "flashcard": {
+      "front_en": "In which case would you use an outer join?",
+      "front_vi": "Mục đích chính của Outer Join là gì?",
+      "back_vi": "Hiển thị cả các bản ghi không có giá trị khớp ở bảng liên kết (tránh bị mất dữ liệu như Inner Join)."
+    }
+  },
+  {
+    "id": 158,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "When will a Cartesian product occur?",
+    "prompt_vi": "Tích Descartes (Cartesian product) xảy ra khi nào trong câu truy vấn Join?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "All rows in the first table are joined to all rows in the second table",
+        "text_vi": "Tất cả các dòng của bảng thứ nhất được ghép với tất cả các dòng của bảng thứ hai.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "A join condition is omitted",
+        "text_vi": "Điều kiện kết nối bị bỏ sót (A join condition is omitted).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "A join condition is invalid",
+        "text_vi": "Điều kiện kết nối không hợp lệ (A join condition is invalid).",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Two tables are joined on the columns having different names.",
+        "text_vi": "Hai bảng được kết nối trên các cột có tên khác nhau (Theo đáp án trắc nghiệm đề gốc CDAC đánh dấu 100)",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "⚠️ LƯU Ý GIẢNG VIÊN & ĐỀ THI: Về mặt lý thuyết chuẩn CSDL quan hệ: Tích Descartes xảy ra khi 'Điều kiện kết nối bị bỏ quên' (phương án B) hoặc 'Điều kiện kết nối không hợp lệ' (phương án C), dẫn đến kết quả là phương án A. Tuy nhiên trong file bài tập gốc của CDAC, đáp án chấm phương án D. Sinh viên khi làm bài kiểm tra trắc nghiệm CDAC cần ghi nhớ đáp án D của ngân hàng đề, nhưng khi đi làm thực tế cần nắm rõ bản chất: Tích Descartes xuất hiện khi thiếu điều kiện kết nối!",
+    "key_takeaway_vi": "Lý thuyết chuẩn: Tích Descartes xảy ra khi quên điều kiện kết nối. Đề thi CDAC chọn phương án D.",
+    "flashcard": {
+      "front_en": "When will a Cartesian product occur?",
+      "front_vi": "Lý do chính khiến câu lệnh SQL sinh ra Cartesian Product?",
+      "back_vi": "Do quên viết điều kiện kết nối trong mệnh đề WHERE hoặc ON. (Lưu ý đáp án bài thi CDAC đánh dấu D)."
+    }
+  },
+  {
+    "id": 159,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "Which of the following is not a valid type of Join?",
+    "prompt_vi": "Loại kết nối nào sau đây KHÔNG PHẢI là một loại kết nối (Join) hợp lệ trong SQL?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "External Join",
+        "text_vi": "External Join",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Outer Join",
+        "text_vi": "Outer Join",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Inner Join",
+        "text_vi": "Inner Join",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Natural join",
+        "text_vi": "Natural join",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong chuẩn SQL chỉ có các loại: Inner Join, Outer Join (Left, Right, Full), Natural Join, Cross Join. Thuật ngữ 'External Join' là từ bịa đặt, hoàn toàn không tồn tại trong tài liệu chuẩn.",
+    "key_takeaway_vi": "Không có loại kết nối nào tên là 'External Join'.",
+    "flashcard": {
+      "front_en": "Which of the following is not a valid type of Join?",
+      "front_vi": "Trong SQL có khái niệm 'External Join' không?",
+      "back_vi": "KHÔNG. Chỉ có Inner Join, Outer Join, Cross Join, Natural Join."
+    }
+  },
+  {
+    "id": 160,
+    "module_id": 8,
+    "module_name_en": "Module 8: SQL Joins",
+    "module_name_vi": "Module 8: Phép kết nối bảng (SQL Joins)",
+    "prompt_en": "Which type of join is used in the following query? \nSELECT e.employee_id, e.last_name, d.department_id, d.location_id \nFROM employees e, departments d \nWHERE e.department_id = d.department_id;",
+    "prompt_vi": "Loại kết nối nào được sử dụng trong câu truy vấn sau?\nSELECT e.employee_id, e.last_name, d.department_id, d.location_id\nFROM employees e, departments d\nWHERE e.department_id = d.department_id;",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Self Join",
+        "text_vi": "Self Join",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Non-equi Join",
+        "text_vi": "Non-equi Join",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Equi join",
+        "text_vi": "Equi join (Kết nối bằng)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "Left Outer join",
+        "text_vi": "Left Outer join",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Điều kiện kết nối sử dụng toán tử dấu bằng: `WHERE e.department_id = d.department_id`. Đây là định nghĩa chính xác của phép `Equi join`.",
+    "key_takeaway_vi": "Kết nối dựa trên dấu bằng (=) giữa 2 cột là Equi join.",
+    "flashcard": {
+      "front_en": "Which type of join is used in the following query? \nSELECT e.employee_id, e.last_name, d.department_id, d.location_id \nFROM employees e, departments d \nWHERE e.department_id = d.department_id;",
+      "front_vi": "Phép kết nối nào dùng dấu '=' giữa các cột?",
+      "back_vi": "Equi join."
+    }
+  },
+  {
+    "id": 161,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "Evaluate this SELECT statement: \nSELECT employee_id, name \nFROM employee \nWHERE employee_id NOT IN (SELECT employee_id \n                          FROM employee \n                          WHERE department_id = 30 \n                          AND job = 'CLERK'); \nWhat would happen if the inner query returned a NULL value?",
+    "prompt_vi": "Đánh giá câu lệnh:\nSELECT employee_id, name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM employee WHERE department_id = 30 AND job = 'CLERK');\nĐiều gì sẽ xảy ra nếu câu truy vấn con (inner query) trả về ít nhất một giá trị NULL?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A syntax error would be returned.",
+        "text_vi": "Sẽ báo lỗi cú pháp.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Only the rows with EMPLOYEE_ID values equal to NULL would be included in the results.",
+        "text_vi": "Chỉ các dòng có employee_id bằng NULL mới được chọn.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "All the EMPLOYEE_ID and NAME values in the EMPLOYEE table would be displayed.",
+        "text_vi": "Tất cả các dòng trong bảng employee đều sẽ được hiển thị.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "No rows would be selected from the EMPLOYEE table.",
+        "text_vi": "KHÔNG CÓ DÒNG NÀO được chọn từ bảng EMPLOYEE (No rows would be selected).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "🔥 BẪY KINH ĐIỂN NHẤT CỦA TOÁN TỬ NOT IN: Trong logic 3 giá trị của SQL (TRUE, FALSE, UNKNOWN), biểu thức `x NOT IN (val1, val2, NULL)` tương đương với `x != val1 AND x != val2 AND x != NULL`. Vì `x != NULL` luôn trả về `UNKNOWN`, nên toàn bộ mệnh đề AND sẽ không bao giờ có kết quả TRUE! Kết quả là câu truy vấn ngoài hoàn toàn rỗng (0 dòng được trả về)!",
+    "key_takeaway_vi": "Nếu tập kết quả của subquery chứa NULL, toán tử NOT IN sẽ luôn trả về rỗng (0 dòng).",
+    "flashcard": {
+      "front_en": "Evaluate this SELECT statement: \nSELECT employee_id, name \nFROM employee \nWHERE employee_id NOT IN (SELECT employee_id \n                          FROM employee \n                          WHERE department_id = 30 \n                          AND job = 'CLERK'); \nWhat would happen if the inner query returned a NULL value?",
+      "front_vi": "Hậu quả khi subquery trong toán tử NOT IN trả về có chứa giá trị NULL?",
+      "back_vi": "Câu truy vấn ngoài sẽ trả về RỖNG (0 dòng) do điều kiện so sánh với NULL trả về UNKNOWN."
+    }
+  },
+  {
+    "id": 162,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "In which clause a subquery cannot be used?",
+    "prompt_vi": "Mệnh đề nào sau đây KHÔNG THỂ sử dụng câu truy vấn con (subquery)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "in the FROM clause of a SELECT statement",
+        "text_vi": "Trong mệnh đề FROM của câu lệnh SELECT.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "in the GROUP BY clause of a SELECT statement",
+        "text_vi": "Trong mệnh đề GROUP BY của câu lệnh SELECT (in the GROUP BY clause).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "in the SET clause of an UPDATE statement",
+        "text_vi": "Trong mệnh đề SET của câu lệnh UPDATE.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "in the WHERE clause of a SELECT statement",
+        "text_vi": "Trong mệnh đề WHERE của câu lệnh SELECT.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "SQL cho phép sử dụng Subquery trong: `WHERE`, `HAVING`, `FROM` (inline view), `SELECT` (scalar subquery), và `SET` của UPDATE. Tuy nhiên, mệnh đề `GROUP BY` TUYỆT ĐỐI KHÔNG ĐƯỢC PHÉP chứa subquery.",
+    "key_takeaway_vi": "Subquery không bao giờ được đặt trong mệnh đề GROUP BY.",
+    "flashcard": {
+      "front_en": "In which clause a subquery cannot be used?",
+      "front_vi": "Mệnh đề nào trong SELECT không bao giờ được phép chứa Subquery?",
+      "back_vi": "Mệnh đề GROUP BY."
+    }
+  },
+  {
+    "id": 163,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "Which best describes an inline view?",
+    "prompt_vi": "Phát biểu nào sau đây mô tả đúng nhất về một Khung nhìn nội tuyến (Inline View)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "a subquery that is part of the FROM clause of another query",
+        "text_vi": "Một câu truy vấn con (subquery) nằm trong mệnh đề FROM của một câu truy vấn khác.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "a subquery that can contain an ORDER BY clause",
+        "text_vi": "Một subquery có thể chứa mệnh đề ORDER BY.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "another name for a view that contains group functions",
+        "text_vi": "Một tên gọi khác của view có chứa các hàm nhóm.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "a schema object",
+        "text_vi": "Một đối tượng lược đồ (schema object) được lưu vĩnh viễn trong CSDL.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "`Inline View` là thuật ngữ trong Oracle SQL chỉ một câu truy vấn con được đặt trực tiếp trong mệnh đề `FROM` của câu truy vấn cha: `SELECT ... FROM (SELECT ... FROM ...) alias`. Nó chỉ tồn tại trong suốt quá trình thực thi câu truy vấn đó và không phải là đối tượng lưu trong từ điển dữ liệu.",
+    "key_takeaway_vi": "Inline View là một subquery nằm trong mệnh đề FROM của câu truy vấn khác.",
+    "flashcard": {
+      "front_en": "Which best describes an inline view?",
+      "front_vi": "Inline View là gì?",
+      "back_vi": "Là câu truy vấn con (Subquery) được đặt ngay trong mệnh đề FROM đóng vai trò như một bảng tạm."
+    }
+  },
+  {
+    "id": 164,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "Which statement about subqueries is true?",
+    "prompt_vi": "Phát biểu nào sau đây về các câu truy vấn con (subqueries) là ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A subquery can retrieve zero or more rows.",
+        "text_vi": "Một câu truy vấn con có thể trả về từ 0 dòng trở lên (zero or more rows).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "A subquery should retrieve only one row",
+        "text_vi": "Một câu truy vấn con chỉ được phép trả về duy nhất 1 dòng.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Subqueries CANOT be nested by more than two levels.",
+        "text_vi": "Truy vấn con không thể lồng quá 2 cấp độ.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "A subquery can be used only in SQL query statements.",
+        "text_vi": "Truy vấn con chỉ có thể dùng duy nhất trong câu lệnh SELECT.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Một subquery có thể trả về: 0 dòng (không có kết quả), 1 dòng (Single-row subquery), hoặc nhiều dòng (Multiple-row subquery). Subquery cũng có thể dùng trong INSERT, UPDATE, DELETE và có thể lồng nhiều cấp.",
+    "key_takeaway_vi": "Subquery có thể trả về 0, 1 hoặc nhiều dòng tùy thuộc vào dữ liệu.",
+    "flashcard": {
+      "front_en": "Which statement about subqueries is true?",
+      "front_vi": "Một subquery có thể trả về bao nhiêu dòng?",
+      "back_vi": "Có thể trả về 0 dòng, 1 dòng (single-row) hoặc nhiều dòng (multi-row)."
+    }
+  },
+  {
+    "id": 165,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "Which statement will display employees who have same job id as that of 'Hass' and earn \nmore than 10000 ?",
+    "prompt_vi": "Câu lệnh nào sau đây hiển thị các nhân viên có cùng chức vụ (job_id) với nhân viên có họ là 'Haas' và có mức lương lớn hơn 10000?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT last_name, job_id FROM employees WHERE job_id IN (SELECT job_id FROM employees WHERE last_name = 'Haas') AND salary > 10000;",
+        "text_vi": "SELECT last_name, job_id FROM employees WHERE job_id IN (SELECT job_id FROM employees WHERE last_name = 'Haas') AND salary > 10000;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT last_name, job_id FROM employees WHERE last_name = 'Haas' AND salary >10000",
+        "text_vi": "SELECT last_name, job_id FROM employees WHERE last_name = 'Haas' AND salary >10000",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT last_name, job_id FROM employees WHERE job_id IN (SELECT job_id FROM employees WHERE Salary > 10000) AND last_name = 'Haas'",
+        "text_vi": "SELECT last_name, job_id FROM employees WHERE job_id IN (SELECT job_id FROM employees WHERE Salary > 10000) AND last_name = 'Haas'",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT last_name, job_id FROM employees WHERE job_id = (SELECT job_id FROM employees WHERE last_name = 'Haas' AND salary > 10000);",
+        "text_vi": "SELECT last_name, job_id FROM employees WHERE job_id = (SELECT job_id FROM employees WHERE last_name = 'Haas' AND salary > 10000);",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Để tìm chức vụ của 'Haas', ta dùng subquery: `SELECT job_id FROM employees WHERE last_name = 'Haas'`. Vì có thể có nhiều người họ Haas, dùng toán tử `IN` là an toàn nhất. Điều kiện lương > 10000 phải đặt ở câu truy vấn ngoài để lọc nhân viên thỏa mãn.",
+    "key_takeaway_vi": "Tìm dữ liệu dựa trên kết quả người khác cần dùng Subquery kết hợp toán tử IN hoặc =.",
+    "flashcard": {
+      "front_en": "Which statement will display employees who have same job id as that of 'Hass' and earn \nmore than 10000 ?",
+      "front_vi": "Tại sao nên dùng toán tử IN thay vì '=' khi so sánh với subquery tìm theo tên?",
+      "back_vi": "Vì có thể có nhiều nhân viên trùng tên, khi đó subquery trả về nhiều dòng khiến toán tử '=' bị lỗi ORA-01427."
+    }
+  },
+  {
+    "id": 166,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "__________ is used to retrieve data from one or more tables if there is no relation between \nthe tables.",
+    "prompt_vi": "__________ được sử dụng để lấy dữ liệu từ một hoặc nhiều bảng khi không có mối quan hệ (foreign key) trực tiếp giữa các bảng?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Sub query",
+        "text_vi": "Truy vấn con (Sub query)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Both",
+        "text_vi": "Cả hai (Both)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Joins",
+        "text_vi": "Phép kết nối (Joins)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "None of the above",
+        "text_vi": "Không câu nào ở trên",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Khi hai bảng không có mối quan hệ khóa ngoại trực tiếp để JOIN, hoặc dữ liệu cần lọc dựa trên một tập tiêu chí trung gian, `Subquery` là công cụ mạnh mẽ nhất để trích xuất dữ liệu mà không cần phải thực hiện phép kết nối bảng phức tạp.",
+    "key_takeaway_vi": "Subquery cho phép truy xuất dữ liệu giữa các bảng không có quan hệ khóa trực tiếp.",
+    "flashcard": {
+      "front_en": "__________ is used to retrieve data from one or more tables if there is no relation between \nthe tables.",
+      "front_vi": "Công cụ nào hiệu quả để lấy dữ liệu khi 2 bảng không có quan hệ trực tiếp?",
+      "back_vi": "Subquery (truy vấn con)."
+    }
+  },
+  {
+    "id": 167,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "A subquery can be used to _________.",
+    "prompt_vi": "Một câu truy vấn con (subquery) có thể được sử dụng để làm gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Retrieve data based on an unknown condition",
+        "text_vi": "Lấy dữ liệu dựa trên một điều kiện chưa biết trước (Retrieve data based on an unknown condition).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Create groups of data",
+        "text_vi": "Tạo các nhóm dữ liệu.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Convert data to a different format",
+        "text_vi": "Chuyển đổi dữ liệu sang định dạng khác.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Sort data in a specific order",
+        "text_vi": "Sắp xếp dữ liệu theo thứ tự cụ thể.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Mục đích kinh điển nhất của Subquery là giải quyết bài toán phụ thuộc vào một giá trị chưa biết trước. Ví dụ: 'Ai có lương cao hơn lương của Abel?' -> Lương của Abel là ẩn số chưa biết trước, cần 1 subquery để tìm trước khi lọc câu chính.",
+    "key_takeaway_vi": "Subquery giải quyết bài toán lọc dữ liệu dựa trên giá trị chưa biết trước.",
+    "flashcard": {
+      "front_en": "A subquery can be used to _________.",
+      "front_vi": "Ứng dụng điển hình nhất của Subquery là gì?",
+      "back_vi": "Tìm kiếm dữ liệu dựa trên một giá trị ẩn/chưa biết trước (ví dụ: lương lớn hơn lương trung bình)."
+    }
+  },
+  {
+    "id": 168,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "Examine the data in the EMPLOYEES table: \nLAST_NAME  DEPARTMENT_ID  SALARY \n---------  -------------  ------ \nGetz       10             3000 \nDavis      20             1500 \nKing       20             2200 \nDavis      30             5000 \nWhich of these sub queries will not work?",
+    "prompt_vi": "Xem dữ liệu bảng EMPLOYEES: Getz (phòng 10, lương 3000), Davis (20, 1500), King (20, 2200), Davis (30, 5000).\nTruy vấn con nào sau đây SẼ KHÔNG HOẠT ĐỘNG (báo lỗi)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT distinct department_id FROM employees Where salary > ANY (SELECT AVG(salary) FROM employees GROUP BY department_id)",
+        "text_vi": "SELECT distinct department_id FROM employees Where salary > ANY (SELECT AVG(salary) FROM employees GROUP BY department_id)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT last_name FROM employees Where salary > ANY (SELECT MAX(salary) FROM employees GROUP BY department_id)",
+        "text_vi": "SELECT last_name FROM employees Where salary > ANY (SELECT MAX(salary) FROM employees GROUP BY department_id)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT * FROM employees where salary > (SELECT MIN(salary) FROM employees GROUP BY department.id)",
+        "text_vi": "SELECT * FROM employees where salary > (SELECT MIN(salary) FROM employees GROUP BY department_id)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT department_id FROM employees WHERE SALARY > ALL (SELECT AVG(salary) FROM employees GROUP BY department_id)",
+        "text_vi": "SELECT department_id FROM employees WHERE SALARY > ALL (SELECT AVG(salary) FROM employees GROUP BY department_id)",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Trong câu C, subquery `SELECT MIN(salary) ... GROUP BY department_id` trả về NHIỀU DÒNG (mỗi phòng ban 1 mức lương min). Nhưng ở câu lệnh cha lại dùng toán tử so sánh đơn dòng `>`. Việc dùng toán tử đơn dòng với subquery trả về nhiều dòng sẽ gây ra lỗi nghiêm trọng: `ORA-01427: single-row subquery returns more than one row`!",
+    "key_takeaway_vi": "Toán tử so sánh đơn dòng (> , <, =) sẽ báo lỗi ORA-01427 nếu subquery trả về nhiều hơn 1 dòng.",
+    "flashcard": {
+      "front_en": "Examine the data in the EMPLOYEES table: \nLAST_NAME  DEPARTMENT_ID  SALARY \n---------  -------------  ------ \nGetz       10             3000 \nDavis      20             1500 \nKing       20             2200 \nDavis      30             5000 \nWhich of these sub queries will not work?",
+      "front_vi": "Lỗi 'single-row subquery returns more than one row' (ORA-01427) xảy ra khi nào?",
+      "back_vi": "Khi dùng toán tử so sánh đơn dòng (=, >, <) mà subquery lại trả về danh sách nhiều dòng."
+    }
+  },
+  {
+    "id": 169,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "What is the use of LEVEL pseudocolumn?",
+    "prompt_vi": "Công dụng của cột giả LEVEL (LEVEL pseudocolumn) trong Oracle là gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It is used to indicate the starting node of the hierarchical query",
+        "text_vi": "Chỉ định node bắt đầu của truy vấn phân cấp.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "It is used to display the level of a row in the hierarchy",
+        "text_vi": "Dùng để hiển thị cấp độ (độ sâu) của một dòng trong cây phân cấp (display level in hierarchy).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "None of the above",
+        "text_vi": "Không câu nào đúng.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "It is used to level the output of the query",
+        "text_vi": "Dùng để san bằng kết quả truy vấn.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Trong truy vấn phân cấp hình cây của Oracle (`Hierarchical Query`: CONNECT BY ... START WITH), `LEVEL` là cột giả trả về số nguyên từ 1 trở đi, đại diện cho độ sâu của node hiện tại trong cấu trúc phả hệ (gốc là 1, con trực tiếp là 2, cháu là 3...).",
+    "key_takeaway_vi": "Cột giả LEVEL trả về độ sâu của nút trong truy vấn phân cấp hình cây.",
+    "flashcard": {
+      "front_en": "What is the use of LEVEL pseudocolumn?",
+      "front_vi": "Cột giả LEVEL dùng trong loại truy vấn nào của Oracle?",
+      "back_vi": "Dùng trong truy vấn phân cấp hình cây (Hierarchical Queries với CONNECT BY)."
+    }
+  },
+  {
+    "id": 170,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "Which query will display the details of the employees and their manager in a TOP-\nDOWN tree structure, starting with employee 'King'?",
+    "prompt_vi": "Câu truy vấn nào sau đây sẽ hiển thị chi tiết nhân viên và người quản lý của họ theo cấu trúc cây TỪ TRÊN XUỐNG (TOP-DOWN tree structure), bắt đầu từ nhân viên 'King'?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT employee_id, last_name, job_id, manager_id FROM employees START WITH last_name = 'King' CONNECT BY PRIOR employee_id = manager_id ;",
+        "text_vi": "SELECT employee_id, last_name, job_id, manager_id FROM employees START WITH last_name = 'King' CONNECT BY PRIOR employee_id = manager_id ;",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT employee _id, last_name, job_id, manager_id FROM employees START WITH last_name = 'King' CONNECT BY PRIOR manager_id = employee_id;",
+        "text_vi": "SELECT employee_id, last_name, job_id, manager_id FROM employees START WITH last_name = 'King' CONNECT BY PRIOR manager_id = employee_id;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT employee_id, last_name, job_id, manager_id FROM employees START WITH last_name = 'King' CONNECT BY PRIOR employee_id TOP_DOWN;",
+        "text_vi": "SELECT employee_id, last_name, job_id, manager_id FROM employees START WITH last_name = 'King' CONNECT BY PRIOR employee_id TOP_DOWN;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "D. SELECT employee_id, last_name, job_id, manager_id FROM employeesSTART WITH last_name = 'King' CONNECT BY TOP_DOWN employee_id = manager_id ;",
+        "text_vi": "SELECT employee_id, last_name, job_id, manager_id FROM employees START WITH last_name = 'King' CONNECT BY TOP_DOWN employee_id = manager_id ;",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Để duyệt cây từ trên xuống dưới (từ sếp xuống nhân viên cấp dưới): Node cha phải là người đi trước (`PRIOR`), tức là ID của người quản lý cấp trước phải bằng ID sếp của cấp sau: `CONNECT BY PRIOR employee_id = manager_id`. Điểm bắt đầu duyệt gốc cây chỉ định bởi `START WITH last_name = 'King'`.",
+    "key_takeaway_vi": "Duyệt cây từ trên xuống: CONNECT BY PRIOR parent_id = child_id (PRIOR employee_id = manager_id).",
+    "flashcard": {
+      "front_en": "Which query will display the details of the employees and their manager in a TOP-\nDOWN tree structure, starting with employee 'King'?",
+      "front_vi": "Cú pháp duyệt cây từ trên xuống (Top-down) trong Oracle?",
+      "back_vi": "START WITH gốc CONNECT BY PRIOR id_cha = id_con."
+    }
+  },
+  {
+    "id": 171,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "What will be the output of the below query? \nSELECT last_name, job_id, salary \nFROM employees \nWHERE job_id = (SELECT job_id FROM employees WHERE employee_id = 141) \nAND salary > (SELECT salary FROM employees WHERE employee_id = 143);",
+    "prompt_vi": "Kết quả của câu truy vấn sau sẽ là gì?\nSELECT last_name, job_id, salary FROM employees\nWHERE job_id = (SELECT job_id FROM employees WHERE employee_id = 141)\nAND salary > (SELECT salary FROM employees WHERE employee_id = 143);",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Display employees whose job ID is the same as that of employee 141 or 143 and whose salary is greater than that of employee 141 or 143.",
+        "text_vi": "Hiển thị nhân viên có cùng chức vụ với 141 hoặc 143 và lương cao hơn 141 hoặc 143.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Display employees whose job ID is the same as that of employee 141 and 143 and whose salary is greater than that of employee 141 and 143.",
+        "text_vi": "Hiển thị nhân viên có cùng chức vụ với cả 141 và 143 và lương cao hơn cả hai.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Display employees whose job ID is the same as that of employee 141 or whose salary is greater than that of employee 143.",
+        "text_vi": "Hiển thị nhân viên có cùng chức vụ với 141 hoặc có mức lương lớn hơn nhân viên 143.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Display employees whose job ID is the same as that of employee 141 and whose salary is greater than that of employee 143.",
+        "text_vi": "Hiển thị các nhân viên có cùng chức vụ với nhân viên 141 VÀ có mức lương lớn hơn nhân viên 143.",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Phân tích 2 điều kiện nối bằng `AND`: 1. `job_id = (SELECT ... WHERE employee_id = 141)` -> chức vụ giống nhân viên 141. 2. `salary > (SELECT ... WHERE employee_id = 143)` -> lương lớn hơn lương nhân viên 143. Cả hai điều kiện bắt buộc phải đồng thời thỏa mãn.",
+    "key_takeaway_vi": "Toán tử AND đòi hỏi đồng thời cả 2 điều kiện: cùng job_id với 141 VÀ lương > 143.",
+    "flashcard": {
+      "front_en": "What will be the output of the below query? \nSELECT last_name, job_id, salary \nFROM employees \nWHERE job_id = (SELECT job_id FROM employees WHERE employee_id = 141) \nAND salary > (SELECT salary FROM employees WHERE employee_id = 143);",
+      "front_vi": "Giải thích ý nghĩa logic của toán tử AND giữa 2 subquery so sánh?",
+      "back_vi": "Bản ghi chỉ được chọn khi thỏa mãn đồng thời cả hai điều kiện của 2 subquery."
+    }
+  },
+  {
+    "id": 172,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "Which statement regarding subqueries is true?",
+    "prompt_vi": "Phát biểu nào sau đây về các câu truy vấn con (subqueries) là ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A subquery CANNOT reference a table that is not included in the outer query's FROM clause.",
+        "text_vi": "Truy vấn con KHÔNG THỂ tham chiếu đến bảng không có trong mệnh đề FROM của truy vấn ngoài.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "A subquery must be placed on the right side of the comparison operator.",
+        "text_vi": "Truy vấn con bắt buộc phải đặt ở bên tay phải của toán tử so sánh.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Subqueries can return multiple columns.",
+        "text_vi": "Truy vấn con có thể trả về nhiều cột (Subqueries can return multiple columns).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "Subqueries cannot be nested up to3 levels.",
+        "text_vi": "Truy vấn con không thể lồng quá 3 cấp độ.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Truy vấn con hoàn toàn có thể trả về nhiều cột (Multiple-column subquery), ví dụ trong so sánh cặp: `WHERE (dept_id, manager_id) IN (SELECT dept_id, manager_id FROM ...)`. (Trong Oracle, subquery có thể lồng tới 255 cấp, và có thể đặt bên trái hoặc phải toán tử so sánh).",
+    "key_takeaway_vi": "Subquery có thể trả về nhiều cột (Multiple-column subquery) để so sánh nhiều thuộc tính cùng lúc.",
+    "flashcard": {
+      "front_en": "Which statement regarding subqueries is true?",
+      "front_vi": "Subquery có thể trả về nhiều cột không?",
+      "back_vi": "CÓ. Gọi là Multiple-column subquery (truy vấn con nhiều cột)."
+    }
+  },
+  {
+    "id": 173,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "Which of the following is not a multiple-row comparison operator?",
+    "prompt_vi": "Toán tử nào sau đây KHÔNG PHẢI là một toán tử so sánh nhiều dòng (multiple-row comparison operator)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ANY",
+        "text_vi": "ANY",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "IN",
+        "text_vi": "IN",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "EACH",
+        "text_vi": "EACH",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "ALL",
+        "text_vi": "ALL",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Bộ 3 toán tử so sánh nhiều dòng chuẩn trong SQL là: `IN`, `ANY` (hoặc `SOME`), và `ALL`. Hoàn toàn không có toán tử nào tên là `EACH` trong ngôn ngữ SQL.",
+    "key_takeaway_vi": "Toán tử so sánh nhiều dòng gồm: IN, ANY, ALL. Không có toán tử EACH.",
+    "flashcard": {
+      "front_en": "Which of the following is not a multiple-row comparison operator?",
+      "front_vi": "Kể tên các toán tử so sánh nhiều dòng (Multiple-row operators) trong SQL?",
+      "back_vi": "IN, ANY (hoặc SOME), ALL."
+    }
+  },
+  {
+    "id": 174,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "Evaluate this SQL statement: \nSELECT product_id, product_name, price \nFROM product \nWHERE supplier_id IN (SELECT supplier_id \n                      FROM product \n                      WHERE price > 120 \n                      OR qty_in_stock > 100); \nWhich values will be displayed?",
+    "prompt_vi": "Đánh giá câu lệnh SQL:\nSELECT product_id, product_name, price FROM product\nWHERE supplier_id IN (SELECT supplier_id FROM product WHERE price > 120 OR qty_in_stock > 100);\nNhững giá trị nào sẽ được hiển thị?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The PRODUCT_ID , PRODUCT_NAME, and PRICE of products that are priced greater than $120.00 or that has a QTY_IN_STOCK value greater than 100",
+        "text_vi": "Mã, tên, giá của các sản phẩm có giá > 120$ hoặc tồn kho > 100.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The PRODUCT_ID, PRODUCT_NAME, and PRICE of products that are priced greater than $120.00 and have a QTY_IN_STOCK value greater than 100",
+        "text_vi": "Mã, tên, giá của các sản phẩm có giá > 120$ và tồn kho > 100.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The PRODUCT_ID, PRODUCT_NAME, and PRICE of products supplied by a supplier with products that are priced greater than $120.00 or with products that have a QTY_IN_STOCK value greater than 100",
+        "text_vi": "Mã, tên, giá của tất cả sản phẩm được cung cấp bởi nhà cung cấp có ít nhất một sản phẩm giá > 120$ hoặc tồn kho > 100.",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "The PRODUCT_ID, PRODUCT_NAME, and PRICE of products that are priced greater than $120.00 or that has a QTY_IN_STOCK value less than 100",
+        "text_vi": "Mã, tên, giá của các sản phẩm có giá > 120$ hoặc tồn kho < 100.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Truy vấn con tìm danh sách các `supplier_id` của những nhà cung cấp có sản phẩm giá > 120 hoặc tồn kho > 100. Sau đó câu truy vấn ngoài lấy ra TẤT CẢ các sản phẩm của các nhà cung cấp này (kể cả những sản phẩm giá thấp hơn 120). Do đó phương án C là cách diễn đạt chính xác nhất.",
+    "key_takeaway_vi": "Mệnh đề WHERE supplier_id IN (...) lọc theo nhà cung cấp thỏa mãn, trả về toàn bộ sản phẩm của các NCC đó.",
+    "flashcard": {
+      "front_en": "Evaluate this SQL statement: \nSELECT product_id, product_name, price \nFROM product \nWHERE supplier_id IN (SELECT supplier_id \n                      FROM product \n                      WHERE price > 120 \n                      OR qty_in_stock > 100); \nWhich values will be displayed?",
+      "front_vi": "Tại sao câu lệnh này không chỉ trả về các sản phẩm giá > 120?",
+      "back_vi": "Vì điều kiện WHERE ngoài lọc theo supplier_id, nên mọi sản phẩm của nhà cung cấp đó đều được lấy."
+    }
+  },
+  {
+    "id": 175,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "A subquery can be used to _________.",
+    "prompt_vi": "Một câu truy vấn con (subquery) có thể được sử dụng để làm gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Sort data in a specific order",
+        "text_vi": "Sắp xếp dữ liệu theo thứ tự cụ thể.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Create groups of data.",
+        "text_vi": "Tạo các nhóm dữ liệu.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Retrieve data based on an unknown condition",
+        "text_vi": "Truy xuất dữ liệu dựa trên một điều kiện chưa biết trước (Retrieve data based on an unknown condition).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "Convert data to a different format",
+        "text_vi": "Chuyển đổi dữ liệu sang định dạng khác.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Subquery được dùng phổ biến nhất để cung cấp giá trị cho mệnh đề WHERE/HAVING khi điều kiện lọc cần tính toán động tại thời điểm chạy (giá trị chưa biết trước).",
+    "key_takeaway_vi": "Subquery dùng để lấy dữ liệu dựa trên các điều kiện lọc động chưa biết trước.",
+    "flashcard": {
+      "front_en": "A subquery can be used to _________.",
+      "front_vi": "Ứng dụng chính của subquery trong điều kiện lọc?",
+      "back_vi": "Tính toán động giá trị so sánh tại thời điểm chạy truy vấn."
+    }
+  },
+  {
+    "id": 176,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "Which statement about subqueries is not true?",
+    "prompt_vi": "Phát biểu nào sau đây về các câu truy vấn con là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A single row subquery can retrieve only one column and one row.",
+        "text_vi": "Một câu truy vấn con đơn dòng chỉ có thể lấy được duy nhất một cột và một dòng (only one column and one row).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "A multiple row subquery can retrieve multiple rows and multiple columns.",
+        "text_vi": "Một câu truy vấn con nhiều dòng có thể lấy nhiều dòng và nhiều cột.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "A multiple row subquery can be compared by using the \">\" operator.",
+        "text_vi": "Một truy vấn con nhiều dòng có thể được so sánh bằng cách dùng toán tử \">\" đi kèm với ANY hoặc ALL.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "A single row subquery can retrieve only one row but many columns.",
+        "text_vi": "Một câu truy vấn con đơn dòng có thể trả về duy nhất một dòng nhưng có nhiều cột.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Phát biểu A là SAI vì một truy vấn con đơn dòng (Single-row subquery) hoàn toàn có thể trả về MỘT DÒNG VÀ NHIỀU CỘT khi dùng trong so sánh cặp (Pairwise comparison): `WHERE (col1, col2) = (SELECT a, b FROM table WHERE id = 1)`.",
+    "key_takeaway_vi": "Single-row subquery có thể trả về nhiều cột nếu dùng trong phép so sánh nhiều cột (col1, col2) = (...).",
+    "flashcard": {
+      "front_en": "Which statement about subqueries is not true?",
+      "front_vi": "Single-row subquery có bắt buộc chỉ được chứa 1 cột không?",
+      "back_vi": "KHÔNG. Nó có thể trả về 1 dòng gồm nhiều cột trong so sánh đa thuộc tính: (col1, col2) = (SELECT c1, c2...)."
+    }
+  },
+  {
+    "id": 177,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "You define a multiple-row subquery in the WHERE clause of an SQL query with a \ncomparison operator \"=\". What happens when the main query is executed?",
+    "prompt_vi": "Bạn định nghĩa một truy vấn con nhiều dòng trong mệnh đề WHERE với toán tử so sánh bằng \"=\". Điều gì xảy ra khi câu truy vấn chính được thực thi?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The main query fails because the multiple-row subquery cannot be used with the comparison operator.",
+        "text_vi": "Câu truy vấn chính bị lỗi vì truy vấn con nhiều dòng không thể dùng trực tiếp với toán tử so sánh đơn dòng \"=\".",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "The main query executes with the last value returned by the subquery.",
+        "text_vi": "Câu truy vấn chính thực thi với giá trị cuối cùng được trả về bởi truy vấn con.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The main query executes with all the values returned by the subquery.",
+        "text_vi": "Câu truy vấn chính thực thi với tất cả các giá trị được trả về.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The main query executes with the first value returned by the subquery.",
+        "text_vi": "Câu truy vấn chính thực thi với giá trị đầu tiên được trả về.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Toán tử `=` là toán tử so sánh đơn dòng (Single-row comparison operator). Nếu subquery trả về nhiều hơn một dòng, Oracle sẽ báo lỗi ngay lập tức: `ORA-01427: single-row subquery returns more than one row`. Muốn so sánh với nhiều dòng phải dùng toán tử `IN` hoặc `= ANY`.",
+    "key_takeaway_vi": "Toán tử '=' đi kèm subquery nhiều dòng sẽ gây lỗi ORA-01427.",
+    "flashcard": {
+      "front_en": "You define a multiple-row subquery in the WHERE clause of an SQL query with a \ncomparison operator \"=\". What happens when the main query is executed?",
+      "front_vi": "Tại sao không thể dùng toán tử '=' với subquery trả về nhiều dòng?",
+      "back_vi": "Báo lỗi ORA-01427. Phải thay '=' bằng toán tử IN hoặc = ANY."
+    }
+  },
+  {
+    "id": 178,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "Which operator can be used with a multiple-row subquery?",
+    "prompt_vi": "Toán tử nào sau đây có thể được sử dụng với một câu truy vấn con trả về nhiều dòng (multiple-row subquery)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "LIKE",
+        "text_vi": "LIKE",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "=",
+        "text_vi": "=",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "NOT IN",
+        "text_vi": "NOT IN",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "BETWEEN",
+        "text_vi": "BETWEEN",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Toán tử `NOT IN` (cùng với `IN`, `ANY`, `ALL`) là các toán tử hợp lệ chuyên dùng để so sánh với tập hợp nhiều dòng trả về từ subquery. Các toán tử LIKE, =, BETWEEN là toán tử đơn dòng.",
+    "key_takeaway_vi": "Toán tử so sánh đa dòng gồm: IN, NOT IN, ANY, ALL.",
+    "flashcard": {
+      "front_en": "Which operator can be used with a multiple-row subquery?",
+      "front_vi": "Toán tử nào so sánh được với tập hợp kết quả nhiều dòng?",
+      "back_vi": "NOT IN, IN, ANY, ALL."
+    }
+  },
+  {
+    "id": 179,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "Which statement about subqueries is true?",
+    "prompt_vi": "Phát biểu nào sau đây về truy vấn con là ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A single row subquery can retrieve data from only one table",
+        "text_vi": "Truy vấn con đơn dòng chỉ có thể lấy dữ liệu từ một bảng duy nhất.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "A single row subquery cannot be used in a condition where the LIKE operator is used for comparison.",
+        "text_vi": "Truy vấn con đơn dòng không thể dùng trong điều kiện có toán tử LIKE.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "A SQL query statement cannot display data from table B that is referred to in its",
+        "text_vi": "Một câu lệnh truy vấn SQL không thể hiển thị trực tiếp dữ liệu từ bảng B nếu bảng B chỉ được tham chiếu bên trong subquery (cannot display data from table B).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "A SQL query statement can display data from table B that is referred to in its subquery, without including table B in its own FROM clause.",
+        "text_vi": "Câu lệnh SQL có thể hiển thị dữ liệu từ bảng B nằm trong subquery mà không cần bảng B ở mệnh đề FROM ngoài.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Mệnh đề `SELECT` của truy vấn ngoài chỉ có thể chiếu các cột thuộc các bảng được liệt kê trong mệnh đề `FROM` của chính nó. Các cột của bảng chỉ xuất hiện trong subquery thì không thể được hiển thị trực tiếp ở danh sách cột của truy vấn cha.",
+    "key_takeaway_vi": "Cột nằm trong Subquery không thể xuất hiện trong danh sách SELECT của truy vấn ngoài.",
+    "flashcard": {
+      "front_en": "Which statement about subqueries is true?",
+      "front_vi": "Có thể SELECT các cột của bảng chỉ nằm trong Subquery ra ngoài không?",
+      "back_vi": "KHÔNG. Mệnh đề SELECT ngoài chỉ được lấy cột từ các bảng có trong mệnh đề FROM ngoài."
+    }
+  },
+  {
+    "id": 180,
+    "module_id": 9,
+    "module_name_en": "Module 9: Sub Queries",
+    "module_name_vi": "Module 9: Truy vấn con cơ bản (Subqueries)",
+    "prompt_en": "Examine the structure of the EMPLOYEES and NEW_EMPLOYEES tables: \nEMPLOYEES \nEMPLOYEE_ID  NUMBER        Primary Key \nFIRST_NAME   VARCHAR2(25) \nLAST_NAME    VARCHAR2(25) \nHIRE_DATE    DATE \nNEW_EMPLOYEES \nEMPLOYEE_ID  NUMBER        Primary Key \nNAME         VARCHAR2(60) \nWhich DELETE statement is valid?",
+    "prompt_vi": "Xét cấu trúc bảng EMPLOYEES và NEW_EMPLOYEES. Câu lệnh DELETE nào sau đây là hợp lệ?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "DELETE FROM employees WHERE employee_id IN (SELECT employee_id FROM new_employees WHERE name = 'Carrey');",
+        "text_vi": "DELETE FROM employees WHERE employee_id IN (SELECT employee_id FROM new_employees WHERE name = 'Carrey');",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "DELETE FROM employees WHERE employee_id = (SELECT employee_id FROM employees);",
+        "text_vi": "DELETE FROM employees WHERE employee_id = (SELECT employee_id FROM employees);",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "DELETE * FROM employees WHERE employee_id IN (SELECT employee_id FROM new_employees WHERE last_name = 'Carrey');",
+        "text_vi": "DELETE * FROM employees WHERE employee_id IN (SELECT employee_id FROM new_employees WHERE last_name = 'Carrey');",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "DELETE * FROM employees WHERE employee_id = (SELECT employee_id FROM new_employees);",
+        "text_vi": "DELETE * FROM employees WHERE employee_id = (SELECT employee_id FROM new_employees);",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Phương án A là câu lệnh DELETE chuẩn: `DELETE FROM employees WHERE employee_id IN (SELECT ...)`. Các phương án C và D sai cú pháp vì có dấu sao `DELETE *`; phương án B sai vì subquery trả về nhiều dòng nhưng lại dùng dấu bằng `=`.",
+    "key_takeaway_vi": "DELETE dùng subquery nhiều dòng phải kết hợp với toán tử IN và không bao giờ có dấu *.",
+    "flashcard": {
+      "front_en": "Examine the structure of the EMPLOYEES and NEW_EMPLOYEES tables: \nEMPLOYEES \nEMPLOYEE_ID  NUMBER        Primary Key \nFIRST_NAME   VARCHAR2(25) \nLAST_NAME    VARCHAR2(25) \nHIRE_DATE    DATE \nNEW_EMPLOYEES \nEMPLOYEE_ID  NUMBER        Primary Key \nNAME         VARCHAR2(60) \nWhich DELETE statement is valid?",
+      "front_vi": "Cú pháp DELETE có điều kiện subquery nhiều dòng đúng?",
+      "back_vi": "DELETE FROM table WHERE id IN (SELECT id FROM ...);"
+    }
+  },
+  {
+    "id": 181,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "Which statement about the Sub queries is not valid?",
+    "prompt_vi": "Phát biểu nào sau đây về các câu truy vấn con (Sub queries) là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The subquery (inner query) returns a value that is used by the parent statement",
+        "text_vi": "Truy vấn con (truy vấn trong) trả về một giá trị được câu lệnh cha sử dụng.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "A subquery is a SELECT statement that is embedded in a clause of another SQL statement",
+        "text_vi": "Truy vấn con là một câu lệnh SELECT được lồng bên trong một mệnh đề của câu lệnh SQL khác.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Using a nested subquery is equivalent to performing two sequential queries and using the result of the inner query as the search value in the outer query",
+        "text_vi": "Sử dụng truy vấn con lồng nhau tương đương với việc thực hiện 2 câu truy vấn tuần tự và lấy kết quả của câu trong làm giá trị tìm kiếm cho câu ngoài.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The Outer query is executed first and then the inner subquery.",
+        "text_vi": "Câu truy vấn ngoài luôn được thực thi trước rồi mới đến truy vấn con bên trong (Outer query is executed first and then inner).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Phát biểu D là SAI vì đối với truy vấn con thông thường (Non-correlated subquery), câu truy vấn con bên trong (Inner query) luôn luôn được thực thi TRƯỚC HẾT để lấy kết quả, sau đó kết quả đó mới được nạp vào câu truy vấn ngoài (Outer query). Chỉ trong Correlated Subquery thì câu ngoài mới điều khiển vòng lặp của câu trong.",
+    "key_takeaway_vi": "Trong truy vấn con tiêu chuẩn, inner query luôn thực thi trước rồi outer query mới thực thi.",
+    "flashcard": {
+      "front_en": "Which statement about the Sub queries is not valid?",
+      "front_vi": "Trong Subquery tiêu chuẩn, câu nào chạy trước?",
+      "back_vi": "Inner query (truy vấn con) chạy trước để cung cấp dữ liệu cho Outer query (truy vấn cha)."
+    }
+  },
+  {
+    "id": 182,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "Which type of sub query is used in the following SQL statement? \nSELECT employee_id, last_name, \n       (CASE \n          WHEN department_id = (SELECT department_id FROM departments \n                                WHERE location_id = 1800) \n          THEN 'Canada' ELSE 'USA' \n        END) location \nFROM employees;",
+    "prompt_vi": "Loại truy vấn con nào được sử dụng trong câu lệnh SQL sau?\nSELECT employee_id, last_name, (CASE WHEN department_id = (SELECT department_id FROM departments WHERE location_id = 1800) THEN 'Canada' ELSE 'USA' END) location FROM employees;",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Pair-wise comparison sub-query",
+        "text_vi": "Truy vấn con so sánh cặp (Pair-wise comparison sub-query)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Correlated sub query",
+        "text_vi": "Truy vấn con tương quan (Correlated sub query)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Inline sub query",
+        "text_vi": "Khung nhìn nội tuyến (Inline sub query)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Scalar Sub query",
+        "text_vi": "Truy vấn con vô hướng (Scalar Sub query)",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "`Scalar Subquery` (truy vấn con vô hướng) là câu truy vấn con trả về chính xác DUY NHẤT MỘT GIÁ TRỊ (1 cột và 1 dòng). Từ Oracle 8i trở đi, Scalar Subquery có thể được đặt ở bất kỳ nơi nào chấp nhận một biểu thức đơn (Expression), bao gồm cả danh sách SELECT và biểu thức CASE.",
+    "key_takeaway_vi": "Scalar Subquery trả về duy nhất 1 giá trị (1 cột, 1 hàng) và có thể đứng ở bất kỳ vị trí biểu thức nào.",
+    "flashcard": {
+      "front_en": "Which type of sub query is used in the following SQL statement? \nSELECT employee_id, last_name, \n       (CASE \n          WHEN department_id = (SELECT department_id FROM departments \n                                WHERE location_id = 1800) \n          THEN 'Canada' ELSE 'USA' \n        END) location \nFROM employees;",
+      "front_vi": "Scalar Subquery là gì?",
+      "back_vi": "Là truy vấn con trả về đúng 1 giá trị đơn (1 hàng, 1 cột), dùng được trong biểu thức SELECT hoặc CASE."
+    }
+  },
+  {
+    "id": 183,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "Which statement is not true about the Correlated sub Queries?",
+    "prompt_vi": "Phát biểu nào sau đây là KHÔNG ĐÚNG về truy vấn con tương quan (Correlated sub Queries)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A correlated sub query is evaluated once for each row processed by the parent statement.",
+        "text_vi": "Truy vấn con tương quan được đánh giá một lần cho mỗi dòng dữ liệu được câu lệnh cha xử lý.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The parent statement can be a SELECT, UPDATE, or DELETE statement.",
+        "text_vi": "Câu lệnh cha có thể là SELECT, UPDATE, hoặc DELETE.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "A correlated sub query is evaluated once for each parent statement.",
+        "text_vi": "Truy vấn con tương quan chỉ được đánh giá một lần duy nhất cho toàn bộ câu lệnh cha (evaluated once for each parent statement).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "The Oracle Server performs a correlated sub query when the sub query references a column from a table referred to in the parent statement.",
+        "text_vi": "Oracle thực thi correlated subquery khi subquery tham chiếu đến một cột thuộc bảng của câu truy vấn cha.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Phát biểu C là SAI. Khác với truy vấn con độc lập chỉ chạy 1 lần duy nhất, `Correlated Subquery` bắt buộc phải chạy lặp lại N LẦN, tương ứng với mỗi dòng dữ liệu mà câu lệnh cha duyệt qua.",
+    "key_takeaway_vi": "Correlated Subquery được thực thi lặp lại một lần cho mỗi dòng của câu truy vấn cha.",
+    "flashcard": {
+      "front_en": "Which statement is not true about the Correlated sub Queries?",
+      "front_vi": "Correlated Subquery chạy bao nhiêu lần?",
+      "back_vi": "Chạy lặp lại cho TỪNG DÒNG dữ liệu mà câu truy vấn cha xử lý."
+    }
+  },
+  {
+    "id": 184,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "Which type of sub query is used in the following SQL statement? \nSELECT employee_id, last_name \nFROM employees e \nORDER BY (SELECT department_name \n          FROM departments d \n          WHERE e.department_id = d.department_id);",
+    "prompt_vi": "Loại truy vấn con nào được sử dụng trong câu lệnh SQL sau?\nSELECT employee_id, last_name FROM employees e ORDER BY (SELECT department_name FROM departments d WHERE e.department_id = d.department_id);",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Pair-wise comparison sub-query",
+        "text_vi": "Pair-wise comparison sub-query",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Correlated sub query",
+        "text_vi": "Correlated sub query (Truy vấn con tương quan)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "nline sub query",
+        "text_vi": "Inline sub query",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Non-pair wise comparison query",
+        "text_vi": "Non-pair wise comparison query",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Bên trong mệnh đề ORDER BY, truy vấn con tham chiếu đến cột `e.department_id` của bảng `employees e` ở câu truy vấn cha (`WHERE e.department_id = d.department_id`). Bất kỳ truy vấn con nào tham chiếu đến cột của truy vấn cha đều là `Correlated Subquery` (truy vấn con tương quan).",
+    "key_takeaway_vi": "Subquery tham chiếu cột của bảng ngoài (e.department_id) chính là Correlated Subquery.",
+    "flashcard": {
+      "front_en": "Which type of sub query is used in the following SQL statement? \nSELECT employee_id, last_name \nFROM employees e \nORDER BY (SELECT department_name \n          FROM departments d \n          WHERE e.department_id = d.department_id);",
+      "front_vi": "Dấu hiệu nhận biết Correlated Subquery là gì?",
+      "back_vi": "Subquery có chứa cột tham chiếu ngược ra bảng ở câu lệnh cha (ví dụ e.department_id = d.department_id)."
+    }
+  },
+  {
+    "id": 185,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "What does EXISTS operator return when the inner query selects no records? \nA. NULL \nB. 0 \nC. FALSE \nD. TRUE",
+    "prompt_vi": "Toán tử EXISTS trả về giá trị gì khi câu truy vấn con bên trong không chọn được bản ghi nào (rỗng)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "0",
+        "text_vi": "0",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "FALSE",
+        "text_vi": "FALSE",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "TRUE",
+        "text_vi": "TRUE",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "NULL",
+        "text_vi": "NULL",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Toán tử `EXISTS` kiểm tra sự tồn tại của dữ liệu: Nó trả về `TRUE` nếu câu truy vấn con tìm thấy ít nhất một dòng thỏa mãn; và trả về `FALSE` nếu truy vấn con không tìm thấy dòng nào (kết quả rỗng). Toán tử EXISTS không bao giờ trả về NULL.",
+    "key_takeaway_vi": "Toán tử EXISTS trả về TRUE nếu có ít nhất 1 dòng, trả về FALSE nếu tập kết quả rỗng.",
+    "flashcard": {
+      "front_en": "What does EXISTS operator return when the inner query selects no records? \nA. NULL \nB. 0 \nC. FALSE \nD. TRUE",
+      "front_vi": "Toán tử EXISTS trả về gì khi truy vấn con không tìm thấy bản ghi nào?",
+      "back_vi": "Trả về FALSE (không bao giờ trả về NULL hay 0)."
+    }
+  },
+  {
+    "id": 186,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "What will be the output of the following query? \nSELECT employee_id, last_name, job_id, department_id \nFROM employees outer \nWHERE EXISTS (SELECT 'X' \n              FROM employees \n              WHERE manager_id = outer.employee_id);",
+    "prompt_vi": "Kết quả của câu truy vấn sau sẽ là gì?\nSELECT employee_id, last_name, job_id, department_id FROM employees outer\nWHERE EXISTS (SELECT 'X' FROM employees WHERE manager_id = outer.employee_id);",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Display employees who have at least one person reporting to them with employee_id as 'X'",
+        "text_vi": "Hiển thị nhân viên có ít nhất một cấp dưới có mã nhân viên là 'X'.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Display employees who have at least one person reporting to them.",
+        "text_vi": "Hiển thị những nhân viên có ít nhất một nhân viên khác báo cáo trực tiếp cho họ (Display employees who have at least one person reporting to them).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "Display employees who have at least one manager assigned to them.",
+        "text_vi": "Hiển thị nhân viên có ít nhất một người quản lý phân công cho họ.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Display employees who have at least one person reporting to them with name 'X'",
+        "text_vi": "Hiển thị nhân viên có ít nhất một cấp dưới tên là 'X'.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Điều kiện `manager_id = outer.employee_id` kiểm tra xem có ai xem nhân viên này là sếp (manager) hay không. `SELECT 'X'` là quy ước chuẩn trong EXISTS (chỉ cần kiểm tra sự tồn tại của dòng, không quan tâm nội dung cột). Kết quả là tìm ra tất cả những ai ĐANG LÀM QUẢN LÝ (có ít nhất 1 cấp dưới).",
+    "key_takeaway_vi": "EXISTS (SELECT 'X' ... WHERE manager_id = outer.emp_id) tìm các nhân viên đóng vai trò là quản lý.",
+    "flashcard": {
+      "front_en": "What will be the output of the following query? \nSELECT employee_id, last_name, job_id, department_id \nFROM employees outer \nWHERE EXISTS (SELECT 'X' \n              FROM employees \n              WHERE manager_id = outer.employee_id);",
+      "front_vi": "Tại sao người ta hay viết SELECT 'X' hoặc SELECT 1 trong mệnh đề EXISTS?",
+      "back_vi": "Vì EXISTS chỉ kiểm tra có dòng tồn tại hay không, không lấy giá trị cột nên SELECT 'X' là tối ưu nhất."
+    }
+  },
+  {
+    "id": 187,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "Which of the following queries displays all departments that do not have any employees?",
+    "prompt_vi": "Câu truy vấn nào sau đây hiển thị tất cả các phòng ban HIỆN KHÔNG CÓ bất kỳ nhân viên nào?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT department_id, department_name FROM departments d WHERE NOT EXISTS (SELECT 'X' FROM employees WHERE department_id = d.department_id);",
+        "text_vi": "SELECT department_id, department_name FROM departments d WHERE NOT EXISTS (SELECT 'X' FROM employees WHERE department_id = d.department_id);",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT department_id, department_name FROM departments d WHERE EXISTS (SELECT 'X' FROM employees WHERE department_id = d.department_id);",
+        "text_vi": "SELECT department_id, department_name FROM departments d WHERE EXISTS (SELECT 'X' FROM employees WHERE department_id = d.department_id);",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT department_id, department_name FROM departments d WHERE NOT EXISTS (SELECT 'X' FROM employees WHERE department_id = department_id);",
+        "text_vi": "SELECT department_id, department_name FROM departments d WHERE NOT EXISTS (SELECT 'X' FROM employees WHERE department_id = department_id);",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT department_id, department_name FROM departments d WHERE EXISTS (SELECT 'X' FROM employees WHERE department_id = department_id);",
+        "text_vi": "SELECT department_id, department_name FROM departments d WHERE EXISTS (SELECT 'X' FROM employees WHERE department_id = department_id);",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Toán tử `NOT EXISTS` kết hợp với điều kiện tương quan `department_id = d.department_id` sẽ lọc ra các phòng ban mà khi tìm trong bảng employees không trả về bất kỳ nhân viên nào (tức phòng ban trống).",
+    "key_takeaway_vi": "Tìm các bản ghi không có phần tử con tương ứng dùng NOT EXISTS kết hợp điều kiện tương quan.",
+    "flashcard": {
+      "front_en": "Which of the following queries displays all departments that do not have any employees?",
+      "front_vi": "Cú pháp tìm phòng ban không có nhân viên dùng NOT EXISTS?",
+      "back_vi": "WHERE NOT EXISTS (SELECT 1 FROM employees WHERE department_id = d.department_id)."
+    }
+  },
+  {
+    "id": 188,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "Examine the Update statement below, which type of update is this? \nUPDATE employees e \nSET department_name = (SELECT department_name \n                       FROM departments d \n                       WHERE e.department_id = d.department_id);",
+    "prompt_vi": "Xem câu lệnh Update dưới đây, đây là loại update nào?\nUPDATE employees e SET department_name = (SELECT department_name FROM departments d WHERE e.department_id = d.department_id);",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Inline Update",
+        "text_vi": "Inline Update",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Correlated Update",
+        "text_vi": "Correlated Update (Cập nhật tương quan)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "Direct Update",
+        "text_vi": "Direct Update",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Indirect Update",
+        "text_vi": "Indirect Update",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Vì subquery trong mệnh đề SET tham chiếu đến cột `e.department_id` của bảng đang được UPDATE (`employees e`), subquery này phải được tính toán lại cho từng dòng được cập nhật. Đây chính là định nghĩa của `Correlated Update`.",
+    "key_takeaway_vi": "UPDATE dùng subquery tham chiếu đến bảng đang update là Correlated Update.",
+    "flashcard": {
+      "front_en": "Examine the Update statement below, which type of update is this? \nUPDATE employees e \nSET department_name = (SELECT department_name \n                       FROM departments d \n                       WHERE e.department_id = d.department_id);",
+      "front_vi": "Correlated Update trong SQL là gì?",
+      "back_vi": "Là câu lệnh UPDATE có subquery tham chiếu đến dòng hiện tại của bảng đang được cập nhật."
+    }
+  },
+  {
+    "id": 189,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "Which of the following is a correlated sub query to delete only those rows from the \nEMPLOYEES table that also exist in the EMP_HISTORY table?",
+    "prompt_vi": "Câu lệnh nào sau đây là một truy vấn con tương quan (correlated sub query) để xóa chỉ những dòng từ bảng EMPLOYEES mà cũng tồn tại trong bảng EMP_HISTORY?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "DELETE FROM employees E WHERE employee_id IN (SELECT employee_id FROM employees E, emp_history H WHERE E.employee_id = H. employee_id; );",
+        "text_vi": "DELETE FROM employees E WHERE employee_id IN (SELECT employee_id FROM employees E, emp_history H WHERE E.employee_id = H.employee_id);",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "DELETE FROM employees E WHERE employee_id = (SELECT employee_id FROM emp_history WHERE employee_id = E.employee_id);",
+        "text_vi": "DELETE FROM employees E WHERE employee_id = (SELECT employee_id FROM emp_history WHERE employee_id = E.employee_id);",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "DELETE FROM employees E WHERE employee_id IN (SELECT employee_id FROM emp_history H)",
+        "text_vi": "DELETE FROM employees E WHERE employee_id IN (SELECT employee_id FROM emp_history H)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "DELETE FROM employees E , emp_history H WHERE E.employee_id = H. employee_id;",
+        "text_vi": "DELETE FROM employees E , emp_history H WHERE E.employee_id = H.employee_id;",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Trong câu B, subquery lấy `FROM emp_history WHERE employee_id = E.employee_id` - nó trực tiếp tham chiếu tới bí danh `E` của câu lệnh DELETE cha. Khi có bản ghi khớp, subquery trả về `employee_id` bằng chính `E.employee_id` nên dòng đó bị xóa. Đây là câu lệnh correlated subquery hợp lệ.",
+    "key_takeaway_vi": "Correlated subquery trong DELETE tham chiếu bí danh của bảng đang bị xóa (E.employee_id).",
+    "flashcard": {
+      "front_en": "Which of the following is a correlated sub query to delete only those rows from the \nEMPLOYEES table that also exist in the EMP_HISTORY table?",
+      "front_vi": "Cách viết Correlated Subquery trong lệnh DELETE?",
+      "back_vi": "DELETE FROM table1 T1 WHERE col = (SELECT col FROM table2 WHERE col = T1.col);"
+    }
+  },
+  {
+    "id": 190,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "Which of the following is not true about using the WITH clause?",
+    "prompt_vi": "Điều nào sau đây là KHÔNG ĐÚNG khi nói về việc sử dụng mệnh đề WITH?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Using the WITH clause, you can define a query block before using it in a query.",
+        "text_vi": "Sử dụng mệnh đề WITH, bạn có thể định nghĩa một khối truy vấn trước khi sử dụng nó trong một câu truy vấn chính.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The WITH clause is also known as subquery_factoring_clause.",
+        "text_vi": "Mệnh đề WITH còn được gọi là mệnh đề tách thừa số truy vấn con (subquery_factoring_clause).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The WITH clause enables you to reuse the same query block in a SELECT statement when it occurs more than once within a complex query",
+        "text_vi": "Mệnh đề WITH cho phép bạn tái sử dụng cùng một khối truy vấn trong câu lệnh SELECT khi nó xuất hiện nhiều hơn 1 lần trong truy vấn phức tạp.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The WITH clause, unlike the Inline views, can create permanent and reusable views",
+        "text_vi": "Mệnh đề WITH, khác với Inline views, có thể tạo ra các khung nhìn vĩnh viễn và tái sử dụng được (create permanent and reusable views).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Phát biểu D là SAI hoàn toàn. Mệnh đề `WITH` (Common Table Expression - CTE) chỉ tạo ra các tập kết quả tạm thời trong bộ nhớ phục vụ duy nhất cho phiên thực thi của câu lệnh đó; nó TUYỆT ĐỐI KHÔNG TẠO RA các View vĩnh viễn (permanent views) trong cơ sở dữ liệu. Muốn tạo view vĩnh viễn bắt buộc phải dùng lệnh DDL `CREATE VIEW`.",
+    "key_takeaway_vi": "Mệnh đề WITH (CTE) chỉ mang tính tạm thời trong câu lệnh truy vấn, không tạo ra view vĩnh viễn trên đĩa.",
+    "flashcard": {
+      "front_en": "Which of the following is not true about using the WITH clause?",
+      "front_vi": "Mệnh đề WITH có tạo ra một View vĩnh viễn trong CSDL không?",
+      "back_vi": "KHÔNG. Mệnh đề WITH chỉ tạo khối dữ liệu tạm thời (CTE) trong phạm vi câu lệnh SELECT đó."
+    }
+  },
+  {
+    "id": 191,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "When should the use of WITH clause be more effective?",
+    "prompt_vi": "Khi nào thì việc sử dụng mệnh đề WITH mang lại hiệu quả cao nhất?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "WITH clause is used when the query has many number of tables to be joined.",
+        "text_vi": "Khi câu truy vấn có quá nhiều bảng cần kết nối.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "When using the Inline sub queries in the FROM clause.",
+        "text_vi": "Khi sử dụng các truy vấn con Inline trong mệnh đề FROM.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "When a query has many references to the same query block and there are joins and aggregations.",
+        "text_vi": "Khi một câu truy vấn có nhiều lần tham chiếu đến cùng một khối truy vấn và có chứa các phép JOIN cùng hàm tổng hợp.",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "WITH clause can be used to replace the correlated sub queries for faster performance",
+        "text_vi": "Khi dùng mệnh đề WITH để thay thế hoàn toàn các correlated subqueries để tăng tốc.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Mệnh đề WITH phát huy tối đa sức mạnh khi cùng một khối tính toán logic phức tạp (gom nhóm, tính tổng/trung bình, join) được tái sử dụng nhiều lần ở các nhánh khác nhau của câu truy vấn chính. Oracle sẽ tối ưu bằng cách chỉ tính toán khối WITH đó một lần duy nhất và lưu tạm vào Global Temporary Table trên bộ nhớ.",
+    "key_takeaway_vi": "Mệnh đề WITH hiệu quả nhất khi một khối truy vấn phức tạp được gọi lại nhiều lần trong cùng câu lệnh.",
+    "flashcard": {
+      "front_en": "When should the use of WITH clause be more effective?",
+      "front_vi": "Lợi ích lớn nhất của mệnh đề WITH (Subquery Factoring) là gì?",
+      "back_vi": "Tối ưu hóa hiệu năng bằng cách chỉ tính toán khối truy vấn 1 lần dù nó được gọi lại nhiều lần trong câu lệnh."
+    }
+  },
+  {
+    "id": 192,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "Which of the following is a valid usage of a sub-query?",
+    "prompt_vi": "Trường hợp nào sau đây là một mục đích sử dụng hợp lệ của câu truy vấn con (sub-query)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "To define the set of rows to be inserted into the target table of an INSERT or CREATE TABLE statement",
+        "text_vi": "Định nghĩa tập hợp các dòng được chèn vào bảng đích của câu lệnh INSERT hoặc CREATE TABLE.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "To provide values for conditions in WHERE, HAVING, and START WITH clauses of SELECT statements",
+        "text_vi": "Cung cấp giá trị cho các điều kiện trong các mệnh đề WHERE, HAVING, và START WITH của câu lệnh SELECT.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "All of the above",
+        "text_vi": "Tất cả các trường hợp trên (All of the above).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "To define one or more values to be assigned to existing rows in an UPDATE statement",
+        "text_vi": "Định nghĩa một hoặc nhiều giá trị được gán cho các dòng hiện có trong câu lệnh UPDATE.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Subquery là cấu trúc vô cùng linh hoạt trong SQL: dùng trong CREATE TABLE AS SELECT, INSERT INTO ... SELECT, cung cấp điều kiện lọc trong WHERE / HAVING / START WITH, và tính giá trị gán trong UPDATE SET.",
+    "key_takeaway_vi": "Subquery có thể dùng trong mọi câu lệnh SELECT, INSERT, UPDATE, CREATE TABLE.",
+    "flashcard": {
+      "front_en": "Which of the following is a valid usage of a sub-query?",
+      "front_vi": "Các vị trí có thể sử dụng Subquery trong SQL?",
+      "back_vi": "SELECT (danh sách cột, WHERE, HAVING, FROM), INSERT (subquery), UPDATE (SET, WHERE), CREATE TABLE (AS)."
+    }
+  },
+  {
+    "id": 193,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "Which of the following is not a benefit of using the WITH Clause?",
+    "prompt_vi": "Điều nào sau đây KHÔNG PHẢI là một lợi ích của việc sử dụng mệnh đề WITH (WITH Clause)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "It automatically sorts the output of the query",
+        "text_vi": "Nó tự động sắp xếp kết quả đầu ra của câu truy vấn (automatically sorts the output).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "It evaluates a clause only once, even if it appears multiple times in the query.",
+        "text_vi": "Nó chỉ tính toán khối lệnh một lần duy nhất, ngay cả khi khối đó xuất hiện nhiều lần trong truy vấn.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "It can enhance performance of the queries",
+        "text_vi": "Nó có thể nâng cao hiệu năng của các câu truy vấn phức tạp.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "It makes the query easy to read",
+        "text_vi": "Nó giúp câu truy vấn trở nên trong sáng, dễ đọc và dễ bảo trì hơn.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Phát biểu A là SAI vì mệnh đề WITH hoàn toàn không có tính năng tự động sắp xếp kết quả. Nếu muốn sắp xếp, bạn bắt buộc phải chỉ định tường minh mệnh đề `ORDER BY` ở câu truy vấn cuối cùng.",
+    "key_takeaway_vi": "Mệnh đề WITH không tự động sắp xếp kết quả; muốn sắp xếp phải dùng ORDER BY.",
+    "flashcard": {
+      "front_en": "Which of the following is not a benefit of using the WITH Clause?",
+      "front_vi": "Mệnh đề WITH có tự động sắp xếp dữ liệu trả về không?",
+      "back_vi": "KHÔNG. Muốn sắp xếp bắt buộc phải có ORDER BY ở câu SELECT ngoài cùng."
+    }
+  },
+  {
+    "id": 194,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "Identify the odd one among the following operators used along with Sub-queries.",
+    "prompt_vi": "Hãy chỉ ra toán tử khác biệt (odd one) trong số các toán tử sau được dùng đi kèm với câu truy vấn con?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "=",
+        "text_vi": "=",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "ANY",
+        "text_vi": "ANY",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "ALL",
+        "text_vi": "ALL",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "IN",
+        "text_vi": "IN",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Toán tử `=` là toán tử so sánh đơn dòng (Single-row comparison operator - chỉ so sánh với 1 giá trị duy nhất). Trong khi đó, `ANY`, `ALL`, và `IN` đều là các toán tử so sánh nhiều dòng (Multiple-row comparison operators). Do đó toán tử `=` là phần tử khác biệt.",
+    "key_takeaway_vi": "Dấu '=' là toán tử so sánh đơn dòng; IN, ANY, ALL là toán tử so sánh nhiều dòng.",
+    "flashcard": {
+      "front_en": "Identify the odd one among the following operators used along with Sub-queries.",
+      "front_vi": "Phân biệt toán tử '=' với các toán tử IN, ANY, ALL?",
+      "back_vi": "'=' chỉ nhận 1 giá trị duy nhất (Single-row). IN, ANY, ALL nhận cả một tập hợp nhiều dòng (Multi-row)."
+    }
+  },
+  {
+    "id": 195,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "Which query will display the details of all employees who earn less than the average salary in \nthe company?",
+    "prompt_vi": "Câu truy vấn nào sau đây hiển thị chi tiết của tất cả nhân viên có mức lương thấp hơn mức lương trung bình của toàn bộ công ty?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT last_name, job_id, salary FROM employees WHERE salary < (SELECT AVG(salary) FROM employees GROUP BY Department_id);",
+        "text_vi": "SELECT last_name, job_id, salary FROM employees WHERE salary < (SELECT AVG(salary) FROM employees GROUP BY Department_id);",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT last_name, job_id, salary FROM employees HAVING salary < (SELECT AVG(salary) FROM employees);",
+        "text_vi": "SELECT last_name, job_id, salary FROM employees HAVING salary < (SELECT AVG(salary) FROM employees);",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT last_name, job_id, salary FROM employees WHERE salary ANY (SELECT AVG(salary) FROM employees GROUP BY department_id);",
+        "text_vi": "SELECT last_name, job_id, salary FROM employees WHERE salary ANY (SELECT AVG(salary) FROM employees GROUP BY department_id);",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT last_name, job_id, salary FROM employees WHERE salary < (SELECT AVG(salary) FROM employees);",
+        "text_vi": "SELECT last_name, job_id, salary FROM employees WHERE salary < (SELECT AVG(salary) FROM employees);",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Để tính lương trung bình toàn công ty, ta dùng subquery: `SELECT AVG(salary) FROM employees` (không có GROUP BY để tính trung bình chung). Sau đó ở câu ngoài dùng toán tử so sánh đơn dòng: `WHERE salary < (...)`. Phương án D là chính xác.",
+    "key_takeaway_vi": "Lọc nhân viên lương < trung bình công ty: WHERE salary < (SELECT AVG(salary) FROM employees).",
+    "flashcard": {
+      "front_en": "Which query will display the details of all employees who earn less than the average salary in \nthe company?",
+      "front_vi": "Cú pháp tìm nhân viên có lương nhỏ hơn trung bình toàn công ty?",
+      "back_vi": "SELECT * FROM employees WHERE salary < (SELECT AVG(salary) FROM employees);"
+    }
+  },
+  {
+    "id": 196,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "What is a multicolumn sub query?",
+    "prompt_vi": "Truy vấn con nhiều cột (multicolumn sub query) là gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "There is no sub query as Multi-column sub query, there is only multi-row sub query",
+        "text_vi": "Không có loại truy vấn con nào là Multi-column subquery, chỉ có multi-row subquery.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "A sub query which selects more than one column is called a multi-column sub query",
+        "text_vi": "Một câu truy vấn con chọn ra nhiều hơn một cột được gọi là multicolumn sub query (selects more than one column).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "A multi-column sub query is the one that uses single-row operators for comparison",
+        "text_vi": "Là truy vấn con sử dụng các toán tử đơn dòng để so sánh.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "A sub query which uses decode statements to process multiple columns is called a multi-column sub query",
+        "text_vi": "Là truy vấn con sử dụng các lệnh DECODE để xử lý nhiều cột.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Đúng như tên gọi của nó, `Multi-column Subquery` là một câu truy vấn con trả về danh sách từ 2 cột trở lên trong mệnh đề SELECT của nó để so sánh đồng thời nhiều thuộc tính với câu truy vấn cha.",
+    "key_takeaway_vi": "Multi-column subquery là truy vấn con chọn ra nhiều hơn 1 cột trong mệnh đề SELECT của nó.",
+    "flashcard": {
+      "front_en": "What is a multicolumn sub query?",
+      "front_vi": "Thế nào là một Multi-column subquery?",
+      "back_vi": "Là câu truy vấn con trả về từ 2 cột trở lên trong mệnh đề SELECT."
+    }
+  },
+  {
+    "id": 197,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "What will be the output of the following multi-column sub query? \nSELECT employee_id, manager_id, department_id \nFROM employees \nWHERE (manager_id, department_id) IN \n      (SELECT manager_id, department_id \n       FROM employees \n       WHERE employee_id IN (178, 174));",
+    "prompt_vi": "Kết quả của câu truy vấn con nhiều cột (so sánh cặp - pairwise) sau là gì?\nSELECT employee_id, manager_id, department_id FROM employees\nWHERE (manager_id, department_id) IN (SELECT manager_id, department_id FROM employees WHERE employee_id IN (178, 174));",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Display the details of the employees who are managed by the same manager and work in the same department as the employees with EMPLOYEE_ID 178 or 174.",
+        "text_vi": "Hiển thị nhân viên có cùng người quản lý VÀ cùng phòng ban với nhân viên có mã 178 hoặc 174.",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Display the details of the employees who are managed by the same manager and work in the same department as the employees with EMPLOYEE_ID 178 and 174.",
+        "text_vi": "Hiển thị nhân viên có cùng người quản lý và cùng phòng ban với cả 178 và 174.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Display the details of the employees managed by the same manager as that of the employees with EMPLOYEE_ID 178 or 174 and work in the same department as the employees with EMPLOYEE_ID 178 or 174.",
+        "text_vi": "Hiển thị nhân viên có cùng người quản lý với 178 hoặc 174 HOẶC cùng phòng ban với 178 hoặc 174.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "This statement will return Error",
+        "text_vi": "Câu lệnh này bị lỗi cú pháp.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Đây là phép so sánh cặp (`Pairwise comparison`): Cặp giá trị `(manager_id, department_id)` của nhân viên phải KHỚP ĐỒNG THỜI với cặp `(manager_id, department_id)` của nhân viên 178 HOẶC cặp của nhân viên 174.",
+    "key_takeaway_vi": "So sánh cặp (Pairwise): (col1, col2) IN (...) đòi hỏi các cột phải khớp theo đúng cặp giá trị kết hợp.",
+    "flashcard": {
+      "front_en": "What will be the output of the following multi-column sub query? \nSELECT employee_id, manager_id, department_id \nFROM employees \nWHERE (manager_id, department_id) IN \n      (SELECT manager_id, department_id \n       FROM employees \n       WHERE employee_id IN (178, 174));",
+      "front_vi": "Pairwise comparison trong subquery là gì?",
+      "back_vi": "So sánh theo cặp đồng thời: (col1, col2) IN (SELECT col1, col2...) - cả 2 giá trị phải khớp cùng lúc trên một hàng."
+    }
+  },
+  {
+    "id": 198,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "What will be the output of the following multi-column sub query? \nSELECT employee_id, manager_id, department_id \nFROM employees \nWHERE manager_id IN \n      (SELECT manager_id \n       FROM employees \n       WHERE employee_id IN (174, 141)) \nAND department_id IN \n      (SELECT department_id \n       FROM employees \n       WHERE employee_id IN (174, 141)) \nAND employee_id NOT IN (174, 141);",
+    "prompt_vi": "Kết quả của câu truy vấn so sánh không theo cặp (non-pairwise comparison) sau là gì?\nSELECT employee_id, manager_id, department_id FROM employees\nWHERE manager_id IN (SELECT manager_id FROM employees WHERE employee_id IN (174, 141))\nAND department_id IN (SELECT department_id FROM employees WHERE employee_id IN (174, 141))\nAND employee_id NOT IN (174, 141);",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Display the details of the employees who are managed by the same manager and work in the same department as the employees with EMPLOYEE_ID 178 or 174.",
+        "text_vi": "Hiển thị nhân viên có cùng người quản lý và cùng phòng ban với nhân viên 178 hoặc 174.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "This statement will return Error",
+        "text_vi": "Báo lỗi cú pháp.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Display the details of the employees who are managed by the same manager and work in the same department as the employees with EMPLOYEE_ID 178 and 174.",
+        "text_vi": "Hiển thị nhân viên có cùng người quản lý và cùng phòng ban với nhân viên 178 và 174.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Display the details of the employees managed by the same manager as that of the employees with EMPLOYEE_ID 178 or 174 and work in the same department as the employees with EMPLOYEE_ID 178 or 174.",
+        "text_vi": "Hiển thị nhân viên có người quản lý trùng với quản lý của 178/174 (đề gốc in 178/174) và có phòng ban trùng với phòng ban của 178/174 độc lập nhau.",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Trong phép so sánh `Non-pairwise`: Điều kiện `manager_id IN (...)` và `department_id IN (...)` được đánh giá ĐỘC LẬP với nhau. Nhân viên có thể có người quản lý giống nhân viên 174, nhưng phòng ban lại giống nhân viên 141 thì vẫn được chọn. Đây là sự khác biệt then chốt giữa Non-pairwise và Pairwise.",
+    "key_takeaway_vi": "Non-pairwise so sánh từng cột riêng rẽ độc lập; Pairwise so sánh kết hợp các cột theo cặp.",
+    "flashcard": {
+      "front_en": "What will be the output of the following multi-column sub query? \nSELECT employee_id, manager_id, department_id \nFROM employees \nWHERE manager_id IN \n      (SELECT manager_id \n       FROM employees \n       WHERE employee_id IN (174, 141)) \nAND department_id IN \n      (SELECT department_id \n       FROM employees \n       WHERE employee_id IN (174, 141)) \nAND employee_id NOT IN (174, 141);",
+      "front_vi": "Khác biệt giữa Pairwise và Non-pairwise multi-column subquery?",
+      "back_vi": "Pairwise so sánh đồng thời các cột thành 1 bộ giá trị. Non-pairwise so sánh từng cột độc lập qua các mệnh đề AND."
+    }
+  },
+  {
+    "id": 199,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "What is not true about the Inline Sub Queries?",
+    "prompt_vi": "Điều nào sau đây KHÔNG ĐÚNG khi nói về Khung nhìn nội tuyến (Inline Sub Queries)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A sub query in the FROM clause of a SELECT statement defines a data source for that particular SELECT statement, and only that SELECT statement.",
+        "text_vi": "Một subquery trong mệnh đề FROM của câu lệnh SELECT định nghĩa một nguồn dữ liệu chỉ dành riêng cho câu lệnh SELECT đó.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "A sub query in the FROM clause of a SELECT statement is also called an inline view.",
+        "text_vi": "Một subquery trong mệnh đề FROM còn được gọi là một inline view.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The inline views created during the Sub query can be used later by same or other queries.",
+        "text_vi": "Các inline views được tạo ra trong subquery có thể được tái sử dụng sau này bởi cùng truy vấn hoặc các truy vấn khác (can be used later).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "You can use a sub query in the FROM clause of a SELECT statement, which is very similar to how views are used.",
+        "text_vi": "Bạn có thể dùng subquery trong FROM tương tự như cách sử dụng view.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Phát biểu C là SAI hoàn toàn. `Inline View` là đối tượng tạm thời, chỉ tồn tại trong thời gian câu lệnh SQL đang thực thi. Khi câu lệnh kết thúc, Inline View lập tức biến mất và KHÔNG THỂ tái sử dụng bởi bất kỳ câu truy vấn nào khác sau đó.",
+    "key_takeaway_vi": "Inline View chỉ có vòng đời trong 1 câu lệnh, không thể lưu lại để dùng cho các truy vấn khác.",
+    "flashcard": {
+      "front_en": "What is not true about the Inline Sub Queries?",
+      "front_vi": "Inline View có thể tái sử dụng cho các câu truy vấn khác sau này không?",
+      "back_vi": "KHÔNG. Inline View tự động hủy ngay sau khi câu lệnh thực thi xong."
+    }
+  },
+  {
+    "id": 200,
+    "module_id": 10,
+    "module_name_en": "Module 10: Advanced Sub Queries",
+    "module_name_vi": "Module 10: Truy vấn con nâng cao (Advanced Subqueries)",
+    "prompt_en": "Which of the following is not true about the Scalar sub queries?",
+    "prompt_vi": "Điều nào sau đây KHÔNG ĐÚNG khi nói về các câu truy vấn con vô hướng (Scalar sub queries)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Multiple-column sub queries written to compare two or more columns, using a compound WHERE clause and logical operators, do not qualify as scalar sub queries",
+        "text_vi": "Truy vấn con nhiều cột so sánh 2 cột trở lên không đủ điều kiện là scalar subquery (Theo đáp án trắc nghiệm đề CDAC đánh dấu 100)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "The value of the scalar sub query expression is the value of the select list item of the sub query.",
+        "text_vi": "Giá trị của biểu thức scalar subquery chính là giá trị của mục được chọn trong SELECT của subquery.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "If the sub query returns 0 rows, the value of the scalar sub query expression is NULL.",
+        "text_vi": "Nếu subquery trả về 0 dòng, giá trị của biểu thức scalar subquery là NULL.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "A sub query that returns exactly one column value from one row is also referred to as a scalar sub query.",
+        "text_vi": "Một subquery trả về chính xác 1 giá trị cột từ 1 dòng được gọi là scalar subquery.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Định nghĩa chuẩn của `Scalar Subquery`: là câu truy vấn con trả về đúng 1 giá trị đơn (1 hàng, 1 cột). Nếu trả về 0 dòng, kết quả là NULL. Nếu trả về nhiều hơn 1 dòng hoặc nhiều hơn 1 cột, Oracle sẽ báo lỗi không hợp lệ.",
+    "key_takeaway_vi": "Scalar subquery chỉ trả về 1 dòng và 1 cột; nếu không có dòng nào thì trả về NULL.",
+    "flashcard": {
+      "front_en": "Which of the following is not true about the Scalar sub queries?",
+      "front_vi": "Scalar Subquery trả về giá trị gì nếu không tìm thấy dòng nào?",
+      "back_vi": "Trả về giá trị NULL."
+    }
+  },
+  {
+    "id": 201,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "In which scenario would TOP N analysis be the best solution?",
+    "prompt_vi": "Trong kịch bản nào sau đây, phân tích TOP-N (TOP N analysis) là giải pháp tốt nhất?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "You want to identify the person who makes the highest salary for all employees",
+        "text_vi": "Bạn muốn xác định người có mức lương cao nhất trong tất cả nhân viên.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "You want to find the manager supervising the largest number of employees.",
+        "text_vi": "Bạn muốn tìm người quản lý đang giám sát số lượng nhân viên lớn nhất.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "You want to rank the top three sales representatives who have sold the maximum number of products",
+        "text_vi": "Bạn muốn xếp hạng 3 đại diện bán hàng hàng đầu bán được số lượng sản phẩm lớn nhất (rank the top three sales representatives).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "You want to identify the most senior employee in the company",
+        "text_vi": "Bạn muốn xác định nhân viên có thâm niên cao nhất công ty.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Phân tích `Top-N Analysis` được sử dụng khi bạn cần lấy ra một tập hợp gồm `N` đối tượng đứng đầu hoặc đứng cuối theo một tiêu chí xếp hạng nhất định (ví dụ: top 3 nhân viên bán hàng tốt nhất, top 10 sản phẩm bán chạy nhất...).",
+    "key_takeaway_vi": "Top-N Analysis chuyên dùng để xếp hạng và lấy ra N bản ghi đứng đầu hoặc đứng cuối.",
+    "flashcard": {
+      "front_en": "In which scenario would TOP N analysis be the best solution?",
+      "front_vi": "Top-N Analysis dùng cho bài toán gì?",
+      "back_vi": "Lấy ra N bản ghi có giá trị cao nhất hoặc thấp nhất theo thứ bậc (ví dụ: Top 3 doanh số)."
+    }
+  },
+  {
+    "id": 202,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "Examine the structure of the EMP_DEPT_VU view: \nColumn Name    Type          Remarks \n-------------  ------------  --------------------------- \nEMPLOYEE_ID    NUMBER        From the EMPLOYEES table \nEMP_NAME       VARCHAR2(30)  From the EMPLOYEES table \nJOB_ID         VARCHAR2(20)  From the EMPLOYEES table \nSALARY         NUMBER        From the EMPLOYEES table \nDEPARTMENT_ID  NUMBER        From the DEPARTMENTS table \nDEPT_NAME      VARCHAR2(30)  From the DEPARTMENTS table \nWhich of the following SQL statement produces an error?",
+    "prompt_vi": "Xét cấu trúc view EMP_DEPT_VU (kết hợp các cột từ bảng EMPLOYEES và DEPARTMENTS).\nCâu lệnh SQL nào sau đây sinh ra lỗi?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SELECT * FROM emp_dept_vu;",
+        "text_vi": "SELECT * FROM emp_dept_vu;",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "SELECT department_id, SUM(salary) FROM emp_dept_vu GROUP BY department_id;",
+        "text_vi": "SELECT department_id, SUM(salary) FROM emp_dept_vu GROUP BY department_id;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "SELECT department_id, job_id, AVG(salary) FROM emp_dept_vu GROUP BY department_id, job_id;",
+        "text_vi": "SELECT department_id, job_id, AVG(salary) FROM emp_dept_vu GROUP BY department_id, job_id;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "None of the statements produce an error; all are valid",
+        "text_vi": "Không có câu lệnh nào sinh ra lỗi; tất cả đều hợp lệ (None of the statements produce an error; all are valid).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Một View (khung nhìn) có thể được truy vấn hoàn toàn giống hệt như một bảng thực tế (Table). Bạn có thể `SELECT *`, có thể gom nhóm `GROUP BY`, và có thể dùng các hàm nhóm (SUM, AVG) trên View một cách bình thường.",
+    "key_takeaway_vi": "Có thể truy vấn, gom nhóm GROUP BY và dùng hàm nhóm trên View tương tự như bảng dữ liệu.",
+    "flashcard": {
+      "front_en": "Examine the structure of the EMP_DEPT_VU view: \nColumn Name    Type          Remarks \n-------------  ------------  --------------------------- \nEMPLOYEE_ID    NUMBER        From the EMPLOYEES table \nEMP_NAME       VARCHAR2(30)  From the EMPLOYEES table \nJOB_ID         VARCHAR2(20)  From the EMPLOYEES table \nSALARY         NUMBER        From the EMPLOYEES table \nDEPARTMENT_ID  NUMBER        From the DEPARTMENTS table \nDEPT_NAME      VARCHAR2(30)  From the DEPARTMENTS table \nWhich of the following SQL statement produces an error?",
+      "front_vi": "Có thể dùng GROUP BY và hàm nhóm SUM/AVG khi truy vấn từ một View không?",
+      "back_vi": "CÓ. View có thể được truy vấn bình thường như một bảng cơ sở."
+    }
+  },
+  {
+    "id": 203,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "Which SQL statement would you use to remove a view called EMP_DEPT_VU from your \nschema?",
+    "prompt_vi": "Câu lệnh SQL nào sau đây bạn dùng để xóa một view có tên là EMP_DEPT_VU khỏi schema của bạn?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "REMOVE emp_dept_vu;",
+        "text_vi": "REMOVE emp_dept_vu;",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "DELETE emp_dept_vu;",
+        "text_vi": "DELETE emp_dept_vu;",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "DROP emp_dept_vu",
+        "text_vi": "DROP emp_dept_vu",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "DROP VIEW emp_dept_vu",
+        "text_vi": "DROP VIEW emp_dept_vu",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Cú pháp DDL chuẩn để xóa một khung nhìn trong SQL là: `DROP VIEW <tên_view>;`. Lệnh này chỉ xóa định nghĩa của view trong từ điển dữ liệu, hoàn toàn KHÔNG ẢNH HƯỞNG đến dữ liệu của các bảng gốc bên dưới.",
+    "key_takeaway_vi": "Xóa View dùng lệnh: DROP VIEW view_name; (không làm mất dữ liệu bảng gốc).",
+    "flashcard": {
+      "front_en": "Which SQL statement would you use to remove a view called EMP_DEPT_VU from your \nschema?",
+      "front_vi": "Xóa View có làm mất dữ liệu của bảng gốc không?",
+      "back_vi": "KHÔNG. DROP VIEW chỉ xóa định nghĩa khung nhìn, dữ liệu ở bảng gốc vẫn còn nguyên."
+    }
+  },
+  {
+    "id": 204,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "Top N analysis requires:",
+    "prompt_vi": "Phân tích Top N trong cú pháp truyền thống của Oracle yêu cầu điều gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Only an inline view",
+        "text_vi": "Chỉ cần một inline view.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The use of ROWNUM pseudo column",
+        "text_vi": "Sử dụng cột giả ROWNUM (The use of ROWNUM pseudo column).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "The use of ROWID",
+        "text_vi": "Sử dụng cột giả ROWID.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "a GROUP BY clause",
+        "text_vi": "Một mệnh đề GROUP BY.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Trong Oracle truyền thống, để làm Top-N ta dùng một Inline View sắp xếp dữ liệu (`ORDER BY`), sau đó ở câu truy vấn ngoài dùng cột giả `ROWNUM <= N` để giới hạn số dòng lấy ra (ví dụ: `SELECT * FROM (SELECT * FROM emp ORDER BY sal DESC) WHERE ROWNUM <= 3`).",
+    "key_takeaway_vi": "Top-N Analysis truyền thống trong Oracle kết hợp Inline View ORDER BY và ROWNUM <= N.",
+    "flashcard": {
+      "front_en": "Top N analysis requires:",
+      "front_vi": "Công thức Top-N Analysis truyền thống trong Oracle SQL?",
+      "back_vi": "SELECT * FROM (SELECT * FROM table ORDER BY col DESC) WHERE ROWNUM <= N;"
+    }
+  },
+  {
+    "id": 205,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "What is true about updates through a view?",
+    "prompt_vi": "Điều nào sau đây là ĐÚNG về việc thực hiện cập nhật (update) dữ liệu thông qua một view?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "When you update a view the constraints on the views always override the constraints on theunderlying tables",
+        "text_vi": "Ràng buộc trên view luôn ghi đè ràng buộc trên bảng gốc.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "When you update a view group functions are automatically computed",
+        "text_vi": "Khi cập nhật view, các hàm nhóm được tự động tính toán lại.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "You cannot update a view with group functions",
+        "text_vi": "Bạn KHÔNG THỂ cập nhật một view có chứa các hàm nhóm (cannot update a view with group functions).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "When you update a view only the data in the view will be updated and not the table data",
+        "text_vi": "Khi cập nhật view, chỉ dữ liệu trong view thay đổi, dữ liệu bảng gốc không đổi.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Một View phức tạp (Complex View) chứa các hàm nhóm (SUM, AVG...), mệnh đề `GROUP BY`, từ khóa `DISTINCT`, hoặc phép nối nhiều bảng không bảo toàn khóa (key-preserved) thì KHÔNG THỂ thực hiện các thao tác DML (INSERT, UPDATE, DELETE) thông qua View được.",
+    "key_takeaway_vi": "Không thể thực hiện DML qua View nếu View chứa hàm nhóm, GROUP BY hoặc DISTINCT.",
+    "flashcard": {
+      "front_en": "What is true about updates through a view?",
+      "front_vi": "Khi nào một View KHÔNG THỂ cập nhật (update) được?",
+      "back_vi": "Khi View chứa hàm nhóm (SUM, AVG), mệnh đề GROUP BY, DISTINCT hoặc toán tử SET."
+    }
+  },
+  {
+    "id": 206,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "What does the FORCE option do for creating a view?",
+    "prompt_vi": "Tùy chọn FORCE trong câu lệnh tạo view (CREATE FORCE VIEW) có tác dụng gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "creates a view regardless of whether or not the base tables exist",
+        "text_vi": "Tạo view bất kể các bảng cơ sở (base tables) có tồn tại hay không (creates view regardless of whether base tables exist).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "creates a view in another schema even if you don't have privileges",
+        "text_vi": "Tạo view trong schema khác ngay cả khi không có quyền.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "creates a view even if the underlying parent table has constraints",
+        "text_vi": "Tạo view ngay cả khi bảng cha có ràng buộc.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "creates a view with constraints",
+        "text_vi": "Tạo view đi kèm các ràng buộc.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Mặc định (`NOFORCE`), Oracle chỉ tạo view khi tất cả các bảng cơ sở đã tồn tại và hợp lệ. Khi bạn dùng `CREATE FORCE VIEW`, Oracle sẽ cưỡng chế tạo view ngay cả khi bảng cơ sở chưa tồn tại (hoặc user chưa có quyền), view được tạo ở trạng thái `INVALID` và sẽ tự động biên dịch lại khi bảng được tạo.",
+    "key_takeaway_vi": "FORCE cho phép tạo View ngay cả khi bảng cơ sở chưa tồn tại trong cơ sở dữ liệu.",
+    "flashcard": {
+      "front_en": "What does the FORCE option do for creating a view?",
+      "front_vi": "Từ khóa FORCE trong CREATE FORCE VIEW dùng để làm gì?",
+      "back_vi": "Bắt buộc tạo View ngay cả khi bảng gốc chưa được tạo (View sẽ ở trạng thái INVALID)."
+    }
+  },
+  {
+    "id": 207,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "Which of the following best describes an inline view?",
+    "prompt_vi": "Điều nào sau đây mô tả đúng nhất về một khung nhìn nội tuyến (inline view)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "a schema object",
+        "text_vi": "Một đối tượng lược đồ (schema object).",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "a sub query that is part of the FROM clause of another query",
+        "text_vi": "Một câu truy vấn con là một phần trong mệnh đề FROM của câu truy vấn khác (subquery in FROM clause).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "a sub query that can contain an ORDER BY clause",
+        "text_vi": "Một câu truy vấn con có thể chứa mệnh đề ORDER BY.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "another name for a view that contains group functions",
+        "text_vi": "Tên gọi khác của view có chứa hàm nhóm.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Inline View là một Subquery được đặt trực tiếp trong mệnh đề `FROM` của câu truy vấn, đóng vai trò như một bảng dữ liệu tạm thời trong phạm vi câu lệnh đó.",
+    "key_takeaway_vi": "Inline View = Subquery nằm trong mệnh đề FROM.",
+    "flashcard": {
+      "front_en": "Which of the following best describes an inline view?",
+      "front_vi": "Inline View nằm ở mệnh đề nào của câu lệnh SELECT?",
+      "back_vi": "Nằm trong mệnh đề FROM."
+    }
+  },
+  {
+    "id": 208,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "Which statement about views is not true?",
+    "prompt_vi": "Phát biểu nào sau đây về các khung nhìn (views) là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A view can be created as read only",
+        "text_vi": "Một view có thể được tạo ở chế độ chỉ đọc (read only).",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The table must exist to create a view on it",
+        "text_vi": "Bảng cơ sở bắt buộc phải tồn tại thì mới có thể tạo được view trên nó (The table must exist to create a view on it).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "A view can be created with a GROUP BY clause in the SELECT statement.",
+        "text_vi": "Một view có thể được tạo với mệnh đề GROUP BY trong câu lệnh SELECT.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "A view can be created based on another view",
+        "text_vi": "Một view có thể được tạo dựa trên một view khác.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Phát biểu B là SAI vì với tùy chọn `CREATE FORCE VIEW`, Oracle hoàn toàn cho phép tạo view ngay cả khi bảng cơ sở CHƯA TỒN TẠI.",
+    "key_takeaway_vi": "Bảng cơ sở không nhất thiết phải tồn tại trước nếu dùng tùy chọn CREATE FORCE VIEW.",
+    "flashcard": {
+      "front_en": "Which statement about views is not true?",
+      "front_vi": "Có bắt buộc bảng phải tồn tại mới tạo được View không?",
+      "back_vi": "Không bắt buộc nếu sử dụng tùy chọn CREATE FORCE VIEW."
+    }
+  },
+  {
+    "id": 209,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "Evaluate this SQL statement: \nSELECT a.emp_name, a.sal, a.dept_id, b.maxsal \nFROM employees a, \n     (SELECT dept_id, MAX(sal) maxsal \n      FROM employees \n      GROUP BY dept_id) b \nWHERE a.dept_id = b.dept_id \nAND a.sal < b.maxsal; \nWhat is the result of the statement?",
+    "prompt_vi": "Đánh giá câu lệnh SQL sau:\nSELECT a.emp_name, a.sal, a.dept_id, b.maxsal FROM employees a,\n(SELECT dept_id, MAX(sal) maxsal FROM employees GROUP BY dept_id) b\nWHERE a.dept_id = b.dept_id AND a.sal < b.maxsal;\nKết quả của câu lệnh là gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The statement produces an error at line 3",
+        "text_vi": "Câu lệnh báo lỗi ở dòng 3.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The statement produces an error at line 4",
+        "text_vi": "Câu lệnh báo lỗi ở dòng 4.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The statement returns the employee name, salary, department ID, and maximum salary earned in the department of the employee for all employees who earn less than the maximum salary in their department",
+        "text_vi": "Trả về tên, lương, mã phòng và lương cao nhất của phòng đó đối với tất cả nhân viên có mức lương THẤP HƠN mức lương cao nhất trong phòng của họ.",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "The statement produces an error at line 1",
+        "text_vi": "Câu lệnh báo lỗi ở dòng 1.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Khối `b` là một Inline View tính mức lương cao nhất (`maxsal`) của từng phòng ban. Câu lệnh kết nối bảng `employees a` với view `b` theo `dept_id`, và điều kiện `a.sal < b.maxsal` sẽ lọc ra tất cả nhân viên có lương nhỏ hơn người hưởng lương cao nhất phòng.",
+    "key_takeaway_vi": "Sử dụng Inline View để so sánh từng dòng dữ liệu của nhân viên với giá trị tổng hợp (MAX) của phòng ban đó.",
+    "flashcard": {
+      "front_en": "Evaluate this SQL statement: \nSELECT a.emp_name, a.sal, a.dept_id, b.maxsal \nFROM employees a, \n     (SELECT dept_id, MAX(sal) maxsal \n      FROM employees \n      GROUP BY dept_id) b \nWHERE a.dept_id = b.dept_id \nAND a.sal < b.maxsal; \nWhat is the result of the statement?",
+      "front_vi": "Kỹ thuật dùng Subquery trong FROM ở câu lệnh này giải quyết bài toán gì?",
+      "back_vi": "So sánh thuộc tính của từng cá nhân với giá trị cực đại (MAX) của nhóm mà cá nhân đó trực thuộc."
+    }
+  },
+  {
+    "id": 210,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "You need to create a view called EMP_VU that allows the user to insert rows through the \nview. Which of the following SQL statement, when used to create the EMP_VU view, \nallows the user to insert rows?",
+    "prompt_vi": "Bạn cần tạo một view có tên là EMP_VU cho phép người dùng có thể CHÈN (INSERT) các dòng thông qua view. Câu lệnh nào sau đây cho phép chèn dòng?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CREATE VIEW emp_Vu AS SELECT department_id, SUM(sal) TOTALSAL FROM employees WHERE mgr_id IN (102, 120) GROUP BY department_id;",
+        "text_vi": "CREATE VIEW emp_Vu AS SELECT department_id, SUM(sal) TOTALSAL FROM employees WHERE mgr_id IN (102, 120) GROUP BY department_id;",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "CREATE VIEW emp_Vu AS SELECT employee_id, emp_name,department_id FROM employees WHERE mgr_id IN (102, 120);",
+        "text_vi": "CREATE VIEW emp_Vu AS SELECT employee_id, emp_name,department_id FROM employees WHERE mgr_id IN (102, 120);",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "CREATE VIEW emp_Vu AS SELECT employee_id, emp_name, job_id,DISTINCT department_id FROM employees;",
+        "text_vi": "CREATE VIEW emp_Vu AS SELECT employee_id, emp_name, job_id,DISTINCT department_id FROM employees;",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "CREATE VIEW emp_Vu AS SELECT employee_id, emp_name, job_iddepartment_id FROM employees WHERE mgr_id IN (102, 120);",
+        "text_vi": "CREATE VIEW emp_Vu AS SELECT employee_id, emp_name, job_id, department_id FROM employees WHERE mgr_id IN (102, 120); (Theo đáp án CDAC có đủ các cột bắt buộc)",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Để một View có thể INSERT được dữ liệu vào bảng cơ sở: 1. View không được chứa GROUP BY, DISTINCT hoặc hàm nhóm (loại A và C); 2. View phải chứa TẤT CẢ các cột mang ràng buộc NOT NULL của bảng gốc mà không có giá trị mặc định (câu D chứa đủ các cột bắt buộc của nhân viên).",
+    "key_takeaway_vi": "Để View có thể INSERT được: không được có GROUP BY / hàm nhóm, và phải chứa đủ các cột NOT NULL của bảng gốc.",
+    "flashcard": {
+      "front_en": "You need to create a view called EMP_VU that allows the user to insert rows through the \nview. Which of the following SQL statement, when used to create the EMP_VU view, \nallows the user to insert rows?",
+      "front_vi": "Điều kiện để có thể chèn dòng (INSERT) thông qua một View?",
+      "back_vi": "View đơn giản (không có GROUP BY/hàm nhóm/DISTINCT) và phải chứa tất cả các cột NOT NULL không có DEFAULT."
+    }
+  },
+  {
+    "id": 211,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "You need to perform certain data manipulation operations through a view called \nEMP_DEPT_VU, which you previously created. You want to look at the definition of the \nview (the SELECT statement on which the view was created). \nHow do you obtain the definition of the view?",
+    "prompt_vi": "Bạn cần thực hiện các thao tác dữ liệu qua view EMP_DEPT_VU. Bạn muốn xem lại định nghĩa gốc của view (câu lệnh SELECT tạo view). Bạn làm cách nào?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Query the USER_VIEWS data dictionary view to search for the EMP_DEPT_VU view",
+        "text_vi": "Truy vấn khung nhìn từ điển dữ liệu USER_VIEWS để tìm view EMP_DEPT_VU (Query the USER_VIEWS data dictionary view).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Use the DESCRIBE VIEW command on the EMP_DEPT VU view",
+        "text_vi": "Dùng lệnh DESCRIBE VIEW.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Use the DEFINE VIEW command on the EMP_DEPT VU view",
+        "text_vi": "Dùng lệnh DEFINE VIEW.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Query the USER_SOURCE data dictionary view to search for the EMP_DEPT_VU view",
+        "text_vi": "Truy vấn view USER_SOURCE.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong Oracle, mã lệnh SELECT tạo View được lưu trong cột `TEXT` của từ điển dữ liệu `USER_VIEWS`. Ta chỉ cần truy vấn: `SELECT text FROM user_views WHERE view_name = 'EMP_DEPT_VU';`.",
+    "key_takeaway_vi": "Xem câu lệnh SELECT định nghĩa View tra cứu cột TEXT trong view USER_VIEWS.",
+    "flashcard": {
+      "front_en": "You need to perform certain data manipulation operations through a view called \nEMP_DEPT_VU, which you previously created. You want to look at the definition of the \nview (the SELECT statement on which the view was created). \nHow do you obtain the definition of the view?",
+      "front_vi": "Muốn xem câu lệnh SELECT đã tạo ra một View thì tra cứu ở đâu?",
+      "back_vi": "Tra cứu view từ điển dữ liệu USER_VIEWS (cột TEXT)."
+    }
+  },
+  {
+    "id": 212,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "What is necessary for your query on an existing view to execute successfully?",
+    "prompt_vi": "Điều kiện cần thiết để câu truy vấn trên một view hiện có được thực thi thành công là gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The underlying tables must be in the same schema",
+        "text_vi": "Các bảng cơ sở phải nằm trong cùng một schema.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The underlying tables must have data.",
+        "text_vi": "Các bảng cơ sở bắt buộc phải có dữ liệu.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "You need SELECT privileges only on the underlying tables",
+        "text_vi": "Bạn chỉ cần quyền SELECT trên các bảng cơ sở.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "You need SELECT privileges on the view.",
+        "text_vi": "Bạn cần có quyền SELECT trên chính khung nhìn đó (You need SELECT privileges on the view).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Để truy vấn từ bất kỳ đối tượng nào (bảng hoặc view), người dùng bắt buộc phải được cấp quyền `SELECT` trực tiếp trên đối tượng đó (`GRANT SELECT ON view_name TO user;`). Người dùng không nhất thiết phải có quyền trực tiếp trên các bảng cơ sở bên dưới (đây chính là cơ chế bảo mật phân quyền tuyệt vời của View).",
+    "key_takeaway_vi": "Chỉ cần được cấp quyền SELECT trên View là có thể truy vấn View mà không cần quyền trên bảng gốc.",
+    "flashcard": {
+      "front_en": "What is necessary for your query on an existing view to execute successfully?",
+      "front_vi": "Người dùng có cần quyền trên bảng gốc để truy vấn View không?",
+      "back_vi": "KHÔNG CẦN. Chỉ cần có quyền SELECT trên chính View đó."
+    }
+  },
+  {
+    "id": 213,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "When you use SQL Subquery in ________ clause of the select statement it is called inline \nview",
+    "prompt_vi": "Khi bạn sử dụng một câu truy vấn con SQL trong mệnh đề ________ của câu lệnh select thì nó được gọi là inline view?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "group by",
+        "text_vi": "group by",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "order by",
+        "text_vi": "order by",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "where",
+        "text_vi": "where",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "from",
+        "text_vi": "from",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Subquery nằm trong mệnh đề `FROM` được định nghĩa chuẩn là `Inline View`.",
+    "key_takeaway_vi": "Subquery trong mệnh đề FROM = Inline View.",
+    "flashcard": {
+      "front_en": "When you use SQL Subquery in ________ clause of the select statement it is called inline \nview",
+      "front_vi": "Subquery nằm trong mệnh đề nào được gọi là Inline View?",
+      "back_vi": "Mệnh đề FROM."
+    }
+  },
+  {
+    "id": 214,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "You created a view called EMP_DEPT_VU that contains three columns from the \nEMPLOYEES and DEPARTMENTS tables: EMPLOYEE_ID, EMPLOYEE_NAME and \nDEPARTMENT_NAME. \nThe DEPARTMENT_ID column of the EMPLOYEES table is the foreign key to the primary \nkey DEPARTMENT_ID column of the DEPARTMENTS table. \nYou want to modify the view by adding a fourth column, MANAGER_ID of NUMBER data \ntype from the EMPLOYEES tables. \nHow can you accomplish this task?",
+    "prompt_vi": "Bạn đã tạo view EMP_DEPT_VU gồm 3 cột. Bây giờ bạn muốn sửa đổi view bằng cách thêm cột thứ tư là MANAGER_ID từ bảng EMPLOYEES. Bạn thực hiện bằng cách nào?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "ALTER VIEW emp_dept_vu AS SELECT employee_id, employee_name,department_name, manager_id FROM employee e, departments d WHERE e.department_id = d.department_id;",
+        "text_vi": "ALTER VIEW emp_dept_vu AS SELECT ...",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "MODIFY VIEW emp_dept_vu (ADD manager_id NUMBER);",
+        "text_vi": "MODIFY VIEW emp_dept_vu (ADD manager_id NUMBER);",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "ALTER VIEW emp_dept_vu (ADD manager_id NUMBER);",
+        "text_vi": "ALTER VIEW emp_dept_vu (ADD manager_id NUMBER);",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "CREATE OR REPLACE VIEW emp_dept_vu AS SELECT employee_id, employee_name,department_name, manager_id FROM employees e, departments d WHERE e.department_id = d.department_id;",
+        "text_vi": "CREATE OR REPLACE VIEW emp_dept_vu AS SELECT employee_id, employee_name, department_name, manager_id FROM employees e, departments d WHERE e.department_id = d.department_id;",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Trong Oracle SQL, không có lệnh `ALTER VIEW` để thay đổi định nghĩa cột của view. Để sửa đổi hoặc thêm bớt cột cho view đã có mà không làm mất các quyền (GRANTS) đã cấp trên view, ta sử dụng cú pháp: `CREATE OR REPLACE VIEW <tên_view> AS SELECT ...`.",
+    "key_takeaway_vi": "Sửa đổi định nghĩa View dùng: CREATE OR REPLACE VIEW view_name AS ...",
+    "flashcard": {
+      "front_en": "You created a view called EMP_DEPT_VU that contains three columns from the \nEMPLOYEES and DEPARTMENTS tables: EMPLOYEE_ID, EMPLOYEE_NAME and \nDEPARTMENT_NAME. \nThe DEPARTMENT_ID column of the EMPLOYEES table is the foreign key to the primary \nkey DEPARTMENT_ID column of the DEPARTMENTS table. \nYou want to modify the view by adding a fourth column, MANAGER_ID of NUMBER data \ntype from the EMPLOYEES tables. \nHow can you accomplish this task?",
+      "front_vi": "Làm thế nào để thêm một cột vào View đã tồn tại mà không làm mất phân quyền?",
+      "back_vi": "Dùng lệnh: CREATE OR REPLACE VIEW tên_view AS SELECT ... (không dùng ALTER VIEW)."
+    }
+  },
+  {
+    "id": 215,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "Which statements concerning the creation of a view are true? (Choose all that apply.)",
+    "prompt_vi": "Phát biểu nào sau đây về việc tạo một khung nhìn (view) là ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "View columns that are the result of derived values are named by Oracle.",
+        "text_vi": "Các cột trong view là kết quả của giá trị tính toán phái sinh sẽ được Oracle tự đặt tên.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "When the view already exists, using the OR REPLACE option requires the re-granting of the object privileges previously granted on the view",
+        "text_vi": "Khi view đã tồn tại, dùng OR REPLACE đòi hỏi phải cấp lại toàn bộ quyền đối tượng đã cấp trước đó.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "A constraint name must be provided when using the WITH CHECK OPTION clause or theStatement will fail",
+        "text_vi": "Tên ràng buộc bắt buộc phải cung cấp khi dùng mệnh đề WITH CHECK OPTION nếu không lệnh sẽ lỗi.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "A view can have column names that are different than the actual base table(s) column names by using column aliases.",
+        "text_vi": "Một view có thể có các tên cột khác với tên cột thực tế của bảng cơ sở bằng cách sử dụng các bí danh cột (by using column aliases).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Bạn có thể hoàn toàn đổi tên các cột trong View khác với tên cột của bảng gốc bằng cách sử dụng bí danh cột (`SELECT emp_name AS ho_va_ten ...`) hoặc khai báo danh sách tên cột ngay sau tên view: `CREATE VIEW v_emp (ma_nv, ho_ten) AS SELECT employee_id, emp_name...`.",
+    "key_takeaway_vi": "View có thể đặt tên cột khác bảng gốc bằng cách dùng bí danh cột (Column Aliases).",
+    "flashcard": {
+      "front_en": "Which statements concerning the creation of a view are true? (Choose all that apply.)",
+      "front_vi": "Làm thế nào để View có tên cột khác hoàn toàn so với bảng cơ sở?",
+      "back_vi": "Dùng Column Alias trong câu lệnh SELECT của View hoặc chỉ định danh sách cột sau tên View."
+    }
+  },
+  {
+    "id": 216,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "You are granted the CREATE VIEW privilege. What does this allow you to do?",
+    "prompt_vi": "Bạn được cấp quyền CREATE VIEW. Quyền này cho phép bạn làm điều gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Create a table view",
+        "text_vi": "Tạo một table view.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Create a view in any schema",
+        "text_vi": "Tạo view trong bất kỳ schema nào.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Create a view in your schema",
+        "text_vi": "Tạo một view trong schema của chính bạn (Create a view in your schema).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "Create a sequence view in any schema",
+        "text_vi": "Tạo sequence view.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Quyền hệ thống `CREATE VIEW` cho phép người dùng tạo các khung nhìn trong phạm vi schema của chính mình (`in your schema`). Muốn tạo view trong schema của người dùng khác, bạn bắt buộc phải có quyền `CREATE ANY VIEW`.",
+    "key_takeaway_vi": "Quyền CREATE VIEW chỉ cho phép tạo view trong chính schema của mình.",
+    "flashcard": {
+      "front_en": "You are granted the CREATE VIEW privilege. What does this allow you to do?",
+      "front_vi": "Quyền CREATE VIEW khác gì với CREATE ANY VIEW?",
+      "back_vi": "CREATE VIEW chỉ tạo trong schema của mình; CREATE ANY VIEW cho phép tạo trong bất kỳ schema nào."
+    }
+  },
+  {
+    "id": 217,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "Which of the following is a valid option while creating a view?",
+    "prompt_vi": "Tùy chọn nào sau đây là một tùy chọn hợp lệ khi tạo một khung nhìn (view)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "WITH BREAK OPTION",
+        "text_vi": "WITH BREAK OPTION",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "ON DELETE CASCADE",
+        "text_vi": "ON DELETE CASCADE",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "WITH GRANT OPTION",
+        "text_vi": "WITH GRANT OPTION",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "WITH CHECK OPTION",
+        "text_vi": "WITH CHECK OPTION",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Khi tạo View, Oracle hỗ trợ hai mệnh đề tùy chọn quan trọng: `WITH READ ONLY` (chỉ cho phép đọc, cấm mọi thao tác DML) và `WITH CHECK OPTION` (chỉ cho phép INSERT/UPDATE nếu bản ghi thỏa mãn điều kiện WHERE của view).",
+    "key_takeaway_vi": "Hai tùy chọn phổ biến khi tạo View: WITH CHECK OPTION và WITH READ ONLY.",
+    "flashcard": {
+      "front_en": "Which of the following is a valid option while creating a view?",
+      "front_vi": "Mệnh đề WITH CHECK OPTION khi tạo View có tác dụng gì?",
+      "back_vi": "Đảm bảo các thao tác INSERT/UPDATE qua View không thể tạo ra những bản ghi vi phạm điều kiện WHERE của View."
+    }
+  },
+  {
+    "id": 218,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "An inline view is a SELECT statement that is given an alias and is embedded in the ______ \nclause of another SELECT statement.",
+    "prompt_vi": "Một khung nhìn nội tuyến (inline view) là một câu lệnh SELECT được gán bí danh và được nhúng vào trong mệnh đề ________ của một câu lệnh SELECT khác?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CASE",
+        "text_vi": "CASE",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "FROM",
+        "text_vi": "FROM",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "WHERE",
+        "text_vi": "WHERE",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "SELECT",
+        "text_vi": "SELECT",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Inline view được định nghĩa và nhúng bên trong mệnh đề `FROM` của câu truy vấn ngoài.",
+    "key_takeaway_vi": "Inline view nằm trong mệnh đề FROM.",
+    "flashcard": {
+      "front_en": "An inline view is a SELECT statement that is given an alias and is embedded in the ______ \nclause of another SELECT statement.",
+      "front_vi": "Vị trí đặt Inline View trong câu lệnh SELECT?",
+      "back_vi": "Mệnh đề FROM."
+    }
+  },
+  {
+    "id": 219,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "You need to create a view EMP_VU. The view should allow the users to manipulate the \nrecords of only the employees that are working for departments 10 or 20. \nWhich SQL statement would you use to create the view EMP_VU?",
+    "prompt_vi": "Bạn cần tạo view EMP_VU. View này phải cho phép người dùng chỉ được thao tác (INSERT/UPDATE/DELETE) trên các bản ghi của nhân viên thuộc phòng ban 10 hoặc 20. Câu lệnh nào đúng?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "CREATE VIEW emp_vu AS SELECT * FROM employees WHERE department_id IN (10,20) WITH READ ONLY;",
+        "text_vi": "CREATE VIEW emp_vu AS SELECT * FROM employees WHERE department_id IN (10,20) WITH READ ONLY;",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "CREATE VIEW emp_vu AS SELECT * FROM employees WHERE department_id IN (10,20) WITH CHECK OPTION;",
+        "text_vi": "CREATE VIEW emp_vu AS SELECT * FROM employees WHERE department_id IN (10,20) WITH CHECK OPTION;",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "CREATE VIEW emp_vu AS SELECT * FROM employees WHERE department_id IN (10,20);",
+        "text_vi": "CREATE VIEW emp_vu AS SELECT * FROM employees WHERE department_id IN (10,20);",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "CREATE FORCE VIEW emp_vu AS SELECT * FROM employees WHERE department_id IN (10,20);",
+        "text_vi": "CREATE FORCE VIEW emp_vu AS SELECT * FROM employees WHERE department_id IN (10,20);",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Mệnh đề `WITH CHECK OPTION` đảm bảo rằng mọi câu lệnh INSERT hoặc UPDATE thông qua view sẽ bị từ chối nếu nó cố gắng thay đổi `department_id` sang một giá trị khác ngoài 10 hoặc 20. Tùy chọn A sai vì `WITH READ ONLY` sẽ cấm hoàn toàn không cho sửa đổi.",
+    "key_takeaway_vi": "WITH CHECK OPTION ngăn chặn việc sửa hoặc chèn dữ liệu vi phạm điều kiện WHERE của View.",
+    "flashcard": {
+      "front_en": "You need to create a view EMP_VU. The view should allow the users to manipulate the \nrecords of only the employees that are working for departments 10 or 20. \nWhich SQL statement would you use to create the view EMP_VU?",
+      "front_vi": "Tại sao dùng WITH CHECK OPTION cho bài toán chỉ cho sửa nhân viên phòng 10, 20?",
+      "back_vi": "Vì WITH CHECK OPTION sẽ chặn đứng mọi hành vi INSERT/UPDATE nhân viên vào các phòng ban khác ngoài 10 và 20."
+    }
+  },
+  {
+    "id": 220,
+    "module_id": 11,
+    "module_name_en": "Module 11: Views",
+    "module_name_vi": "Module 11: Khung nhìn (Views)",
+    "prompt_en": "Which statement about views is true?",
+    "prompt_vi": "Phát biểu nào sau đây về các khung nhìn (views) là ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A view cannot have an ORDER BY clause in the SELECT statement",
+        "text_vi": "Một view không thể chứa mệnh đề ORDER BY trong câu lệnh SELECT.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "A view cannot be created with a GROUP BY clause in the SELECT statement.",
+        "text_vi": "Một view không thể được tạo với mệnh đề GROUP BY.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "A view can be created as read only",
+        "text_vi": "Một view có thể được tạo ở chế độ chỉ đọc (A view can be created as read only).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "A view must have aliases defined for the column names in the SELECT statement",
+        "text_vi": "Một view bắt buộc phải định nghĩa bí danh cho các cột.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Bạn hoàn toàn có thể tạo view chỉ đọc bằng cách thêm mệnh đề `WITH READ ONLY` ở cuối câu lệnh `CREATE VIEW`. Khi đó, người dùng chỉ có thể SELECT và không thể INSERT, UPDATE hay DELETE qua view này.",
+    "key_takeaway_vi": "Thêm WITH READ ONLY để tạo View chỉ đọc, ngăn chặn mọi thao tác sửa đổi dữ liệu.",
+    "flashcard": {
+      "front_en": "Which statement about views is true?",
+      "front_vi": "Làm thế nào để tạo một View chỉ đọc (Read-only) trong Oracle?",
+      "back_vi": "Thêm mệnh đề WITH READ ONLY vào cuối câu lệnh CREATE VIEW."
+    }
+  },
+  {
+    "id": 221,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "Which of the following is not a SET operator?",
+    "prompt_vi": "Toán tử nào sau đây KHÔNG PHẢI là một toán tử tập hợp (SET operator) trong SQL?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Intersect",
+        "text_vi": "Intersect",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Union",
+        "text_vi": "Union",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Minus",
+        "text_vi": "Minus",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Plus",
+        "text_vi": "Plus",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "4 toán tử tập hợp chuẩn trong Oracle SQL là: `UNION`, `UNION ALL`, `INTERSECT`, và `MINUS`. Từ khóa `Plus` là toán tử số học (+), không phải là toán tử tập hợp.",
+    "key_takeaway_vi": "4 toán tử tập hợp trong Oracle: UNION, UNION ALL, INTERSECT, MINUS.",
+    "flashcard": {
+      "front_en": "Which of the following is not a SET operator?",
+      "front_vi": "Kể tên 4 toán tử tập hợp trong Oracle SQL?",
+      "back_vi": "UNION, UNION ALL, INTERSECT, MINUS."
+    }
+  },
+  {
+    "id": 222,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "If the JOB_HISTORY table contains the records for those employees who have changed their \njobs at least once, and you want to display the employee IDs of those employees who have \nnot changed their jobs even once, which set operator should you use to write a query?",
+    "prompt_vi": "Bảng JOB_HISTORY lưu các nhân viên đã từng đổi công việc ít nhất một lần. Bạn muốn hiển thị mã của những nhân viên CHƯA TỪNG ĐỔI CÔNG VIỆC lần nào. Bạn nên dùng toán tử tập hợp nào?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Intersect",
+        "text_vi": "Intersect",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Minus",
+        "text_vi": "Minus",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "Union",
+        "text_vi": "Union",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Union All",
+        "text_vi": "Union All",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Bài toán tìm các phần tử thuộc tập A (tất cả nhân viên) nhưng KHÔNG THUỘC tập B (nhân viên đã từng chuyển việc) là phép trừ tập hợp: `SELECT employee_id FROM employees MINUS SELECT employee_id FROM job_history;`. Toán tử `MINUS` thực hiện chính xác phép toán này.",
+    "key_takeaway_vi": "Tìm phần tử có trong tập A nhưng không có trong tập B dùng toán tử MINUS.",
+    "flashcard": {
+      "front_en": "If the JOB_HISTORY table contains the records for those employees who have changed their \njobs at least once, and you want to display the employee IDs of those employees who have \nnot changed their jobs even once, which set operator should you use to write a query?",
+      "front_vi": "Toán tử MINUS dùng để làm gì trong SQL?",
+      "back_vi": "Lấy các dòng có trong kết quả truy vấn thứ nhất nhưng KHÔNG CÓ trong kết quả truy vấn thứ hai."
+    }
+  },
+  {
+    "id": 223,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "Which of the following is not true about the use of Set operators in general?",
+    "prompt_vi": "Điều nào sau đây là KHÔNG ĐÚNG khi nói về việc sử dụng các toán tử tập hợp (Set operators)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "SET operators cannot be used in sub queries",
+        "text_vi": "Các toán tử SET không thể sử dụng trong các câu truy vấn con (SET operators cannot be used in sub queries).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "The expressions in the SELECT lists must match in number and data type.",
+        "text_vi": "Các biểu thức trong danh sách SELECT phải khớp nhau về số lượng và kiểu dữ liệu tương thích.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Parentheses can be used to alter the sequence of execution.",
+        "text_vi": "Dấu ngoặc đơn có thể được sử dụng để thay đổi thứ tự ưu tiên thực thi.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Queries that use UNION, UNION ALL, INTERSECT, and MINUS SET operators in their WHERE clause must have the same number and type of columns in their SELECT list",
+        "text_vi": "Các truy vấn sử dụng toán tử tập hợp phải có cùng số lượng và kiểu cột tương ứng.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Phát biểu A là SAI vì các toán tử tập hợp (UNION, MINUS...) HOÀN TOÀN CÓ THỂ được đặt bên trong các câu truy vấn con (Subqueries).",
+    "key_takeaway_vi": "Toán tử tập hợp hoàn toàn có thể được dùng bên trong các câu truy vấn con (Subquery).",
+    "flashcard": {
+      "front_en": "Which of the following is not true about the use of Set operators in general?",
+      "front_vi": "Có thể dùng toán tử UNION hoặc MINUS bên trong một Subquery không?",
+      "back_vi": "CÓ. Hoàn toàn hợp lệ khi đặt phép toán tập hợp trong Subquery."
+    }
+  },
+  {
+    "id": 224,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "Which statement about the use of ORDER BY clause in conjunction with the SET Operators \nis not correct?",
+    "prompt_vi": "Phát biểu nào sau đây về việc sử dụng mệnh đề ORDER BY kết hợp với các toán tử SET là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The column name or alias, if used in an ORDER BY clause, must be from the first SELECT list.",
+        "text_vi": "Tên cột hoặc bí danh cột nếu dùng trong ORDER BY phải lấy từ danh sách SELECT thứ nhất.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The ORDER BY clause: Can accept the column name, an alias, or the positional notation",
+        "text_vi": "Mệnh đề ORDER BY có thể chấp nhận tên cột, bí danh cột hoặc chỉ số vị trí cột (1, 2, 3...).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The ORDER BY clause: Can appear only at the very end of the statement",
+        "text_vi": "Mệnh đề ORDER BY chỉ có thể xuất hiện ở điểm cuối cùng của toàn bộ câu lệnh hợp nhất.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The ORDER BY clause: Can appear only at the end of the first SELECT statement",
+        "text_vi": "Mệnh đề ORDER BY chỉ có thể xuất hiện ở cuối câu lệnh SELECT thứ nhất (Can appear only at the end of the first SELECT).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Phát biểu D là SAI. Trong câu lệnh truy vấn ghép nối bằng toán tử SET, mệnh đề `ORDER BY` CHỈ ĐƯỢC PHÉP XUẤT HIỆN DUY NHẤT MỘT LẦN VÀ PHẢI NẰM Ở CUỐI CÙNG của toàn bộ câu lệnh (sau câu SELECT cuối cùng). Đặt ORDER BY ở câu SELECT đầu tiên sẽ gây lỗi cú pháp.",
+    "key_takeaway_vi": "ORDER BY trong truy vấn tập hợp chỉ được đặt ở cuối cùng của toàn bộ câu lệnh.",
+    "flashcard": {
+      "front_en": "Which statement about the use of ORDER BY clause in conjunction with the SET Operators \nis not correct?",
+      "front_vi": "Vị trí đặt mệnh đề ORDER BY khi kết hợp nhiều câu lệnh SELECT bằng UNION/MINUS?",
+      "back_vi": "Chỉ được đặt duy nhất 1 lần ở cuối cùng của toàn bộ câu lệnh truy vấn ghép."
+    }
+  },
+  {
+    "id": 225,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "Which statement about the Oracle Server and SET Operators is not true?",
+    "prompt_vi": "Phát biểu nào sau đây về Oracle Server và các toán tử SET là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "By default, the output is sorted in ascending order of the first column of the SELECT clause.",
+        "text_vi": "Theo mặc định, kết quả đầu ra được sắp xếp tăng dần theo cột đầu tiên của mệnh đề SELECT.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The column names in the output are decided by the column list in the first SELECT statement",
+        "text_vi": "Tên các cột trong kết quả đầu ra được quyết định bởi danh sách cột của câu lệnh SELECT đầu tiên.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The data types of the output columns are same as the selected columns",
+        "text_vi": "Kiểu dữ liệu của các cột đầu ra giống hệt như các cột được chọn (Theo đáp án trắc nghiệm đề CDAC đánh dấu 100)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "the Oracle Server eliminates duplicate rows automatically except in the case of the UNION ALL operator",
+        "text_vi": "Oracle Server tự động loại bỏ các dòng trùng lặp, ngoại trừ trường hợp dùng toán tử UNION ALL.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Các toán tử UNION, INTERSECT, MINUS tự động sắp xếp kết quả tăng dần và loại bỏ bản ghi trùng lặp. Tên cột hiển thị ở kết quả luôn lấy theo câu SELECT đầu tiên. Kiểu dữ liệu của các cột tương ứng chỉ cần thuộc cùng nhóm kiểu tương thích (Oracle sẽ tự chuyển đổi kiểu ngầm định chứ không bắt buộc phải giống hệt tuyệt đối).",
+    "key_takeaway_vi": "Tên tiêu đề cột đầu ra trong phép toán SET luôn lấy theo câu SELECT đầu tiên.",
+    "flashcard": {
+      "front_en": "Which statement about the Oracle Server and SET Operators is not true?",
+      "front_vi": "Tên cột kết quả trong truy vấn UNION lấy theo câu lệnh SELECT nào?",
+      "back_vi": "Luôn lấy theo tên cột (hoặc bí danh) của câu lệnh SELECT ĐẦU TIÊN."
+    }
+  },
+  {
+    "id": 226,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "What data does the DUAL table contain by default?",
+    "prompt_vi": "Bảng DUAL trong Oracle mặc định chứa dữ liệu gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "One column named DUMMY and one row with value X",
+        "text_vi": "Một cột có tên là DUMMY và một dòng duy nhất mang giá trị 'X' (One column named DUMMY and one row with value X).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "One column named D and one row with value X",
+        "text_vi": "Một cột có tên là D và một dòng có giá trị X.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "One column named COL and one row with value 1",
+        "text_vi": "Một cột có tên là COL và một dòng có giá trị 1.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "DUAL table doesn't contain any data by default.",
+        "text_vi": "Bảng DUAL mặc định không chứa bất kỳ dữ liệu nào.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Bảng `DUAL` là bảng đặc biệt thuộc schema SYS trong Oracle, dùng để tính toán biểu thức hoặc gọi hàm đơn dòng. Cấu trúc của bảng DUAL chỉ gồm duy nhất 1 cột mang tên `DUMMY VARCHAR2(1)` và chứa duy nhất 1 dòng có giá trị là chữ cái `'X'`.",
+    "key_takeaway_vi": "Bảng DUAL gồm 1 cột DUMMY và 1 dòng duy nhất có giá trị 'X'.",
+    "flashcard": {
+      "front_en": "What data does the DUAL table contain by default?",
+      "front_vi": "Bảng DUAL trong Oracle có cấu trúc và dữ liệu như thế nào?",
+      "back_vi": "Gồm 1 cột tên DUMMY (VARCHAR2(1)) và 1 dòng duy nhất chứa giá trị 'X'."
+    }
+  },
+  {
+    "id": 227,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "What is not true about the Oracle Pseudo columns?",
+    "prompt_vi": "Điều nào sau đây KHÔNG ĐÚNG khi nói về các cột giả (Pseudo columns) trong Oracle?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A pseudo column behaves like a table column, but is not actually stored in the table.",
+        "text_vi": "Một cột giả hoạt động giống như một cột của bảng nhưng không thực sự được lưu trữ trong bảng.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Pseudo columns are internally maintained by the Oracle server.",
+        "text_vi": "Các cột giả được quản lý và duy trì nội bộ bởi Oracle Server.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "You cannot insert value of a pseudo column in other table's columns.",
+        "text_vi": "Bạn không thể chèn giá trị của một cột giả vào cột của bảng khác (You cannot insert value of a pseudo column).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "You can select from pseudo columns, but you cannot insert, update, or delete their values.",
+        "text_vi": "Bạn có thể SELECT từ các cột giả nhưng không thể INSERT, UPDATE hoặc DELETE trực tiếp giá trị của chính nó.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Phát biểu C là SAI hoàn toàn. Bạn HOÀN TOÀN CÓ THỂ lấy giá trị của cột giả (như `sequence.NEXTVAL`, `ROWNUM`, `SYSDATE`) để INSERT hoặc UPDATE vào các cột thực tế của một bảng: `INSERT INTO orders (id) VALUES (order_seq.NEXTVAL);`.",
+    "key_takeaway_vi": "Giá trị của cột giả (như sequence.NEXTVAL) hoàn toàn có thể được INSERT vào bảng khác.",
+    "flashcard": {
+      "front_en": "What is not true about the Oracle Pseudo columns?",
+      "front_vi": "Có thể dùng giá trị của cột giả (như sequence.NEXTVAL) để INSERT vào bảng không?",
+      "back_vi": "CÓ. Hoàn toàn được phép dùng giá trị cột giả để chèn hoặc cập nhật vào bảng."
+    }
+  },
+  {
+    "id": 228,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "Which of the following is not a valid type or name of an Oracle Pseudo-column?",
+    "prompt_vi": "Tên nào sau đây KHÔNG PHẢI là một loại hoặc tên cột giả (Pseudo-column) hợp lệ trong Oracle?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Hierarchical Query Pseudo columns",
+        "text_vi": "Hierarchical Query Pseudo columns (LEVEL)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Sequence Pseudo columns",
+        "text_vi": "Sequence Pseudo columns (NEXTVAL, CURRVAL)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Sub Query Pseudo columns",
+        "text_vi": "Sub Query Pseudo columns (Cột giả truy vấn con)",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "ROWNUM Pseudo column",
+        "text_vi": "ROWNUM Pseudo column",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Trong Oracle có các nhóm cột giả: Phân cấp (LEVEL), Sequence (NEXTVAL, CURRVAL), Vị trí/Số thứ tự dòng (ROWNUM, ROWID). Không có nhóm nào tên là 'Sub Query Pseudo columns'.",
+    "key_takeaway_vi": "Không có loại cột giả nào tên là Sub Query Pseudo columns.",
+    "flashcard": {
+      "front_en": "Which of the following is not a valid type or name of an Oracle Pseudo-column?",
+      "front_vi": "Kể tên các cột giả (Pseudocolumns) phổ biến trong Oracle?",
+      "back_vi": "ROWNUM, ROWID, LEVEL, NEXTVAL, CURRVAL."
+    }
+  },
+  {
+    "id": 229,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "Which of the following statement, about sequence pseudo columns is true?",
+    "prompt_vi": "Phát biểu nào sau đây về các cột giả của chuỗi Sequence (NEXTVAL, CURRVAL) là ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "You use a CURRVAL pseudo column to generate a value from a sequence that would be used for a specified database column.",
+        "text_vi": "Bạn dùng CURRVAL để sinh giá trị mới từ sequence.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "You use a NEXTVAL pseudo column to look at the next possible value that would be generated from a sequence, without actually retrieving the value.",
+        "text_vi": "Bạn dùng NEXTVAL để xem trước giá trị tiếp theo mà không thực sự lấy giá trị đó.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "You use a CURRVAL pseudo column to generated next value of the sequence to be used.",
+        "text_vi": "Bạn dùng CURRVAL để sinh giá trị tiếp theo cần dùng.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "You use a NEXTVAL pseudo column to obtain the next possible value from a sequence by actually retrieving the value from the sequence.",
+        "text_vi": "Bạn dùng NEXTVAL để lấy giá trị khả dĩ tiếp theo từ sequence bằng cách thực sự trích xuất giá trị đó (by actually retrieving the value).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "`NEXTVAL` trích xuất giá trị tiếp theo của sequence và làm tăng sequence lên một bước nhảy. `CURRVAL` chỉ dùng để tham chiếu lại giá trị vừa được sinh ra bởi NEXTVAL trong phiên hiện tại (không thể gọi CURRVAL trước khi gọi NEXTVAL).",
+    "key_takeaway_vi": "NEXTVAL sinh ra và trích xuất giá trị mới của Sequence; CURRVAL trả về giá trị hiện tại vừa sinh.",
+    "flashcard": {
+      "front_en": "Which of the following statement, about sequence pseudo columns is true?",
+      "front_vi": "Phân biệt NEXTVAL và CURRVAL của Sequence?",
+      "back_vi": "NEXTVAL tăng sequence và sinh giá trị mới. CURRVAL đọc lại giá trị hiện tại vừa được sinh bởi NEXTVAL."
+    }
+  },
+  {
+    "id": 230,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "Which of the following is not part of the information contained inside the ROWID pseudo \ncolumn?",
+    "prompt_vi": "Thông tin nào sau đây KHÔNG NẰM TRONG thông tin được mã hóa bên trong cột giả ROWID?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The data object number of the object",
+        "text_vi": "Mã số đối tượng dữ liệu (data object number).",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The data file in which the row resides",
+        "text_vi": "Tệp dữ liệu (datafile) chứa dòng đó.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The position of the row in the oracle table",
+        "text_vi": "Vị trí của dòng trong bảng Oracle (The position of the row in the oracle table).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "The data block in the data file in which the row resides",
+        "text_vi": "Khối dữ liệu (data block) trong datafile chứa dòng đó.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Cấu trúc một `ROWID mở rộng (Extended ROWID)` gồm 18 ký tự mã hóa 4 thành phần: 1. Data Object Number (6 ký tự); 2. Datafile Relative Number (3 ký tự); 3. Data Block Number (6 ký tự); 4. Row Number bên trong khối dữ liệu (3 ký tự). Nó không lưu 'vị trí tuyệt đối của dòng trong bảng' (vì trong mô hình quan hệ bảng không có thứ tự dòng cố định).",
+    "key_takeaway_vi": "ROWID chứa: Object ID, Datafile ID, Block ID, Row Slot trong Block. Không chứa thứ tự dòng trong bảng.",
+    "flashcard": {
+      "front_en": "Which of the following is not part of the information contained inside the ROWID pseudo \ncolumn?",
+      "front_vi": "ROWID trong Oracle chứa những thành phần cấu trúc vật lý nào?",
+      "back_vi": "Data Object ID, Relative Datafile ID, Block ID và Row number bên trong Block."
+    }
+  },
+  {
+    "id": 231,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "Which of these pseudo columns is useful while performing the TOP-N analysis?",
+    "prompt_vi": "Cột giả nào sau đây hữu ích khi thực hiện phân tích TOP-N trong Oracle?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "RANK",
+        "text_vi": "RANK",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "ROWID",
+        "text_vi": "ROWID",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "LEVEL",
+        "text_vi": "LEVEL",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "ROWNUM",
+        "text_vi": "ROWNUM",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Cột giả `ROWNUM` đánh số thứ tự tuần tự cho các dòng kết quả trả về từ 1. Khi kết hợp với Inline View sắp xếp ORDER BY, `ROWNUM <= N` là kỹ thuật chuẩn để lấy ra Top N bản ghi.",
+    "key_takeaway_vi": "Top-N Analysis trong Oracle truyền thống sử dụng cột giả ROWNUM.",
+    "flashcard": {
+      "front_en": "Which of these pseudo columns is useful while performing the TOP-N analysis?",
+      "front_vi": "Cột giả nào dùng để giới hạn số dòng (Top-N) trong Oracle SQL?",
+      "back_vi": "ROWNUM (kết hợp WHERE ROWNUM <= N)."
+    }
+  },
+  {
+    "id": 232,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "If you want to select employees details from two different tables which may contain records \nfor same employee ids, but want to display each employees record only once, which set \noperator should you use?",
+    "prompt_vi": "Bạn muốn lấy chi tiết nhân viên từ 2 bảng khác nhau có thể chứa các mã nhân viên trùng nhau, nhưng muốn hiển thị mỗi bản ghi nhân viên DUY NHẤT MỘT LẦN (loại bỏ trùng). Bạn nên dùng toán tử SET nào?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Union",
+        "text_vi": "Union",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Union all",
+        "text_vi": "Union all",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Minus",
+        "text_vi": "Minus",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Intersect",
+        "text_vi": "Intersect",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Toán tử `UNION` gộp kết quả của 2 truy vấn và TỰ ĐỘNG LOẠI BỎ CÁC DÒNG TRÙNG LẶP (Duplicate elimination). Ngược lại, `UNION ALL` giữ lại toàn bộ các dòng trùng lặp.",
+    "key_takeaway_vi": "Gộp dữ liệu và loại bỏ trùng lặp dùng UNION; giữ nguyên trùng lặp dùng UNION ALL.",
+    "flashcard": {
+      "front_en": "If you want to select employees details from two different tables which may contain records \nfor same employee ids, but want to display each employees record only once, which set \noperator should you use?",
+      "front_vi": "Phân biệt UNION và UNION ALL?",
+      "back_vi": "UNION tự động loại bỏ các dòng trùng lặp và sắp xếp kết quả; UNION ALL giữ nguyên tất cả dòng trùng lặp."
+    }
+  },
+  {
+    "id": 233,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "What will be the output of the below query? \nSELECT * \nFROM employees \nWHERE ROWNUM < 10;",
+    "prompt_vi": "Kết quả xuất ra của câu lệnh sau là gì?\nSELECT * FROM employees WHERE ROWNUM < 10;",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "This Query will perform TOP-N analysis to display TOP nine earning employees as ROWNUM is used.",
+        "text_vi": "Thực hiện phân tích TOP-N để hiển thị 9 nhân viên có thu nhập cao nhất.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "This query will return error as ROWNUM is not used in the SELECT clause and only in the WHERE clause",
+        "text_vi": "Báo lỗi vì ROWNUM không nằm trong mệnh đề SELECT.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The query will select only 10 records from employees table",
+        "text_vi": "Chỉ chọn đúng 10 bản ghi từ bảng employees.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "This query will return 9 rows from the Employees table, if there are 9 or more records in the employees table",
+        "text_vi": "Trả về 9 dòng từ bảng Employees (nếu bảng có từ 9 bản ghi trở lên).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Điều kiện `ROWNUM < 10` giới hạn các dòng có số thứ tự ROWNUM từ 1 đến 9. Do đó câu lệnh sẽ trả về chính xác 9 dòng dữ liệu đầu tiên được quét từ bảng.",
+    "key_takeaway_vi": "WHERE ROWNUM < 10 trả về đúng 9 bản ghi (từ 1 đến 9).",
+    "flashcard": {
+      "front_en": "What will be the output of the below query? \nSELECT * \nFROM employees \nWHERE ROWNUM < 10;",
+      "front_vi": "Điều kiện WHERE ROWNUM < 10 trả về bao nhiêu dòng?",
+      "back_vi": "Trả về 9 dòng (ROWNUM = 1, 2, ..., 9)."
+    }
+  },
+  {
+    "id": 234,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "Queries containing SET operators are called _______ queries.",
+    "prompt_vi": "Các câu truy vấn có chứa các toán tử SET được gọi là các câu truy vấn ________?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Compound",
+        "text_vi": "Hợp chất / Phức hợp (Compound queries)",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Set",
+        "text_vi": "Set queries",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Complex",
+        "text_vi": "Complex queries",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Set Manipulation",
+        "text_vi": "Set Manipulation queries",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Trong tài liệu chuẩn của Oracle Database, một câu lệnh SQL kết hợp kết quả của hai hoặc nhiều câu lệnh SELECT bằng các toán tử tập hợp (UNION, UNION ALL, INTERSECT, MINUS) được định nghĩa chính thức là một `Compound Query` (Truy vấn phức hợp).",
+    "key_takeaway_vi": "Truy vấn dùng toán tử tập hợp gọi là Compound Query.",
+    "flashcard": {
+      "front_en": "Queries containing SET operators are called _______ queries.",
+      "front_vi": "Tên gọi chính thức của câu truy vấn chứa toán tử SET là gì?",
+      "back_vi": "Compound Query (Truy vấn phức hợp)."
+    }
+  },
+  {
+    "id": 235,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "What is not true about the Union operator?",
+    "prompt_vi": "Điều nào sau đây là KHÔNG ĐÚNG khi nói về toán tử Union?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "UNION operates over all of the columns being selected.",
+        "text_vi": "UNION hoạt động trên toàn bộ tất cả các cột được chọn trong SELECT.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The IN operator has a higher precedence than the UNION operator.",
+        "text_vi": "Toán tử IN có độ ưu tiên cao hơn toán tử UNION.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "By default, the output is sorted in ascending order of the first column of the SELECT clause.",
+        "text_vi": "Mặc định, kết quả đầu ra được sắp xếp tăng dần theo cột đầu tiên của SELECT.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "NULL values are ignored during duplicate checking.",
+        "text_vi": "Các giá trị NULL bị bỏ qua trong quá trình kiểm tra trùng lặp (NULL values are ignored during duplicate checking).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Phát biểu D là SAI vì toán tử `UNION` KHÔNG BỎ QUA giá trị NULL khi so khớp trùng lặp. Nếu cả hai câu truy vấn đều trả về một dòng có giá trị NULL giống nhau, UNION sẽ xem chúng là trùng lặp và chỉ giữ lại một giá trị NULL duy nhất.",
+    "key_takeaway_vi": "UNION không bỏ qua NULL khi lọc trùng lặp; hai giá trị NULL được coi là trùng lặp và gộp thành 1.",
+    "flashcard": {
+      "front_en": "What is not true about the Union operator?",
+      "front_vi": "Toán tử UNION xử lý các dòng có giá trị NULL trùng nhau như thế nào?",
+      "back_vi": "Nó coi các giá trị NULL trùng nhau là dữ liệu trùng lặp và chỉ giữ lại 1 dòng duy nhất."
+    }
+  },
+  {
+    "id": 236,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "Which of the set operators when used, the output of the query is not sorted by default?",
+    "prompt_vi": "Toán tử tập hợp nào sau đây khi sử dụng thì kết quả trả về KHÔNG ĐƯỢC tự động sắp xếp theo mặc định?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Minus",
+        "text_vi": "Minus",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Intersect",
+        "text_vi": "Intersect",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Union",
+        "text_vi": "Union",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Union All",
+        "text_vi": "Union All",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Các toán tử `UNION`, `INTERSECT`, `MINUS` đều cần loại bỏ dòng trùng lặp nên Oracle tự động thực hiện thao tác Sort Unique (sắp xếp tăng dần). Riêng `UNION ALL` chỉ đơn thuần ghép nối các tập dữ liệu lại với nhau mà không lọc trùng, do đó nó KHÔNG thực hiện sắp xếp.",
+    "key_takeaway_vi": "UNION ALL là toán tử SET duy nhất không tự động sắp xếp kết quả.",
+    "flashcard": {
+      "front_en": "Which of the set operators when used, the output of the query is not sorted by default?",
+      "front_vi": "Tại sao UNION ALL có hiệu năng cao hơn UNION?",
+      "back_vi": "Vì UNION ALL không mất chi phí sắp xếp (sort) và không phải quét tìm dòng trùng lặp."
+    }
+  },
+  {
+    "id": 237,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "Which of the following statement is not true about the UNION ALL operator?",
+    "prompt_vi": "Phát biểu nào sau đây là KHÔNG ĐÚNG về toán tử UNION ALL?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The DISTINCT keyword can be used",
+        "text_vi": "Từ khóa DISTINCT có thể được sử dụng (The DISTINCT keyword can be used).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "The output is not sorted by default",
+        "text_vi": "Kết quả đầu ra không được sắp xếp theo mặc định.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The UNION ALL operator to return all rows from multiple queries.",
+        "text_vi": "Toán tử UNION ALL trả về tất cả các dòng từ nhiều câu truy vấn.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "duplicate rows are not eliminated",
+        "text_vi": "Các dòng trùng lặp không bị loại bỏ.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Bản thân `UNION ALL` sinh ra là để lấy tất cả các dòng kể cả trùng lặp. Cú pháp `UNION ALL DISTINCT` không tồn tại trong SQL (nếu muốn loại trùng thì đã dùng toán tử `UNION`). Do đó phương án A là phát biểu SAI.",
+    "key_takeaway_vi": "UNION ALL không đi kèm với từ khóa DISTINCT.",
+    "flashcard": {
+      "front_en": "Which of the following statement is not true about the UNION ALL operator?",
+      "front_vi": "Có cú pháp UNION ALL DISTINCT trong SQL không?",
+      "back_vi": "KHÔNG. Muốn loại bỏ trùng lặp chỉ dùng từ khóa UNION."
+    }
+  },
+  {
+    "id": 238,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "What is not true about the use of Intersect operator?",
+    "prompt_vi": "Điều nào sau đây là KHÔNG ĐÚNG khi nói về việc sử dụng toán tử Intersect?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "INTERSECT does not ignore NULL values.",
+        "text_vi": "INTERSECT không bỏ qua các giá trị NULL.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The names of the columns need not be identical",
+        "text_vi": "Tên của các cột không bắt buộc phải giống hệt nhau giữa các câu SELECT.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The number of columns and the data types of the columns being selected by the SELECT statements in the queries must be identical in all the SELECT statements used in the query",
+        "text_vi": "Số lượng cột và kiểu dữ liệu của các cột được chọn phải tương thích trong tất cả các câu SELECT.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Reversing the order of the intersected tables may result in a changed output",
+        "text_vi": "Đảo ngược thứ tự các bảng trong phép giao có thể làm thay đổi kết quả đầu ra (Reversing order may result in changed output).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Phát biểu D là SAI vì phép giao tập hợp có tính chất giao hoán: `A INTERSECT B` luôn luôn cho ra kết quả giống hệt như `B INTERSECT A`. Việc đảo thứ tự không làm thay đổi tập dữ liệu trả về (chỉ có phép trừ `MINUS` mới không giao hoán: `A - B != B - A`).",
+    "key_takeaway_vi": "Phép INTERSECT có tính giao hoán: A INTERSECT B = B INTERSECT A.",
+    "flashcard": {
+      "front_en": "What is not true about the use of Intersect operator?",
+      "front_vi": "Đảo vị trí giữa 2 câu SELECT trong phép INTERSECT có làm đổi kết quả không?",
+      "back_vi": "KHÔNG. Phép giao có tính chất giao hoán (khác với phép trừ MINUS)."
+    }
+  },
+  {
+    "id": 239,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "Which operator should you use to display the records which are a common result of each of \nthe queries?",
+    "prompt_vi": "Bạn nên sử dụng toán tử nào để hiển thị các bản ghi là kết quả chung (giao nhau) của cả hai câu truy vấn?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Union",
+        "text_vi": "Union",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Minus",
+        "text_vi": "Minus",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Intersect",
+        "text_vi": "Intersect",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "Union All",
+        "text_vi": "Union All",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Toán tử `INTERSECT` (phép giao) trả về các dòng xuất hiện đồng thời trong cả hai tập kết quả của câu truy vấn thứ nhất và câu truy vấn thứ hai.",
+    "key_takeaway_vi": "Tìm các dòng chung giữa 2 tập kết quả dùng toán tử INTERSECT.",
+    "flashcard": {
+      "front_en": "Which operator should you use to display the records which are a common result of each of \nthe queries?",
+      "front_vi": "Toán tử tập hợp nào tìm phần tử chung của 2 truy vấn?",
+      "back_vi": "INTERSECT."
+    }
+  },
+  {
+    "id": 240,
+    "module_id": 12,
+    "module_name_en": "Module 12: Set Operators and Pseudo Column",
+    "module_name_vi": "Module 12: Toán tử tập hợp & Cột giả (Set Operators & Pseudocolumns)",
+    "prompt_en": "Which of the following is correct about the use of Union operator?",
+    "prompt_vi": "Điều nào sau đây là ĐÚNG về việc sử dụng toán tử Union?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The data types of the columns being selected must be identical but the number of columns may be different.",
+        "text_vi": "Kiểu dữ liệu phải giống nhau nhưng số lượng cột có thể khác nhau.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The number of columns and the data types of the columns being selected must be identical in all the SELECT statements used in the query",
+        "text_vi": "Số lượng cột và kiểu dữ liệu của các cột được chọn phải tương thích ở tất cả các câu lệnh SELECT (number and data types must be identical).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "The names of the columns must also be identical",
+        "text_vi": "Tên của các cột cũng bắt buộc phải giống nhau hoàn toàn.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The number of columns being selected must be identical but the data types of the columns may be different.",
+        "text_vi": "Số lượng cột phải bằng nhau nhưng kiểu dữ liệu có thể khác nhau.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Quy tắc bắt buộc của mọi toán tử tập hợp (UNION, INTERSECT, MINUS): 1. Số lượng cột ở các mệnh đề SELECT phải BẰNG NHAU; 2. Kiểu dữ liệu của các cột ở từng vị trí tương ứng phải THUỘC CÙNG NHÓM KIỂU TƯƠNG THÍCH. Tên cột không bắt buộc phải giống nhau.",
+    "key_takeaway_vi": "Phép toán tập hợp bắt buộc số lượng cột và kiểu dữ liệu tương ứng phải khớp nhau.",
+    "flashcard": {
+      "front_en": "Which of the following is correct about the use of Union operator?",
+      "front_vi": "Quy tắc về cột khi kết hợp 2 câu SELECT bằng toán tử SET?",
+      "back_vi": "Cùng số lượng cột và các cột tương ứng cùng thứ tự phải tương thích kiểu dữ liệu."
+    }
+  },
+  {
+    "id": 241,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "Which the following statement is not true about Database Normalization ?",
+    "prompt_vi": "Phát biểu nào sau đây KHÔNG ĐÚNG khi nói về Chuẩn hóa cơ sở dữ liệu (Database Normalization)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Normalization usually involves combining small tables and consolidating them into a single table so that maximum data can be accessed through each table.",
+        "text_vi": "Chuẩn hóa thường bao gồm việc gộp các bảng nhỏ lại thành một bảng duy nhất để truy cập tối đa dữ liệu qua mỗi bảng (combining small tables into a single table).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "In the design of a relational database management system, the process of organizing data to minimize redundancy is called 'Normalization'.",
+        "text_vi": "Trong thiết kế RDBMS, quá trình tổ chức dữ liệu để giảm thiểu sự dư thừa được gọi là 'Chuẩn hóa'.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The goal of database normalization is to decompose relations with anomalies in order to produce smaller, well-structured relations.",
+        "text_vi": "Mục tiêu của chuẩn hóa là phân rã các quan hệ có dị thường để tạo ra các quan hệ nhỏ hơn, có cấu trúc tốt.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Normalization usually involves dividing large tables into smaller (and less redundant) tables and defining relationships between them.",
+        "text_vi": "Chuẩn hóa thường bao gồm việc chia tách các bảng lớn thành các bảng nhỏ hơn và thiết lập mối quan hệ giữa chúng.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Phát biểu A là SAI hoàn toàn vì bản chất của chuẩn hóa là PHÂN RÃ (Decomposition): chia tách các bảng lớn chứa dữ liệu dư thừa và dị thường thành các bảng nhỏ hơn chuyên biệt, chứ không phải gộp các bảng nhỏ lại thành một bảng to (đó là Denormalization - phi chuẩn hóa).",
+    "key_takeaway_vi": "Chuẩn hóa là phân rã bảng lớn thành các bảng nhỏ hơn để loại bỏ dư thừa và dị thường dữ liệu.",
+    "flashcard": {
+      "front_en": "Which the following statement is not true about Database Normalization ?",
+      "front_vi": "Bản chất của chuẩn hóa CSDL (Normalization) là gì?",
+      "back_vi": "Phân rã bảng lớn thành các bảng nhỏ hơn để loại bỏ dư thừa và ngăn chặn dị thường."
+    }
+  },
+  {
+    "id": 242,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "An attribute is fully functionally dependent on a set of attributes X if it is _________.",
+    "prompt_vi": "Một thuộc tính được gọi là phụ thuộc hàm đầy đủ (fully functionally dependent) vào tập thuộc tính X nếu nó:",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Functionally dependent on X",
+        "text_vi": "Phụ thuộc hàm vào X (Functionally dependent on X).",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Not functionally dependent on any proper subset of X.",
+        "text_vi": "Không phụ thuộc hàm vào bất kỳ tập con thực sự nào của X (Not functionally dependent on any proper subset of X).",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Either A or B but not both",
+        "text_vi": "Hoặc A hoặc B nhưng không phải cả hai.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Both A and B",
+        "text_vi": "Thỏa mãn cả A và B (Both A and B).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Định nghĩa lý thuyết: Thuộc tính Y phụ thuộc hàm đầy đủ vào khóa tổng hợp X khi và chỉ khi: 1. Y phụ thuộc vào toàn bộ X; VÀ 2. Y không phụ thuộc vào bất kỳ phần nào (tập con thực sự) của X. Nếu Y chỉ phụ thuộc vào một phần của X thì đó là Phụ thuộc hàm một phần (Partial Dependency).",
+    "key_takeaway_vi": "Phụ thuộc hàm đầy đủ = Phụ thuộc vào toàn bộ khóa X và không phụ thuộc vào bất kỳ tập con nào của X.",
+    "flashcard": {
+      "front_en": "An attribute is fully functionally dependent on a set of attributes X if it is _________.",
+      "front_vi": "Thế nào là Phụ thuộc hàm đầy đủ (Full Functional Dependency)?",
+      "back_vi": "Y phụ thuộc vào toàn bộ tập thuộc tính khóa X và không phụ thuộc vào bất kỳ tập con thực sự nào của X."
+    }
+  },
+  {
+    "id": 243,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "What is true about the Multivalued dependency?",
+    "prompt_vi": "Điều nào sau đây là ĐÚNG khi nói về Phụ thuộc đa trị (Multivalued dependency)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A multivalued dependency is a constraint according to which the presence of primary key in a table implies the presence of foreign keys.",
+        "text_vi": "Phụ thuộc đa trị là ràng buộc mà sự hiện diện của khóa chính ngụ ý sự hiện diện của khóa ngoại.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "A multivalued dependency is a constraint according to which the presence of certain rows in a table implies the presence of certain other rows.",
+        "text_vi": "Phụ thuộc đa trị là ràng buộc mà sự hiện diện của một số dòng nhất định trong bảng ngụ ý sự hiện diện của một số dòng khác (presence of certain rows implies presence of other rows).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "A multivalued dependency is a constraint according to which the presence of functional dependency implies the presence of transitive dependency.",
+        "text_vi": "Phụ thuộc hàm ngụ ý phụ thuộc bắc cầu.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "A multivalued dependency is a constraint according to which the presence of transitive dependency implies the presence of functional dependency.",
+        "text_vi": "Phụ thuộc bắc cầu ngụ ý phụ thuộc hàm.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Định nghĩa của Phụ thuộc đa trị (Multivalued Dependency: `X ->> Y`): Với các giá trị đã cho của X, tập các giá trị của Y hoàn toàn độc lập với các thuộc tính còn lại Z. Do đó, nếu bảng có các dòng `(x, y1, z2)` và `(x, y2, z1)` thì bắt buộc phải có mặt cả các dòng `(x, y1, z1)` và `(x, y2, z2)`. Đây là nền tảng của dạng chuẩn 4NF.",
+    "key_takeaway_vi": "Phụ thuộc đa trị (X ->> Y) quy định sự tồn tại của cặp dòng này suy ra sự hiện diện của cặp dòng khác.",
+    "flashcard": {
+      "front_en": "What is true about the Multivalued dependency?",
+      "front_vi": "Phụ thuộc đa trị (Multivalued Dependency) liên quan đến dạng chuẩn nào?",
+      "back_vi": "Dạng chuẩn 4NF (loại bỏ phụ thuộc đa trị không tầm thường)."
+    }
+  },
+  {
+    "id": 244,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "Which statement is true about the Super Keys?",
+    "prompt_vi": "Phát biểu nào sau đây là ĐÚNG khi nói về Siêu khóa (Super Keys)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A super key cannot be a candidate key.",
+        "text_vi": "Một siêu khóa không thể là một khóa ứng viên.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "A table can have only one super key.",
+        "text_vi": "Một bảng chỉ có thể có duy nhất một siêu khóa.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Super key may not contain all the columns present in the Candidate key of a table.",
+        "text_vi": "Siêu khóa có thể không chứa tất cả các cột có trong khóa ứng viên.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "A super key is a combination of attributes that can be used to uniquely identify a database record",
+        "text_vi": "Một siêu khóa là một tập hợp các thuộc tính có thể dùng để định danh duy nhất một bản ghi trong bảng (uniquely identify a record).",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Định nghĩa: `Siêu khóa (Super Key)` là bất kỳ tập hợp một hoặc nhiều thuộc tính nào mà giá trị của chúng có thể phân biệt duy nhất từng dòng trong bảng. Khóa ứng viên (Candidate Key) là một siêu khóa tối thiểu (minimal super key).",
+    "key_takeaway_vi": "Siêu khóa là tập thuộc tính xác định duy nhất một bản ghi trong bảng quan hệ.",
+    "flashcard": {
+      "front_en": "Which statement is true about the Super Keys?",
+      "front_vi": "Mối quan hệ giữa Siêu khóa (Super Key) và Khóa ứng viên (Candidate Key)?",
+      "back_vi": "Mọi Khóa ứng viên đều là Siêu khóa, và là Siêu khóa tối thiểu (không thể bỏ bớt thuộc tính nào)."
+    }
+  },
+  {
+    "id": 245,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "Which of the following statements is not true?",
+    "prompt_vi": "Phát biểu nào sau đây là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "A prime attribute is also part of all super keys of a table.",
+        "text_vi": "Một thuộc tính khóa (prime attribute) cũng là một phần của tất cả các siêu khóa chứa nó.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "A prime attribute is an attribute that does occur in any candidate key.",
+        "text_vi": "Một thuộc tính khóa (prime attribute) là thuộc tính xuất hiện trong bất kỳ khóa ứng viên nào.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "A non-prime attribute is an attribute that does not occur in any super key.",
+        "text_vi": "Một thuộc tính không khóa là thuộc tính không xuất hiện trong bất kỳ siêu khóa nào (does not occur in any super key).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "A non-prime attribute is an attribute that does not occur in any candidate key.",
+        "text_vi": "Một thuộc tính không khóa (non-prime attribute) là thuộc tính không xuất hiện trong bất kỳ khóa ứng viên nào.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Phát biểu C là SAI vì một thuộc tính không khóa (Non-prime attribute) hoàn toàn có thể tham gia vào một siêu khóa (bởi vì siêu khóa là khóa ứng viên cộng thêm các thuộc tính bất kỳ khác, bao gồm cả thuộc tính không khóa). Định nghĩa chuẩn: Thuộc tính không khóa là thuộc tính không tham gia vào BẤT KỲ KHÓA ỨNG VIÊN nào.",
+    "key_takeaway_vi": "Thuộc tính không khóa (Non-prime) là thuộc tính không nằm trong bất kỳ Khóa ứng viên (Candidate Key) nào.",
+    "flashcard": {
+      "front_en": "Which of the following statements is not true?",
+      "front_vi": "Định nghĩa thuộc tính khóa (Prime) và không khóa (Non-prime)?",
+      "back_vi": "Prime attribute thuộc ít nhất một Candidate Key; Non-prime attribute không thuộc bất kỳ Candidate Key nào."
+    }
+  },
+  {
+    "id": 246,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "Which of the following conditions is not a valid condition for a table to be in First Normal \nForm (1NF)?",
+    "prompt_vi": "Điều kiện nào sau đây KHÔNG PHẢI là một điều kiện hợp lệ để một bảng đạt Dạng chuẩn 1 (1NF)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "There are no duplicate rows.",
+        "text_vi": "Không có các dòng trùng lặp.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "There's no top-to-bottom ordering to the rows.",
+        "text_vi": "Không có thứ tự từ trên xuống dưới đối với các dòng.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "There's left-to-right ordering to the columns.",
+        "text_vi": "Có thứ tự từ trái qua phải đối với các cột (There's left-to-right ordering to the columns).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "Every row-and-column intersection contains exactly one value from the applicable domain",
+        "text_vi": "Mỗi giao điểm giữa dòng và cột chỉ chứa duy nhất một giá trị nguyên tử (atomic value) thuộc miền áp dụng.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Trong lý thuyết cơ sở dữ liệu quan hệ của E.F. Codd: Thứ tự các cột (từ trái qua phải) và thứ tự các dòng (từ trên xuống dưới) là hoàn toàn KHÔNG CÓ Ý NGHĨA. Việc yêu cầu 'phải có thứ tự từ trái qua phải đối với các cột' là phát biểu SAI.",
+    "key_takeaway_vi": "Trong bảng quan hệ chuẩn 1NF, thứ tự cột và thứ tự dòng không có ý nghĩa.",
+    "flashcard": {
+      "front_en": "Which of the following conditions is not a valid condition for a table to be in First Normal \nForm (1NF)?",
+      "front_vi": "Điều kiện cốt lõi của Dạng chuẩn 1 (1NF) là gì?",
+      "back_vi": "Mọi giá trị thuộc tính phải là nguyên tử (Atomic values - đơn trị), không có nhóm lặp."
+    }
+  },
+  {
+    "id": 247,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "Why is the following 1NF table not in the 2NF? \nEmployees' Skills \nEmployee  Skill           Current Work Location \n--------  --------------  --------------------- \nJones     Typing          114 Main Street \nJones     Shorthand       114 Main Street \nJones     Whittling       114 Main Street \nBravo     Light Cleaning  73 Industrial Way \nEllis     Alchemy         73 Industrial Way \nEllis     Flying          73 Industrial Way \nHarrison  Light Cleaning  73 Industrial Way",
+    "prompt_vi": "Xét bảng Employees' Skills (Employee, Skill, Current Work Location).\nJones có 3 kỹ năng khác nhau nhưng đều ở địa chỉ '114 Main Street'. Tại sao bảng 1NF này CHƯA ĐẠT dạng chuẩn 2 (2NF)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "The non-prime attribute(s) are not dependent on each of the prime attributes.",
+        "text_vi": "Các thuộc tính không khóa không phụ thuộc vào toàn bộ các thuộc tính khóa (phụ thuộc một phần).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "The table contains multiple records for Same Employee name, so not in 2NF",
+        "text_vi": "Bảng chứa nhiều bản ghi cho cùng một tên nhân viên.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "The non-prime attribute(s) are dependent on each of the prime attributes.",
+        "text_vi": "Các thuộc tính không khóa phụ thuộc vào từng thuộc tính khóa.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The table is not in 1NF hence not in 2NF",
+        "text_vi": "Bảng chưa đạt 1NF.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Khóa chính của bảng là khóa tổng hợp `(Employee, Skill)`. Thuộc tính không khóa `Current Work Location` (địa điểm làm việc) chỉ phụ thuộc vào `Employee` chứ không phụ thuộc vào `Skill` (Jones làm ở đâu thì mọi kỹ năng của anh ta đều ở địa chỉ đó). Đây là `Phụ thuộc hàm một phần (Partial Dependency)`, vi phạm quy tắc của Dạng chuẩn 2 (2NF).",
+    "key_takeaway_vi": "Bảng vi phạm 2NF khi thuộc tính không khóa chỉ phụ thuộc vào một phần của khóa chính tổng hợp.",
+    "flashcard": {
+      "front_en": "Why is the following 1NF table not in the 2NF? \nEmployees' Skills \nEmployee  Skill           Current Work Location \n--------  --------------  --------------------- \nJones     Typing          114 Main Street \nJones     Shorthand       114 Main Street \nJones     Whittling       114 Main Street \nBravo     Light Cleaning  73 Industrial Way \nEllis     Alchemy         73 Industrial Way \nEllis     Flying          73 Industrial Way \nHarrison  Light Cleaning  73 Industrial Way",
+      "front_vi": "Điều kiện để một quan hệ đạt Dạng chuẩn 2 (2NF)?",
+      "back_vi": "Đã ở 1NF và KHÔNG CÒN phụ thuộc hàm một phần (mọi thuộc tính không khóa phải phụ thuộc đầy đủ vào khóa chính)."
+    }
+  },
+  {
+    "id": 248,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "Which of the 3NF conditions is not satisfied by the table below? \nTournament Winners \nTournament            Year  Winner          Winner Date of Birth \n--------------------  ----  --------------  -------------------- \nDes Moines Masters    1998  Chip Masterson  14 March 1977 \nIndiana Invitational  1998  Al Fredrickson  21 July 1975 \nCleveland Open        1999  Bob Albertson   28 September 1968 \nDes Moines Masters    1999  Al Fredrickson  21 July 1975 \nIndiana Invitational  1999  Chip Masterson  14 March 1977",
+    "prompt_vi": "Xét bảng Tournament Winners (Tournament, Year, Winner, Winner Date of Birth).\nĐiều kiện nào của Dạng chuẩn 3 (3NF) bị bảng dưới đây vi phạm?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Every prime attribute of a Table is non-transitively dependent on every candidate key of the table.",
+        "text_vi": "Mọi thuộc tính khóa của bảng phải phụ thuộc không bắc cầu.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Every non-prime attribute of a Table is non-transitively dependent on every candidate key of the table.",
+        "text_vi": "Mọi thuộc tính không khóa phải phụ thuộc không bắc cầu vào mọi khóa ứng viên (non-transitively dependent).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "The table must be in 2NF",
+        "text_vi": "Bảng phải đạt 2NF.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "The table must be in 1NF",
+        "text_vi": "Bảng phải đạt 1NF.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Khóa chính của giải đấu là `(Tournament, Year)`. Khóa chính xác định `Winner` (người chiến thắng). Sau đó `Winner` lại xác định `Winner Date of Birth` (ngày sinh của người chiến thắng). Tức là: `(Tournament, Year) -> Winner -> Winner Date of Birth`. Đây là `Phụ thuộc hàm bắc cầu (Transitive Dependency)`, vi phạm trực tiếp quy tắc của Dạng chuẩn 3 (3NF).",
+    "key_takeaway_vi": "3NF loại bỏ phụ thuộc bắc cầu: Thuộc tính không khóa không được phụ thuộc vào thuộc tính không khóa khác.",
+    "flashcard": {
+      "front_en": "Which of the 3NF conditions is not satisfied by the table below? \nTournament Winners \nTournament            Year  Winner          Winner Date of Birth \n--------------------  ----  --------------  -------------------- \nDes Moines Masters    1998  Chip Masterson  14 March 1977 \nIndiana Invitational  1998  Al Fredrickson  21 July 1975 \nCleveland Open        1999  Bob Albertson   28 September 1968 \nDes Moines Masters    1999  Al Fredrickson  21 July 1975 \nIndiana Invitational  1999  Chip Masterson  14 March 1977",
+      "front_vi": "Điều kiện để đạt Dạng chuẩn 3 (3NF) là gì?",
+      "back_vi": "Đã đạt 2NF và KHÔNG CÓ phụ thuộc hàm bắc cầu giữa các thuộc tính không khóa."
+    }
+  },
+  {
+    "id": 249,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "Which statement about the Boyce-Codd Normal Form is not true?",
+    "prompt_vi": "Phát biểu nào sau đây về Dạng chuẩn Boyce-Codd (BCNF) là KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Only in rare cases does a 3NF table not meet the requirements of BCNF",
+        "text_vi": "Chỉ trong một số trường hợp hiếm hoi thì bảng 3NF mới không đáp ứng yêu cầu của BCNF.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "BCNF was developed to address certain types of anomaly not dealt with by 3NF as originally defined.",
+        "text_vi": "BCNF được phát triển để giải quyết một số dạng dị thường mà định nghĩa ban đầu của 3NF chưa xử lý được.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Boyce-Codd normal form is a slightly stronger version of the third normal form.",
+        "text_vi": "Dạng chuẩn Boyce-Codd là một phiên bản mạnh hơn một chút so với dạng chuẩn 3.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "A 3NF table which does not have multiple overlapping candidate keys is supposed to be not in BCNF.",
+        "text_vi": "Một bảng 3NF không có nhiều khóa ứng viên chồng chéo được cho là không đạt BCNF (Theo đáp án CDAC đánh dấu 100)",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Định lý chuẩn hóa: Nếu một bảng đạt 3NF và KHÔNG CÓ các khóa ứng viên gối nhau/chồng chéo (overlapping candidate keys), thì bảng đó CHẮC CHẮN ĐÃ ĐẠT BCNF! Do đó phát biểu D nói rằng bảng như vậy 'không đạt BCNF' là phát biểu SAI.",
+    "key_takeaway_vi": "Một bảng đạt 3NF và không có khóa ứng viên gối nhau thì tự động đạt chuẩn BCNF.",
+    "flashcard": {
+      "front_en": "Which statement about the Boyce-Codd Normal Form is not true?",
+      "front_vi": "Định nghĩa của Dạng chuẩn BCNF là gì?",
+      "back_vi": "Với mọi phụ thuộc hàm X -> Y không tầm thường, vế trái X bắt buộc phải là một Siêu khóa (Super Key)."
+    }
+  },
+  {
+    "id": 250,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "What is the full form of the DKNF?",
+    "prompt_vi": "Tên viết tắt đầy đủ của dạng chuẩn DKNF là gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Donner-Korth Normal Form",
+        "text_vi": "Donner-Korth Normal Form",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Domain-Key Normal Form",
+        "text_vi": "Domain-Key Normal Form (Dạng chuẩn Miền-Khóa)",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "Dual-Key Normal Form",
+        "text_vi": "Dual-Key Normal Form",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Domain-Knowledge Normal Form",
+        "text_vi": "Domain-Knowledge Normal Form",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "`DKNF` là viết tắt của `Domain-Key Normal Form` (Dạng chuẩn Miền - Khóa). Một quan hệ ở dạng chuẩn DKNF nếu mọi ràng buộc trên quan hệ đó đều là hệ quả logic của các ràng buộc miền giá trị (domain constraints) và ràng buộc khóa (key constraints). Đây là dạng chuẩn cao nhất về mặt lý thuyết.",
+    "key_takeaway_vi": "DKNF = Domain-Key Normal Form (Dạng chuẩn Miền-Khóa).",
+    "flashcard": {
+      "front_en": "What is the full form of the DKNF?",
+      "front_vi": "DKNF là viết tắt của cụm từ nào?",
+      "back_vi": "Domain-Key Normal Form (Dạng chuẩn Miền - Khóa)."
+    }
+  },
+  {
+    "id": 251,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "If a table is said to be in 3NF then which of the following may not be true?",
+    "prompt_vi": "Nếu một bảng được cho là đã đạt Dạng chuẩn 3 (3NF) thì điều nào sau đây CÓ THỂ KHÔNG ĐÚNG?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Every row-and-column intersection contains exactly one value from the applicable domain.",
+        "text_vi": "Mỗi giao điểm giữa dòng và cột chỉ chứa duy nhất một giá trị thuộc miền xác định.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "The table is free of modification anomalies.",
+        "text_vi": "Bảng hoàn toàn không còn bất kỳ dị thường sửa đổi nào (The table is free of modification anomalies).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "Every non-prime attribute is non-transitively dependent (i.e. directly dependent) on every candidate key.",
+        "text_vi": "Mọi thuộc tính không khóa đều phụ thuộc trực tiếp (không bắc cầu) vào mọi khóa ứng viên.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "All its non-prime attributes are functionally dependent on the whole of every candidate key.",
+        "text_vi": "Tất cả các thuộc tính không khóa đều phụ thuộc hàm vào toàn bộ mọi khóa ứng viên.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Một bảng dù đã đạt 3NF vẫn CÓ THỂ còn dị thường sửa đổi (modification anomalies) nếu nó chứa các khóa ứng viên gối nhau (cần đưa lên BCNF), hoặc chứa phụ thuộc đa trị (cần 4NF), hoặc phụ thuộc nối (cần 5NF). Do đó phát biểu rằng bảng 3NF 'hoàn toàn không còn dị thường' là không đúng.",
+    "key_takeaway_vi": "Bảng đạt 3NF vẫn có thể phát sinh dị thường nếu có khóa gối nhau hoặc phụ thuộc đa trị.",
+    "flashcard": {
+      "front_en": "If a table is said to be in 3NF then which of the following may not be true?",
+      "front_vi": "Tại sao bảng đạt chuẩn 3NF vẫn chưa hoàn hảo 100%?",
+      "back_vi": "Vì 3NF vẫn có thể gặp dị thường khi có khóa ứng viên chồng chéo (cần BCNF) hoặc phụ thuộc đa trị (cần 4NF)."
+    }
+  },
+  {
+    "id": 252,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "Which of the following statements correctly describe the modification anomalies?",
+    "prompt_vi": "Phát biểu nào sau đây mô tả chính xác nhất về các dị thường thao tác dữ liệu (modification anomalies)?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Modification anomalies occur only up to Second Normal form",
+        "text_vi": "Dị thường thao tác chỉ xuất hiện tối đa ở Dạng chuẩn 2.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "When modification anomalies exist, the table data cannot be modified",
+        "text_vi": "Khi tồn tại dị thường thao tác, dữ liệu trong bảng hoàn toàn không thể chỉnh sửa.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "When an attempt is made to modify a table, undesired side-effects may follow",
+        "text_vi": "Khi cố gắng thay đổi dữ liệu trong bảng, các tác dụng phụ ngoài ý muốn có thể xảy ra (undesired side-effects may follow).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "When modifying a table, errors frequently occur due to modification anomalies",
+        "text_vi": "Khi sửa đổi bảng, các lỗi hệ thống thường xuyên phát sinh do dị thường.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Dị thường dữ liệu (Anomalies) là những tác dụng phụ không mong muốn khi thực hiện thao tác dữ liệu: Thêm mới bị thiếu thông tin khóa (Insertion anomaly), Cập nhật một chỗ nhưng quên chỗ khác dẫn đến mâu thuẫn (Update anomaly), hoặc Xóa một thông tin này vô tình làm mất luôn thông tin khác (Deletion anomaly).",
+    "key_takeaway_vi": "Dị thường thao tác là các tác dụng phụ ngoài ý muốn (mất dữ liệu, mâu thuẫn dữ liệu) khi thêm/sửa/xóa.",
+    "flashcard": {
+      "front_en": "Which of the following statements correctly describe the modification anomalies?",
+      "front_vi": "3 loại dị thường thao tác dữ liệu chính trong CSDL là gì?",
+      "back_vi": "1. Insertion Anomaly (Dị thường thêm), 2. Deletion Anomaly (Dị thường xóa), 3. Update Anomaly (Dị thường sửa)."
+    }
+  },
+  {
+    "id": 253,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "Which of the following indicate that Y is transitively dependent on X?",
+    "prompt_vi": "Mối quan hệ phụ thuộc nào sau đây chỉ ra rằng Y phụ thuộc bắc cầu vào X?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "X->Y , Z->X",
+        "text_vi": "X -> Y, Z -> X",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "X->Y, Z->X",
+        "text_vi": "X -> Y, Z -> X",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Y->Z, Z->X",
+        "text_vi": "Y -> Z, Z -> X",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Z->Y , X->Z",
+        "text_vi": "Z -> Y, X -> Z (X xác định Z, và Z xác định Y)",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Định nghĩa phụ thuộc bắc cầu: Nếu `X -> Z` và `Z -> Y` (với Z không phải là siêu khóa và Y không phụ thuộc trực tiếp vào X), thì `Y` được gọi là phụ thuộc bắc cầu vào `X` thông qua thuộc tính trung gian `Z`.",
+    "key_takeaway_vi": "Phụ thuộc bắc cầu: X -> Z và Z -> Y suy ra Y phụ thuộc bắc cầu vào X.",
+    "flashcard": {
+      "front_en": "Which of the following indicate that Y is transitively dependent on X?",
+      "front_vi": "Công thức toán học của Phụ thuộc hàm bắc cầu là gì?",
+      "back_vi": "X -> Z và Z -> Y (X xác định Z, Z xác định Y, suy ra X gián tiếp xác định Y)."
+    }
+  },
+  {
+    "id": 254,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "What is correct full form of the BCNF normal form?",
+    "prompt_vi": "Tên gọi đầy đủ chính xác của dạng chuẩn BCNF là gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Boyce-Cartesian normal form",
+        "text_vi": "Boyce-Cartesian normal form",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Boyce-Codd normal form",
+        "text_vi": "Boyce-Codd normal form",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "Bond-Codd normal form",
+        "text_vi": "Bond-Codd normal form",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Borne-Codd normal form",
+        "text_vi": "Borne-Codd normal form",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "BCNF được đặt theo tên của hai nhà khoa học máy tính tiên phong là Raymond F. Boyce và Edgar F. Codd (người cha đẻ của mô hình CSDL quan hệ).",
+    "key_takeaway_vi": "BCNF = Boyce-Codd Normal Form.",
+    "flashcard": {
+      "front_en": "What is correct full form of the BCNF normal form?",
+      "front_vi": "BCNF mang tên của ai?",
+      "back_vi": "Raymond F. Boyce và Edgar F. Codd (Boyce-Codd Normal Form)."
+    }
+  },
+  {
+    "id": 255,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "Which of the following is not a valid type of Modification anomaly?",
+    "prompt_vi": "Thuật ngữ nào sau đây KHÔNG PHẢI là một loại dị thường thao tác dữ liệu (Modification anomaly) hợp lệ?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Update Anomaly",
+        "text_vi": "Dị thường cập nhật (Update Anomaly)",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Insertion anomaly",
+        "text_vi": "Dị thường chèn thêm (Insertion anomaly)",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Deletion anomaly",
+        "text_vi": "Dị thường xóa (Deletion anomaly)",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Drop anomaly",
+        "text_vi": "Dị thường drop (Drop anomaly)",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Trong lý thuyết thiết kế cơ sở dữ liệu, chỉ có chính xác 3 loại dị thường dữ liệu kinh điển: 1. `Insertion Anomaly` (dị thường thêm); 2. `Deletion Anomaly` (dị thường xóa); và 3. `Update Anomaly` (dị thường cập nhật). Hoàn toàn không có khái niệm nào là 'Drop anomaly'.",
+    "key_takeaway_vi": "3 loại dị thường dữ liệu: Insertion, Deletion, Update. Không có Drop anomaly.",
+    "flashcard": {
+      "front_en": "Which of the following is not a valid type of Modification anomaly?",
+      "front_vi": "Kể tên 3 dị thường dữ liệu kinh điển trong cơ sở dữ liệu?",
+      "back_vi": "Insertion Anomaly (thêm), Deletion Anomaly (xóa), và Update Anomaly (sửa)."
+    }
+  },
+  {
+    "id": 256,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "Considering the table structure and the data in the following table, which all modification \nanomalies can occur while modifying this table? \nFaculty ID  Faculty Name    Faculty Hire Date  Course Code \n----------  --------------  -----------------  ----------- \n389         Dr. Giddens     10-Feb-1985        ENG-206 \n407         Dr. Saperstein  19-Apr-1999        CMP-101 \n407         Dr. Saperstein  19-Apr-1999        CMP-201",
+    "prompt_vi": "Xem xét cấu trúc và dữ liệu bảng sau:\nFaculty ID, Faculty Name, Faculty Hire Date, Course Code\n(389, Dr. Giddens, 10-Feb-1985, ENG-206)\n(407, Dr. Saperstein, 19-Apr-1999, CMP-101)\n(407, Dr. Saperstein, 19-Apr-1999, CMP-201)\nNhững loại dị thường thao tác nào có thể xảy ra khi sửa đổi bảng này?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Insertion, Update and Deletion anomaly",
+        "text_vi": "Dị thường chèn, cập nhật và xóa (Insertion, Update and Deletion anomaly).",
+        "is_correct": true
+      },
+      {
+        "key": "B",
+        "text_en": "Only Insertion anomaly",
+        "text_vi": "Chỉ có dị thường chèn.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Insertion and Update anomaly",
+        "text_vi": "Dị thường chèn và cập nhật.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Update and Deletion anomaly",
+        "text_vi": "Dị thường cập nhật và xóa.",
+        "is_correct": false
+      }
+    ],
+    "answer": "A",
+    "explanation_vi": "Bảng này kết hợp thông tin giảng viên và khóa học vào làm một: 1. `Insertion anomaly`: Không thể thêm giảng viên mới nếu người đó chưa dạy môn nào (vì Course Code là phần của khóa chính); 2. `Update anomaly`: Nếu Dr. Saperstein đổi ngày tuyển dụng, phải sửa ở nhiều dòng, dễ gây mâu thuẫn; 3. `Deletion anomaly`: Nếu xóa môn ENG-206, thông tin của Dr. Giddens cũng bị biến mất vĩnh viễn.",
+    "key_takeaway_vi": "Bảng vi phạm chuẩn hóa sẽ cùng lúc mắc phải cả 3 dị thường: Thêm (Insert), Sửa (Update) và Xóa (Delete).",
+    "flashcard": {
+      "front_en": "Considering the table structure and the data in the following table, which all modification \nanomalies can occur while modifying this table? \nFaculty ID  Faculty Name    Faculty Hire Date  Course Code \n----------  --------------  -----------------  ----------- \n389         Dr. Giddens     10-Feb-1985        ENG-206 \n407         Dr. Saperstein  19-Apr-1999        CMP-101 \n407         Dr. Saperstein  19-Apr-1999        CMP-201",
+      "front_vi": "Bảng thiết kế kém thường mắc phải những dị thường nào?",
+      "back_vi": "Mắc phải đồng thời cả 3 dị thường: Insertion Anomaly, Update Anomaly, Deletion Anomaly."
+    }
+  },
+  {
+    "id": 257,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "Which of the following is not a valid objective of normalization?",
+    "prompt_vi": "Điều nào sau đây KHÔNG PHẢI là một mục tiêu hợp lệ của chuẩn hóa cơ sở dữ liệu?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "Get rid of the modification anomalies",
+        "text_vi": "Loại bỏ các dị thường thao tác dữ liệu.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Make the data model more informative to users",
+        "text_vi": "Làm cho mô hình dữ liệu mang nhiều thông tin rõ ràng hơn cho người dùng.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "Completely avoid the need to change the table structure after normalization",
+        "text_vi": "Hoàn toàn tránh được việc phải thay đổi cấu trúc bảng sau khi chuẩn hóa (Completely avoid the need to change table structure).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "Minimize redesign when extending the database structure",
+        "text_vi": "Giảm thiểu việc phải thiết kế lại khi mở rộng cấu trúc cơ sở dữ liệu.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Phát biểu C là SAI. Chuẩn hóa giúp tối ưu hóa cấu trúc và giảm thiểu thiết kế lại, nhưng không thể 'hoàn toàn tránh khỏi việc thay đổi cấu trúc bảng trong tương lai' vì các yêu cầu nghiệp vụ của doanh nghiệp luôn luôn thay đổi theo thời gian.",
+    "key_takeaway_vi": "Chuẩn hóa không thể ngăn chặn 100% việc thay đổi cấu trúc bảng khi nghiệp vụ mở rộng.",
+    "flashcard": {
+      "front_en": "Which of the following is not a valid objective of normalization?",
+      "front_vi": "Mục tiêu chính của chuẩn hóa là gì?",
+      "back_vi": "Giảm thiểu dư thừa, loại bỏ dị thường và tạo cấu trúc linh hoạt để mở rộng nghiệp vụ."
+    }
+  },
+  {
+    "id": 258,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "Consider following table structure, in which normal form is it? \nTransactions \nCustomer  Tr. ID  Date         Amount \n--------  ------  -----------  ------ \nJones     12890   14-Oct-2003  −87 \n          12904   15-Oct-2003  −50 \nWilkins   12898   14-Oct-2003  −21 \nStevens   12907   15-Oct-2003  −18 \n          14920   20-Nov-2003  −70 \n          15003   27-Nov-2003  −60",
+    "prompt_vi": "Xét cấu trúc bảng Transactions:\nCustomer, Tr. ID, Date, Amount\nJones có 2 giao dịch (12890 và 12904), Stevens có 3 giao dịch...\nBảng này đang ở dạng chuẩn nào?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "3NF",
+        "text_vi": "3NF",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "1NF",
+        "text_vi": "1NF",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "2NF",
+        "text_vi": "2NF",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "Non 1NF",
+        "text_vi": "Chưa đạt dạng chuẩn 1 (Non 1NF)",
+        "is_correct": true
+      }
+    ],
+    "answer": "D",
+    "explanation_vi": "Nhìn vào dữ liệu bảng: Dưới tên khách hàng 'Jones' có 2 giao dịch liên tiếp mà ô Customer ở dòng 2 bị để trống (nhóm lặp - Repeating Group), hoặc hiểu là một ô khách hàng chứa một danh sách nhiều giao dịch. Điều này vi phạm tính nguyên tử (Atomicity) của thuộc tính. Vì vậy bảng `CHƯA ĐẠT DẠNG CHUẨN 1 (Non 1NF)`.",
+    "key_takeaway_vi": "Bảng có nhóm lặp hoặc một ô chứa nhiều giá trị là Non-1NF (chưa đạt 1NF).",
+    "flashcard": {
+      "front_en": "Consider following table structure, in which normal form is it? \nTransactions \nCustomer  Tr. ID  Date         Amount \n--------  ------  -----------  ------ \nJones     12890   14-Oct-2003  −87 \n          12904   15-Oct-2003  −50 \nWilkins   12898   14-Oct-2003  −21 \nStevens   12907   15-Oct-2003  −18 \n          14920   20-Nov-2003  −70 \n          15003   27-Nov-2003  −60",
+      "front_vi": "Tại sao bảng chứa nhóm lặp (repeating group) lại là Non-1NF?",
+      "back_vi": "Vì 1NF yêu cầu mọi ô dữ liệu tại giao điểm hàng và cột phải chứa giá trị nguyên tử (Atomic/đơn trị)."
+    }
+  },
+  {
+    "id": 259,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "What is Functional dependency?",
+    "prompt_vi": "Phụ thuộc hàm (Functional dependency) là gì?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "In a given table, an attribute Y is said to have a functional dependency on a set of attributes X, if and only if each X value is associated with more than one Y value",
+        "text_vi": "Mỗi giá trị X gắn với nhiều hơn một giá trị Y.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "In a given table, an attribute Y is said to have a functional dependency on a set of attributes X, if and only if each Y value is associated with precisely one X value",
+        "text_vi": "Mỗi giá trị Y gắn với duy nhất một giá trị X.",
+        "is_correct": false
+      },
+      {
+        "key": "C",
+        "text_en": "In a given table, an attribute Y is said to have a functional dependency on a set of attributes X, if and only if each X value is associated with precisely one Y value",
+        "text_vi": "Thuộc tính Y có phụ thuộc hàm vào tập thuộc tính X nếu và chỉ nếu mỗi giá trị X gắn liền với DUY NHẤT MỘT giá trị Y (precisely one Y value).",
+        "is_correct": true
+      },
+      {
+        "key": "D",
+        "text_en": "In a given table, an attribute Y is said to have a functional dependency on a set of attributes X, if and only if each X value is associated with at least one Y value",
+        "text_vi": "Mỗi giá trị X gắn với ít nhất một giá trị Y.",
+        "is_correct": false
+      }
+    ],
+    "answer": "C",
+    "explanation_vi": "Định nghĩa toán học của Phụ thuộc hàm (`X -> Y`): Thuộc tính Y phụ thuộc hàm vào X nếu với bất kỳ hai dòng nào có cùng giá trị X (`t1[X] = t2[X]`), chúng bắt buộc phải có cùng giá trị Y (`t1[Y] = t2[Y]`). Nghĩa là biết X thì xác định được duy nhất một giá trị Y.",
+    "key_takeaway_vi": "Phụ thuộc hàm X -> Y nghĩa là ứng với mỗi giá trị X chỉ có duy nhất một giá trị Y tương ứng.",
+    "flashcard": {
+      "front_en": "What is Functional dependency?",
+      "front_vi": "Định nghĩa chuẩn của Phụ thuộc hàm X -> Y?",
+      "back_vi": "Mỗi giá trị của X xác định duy nhất chính xác một giá trị của Y."
+    }
+  },
+  {
+    "id": 260,
+    "module_id": 13,
+    "module_name_en": "Module 13: Normalization",
+    "module_name_vi": "Module 13: Chuẩn hóa cơ sở dữ liệu (Normalization)",
+    "prompt_en": "What does X -> Y mean about the attributes X and Y?",
+    "prompt_vi": "Ký hiệu X -> Y có ý nghĩa gì về hai thuộc tính X và Y?",
+    "options": [
+      {
+        "key": "A",
+        "text_en": "X is functionally dependent on Y",
+        "text_vi": "X phụ thuộc hàm vào Y.",
+        "is_correct": false
+      },
+      {
+        "key": "B",
+        "text_en": "Y is functionally dependent on X",
+        "text_vi": "Y phụ thuộc hàm vào X (Y is functionally dependent on X).",
+        "is_correct": true
+      },
+      {
+        "key": "C",
+        "text_en": "None of the above",
+        "text_vi": "Không câu nào đúng.",
+        "is_correct": false
+      },
+      {
+        "key": "D",
+        "text_en": "X and Y are functionally dependent on each other",
+        "text_vi": "X và Y phụ thuộc hàm lẫn nhau.",
+        "is_correct": false
+      }
+    ],
+    "answer": "B",
+    "explanation_vi": "Ký hiệu toán học `X -> Y` được đọc là: 'X xác định hàm Y' (X functionally determines Y) hoặc 'Y phụ thuộc hàm vào X' (Y is functionally dependent on X). X là thuộc tính định danh (Determinant), Y là thuộc tính phụ thuộc.",
+    "key_takeaway_vi": "X -> Y nghĩa là Y phụ thuộc hàm vào X (X xác định Y).",
+    "flashcard": {
+      "front_en": "What does X -> Y mean about the attributes X and Y?",
+      "front_vi": "Ký hiệu X -> Y phát biểu bằng lời như thế nào?",
+      "back_vi": "Y phụ thuộc hàm vào X (hoặc X xác định hàm Y)."
+    }
+  }
+];
